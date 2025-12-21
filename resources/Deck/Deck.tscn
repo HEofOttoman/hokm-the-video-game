@@ -1,0 +1,28 @@
+[gd_scene load_steps=20 format=3 uid="uid://cw2s6n4ya0dat"]
+
+[ext_resource type="Texture2D" uid="uid://dxwji37u4j8a1" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png" id="1_ihuff"]
+[ext_resource type="Script" uid="uid://phuji5srflwy" path="res://resources/Deck/deck.gd" id="2_h3hq2"]
+[ext_resource type="Resource" uid="uid://dqh5dwp5dsv24" path="res://resources/Card Resources/CardData/Cards/2_Hearts.tres" id="3_cfr7v"]
+[ext_resource type="Resource" uid="uid://da086yryo4xl8" path="res://resources/Card Resources/CardData/Cards/3_Hearts.tres" id="4_b8gvh"]
+[ext_resource type="Resource" uid="uid://47k81q47y2ae" path="res://resources/Card Resources/CardData/Cards/4_Hearts.tres" id="5_5c0ok"]
+[ext_resource type="Resource" uid="uid://b2bywon435u2x" path="res://resources/Card Resources/CardData/Cards/5_Hearts.tres" id="6_ek3k0"]
+[ext_resource type="Resource" uid="uid://6dagnl2g65d" path="res://resources/Card Resources/CardData/Cards/6_Hearts.tres" id="7_wuws0"]
+[ext_resource type="Resource" uid="uid://ch18sl8yw05kl" path="res://resources/Card Resources/CardData/Cards/7_Hearts.tres" id="8_xqute"]
+[ext_resource type="Resource" uid="uid://broxm5ifb5l5j" path="res://resources/Card Resources/CardData/Cards/8_Hearts.tres" id="9_uah7t"]
+[ext_resource type="Resource" uid="uid://tgtbwtsw0htk" path="res://resources/Card Resources/CardData/Cards/9_Hearts.tres" id="10_mca83"]
+[ext_resource type="Resource" uid="uid://f57imtxpvqev" path="res://resources/Card Resources/CardData/Cards/10_Hearts.tres" id="11_wajpg"]
+[ext_resource type="Resource" uid="uid://bd173tfjqj5ts" path="res://resources/Card Resources/CardData/Cards/A_Clubs.tres" id="12_4s5md"]
+[ext_resource type="Resource" uid="uid://cti6ovxadelg7" path="res://resources/Card Resources/CardData/Cards/A_Diamonds.tres" id="13_0d1dw"]
+[ext_resource type="Resource" uid="uid://csfpiewnonu1n" path="res://resources/Card Resources/CardData/Cards/A_Hearts.tres" id="14_lnx4g"]
+[ext_resource type="Resource" uid="uid://v6riufhvvs6c" path="res://resources/Card Resources/CardData/Cards/A_Spades.tres" id="15_6ihv1"]
+[ext_resource type="Resource" uid="uid://mlam3rjbfi7d" path="res://resources/Card Resources/CardData/Cards/J_Hearts.tres" id="16_xm3b7"]
+[ext_resource type="Resource" uid="uid://cj52utdslerta" path="res://resources/Card Resources/CardData/Cards/K_Hearts.tres" id="17_v741o"]
+[ext_resource type="Resource" uid="uid://dyg83ku545qa5" path="res://resources/Card Resources/CardData/Cards/Q_Hearts.tres" id="18_5el5g"]
+[ext_resource type="PackedScene" uid="uid://dyrpsnraose2n" path="res://resources/Card Resources/card.tscn" id="19_h3hq2"]
+
+[node name="Deck" type="Sprite2D"]
+scale = Vector2(2, 2.154)
+texture = ExtResource("1_ihuff")
+script = ExtResource("2_h3hq2")
+cards = Array[Resource]([ExtResource("3_cfr7v"), ExtResource("4_b8gvh"), ExtResource("5_5c0ok"), ExtResource("6_ek3k0"), ExtResource("7_wuws0"), ExtResource("8_xqute"), ExtResource("9_uah7t"), ExtResource("10_mca83"), ExtResource("11_wajpg"), ExtResource("12_4s5md"), ExtResource("13_0d1dw"), ExtResource("14_lnx4g"), ExtResource("15_6ihv1"), ExtResource("16_xm3b7"), ExtResource("17_v741o"), ExtResource("18_5el5g")])
+cardScene = ExtResource("19_h3hq2")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyrpsnraose2n"]
+
+[ext_resource type="Texture2D" uid="uid://cjjwlc7dkaotx" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_clubs_J.png" id="1_ejfkd"]
+[ext_resource type="Script" uid="uid://gmn1ddhih28d" path="res://resources/Card Resources/cardclicker.gd" id="2_ejfkd"]
+[ext_resource type="Script" uid="uid://bxg63s5qd73ue" path="res://resources/Card Resources/card.gd" id="2_ymwpd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idd6q"]
+size = Vector2(40, 58)
+
+[node name="Card" type="Sprite2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_ejfkd")
+script = ExtResource("2_ymwpd")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_ejfkd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_idd6q")
+
+[connection signal="card_action" from="Area2D" to="." method="_on_area_2d_card_action"]
+[connection signal="card_release" from="Area2D" to="." method="_on_area_2d_card_release"]

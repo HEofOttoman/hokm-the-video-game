@@ -1,14 +1,23 @@
 # Attribution
+
 ## Collaborators
+**(C)2025 Henry Wauzivuff et al. All Rights Reserved**
 
+### Development
 Henry Wauzivuff
-Kian1234ferdossi
 
-### Godot Game Template
-![Maaack Plugin Icon](/assets/plugin_logo/logo.png)  
-Author: [Marek Belski and contributors](https://github.com/Maaack/Godot-Game-Template/graphs/contributors)  
-Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
-License: [MIT License](LICENSE.txt)  
+### Banner 
+Henry Wauzivuff
+
+### Rules of Hokm
+FerdowSki
+
+### Programming Help
+Noontime Dreamer - [Tutorial on Card Game Basics](https://www.youtube.com/watch?v=e7iuMLdWjgw)
+
+## Music
+Nasser Abdollahi - Ziyafat
+
 
 ## Sourced
 #### Godot Engine Logo
@@ -22,6 +31,9 @@ Source: [git-scm.com : logos](https://git-scm.com/downloads/logos)
 License: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) 
 
 #### Kenney's Assets
+Author: [Kenney](https://kenney.nl)
+Source: [Kenney.nl](https://kenney.nl)
+License: [CC0](https://creativecommons.org/public-domain/cc0/)
 
 
 ## Tools
@@ -41,3 +53,9 @@ License: [MIT License](https://github.com/microsoft/vscode/blob/main/LICENSE.txt
 Author: [Linus Torvalds](https://github.com/torvalds)  
 Source: [git-scm.com](https://git-scm.com/downloads)  
 License: [GNU General Public License version 2](https://opensource.org/licenses/GPL-2.0)
+
+#### Godot Game Template
+![Maaack Plugin Icon](/assets/plugin_logo/logo.png)  
+Author: [Marek Belski and contributors](https://github.com/Maaack/Godot-Game-Template/graphs/contributors)  
+Source: [github: Godot-Game-Template](https://github.com/Maaack/Godot-Game-Template)  
+License: [MIT License](LICENSE.txt) 
