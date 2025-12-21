@@ -344,7 +344,7 @@ text = "Hokm - The Video Game"
 modulate = Color(1, 1, 1, 0)
 
 [node name="SubTitleLabel" parent="MenuContainer/SubTitleMargin/SubTitleContainer" index="0"]
-text = "I was bored okay"
+text = "An Adaptation of a Popular Iranian Card Game"
 
 [node name="MenuButtonsContainer" parent="MenuContainer/MenuButtonsMargin" index="0"]
 modulate = Color(1, 1, 1, 0)

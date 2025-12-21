@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpr6mnd7ukuya"]
+
+[ext_resource type="Texture2D" uid="uid://dsp3rcsvmdhe7" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_clubs_A.png" id="1_4sd4u"]
+
+[node name="BasicHokmTutorial1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(584, 269)
+texture = ExtResource("1_4sd4u")
