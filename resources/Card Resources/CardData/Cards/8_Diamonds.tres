@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cwfuee872gdxj"]
+
+[ext_resource type="Texture2D" uid="uid://dpyes2cgc5sj7" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_diamonds_08.png" id="1_ejx73"]
+[ext_resource type="Script" uid="uid://chu0ty2njk4y8" path="res://resources/Card Resources/CardData/CardData.gd" id="2_lxa0u"]
+
+[resource]
+script = ExtResource("2_lxa0u")
+value = 7
+suit = "Diamonds"
+cardtexture = ExtResource("1_ejx73")

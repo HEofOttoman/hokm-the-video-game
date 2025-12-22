@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Hokm - The Video Game"
+config/description="An adaptation of a unique Iranian game"
 run/main_scene="res://scenes/opening/opening.tscn"
 config/features=PackedStringArray("4.5")
-config/icon="res://icon.png"
+config/icon="uid://dye4jk4wrvwgm"
 
 [autoload]
 

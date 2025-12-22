@@ -1,21 +1,22 @@
 # Attribution
 
 ## Collaborators
-**(C)2025 Henry Wauzivuff et al. All Rights Reserved**
+(C)2025 Henry Wauzivuff et al. Most Rights Reserved
 
-### Development
+#### Development
 Henry Wauzivuff
 
-### Banner 
+#### Banner 
 Henry Wauzivuff
 
-### Rules of Hokm
+#### Rules of Hokm
 FerdowSki
 
-### Programming Help
+#### Programming Help
 Noontime Dreamer - [Tutorial on Card Game Basics](https://www.youtube.com/watch?v=e7iuMLdWjgw)
 
-## Music
+
+#### Music
 Nasser Abdollahi - Ziyafat
 
 

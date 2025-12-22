@@ -12,13 +12,26 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
 bbcode_enabled = true
-text = "[font_size=48]Collaborators[/font_size]
+text = "
+[font_size=48]Collaborators[/font_size]
+(C)2025 Henry Wauzivuff et al. Most Rights Reserved
 
-[font_size=32]Godot Game Template[/font_size]
-[img=80]res:///assets/plugin_logo/logo.png[/img]  
-Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
-Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
-License: [url=LICENSE.txt]MIT License[/url]  
+[font_size=24]Development[/font_size]
+Henry Wauzivuff
+
+[font_size=24]Banner [/font_size]
+Henry Wauzivuff
+
+[font_size=24]Rules of Hokm[/font_size]
+FerdowSki
+
+[font_size=24]Programming Help[/font_size]
+Noontime Dreamer - [url=https://www.youtube.com/watch?v=e7iuMLdWjgw]Tutorial on Card Game Basics[/url]
+
+
+[font_size=24]Music[/font_size]
+Nasser Abdollahi - Ziyafat
+
 
 [font_size=48]Sourced[/font_size]
 [font_size=24]Godot Engine Logo[/font_size]
@@ -30,6 +43,12 @@ License: [url=https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt]
 Author: [url=https://bsky.app/profile/jasonlong.me]Jason Long[/url]  
 Source: [url=https://git-scm.com/downloads/logos]git-scm.com : logos[/url]  
 License: [url=https://creativecommons.org/licenses/by/3.0/]CC BY 3.0[/url] 
+
+[font_size=24]Kenney's Assets[/font_size]
+Author: [url=https://kenney.nl]Kenney[/url]
+Source: [url=https://kenney.nl]Kenney.nl[/url]
+License: [url=https://creativecommons.org/public-domain/cc0/]CC0[/url]
+
 
 [font_size=48]Tools[/font_size]
 [font_size=24]Godot[/font_size]
@@ -48,6 +67,12 @@ License: [url=https://github.com/microsoft/vscode/blob/main/LICENSE.txt]MIT Lice
 Author: [url=https://github.com/torvalds]Linus Torvalds[/url]  
 Source: [url=https://git-scm.com/downloads]git-scm.com[/url]  
 License: [url=https://opensource.org/licenses/GPL-2.0]GNU General Public License version 2[/url]
+
+[font_size=24]Godot Game Template[/font_size]
+[img=80]res:///assets/plugin_logo/logo.png[/img]  
+Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]Marek Belski and contributors[/url]  
+Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
+License: [url=LICENSE.txt]MIT License[/url] 
 "
 fit_content = true
 scroll_active = false

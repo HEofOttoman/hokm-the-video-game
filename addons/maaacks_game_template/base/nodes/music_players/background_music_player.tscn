@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://bkcsjsk2ciff"]
+[gd_scene load_steps=2 format=3 uid="uid://bkcsjsk2ciff"]
+
+[ext_resource type="AudioStream" uid="uid://btyrlfr7u8441" path="res://assets/Audio/Music/Naser Abdollahi - Ziafat.mp3" id="1_gbsvc"]
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer"]
 process_mode = 3
+stream = ExtResource("1_gbsvc")
 autoplay = true
 bus = &"Music"

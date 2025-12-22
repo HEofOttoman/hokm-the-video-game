@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dwb1krbhfolqk"]
+
+[ext_resource type="Texture2D" uid="uid://cpb4j873n7q6p" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_spades_07.png" id="1_tah2f"]
+[ext_resource type="Script" uid="uid://chu0ty2njk4y8" path="res://resources/Card Resources/CardData/CardData.gd" id="2_lp0pm"]
+
+[resource]
+script = ExtResource("2_lp0pm")
+value = 6
+suit = "Spades"
+cardtexture = ExtResource("1_tah2f")

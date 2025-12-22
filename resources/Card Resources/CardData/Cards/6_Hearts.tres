@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://6dagnl2g65d"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://6dagnl2g65d"]
 
 [ext_resource type="Texture2D" uid="uid://6exyyl7o6y4u" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_hearts_06.png" id="1_dbww7"]
 [ext_resource type="Script" uid="uid://chu0ty2njk4y8" path="res://resources/Card Resources/CardData/CardData.gd" id="2_wfldv"]

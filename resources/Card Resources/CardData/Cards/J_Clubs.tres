@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cpwoyy0f68cm5"]
+
+[ext_resource type="Texture2D" uid="uid://cjjwlc7dkaotx" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_clubs_J.png" id="1_vodd1"]
+[ext_resource type="Script" uid="uid://chu0ty2njk4y8" path="res://resources/Card Resources/CardData/CardData.gd" id="2_1ljr2"]
+
+[resource]
+script = ExtResource("2_1ljr2")
+value = 10
+suit = "Clubs"
+cardtexture = ExtResource("1_vodd1")
