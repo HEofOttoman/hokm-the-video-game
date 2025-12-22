@@ -30,4 +30,5 @@ func draw():
 		card.global_position = Hand.global_position
 		Hand.add_child(card)
 		
+		
 		print("Card ", card.value, card.suit, "drawn") ## Confirms that shuffle function works	

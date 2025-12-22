@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=13 format=3 uid="uid://dpr6mnd7ukuya"]
 
 [ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/levels/basic_test_scene.gd" id="1_3ygac"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="6_f4grl"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="7_exaxi"]
 [ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="8_sl5y5"]
+[ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://scenes/game_scene/levels/hakem_display.gd" id="8_xf0qg"]
 [ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="9_m6rcj"]
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="10_xf0qg"]
 
@@ -42,7 +43,7 @@ pause_menu_packed = ExtResource("4_b2thp")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Deck" parent="." node_paths=PackedStringArray("Hand") instance=ExtResource("5_m14oq")]
-position = Vector2(-512, -16)
+position = Vector2(-520, -11)
 Hand = NodePath("../Hand")
 
 [node name="Hand" type="Node2D" parent="."]
@@ -53,10 +54,10 @@ script = ExtResource("5_m6rcj")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -549.0
-offset_top = 82.928
-offset_right = -472.0
-offset_bottom = 141.92801
+offset_left = -558.0
+offset_top = 58.0
+offset_right = -481.0
+offset_bottom = 117.00001
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
@@ -64,9 +65,28 @@ text = "Draw
 "
 
 [node name="Hokm Display Panel" parent="." instance=ExtResource("6_f4grl")]
-visible = false
-offset_left = -576.0
-offset_right = -440.0
+offset_left = -584.0
+offset_top = -268.0
+offset_right = -448.0
+offset_bottom = -212.0
+
+[node name="Hakem Display Panel" type="Panel" parent="." node_paths=PackedStringArray("hakem_label")]
+offset_left = -584.0
+offset_top = -343.0
+offset_right = -358.0
+offset_bottom = -287.0
+script = ExtResource("8_xf0qg")
+hakem_label = NodePath("Label")
+
+[node name="Label" type="Label" parent="Hakem Display Panel"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 175.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 22
+text = "Hokm"
+vertical_alignment = 1
 
 [node name="Clubs" type="Button" parent="."]
 offset_left = -191.99997
