@@ -7,6 +7,7 @@ signal hokm_chosen(hokm)
 @export_enum("Hearts", "Spades", "Diamonds", "Clubs") var hokm : String ## Sets the hokm of the game
 
 func _ready() -> void:
+	randomize()
 	$Deck.shuffle_deck() ## Shuffles the deck of course
 
 func _on_button_pressed() -> void:
@@ -16,7 +17,8 @@ func start_game():
 	declaring_hakem()
 	
 	
-	print("Choose a Hokm")
+	if hokm_chosen:
+		print("Choose a Hokm")
 	
 
 func declaring_hakem():

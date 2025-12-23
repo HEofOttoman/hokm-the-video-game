@@ -7,6 +7,7 @@ extends Node
 
 var pause_menu : Node
 
+
 func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		if pause_menu.visible: return
@@ -23,5 +24,6 @@ func _unhandled_input(event : InputEvent) -> void:
 
 func _ready() -> void:
 	pause_menu = pause_menu_packed.instantiate()
+	pause_menu.z_index = 10 ## Necessary to counteract the effect of Barry's card hover effect
 	pause_menu.hide()
 	get_tree().current_scene.call_deferred("add_child", pause_menu)

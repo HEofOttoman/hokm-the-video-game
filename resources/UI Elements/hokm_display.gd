@@ -1,5 +1,4 @@
-extends Panel
-
+extends Label
 
 @export var hokm_texture_current : Texture
 @export var hokm_texture_display : TextureRect

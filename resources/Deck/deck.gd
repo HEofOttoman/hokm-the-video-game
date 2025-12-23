@@ -5,10 +5,11 @@ class_name Deck
 
 @export var cards : Array[Resource]
 @export var cardScene : PackedScene
-@export var Hand : Node2D
+@export var draw_point : Node2D ## Where the cards are instantiated
 
 func shuffle_deck():
 	cards.shuffle()
+	print("Cards have been shuffled")
 
 ## Draws a card from the Array of CardData resources
 func draw():
@@ -27,8 +28,8 @@ func draw():
 		card.cardtexture = data.cardtexture
 		
 		## Creates and adds the card to the scene
-		card.global_position = Hand.global_position
-		Hand.add_child(card)
+		card.global_position = draw_point.global_position
+		draw_point.add_child(card)
 		
 		
-		print("Card ", card.value, card.suit, "drawn") ## Confirms that shuffle function works	
+		print("Card ", card.value, card.suit, " drawn") ## Confirms that shuffle function works	

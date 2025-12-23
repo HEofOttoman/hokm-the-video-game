@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1lgf8q000ap"]
+
+[ext_resource type="Texture2D" uid="uid://5jo5402lopgu" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_empty.png" id="1_jdo4v"]
+[ext_resource type="Script" uid="uid://dmb7rndldisy" path="res://resources/CardSlot/card_slot.gd" id="2_cwo30"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7cxb"]
+size = Vector2(44, 64)
+
+[node name="CardSlot" type="Sprite2D"]
+texture = ExtResource("1_jdo4v")
+script = ExtResource("2_cwo30")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_j7cxb")

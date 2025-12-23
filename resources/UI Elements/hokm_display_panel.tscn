@@ -3,22 +3,7 @@
 [ext_resource type="Script" uid="uid://blelsqjleho0x" path="res://resources/UI Elements/hokm_display.gd" id="1_7jjai"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="2_8wngp"]
 
-[node name="Hokm Display Panel" type="Panel" node_paths=PackedStringArray("hokm_texture_display")]
-offset_left = -616.0
-offset_top = -344.0
-offset_right = -480.0
-offset_bottom = -288.0
-script = ExtResource("1_7jjai")
-hokm_texture_display = NodePath("TextureRect")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 48.0
-offset_bottom = 56.0
-texture = ExtResource("2_8wngp")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
+[node name="Hokm Display Label" type="Label" node_paths=PackedStringArray("hokm_texture_display")]
 offset_left = 56.0
 offset_top = 16.0
 offset_right = 120.0
@@ -26,3 +11,13 @@ offset_bottom = 39.0
 theme_override_font_sizes/font_size = 22
 text = "Hokm"
 vertical_alignment = 1
+script = ExtResource("1_7jjai")
+hokm_texture_display = NodePath("Hokm Icon")
+
+[node name="Hokm Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -16.0
+offset_right = -8.0
+offset_bottom = 40.0
+texture = ExtResource("2_8wngp")
