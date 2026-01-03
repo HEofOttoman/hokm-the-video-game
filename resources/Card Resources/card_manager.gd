@@ -130,5 +130,5 @@ func highlight_card(card, hovered : bool):
 		## However appears in front of the pause menu for some reason (fix)
 	else:
 		## Scales the cards back down
-		card.scale = card.scale #Vector2(1, 1) 
+		card.scale = card.custom_default_scale #Vector2(1, 1) 
 		card.z_index = 1

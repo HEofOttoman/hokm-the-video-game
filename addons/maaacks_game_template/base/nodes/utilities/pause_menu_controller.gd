@@ -24,6 +24,6 @@ func _unhandled_input(event : InputEvent) -> void:
 
 func _ready() -> void:
 	pause_menu = pause_menu_packed.instantiate()
-	pause_menu.z_index = 10 ## Necessary to counteract the effect of Barry's card hover effect
+	pause_menu.z_index = 5 ## Necessary to counteract the effect of Barry's card hover effect
 	pause_menu.hide()
 	get_tree().current_scene.call_deferred("add_child", pause_menu)

@@ -29,8 +29,9 @@ func _ready() -> void:
 	## Card manager is the hand node from the noontime dreamer tutorial
 	
 
-func _process(_delta: float) -> void:
-	if hold:
+#func _process(_delta: float) -> void:
+func _input(event: InputEvent) -> void: ## Better way to move cards that doesn't run every frame
+	if hold and event is InputEventMouseMotion: 
 		var mouse_position = get_global_mouse_position()
 		global_position = mouse_position ## Allows cards to be dragged around
 		#position = Vector2(clamp(mouse_position.x, 0, screen_size.x), 

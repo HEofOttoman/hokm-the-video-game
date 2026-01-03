@@ -8,11 +8,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idd6q"]
 size = Vector2(40, 58)
 
-[node name="Card" type="Sprite2D"]
+[node name="CardSlot" type="Sprite2D"]
 texture = ExtResource("1_ejfkd")
 script = ExtResource("2_ymwpd")
+value = null
+suit = null
 cardtexture = ExtResource("3_3hw85")
-custom_default_scale = Vector2(1.5, 1.5)
+custom_default_scale = Vector2(1, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("2_ejfkd")

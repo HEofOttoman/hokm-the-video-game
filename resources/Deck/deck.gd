@@ -11,6 +11,20 @@ func shuffle_deck():
 	cards.shuffle()
 	print("Cards have been shuffled")
 
+#signal deck_clicked
+#func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
+	#if event.is_action_pressed("ClickL"):
+		##deck_clicked.emit(true)
+		##print("left click")
+	##if event.is_action_pressed("ClickR"):
+		##deck_clicked.emit(false)
+		###print("right click")
+	##
+	##if event.is_action_released("ClickL"): ## Checks if LMB is no longer held down
+		##deck_clicked.emit(true)
+	##if event.is_action_pressed("ClickR"):
+		##deck_clicked.emit(false)
+
 ## Draws a card from the Array of CardData resources
 func draw():
 	if cards.is_empty(): ## Checks whether the deck is empty or not

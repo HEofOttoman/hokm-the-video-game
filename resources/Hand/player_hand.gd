@@ -21,7 +21,8 @@ const HAND_COUNT = 5
 @export var player_hand : Array = []
 var center_screen_x ## The width of the screen
 
-@onready var card_manager : Node2D = $"../Card Manager Card (DrawpointaKaHand)"
+@export var card_manager : Node2D 
+#= $"../Card Manager Card (DrawpointaKaHand)"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -58,7 +59,7 @@ func update_hand_positions():
 	#var x_position : float = center_screen_x + (index * CARD_WIDTH) - (x_offset / 2)
 	#return x_position
 
-## Cleaner version of Barry's function, the hand is simply located where the card manager is.
+## Cleaner version of Barry's function, the hand is simply drawn relative to where the card manager is.
 ## Might be a cosmetic limitation for the animation
 func calculate_card_position(index):
 	var x_offset : float = (player_hand.size() - 1) * CARD_SEPARATION_WIDTH

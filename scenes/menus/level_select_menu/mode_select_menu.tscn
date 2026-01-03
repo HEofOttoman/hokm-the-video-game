@@ -41,9 +41,29 @@ auto_height = true
 item_count = 1
 item_0/text = "1 - ExampleLevel"
 
+[node name="LevelButtonsContainer2" type="ItemList" parent="Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 32.0
+offset_right = 200.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_height = true
+item_count = 1
+item_0/text = "1 - ExampleLevel"
+
 [node name="SceneLister" type="Node" parent="."]
 script = ExtResource("3_sg15o")
 files = Array[String](["res://scenes/game_scene/levels/testscene.tscn"])
 directory = "res://scenes/game_scene/levels"
 
 [connection signal="item_activated" from="Control/LevelButtonsContainer" to="." method="_on_level_buttons_container_item_activated"]
+[connection signal="item_activated" from="Control/LevelButtonsContainer2" to="." method="_on_level_buttons_container_item_activated"]

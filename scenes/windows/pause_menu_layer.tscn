@@ -13,6 +13,7 @@ script = ExtResource("1_i1w7n")
 [node name="PauseMenu" parent="." instance=ExtResource("2_1r40g")]
 unique_name_in_owner = true
 process_mode = 3
+z_index = 5
 custom_minimum_size = Vector2(256, 312)
 script = ExtResource("3_okuwl")
 options_menu_scene = ExtResource("4_mh1be")
