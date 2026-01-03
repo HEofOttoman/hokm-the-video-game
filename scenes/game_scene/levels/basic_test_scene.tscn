@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=18 format=3 uid="uid://dpr6mnd7ukuya"]
 
 [ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/testscene.gd" id="1_xf0qg"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_b2thp"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="5_m6rcj"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="5_m14oq"]
+[ext_resource type="Script" uid="uid://b5w2wbaqg3lg4" path="res://scenes/game_scene/levels/input_manager_(barry).gd" id="5_pyd4g"]
 [ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="6_f4grl"]
 [ext_resource type="Script" uid="uid://ddxs4jecyhpms" path="res://resources/Card Resources/card_manager.gd" id="7_4pw1r"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="7_exaxi"]
@@ -38,11 +39,14 @@ offset_top = -336.0
 offset_right = -370.0
 offset_bottom = 331.0
 
+[node name="GameManager" type="Node" parent="."]
+
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("3_exaxi")
 pause_menu_packed = ExtResource("4_b2thp")
 
-[node name="InputManager (Barry)" type="Node" parent="."]
+[node name="InputManager (Barry)" type="Node2D" parent="."]
+script = ExtResource("5_pyd4g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -97,7 +101,7 @@ color = Color(0.11858151, 0.11858135, 0.11858142, 1)
 
 [node name="Player Deck Pile" type="ColorRect" parent="."]
 offset_left = -584.0
-offset_top = 179.0
+offset_top = 64.0
 offset_right = -376.0
 offset_bottom = 321.0
 mouse_filter = 2
@@ -112,16 +116,25 @@ text = "Your Decks"
 horizontal_alignment = 1
 
 [node name="CardSlot" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
-position = Vector2(24, 57)
+position = Vector2(64, 224)
 
 [node name="CardSlot2" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
-position = Vector2(80, 57)
+position = Vector2(64, 64)
 
 [node name="CardSlot3" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
-position = Vector2(128, 57)
+position = Vector2(144, 224)
 
 [node name="CardSlot4" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
-position = Vector2(183, 57)
+position = Vector2(144, 64)
+
+[node name="CardSlot5" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+position = Vector2(40, 144)
+
+[node name="CardSlot6" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+position = Vector2(104, 144)
+
+[node name="CardSlot7" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+position = Vector2(168, 144)
 
 [node name="Opponent Deck Pile" type="ColorRect" parent="."]
 offset_left = 384.0

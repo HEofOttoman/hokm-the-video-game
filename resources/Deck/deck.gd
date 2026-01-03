@@ -26,7 +26,7 @@ func shuffle_deck():
 		##deck_clicked.emit(false)
 
 ## Draws a card from the Array of CardData resources
-func draw():
+func draw_card():
 	if cards.is_empty(): ## Checks whether the deck is empty or not
 		print("Deck is empty") ## Safely stops the game from crashing
 		return

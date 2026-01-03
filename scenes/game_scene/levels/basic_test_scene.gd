@@ -11,7 +11,7 @@ func _ready() -> void:
 	$Deck.shuffle_deck() ## Shuffles the deck of course
 
 func _on_button_pressed() -> void:
-	$Deck.draw()
+	$Deck.draw_card()
 
 func start_game():
 	declaring_hakem()
@@ -22,7 +22,7 @@ func start_game():
 	
 
 func declaring_hakem():
-	$Deck.draw()
+	$Deck.draw_card()
 	hakem_declared.emit()
 
 func declaring_hokm(): ## Process for declaring the hokm
