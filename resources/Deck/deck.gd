@@ -45,6 +45,7 @@ func draw_card():
 		
 		
 		$"../PlayerHand".add_card_to_hand(new_card)
+		new_card.get_node("AnimationPlayer").play("card_flip")
 		print("cards instantiated")
 		
 		### Original Version

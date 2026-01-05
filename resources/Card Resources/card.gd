@@ -1,10 +1,10 @@
-extends Sprite2D
+extends Node2D
 
 ## Based on this tutorial; https://www.youtube.com/watch?v=e7iuMLdWjgw (Noontime Dreamer)
 ## Helped also by Barry's Dev Hell: https://www.youtube.com/watch?v=1mM73u1tvpU
 
 ## Unique Parts of a Card
-@export_range(1,13) var value : int = 1 ## IMPORTANRT - Remember that in Hokm 2 is valued at 1 and 13 is the Ace!
+@export_range(1,13) var value : int = 1 ## IMPORTANT - Remember that in Hokm 2 is valued at 1 and 13 is the Ace!
 @export_enum("Hearts", "Spades", "Diamonds", "Clubs") var suit : String = "Hearts"
 @export var cardtexture : Texture
 @export var backtexture : Texture = preload("res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png")
@@ -20,10 +20,10 @@ var hold : bool = false
 var screen_size : Vector2
 
 func _ready() -> void:
-	self.scale = custom_default_scale
+	#self.scale = custom_default_scale
 	screen_size = get_viewport_rect().size 
 	## ^Review this code, the viewport doesn't clamp at the right places
-	texture = cardtexture ## Sets the card texture as the default
+	$CardSprite.texture = cardtexture ## Sets the card texture as the default
 	get_parent().connect_card_signals(self)
 	## ^Cards must be a child of cardmanager (drawpoint) or this will throw a fatal error
 	## Card manager is the hand node from the noontime dreamer tutorial
