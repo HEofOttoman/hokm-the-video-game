@@ -3,9 +3,11 @@ class_name Deck
 
 ## Based on this tutorial: https://www.youtube.com/watch?v=e7iuMLdWjgw
 
-@export var cards : Array[Resource]
+@export var cards : Array[Resource] ## Array countaining data of all cards in a 52-card standard deck
 @export var cardScene : PackedScene
 @export var draw_point : Node2D ## Where the cards are instantiated
+
+@export var CARD_DRAW_SPEED : float = 0.2 ## Speed of the cards being drawn
 
 func shuffle_deck():
 	cards.shuffle()
@@ -35,6 +37,7 @@ func draw_card():
 	else: ## If deck still contains cards:
 		### Based on the barry tutorial as well
 		#for i in range(cards.size()): # Instantiates a card on start with a loop
+		
 		var data = cards.pop_back()
 		var new_card = cardScene.instantiate()
 		new_card.value = data.value #
@@ -45,9 +48,11 @@ func draw_card():
 		new_card.name = "card"
 		
 		
-		$"../PlayerHand".add_card_to_hand(new_card)
+		$"../PlayerHand".add_card_to_hand(new_card) #, CARD_DRAW_SPEED)
 		new_card.get_node("AnimationPlayer").play("card_flip")
 		print("cards instantiated")
+		
+		$DeckCounter.text = str(cards.size()) ## Updates the deck counter
 		
 		
 	### Original Version

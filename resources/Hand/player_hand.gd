@@ -13,9 +13,6 @@ extends Node2D
 @export var y_min := 50
 @export var y_max := -50
 
-#const HAND_COUNT = 5 ## No longer needed, remove after next commit
-#@export var card_scene : PackedScene = preload("res://resources/Card Resources/card.tscn") ## No longer needed
-
 @export var CARD_SEPARATION_WIDTH = 50
 @export var HAND_Y_POSITION = 250
 
@@ -29,12 +26,6 @@ var center_screen_x ## The width of the screen
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
 	
-	#for i in range(HAND_COUNT): # Instantiates a card on start ## No longer needed, remove after next commit
-		#var new_card = card_scene.instantiate()
-		#card_manager.add_child(new_card)
-		#new_card.name = "Card"
-		#add_card_to_hand(new_card)
-		#print("cards instantiated")
 
 func add_card_to_hand(card):
 	if card not in player_hand:
@@ -63,9 +54,12 @@ func update_hand_positions():
 ## Cleaner version of Barry's function, the hand is simply drawn relative to where the card manager is.
 ## Might be a cosmetic limitation for the animation
 func calculate_card_position(index):
+	#update_card_width() ## Works, but not enough
 	var x_offset : float = (player_hand.size() - 1) * CARD_SEPARATION_WIDTH
 	return (index * CARD_SEPARATION_WIDTH) - (x_offset / 2)
 
+func update_card_width(): ## Should pack cards closer together upon more cards being added (works but not enough)
+	CARD_SEPARATION_WIDTH = max(250 - (player_hand.size() * 10),100)
 
 #func set_card_width(): ## gets called whenever a card gets added or removed, so that the cards get closer together as more cards are in the hands, which I enjoy
 	#CARD_WIDTH = max(250 - (player_hand.size() * 10),100)

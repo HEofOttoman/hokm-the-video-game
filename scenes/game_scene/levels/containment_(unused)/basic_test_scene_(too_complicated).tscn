@@ -1,27 +1,27 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=18 format=3 uid="uid://bunl7gom5x00w"]
 
-[ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/testscene.gd" id="1_pyd4g"]
-[ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
-[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_exaxi"]
-[ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_b2thp"]
-[ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="5_m6rcj"]
-[ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="5_m14oq"]
-[ext_resource type="Script" uid="uid://b5w2wbaqg3lg4" path="res://scenes/game_scene/levels/containment_(unused)/input_manager_(barry).gd" id="5_pyd4g"]
-[ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="6_f4grl"]
-[ext_resource type="Script" uid="uid://ddxs4jecyhpms" path="res://resources/Card Resources/card_manager.gd" id="7_4pw1r"]
-[ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="7_exaxi"]
-[ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="8_sl5y5"]
-[ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://resources/UI Elements/hakem_display.gd" id="8_xf0qg"]
-[ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="9_m6rcj"]
-[ext_resource type="Texture2D" uid="uid://do1ovm5r6e6vt" path="res://assets/kenney_input-prompts/PlayStation Series/Vector/playstation_button_color_triangle.svg" id="10_obeue"]
-[ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="10_xf0qg"]
-[ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="14_j7cxb"]
+[ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/testscene.gd" id="1_n0wl8"]
+[ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_b4fpx"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_6ai5h"]
+[ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_y2urp"]
+[ext_resource type="Script" uid="uid://b5w2wbaqg3lg4" path="res://scenes/game_scene/levels/containment_(unused)/input_manager_(barry).gd" id="5_8awfl"]
+[ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="6_4r05s"]
+[ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="7_7jvi3"]
+[ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="8_gg05e"]
+[ext_resource type="Script" uid="uid://ddxs4jecyhpms" path="res://resources/Card Resources/card_manager.gd" id="9_3ovdq"]
+[ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://resources/UI Elements/hakem_display.gd" id="10_gxjc6"]
+[ext_resource type="Texture2D" uid="uid://do1ovm5r6e6vt" path="res://assets/kenney_input-prompts/PlayStation Series/Vector/playstation_button_color_triangle.svg" id="11_2ssmn"]
+[ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="12_lna7a"]
+[ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="13_x1x6q"]
+[ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="14_ji21m"]
+[ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="15_vdoju"]
+[ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="16_pm4q2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obeue"]
 size = Vector2(704, 152)
 
 [node name="BasicHokmTutorial1" type="Node2D"]
-script = ExtResource("1_pyd4g")
+script = ExtResource("1_n0wl8")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -2
@@ -31,7 +31,7 @@ offset_right = 637.0
 offset_bottom = 376.0
 size_flags_horizontal = 0
 mouse_filter = 2
-texture = ExtResource("2_f4grl")
+texture = ExtResource("2_b4fpx")
 expand_mode = 1
 
 [node name="Panel" type="Panel" parent="."]
@@ -43,17 +43,17 @@ offset_bottom = 331.0
 [node name="GameManager" type="Node" parent="."]
 
 [node name="PauseMenuController" type="Node" parent="."]
-script = ExtResource("3_exaxi")
-pause_menu_packed = ExtResource("4_b2thp")
+script = ExtResource("3_6ai5h")
+pause_menu_packed = ExtResource("4_y2urp")
 
 [node name="InputManager (Barry)" type="Node2D" parent="."]
-script = ExtResource("5_pyd4g")
+script = ExtResource("5_8awfl")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" type="Node" parent="."]
 
-[node name="Deck" parent="." node_paths=PackedStringArray("draw_point") instance=ExtResource("5_m14oq")]
+[node name="Deck" parent="." node_paths=PackedStringArray("draw_point") instance=ExtResource("6_4r05s")]
 z_index = 0
 position = Vector2(192.00002, 0)
 draw_point = NodePath("../Card Manager Card (DrawpointaKaHand)")
@@ -88,15 +88,15 @@ color = Color(0.17254902, 0.13725491, 0.13725491, 1)
 position = Vector2(352, 73)
 shape = SubResource("RectangleShape2D_obeue")
 
-[node name="CardSlot" parent="." instance=ExtResource("14_j7cxb")]
+[node name="CardSlot" parent="." instance=ExtResource("7_7jvi3")]
 position = Vector2(0, 56)
 
-[node name="CardSlot2" parent="." instance=ExtResource("14_j7cxb")]
+[node name="CardSlot2" parent="." instance=ExtResource("7_7jvi3")]
 position = Vector2(0, -56)
 
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("card_manager")]
 position = Vector2(-352, 179)
-script = ExtResource("5_m6rcj")
+script = ExtResource("8_gg05e")
 card_manager = NodePath("../Card Manager Card (DrawpointaKaHand)")
 
 [node name="Player Deck Pile" type="Panel" parent="."]
@@ -117,45 +117,46 @@ text = "Your Decks"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="CardSlot" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
 position = Vector2(72, 226)
 
-[node name="CardSlot2" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot2" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
 position = Vector2(72, 66)
 
-[node name="CardSlot3" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot3" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
 position = Vector2(152, 226)
 
-[node name="CardSlot4" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot4" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
 position = Vector2(152, 66)
 
-[node name="CardSlot5" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot5" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
 position = Vector2(48, 146)
 
-[node name="CardSlot6" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot6" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
 position = Vector2(112, 146)
 
-[node name="CardSlot7" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot7" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
 position = Vector2(176, 146)
 
-[node name="Opponent Deck Pile" type="Panel" parent="."]
+[node name="Opponent Deck Pile" type="ColorRect" parent="."]
 offset_left = 384.0
-offset_top = -336.0
+offset_top = -311.0
 offset_right = 600.0
 offset_bottom = -215.0
 mouse_filter = 2
+color = Color(0.11858151, 0.11858135, 0.11858142, 1)
 
 [node name="Deck Label" type="Label" parent="Opponent Deck Pile"]
 layout_mode = 0
-offset_left = 23.0
-offset_right = 191.0
-offset_bottom = 25.0
+offset_left = 24.0
+offset_top = -24.0
+offset_right = 192.0
+offset_bottom = 1.0
 text = "Opponent Decks"
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Card Manager Card (DrawpointaKaHand)" type="Node2D" parent="." node_paths=PackedStringArray("player_hand_node")]
-script = ExtResource("7_4pw1r")
+script = ExtResource("9_3ovdq")
 player_hand_node = NodePath("../PlayerHand")
 
 [node name="Hakem Display Label" type="Label" parent="."]
@@ -166,7 +167,7 @@ offset_bottom = -241.0
 theme_override_font_sizes/font_size = 22
 text = "Hakem:"
 vertical_alignment = 1
-script = ExtResource("8_xf0qg")
+script = ExtResource("10_gxjc6")
 
 [node name="TextureRect" type="TextureRect" parent="Hakem Display Label"]
 layout_mode = 0
@@ -174,10 +175,10 @@ offset_left = -48.0
 offset_top = -9.0
 offset_right = -8.0
 offset_bottom = 31.0
-texture = ExtResource("10_obeue")
+texture = ExtResource("11_2ssmn")
 expand_mode = 1
 
-[node name="Hokm Display Label" parent="." instance=ExtResource("6_f4grl")]
+[node name="Hokm Display Label" parent="." instance=ExtResource("12_lna7a")]
 offset_left = -528.0
 offset_top = -213.0
 offset_right = -401.0
@@ -189,7 +190,7 @@ offset_top = 5.000004
 offset_right = 440.0
 offset_bottom = 61.00002
 scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("7_exaxi")
+texture_normal = ExtResource("13_x1x6q")
 stretch_mode = 0
 
 [node name="Hearts" type="TextureButton" parent="."]
@@ -198,7 +199,7 @@ offset_top = -101.0
 offset_right = 440.0
 offset_bottom = -45.0
 scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("8_sl5y5")
+texture_normal = ExtResource("14_ji21m")
 stretch_mode = 0
 
 [node name="Spades" type="TextureButton" parent="."]
@@ -207,7 +208,7 @@ offset_top = -101.0
 offset_right = 536.0
 offset_bottom = -45.0
 scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("9_m6rcj")
+texture_normal = ExtResource("15_vdoju")
 stretch_mode = 0
 
 [node name="Diamonds" type="TextureButton" parent="."]
@@ -216,7 +217,7 @@ offset_top = 5.000004
 offset_right = 536.0
 offset_bottom = 61.000004
 scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("10_xf0qg")
+texture_normal = ExtResource("16_pm4q2")
 stretch_mode = 0
 
 [connection signal="pressed" from="Draw Button" to="." method="_on_button_pressed"]
