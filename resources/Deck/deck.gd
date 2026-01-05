@@ -32,18 +32,36 @@ func draw_card():
 		return
 		
 	else: ## If deck still contains cards:
-		## Prepares the data
+		### Based on the barry tutorial as well
+		#for i in range(cards.size()): # Instantiates a card on start with a loop
 		var data = cards.pop_back()
-		var card = cardScene.instantiate()
+		var new_card = cardScene.instantiate()
+		new_card.value = data.value #
+		new_card.suit = data.suit
+		new_card.cardtexture = data.cardtexture
 		
-		## Sets the values
-		card.value = data.value #
-		card.suit = data.suit
-		card.cardtexture = data.cardtexture
-		
-		## Creates and adds the card to the scene
-		card.global_position = draw_point.global_position
-		draw_point.add_child(card)
+		$"../Card Manager Card (DrawpointaKaHand)".add_child(new_card)
+		new_card.name = "card"
 		
 		
-		print("Card ", card.value, card.suit, " drawn") ## Confirms that shuffle function works	
+		$"../PlayerHand".add_card_to_hand(new_card)
+		print("cards instantiated")
+		
+		### Original Version
+		
+		## Prepares the data
+		#var data = cards.pop_back()
+		#var card = cardScene.instantiate()
+		
+		
+		### Sets the values
+		#card.value = data.value #
+		#card.suit = data.suit
+		#card.cardtexture = data.cardtexture
+		#
+		### Creates and adds the card to the scene
+		#card.global_position = draw_point.global_position
+		#draw_point.add_child(card)
+		#
+		#
+		#print("Card ", card.value, card.suit, " drawn") ## Confirms that shuffle function works	

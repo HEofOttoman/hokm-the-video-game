@@ -1,4 +1,4 @@
 extends Node2D
 
 func _on_button_pressed() -> void:
-	$Deck.draw()
+	$Deck.draw_card()

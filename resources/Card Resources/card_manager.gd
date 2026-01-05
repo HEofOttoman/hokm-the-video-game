@@ -1,5 +1,5 @@
 extends Node2D
-## Based on the tutorials by Barry's Dev Hell - NOT FULLY IMPLEMENTED WITH OLD SYSTEM
+## Based on the tutorials by Barry's Dev Hell - NOT FULLY IMPLEMENTED WITH OLD SYSTEM - Barry's is actually so overcomplicated
 ## https://www.youtube.com/watch?v=1mM73u1tvpU
 ## https://www.youtube.com/watch?v=2jMcuKdRh2w
 

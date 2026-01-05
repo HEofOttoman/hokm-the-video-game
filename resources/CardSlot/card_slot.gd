@@ -19,8 +19,9 @@ func _process(_delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if card_in_slot == false:
-		pass
-	elif card_in_slot:
-		return
-	pass # Replace with function body.
+	if area.is_in_group('cards'):
+		if card_in_slot == false:
+			pass
+		elif card_in_slot:
+			return
+		pass # Replace with function body.

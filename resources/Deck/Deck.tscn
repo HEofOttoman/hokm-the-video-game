@@ -60,6 +60,7 @@
 size = Vector2(45, 65)
 
 [node name="Deck" type="Sprite2D"]
+z_index = -1
 scale = Vector2(2, 2.154)
 texture = ExtResource("1_ihuff")
 script = ExtResource("2_h3hq2")
@@ -67,7 +68,7 @@ cards = Array[Resource]([ExtResource("3_gf3gb"), ExtResource("4_4r61v"), ExtReso
 cardScene = ExtResource("19_h3hq2")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_qqb2w")

@@ -4,7 +4,7 @@ extends Node2D
 ## Seems overly complex tbh
 
 @export var COLLISION_MASK_CARD = 1 # Should actually be a const in the tut but whatever
-@export var COLLISION_MASK_DECK = 2
+@export var COLLISION_MASK_DECK = 4
 
 
 @onready var card_manager_reference: Node2D = $"../Card Manager Card (DrawpointaKaHand)"

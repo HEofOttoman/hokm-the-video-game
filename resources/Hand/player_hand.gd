@@ -9,7 +9,7 @@ extends Node2D
 @export var rotation_curve : Curve
 
 @export var max_rotation_degrees := 10
-@export var x_sep := 20
+@export var x_sep := 10
 @export var y_min := 50
 @export var y_max := -50
 
@@ -28,12 +28,12 @@ var center_screen_x ## The width of the screen
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
 	
-	for i in range(HAND_COUNT): # Instantiates a card on start
-		var new_card = card_scene.instantiate()
-		card_manager.add_child(new_card)
-		new_card.name = "Card"
-		add_card_to_hand(new_card)
-		print("cards instantiated")
+	#for i in range(HAND_COUNT): # Instantiates a card on start
+		#var new_card = card_scene.instantiate()
+		#card_manager.add_child(new_card)
+		#new_card.name = "Card"
+		#add_card_to_hand(new_card)
+		#print("cards instantiated")
 
 func add_card_to_hand(card):
 	if card not in player_hand:
@@ -47,7 +47,7 @@ func update_hand_positions():
 	for i in range(player_hand.size()):
 		## Get new card position based on the index passed in
 		var new_position = Vector2(calculate_card_position(i), HAND_Y_POSITION)
-		print("Deck at", new_position)
+		#print("Deck at", new_position) ## Helped troubleshoot when I had the bug of the deck going off screen
 		var card = player_hand[i]
 		card.starting_position = new_position
 		animate_card_to_position(card, new_position)
@@ -71,7 +71,7 @@ func calculate_card_position(index):
 
 func animate_card_to_position(card, new_position):
 	var tween = get_tree().create_tween()
-	tween.tween_property(card,"position", new_position, 0.1)
+	tween.tween_property(card,"position", new_position, 0.5)
 
 func remove_card_from_hand(card):
 	if card in player_hand:
