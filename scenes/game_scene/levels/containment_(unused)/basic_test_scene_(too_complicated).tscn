@@ -1,24 +1,201 @@
-[gd_scene load_steps=18 format=3 uid="uid://bunl7gom5x00w"]
+[gd_scene load_steps=83 format=3 uid="uid://bunl7gom5x00w"]
 
 [ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/testscene.gd" id="1_n0wl8"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_b4fpx"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_6ai5h"]
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_y2urp"]
 [ext_resource type="Script" uid="uid://b5w2wbaqg3lg4" path="res://scenes/game_scene/levels/containment_(unused)/input_manager_(barry).gd" id="5_8awfl"]
-[ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="6_4r05s"]
+[ext_resource type="Texture2D" uid="uid://dxwji37u4j8a1" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png" id="6_s3ruo"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="7_7jvi3"]
+[ext_resource type="Script" uid="uid://phuji5srflwy" path="res://resources/Deck/deck.gd" id="7_j3s37"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="8_gg05e"]
+[ext_resource type="Resource" uid="uid://cuu18kcnudg7r" path="res://resources/Card Resources/CardData/Cards/2_Clubs.tres" id="8_l72n7"]
 [ext_resource type="Script" uid="uid://ddxs4jecyhpms" path="res://resources/Card Resources/card_manager.gd" id="9_3ovdq"]
+[ext_resource type="Resource" uid="uid://cm013yv5bw32j" path="res://resources/Card Resources/CardData/Cards/2_Diamonds.tres" id="9_osrlf"]
 [ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://resources/UI Elements/hakem_display.gd" id="10_gxjc6"]
+[ext_resource type="Resource" uid="uid://dqh5dwp5dsv24" path="res://resources/Card Resources/CardData/Cards/2_Hearts.tres" id="10_h077o"]
 [ext_resource type="Texture2D" uid="uid://do1ovm5r6e6vt" path="res://assets/kenney_input-prompts/PlayStation Series/Vector/playstation_button_color_triangle.svg" id="11_2ssmn"]
-[ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="12_lna7a"]
+[ext_resource type="Resource" uid="uid://c4a5hqjldohk2" path="res://resources/Card Resources/CardData/Cards/2_Spades.tres" id="11_3g3vu"]
+[ext_resource type="Resource" uid="uid://2uvq4kugakgf" path="res://resources/Card Resources/CardData/Cards/3_Clubs.tres" id="12_b4q1a"]
+[ext_resource type="Resource" uid="uid://tts4d2bl3abi" path="res://resources/Card Resources/CardData/Cards/3_Diamonds.tres" id="13_2qfji"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="13_x1x6q"]
+[ext_resource type="Resource" uid="uid://da086yryo4xl8" path="res://resources/Card Resources/CardData/Cards/3_Hearts.tres" id="14_c8g31"]
 [ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="14_ji21m"]
 [ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="15_vdoju"]
+[ext_resource type="Resource" uid="uid://crvlm6pw6hr83" path="res://resources/Card Resources/CardData/Cards/3_Spades.tres" id="15_was62"]
+[ext_resource type="Resource" uid="uid://dlk21ka2ehrfp" path="res://resources/Card Resources/CardData/Cards/4_Clubs.tres" id="16_eqgiu"]
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="16_pm4q2"]
+[ext_resource type="Resource" uid="uid://baepfdk2bqcnw" path="res://resources/Card Resources/CardData/Cards/4_Diamonds.tres" id="17_ni6c6"]
+[ext_resource type="Resource" uid="uid://47k81q47y2ae" path="res://resources/Card Resources/CardData/Cards/4_Hearts.tres" id="18_lrjt0"]
+[ext_resource type="Resource" uid="uid://bwh7ue5qkdfbc" path="res://resources/Card Resources/CardData/Cards/4_Spades.tres" id="19_p5sjy"]
+[ext_resource type="Resource" uid="uid://bhogovlnqfc32" path="res://resources/Card Resources/CardData/Cards/5_Clubs.tres" id="20_hkltq"]
+[ext_resource type="Resource" uid="uid://csi3kad558465" path="res://resources/Card Resources/CardData/Cards/5_Diamonds.tres" id="21_7lkg3"]
+[ext_resource type="Resource" uid="uid://b2bywon435u2x" path="res://resources/Card Resources/CardData/Cards/5_Hearts.tres" id="22_dvofj"]
+[ext_resource type="Resource" uid="uid://dn6b1b6curhjv" path="res://resources/Card Resources/CardData/Cards/5_Spades.tres" id="23_akirl"]
+[ext_resource type="Resource" uid="uid://w2kvtqnpnsl0" path="res://resources/Card Resources/CardData/Cards/6_Clubs.tres" id="24_3a60q"]
+[ext_resource type="Resource" uid="uid://ditvr447434be" path="res://resources/Card Resources/CardData/Cards/6_Diamonds.tres" id="25_jo7ka"]
+[ext_resource type="Resource" uid="uid://6dagnl2g65d" path="res://resources/Card Resources/CardData/Cards/6_Hearts.tres" id="26_mmrim"]
+[ext_resource type="Resource" uid="uid://dw6srn2bxs6f6" path="res://resources/Card Resources/CardData/Cards/6_Spades.tres" id="27_sy0c3"]
+[ext_resource type="Resource" uid="uid://vqsg7njt7dip" path="res://resources/Card Resources/CardData/Cards/7_Clubs.tres" id="28_8te8h"]
+[ext_resource type="Resource" uid="uid://m0cik50pyl5j" path="res://resources/Card Resources/CardData/Cards/7_Diamonds.tres" id="29_28f3b"]
+[ext_resource type="Resource" uid="uid://ch18sl8yw05kl" path="res://resources/Card Resources/CardData/Cards/7_Hearts.tres" id="30_6k1wg"]
+[ext_resource type="Resource" uid="uid://dwb1krbhfolqk" path="res://resources/Card Resources/CardData/Cards/7_Spades.tres" id="31_0oc8l"]
+[ext_resource type="Resource" uid="uid://taff3vjytw1j" path="res://resources/Card Resources/CardData/Cards/8_Clubs.tres" id="32_pp7nk"]
+[ext_resource type="Resource" uid="uid://cwfuee872gdxj" path="res://resources/Card Resources/CardData/Cards/8_Diamonds.tres" id="33_b4f8x"]
+[ext_resource type="Resource" uid="uid://broxm5ifb5l5j" path="res://resources/Card Resources/CardData/Cards/8_Hearts.tres" id="34_im1md"]
+[ext_resource type="Resource" uid="uid://daeemlmq1pwk2" path="res://resources/Card Resources/CardData/Cards/8_Spades.tres" id="35_syln4"]
+[ext_resource type="Resource" uid="uid://ccly817tk5i4t" path="res://resources/Card Resources/CardData/Cards/9_Clubs.tres" id="36_g2ia2"]
+[ext_resource type="Resource" uid="uid://dxljxykgdt4en" path="res://resources/Card Resources/CardData/Cards/9_Diamonds.tres" id="37_7546v"]
+[ext_resource type="Resource" uid="uid://tgtbwtsw0htk" path="res://resources/Card Resources/CardData/Cards/9_Hearts.tres" id="38_v0gg8"]
+[ext_resource type="Resource" uid="uid://cwlvdwm6of2i8" path="res://resources/Card Resources/CardData/Cards/9_Spades.tres" id="39_qsa8l"]
+[ext_resource type="Resource" uid="uid://cggxls81ugk64" path="res://resources/Card Resources/CardData/Cards/10_Clubs.tres" id="40_i3uga"]
+[ext_resource type="Resource" uid="uid://d2b8h5wn6pp8p" path="res://resources/Card Resources/CardData/Cards/10_Diamonds.tres" id="41_qpl4g"]
+[ext_resource type="Resource" uid="uid://f57imtxpvqev" path="res://resources/Card Resources/CardData/Cards/10_Hearts.tres" id="42_sdas8"]
+[ext_resource type="Resource" uid="uid://daxgtny1ubio4" path="res://resources/Card Resources/CardData/Cards/10_Spades.tres" id="43_nqnpb"]
+[ext_resource type="Resource" uid="uid://bd173tfjqj5ts" path="res://resources/Card Resources/CardData/Cards/A_Clubs.tres" id="44_dwrey"]
+[ext_resource type="Resource" uid="uid://cti6ovxadelg7" path="res://resources/Card Resources/CardData/Cards/A_Diamonds.tres" id="45_wv4vc"]
+[ext_resource type="Resource" uid="uid://csfpiewnonu1n" path="res://resources/Card Resources/CardData/Cards/A_Hearts.tres" id="46_sa7um"]
+[ext_resource type="Resource" uid="uid://v6riufhvvs6c" path="res://resources/Card Resources/CardData/Cards/A_Spades.tres" id="47_1q5ge"]
+[ext_resource type="Resource" uid="uid://cpwoyy0f68cm5" path="res://resources/Card Resources/CardData/Cards/J_Clubs.tres" id="48_duo18"]
+[ext_resource type="Resource" uid="uid://cxmg10viwrt4a" path="res://resources/Card Resources/CardData/Cards/J_Diamonds.tres" id="49_0n5jg"]
+[ext_resource type="Resource" uid="uid://mlam3rjbfi7d" path="res://resources/Card Resources/CardData/Cards/J_Hearts.tres" id="50_d4c87"]
+[ext_resource type="Resource" uid="uid://c2n8pcljw1s2b" path="res://resources/Card Resources/CardData/Cards/J_Spades.tres" id="51_8ain7"]
+[ext_resource type="Resource" uid="uid://dykh4xwqh84j7" path="res://resources/Card Resources/CardData/Cards/K_Clubs.tres" id="52_x2f6h"]
+[ext_resource type="Resource" uid="uid://cegi8u5mqk3wy" path="res://resources/Card Resources/CardData/Cards/K_Diamonds.tres" id="53_fqbkq"]
+[ext_resource type="Resource" uid="uid://cj52utdslerta" path="res://resources/Card Resources/CardData/Cards/K_Hearts.tres" id="54_32q6k"]
+[ext_resource type="Resource" uid="uid://bp3loyavngdxd" path="res://resources/Card Resources/CardData/Cards/K_Spades.tres" id="55_m3dfc"]
+[ext_resource type="Resource" uid="uid://cui43i17nesk5" path="res://resources/Card Resources/CardData/Cards/Q_Clubs.tres" id="56_fbhts"]
+[ext_resource type="Resource" uid="uid://dahtocmeiccjr" path="res://resources/Card Resources/CardData/Cards/Q_Diamonds.tres" id="57_rg8qv"]
+[ext_resource type="Resource" uid="uid://dyg83ku545qa5" path="res://resources/Card Resources/CardData/Cards/Q_Hearts.tres" id="58_wtse2"]
+[ext_resource type="Resource" uid="uid://g3yoecbnuflt" path="res://resources/Card Resources/CardData/Cards/Q_Spades.tres" id="59_8e3yj"]
+[ext_resource type="PackedScene" uid="uid://dyrpsnraose2n" path="res://resources/Card Resources/card.tscn" id="60_jvmp7"]
+[ext_resource type="Texture2D" uid="uid://dkvb1b7ojrj1m" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_slot.png" id="61_adrq3"]
+[ext_resource type="Script" uid="uid://dmb7rndldisy" path="res://resources/CardSlot/card_slot.gd" id="62_vmyy4"]
+[ext_resource type="Script" uid="uid://blelsqjleho0x" path="res://resources/UI Elements/hokm_display.gd" id="68_qvxmn"]
+[ext_resource type="Script" uid="uid://byqw5sokqoied" path="res://scenes/game_scene/levels/containment_(unused)/card_(legacy).gd" id="73_s3ruo"]
+[ext_resource type="Script" uid="uid://gmn1ddhih28d" path="res://resources/Card Resources/cardclicker.gd" id="74_1vdq6"]
+[ext_resource type="Texture2D" uid="uid://cjjwlc7dkaotx" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_clubs_J.png" id="75_yn13t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqb2w"]
+size = Vector2(45, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obeue"]
 size = Vector2(704, 152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7cxb"]
+size = Vector2(44, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idd6q"]
+size = Vector2(40, 58)
+
+[sub_resource type="Animation" id="Animation_j2llb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CardBackSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CardBackSprite:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+
+[sub_resource type="Animation" id="Animation_mucyl"]
+resource_name = "card_flip"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CardBackSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.100000024, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CardBackSprite:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, -1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.1998402),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j2llb"]
+_data = {
+&"RESET": SubResource("Animation_j2llb"),
+&"card_flip": SubResource("Animation_mucyl")
+}
 
 [node name="BasicHokmTutorial1" type="Node2D"]
 script = ExtResource("1_n0wl8")
@@ -53,10 +230,34 @@ script = ExtResource("5_8awfl")
 
 [node name="Player" type="Node" parent="."]
 
-[node name="Deck" parent="." node_paths=PackedStringArray("draw_point") instance=ExtResource("6_4r05s")]
-z_index = 0
+[node name="Deck" type="Sprite2D" parent="." node_paths=PackedStringArray("draw_point")]
 position = Vector2(192.00002, 0)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_s3ruo")
+script = ExtResource("7_j3s37")
+cards = Array[Resource]([ExtResource("8_l72n7"), ExtResource("9_osrlf"), ExtResource("10_h077o"), ExtResource("11_3g3vu"), ExtResource("12_b4q1a"), ExtResource("13_2qfji"), ExtResource("14_c8g31"), ExtResource("15_was62"), ExtResource("16_eqgiu"), ExtResource("17_ni6c6"), ExtResource("18_lrjt0"), ExtResource("19_p5sjy"), ExtResource("20_hkltq"), ExtResource("21_7lkg3"), ExtResource("22_dvofj"), ExtResource("23_akirl"), ExtResource("24_3a60q"), ExtResource("25_jo7ka"), ExtResource("26_mmrim"), ExtResource("27_sy0c3"), ExtResource("28_8te8h"), ExtResource("29_28f3b"), ExtResource("30_6k1wg"), ExtResource("31_0oc8l"), ExtResource("32_pp7nk"), ExtResource("33_b4f8x"), ExtResource("34_im1md"), ExtResource("35_syln4"), ExtResource("36_g2ia2"), ExtResource("37_7546v"), ExtResource("38_v0gg8"), ExtResource("39_qsa8l"), ExtResource("40_i3uga"), ExtResource("41_qpl4g"), ExtResource("42_sdas8"), ExtResource("43_nqnpb"), ExtResource("44_dwrey"), ExtResource("45_wv4vc"), ExtResource("46_sa7um"), ExtResource("47_1q5ge"), ExtResource("48_duo18"), ExtResource("49_0n5jg"), ExtResource("50_d4c87"), ExtResource("51_8ain7"), ExtResource("52_x2f6h"), ExtResource("53_fqbkq"), ExtResource("54_32q6k"), ExtResource("55_m3dfc"), ExtResource("56_fbhts"), ExtResource("57_rg8qv"), ExtResource("58_wtse2"), ExtResource("59_8e3yj")])
+cardScene = ExtResource("60_jvmp7")
 draw_point = NodePath("../Card Manager Card (DrawpointaKaHand)")
+
+[node name="Area2D" type="Area2D" parent="Deck"]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck/Area2D"]
+shape = SubResource("RectangleShape2D_qqb2w")
+
+[node name="DeckCounter" type="RichTextLabel" parent="Deck"]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.25
+anchor_right = 0.75
+anchor_bottom = 0.7604167
+offset_left = -32.0
+offset_top = -32.0
+offset_right = -32.0
+offset_bottom = -32.0
+text = "52"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Draw Button" type="Button" parent="."]
 anchors_preset = 15
@@ -88,11 +289,29 @@ color = Color(0.17254902, 0.13725491, 0.13725491, 1)
 position = Vector2(352, 73)
 shape = SubResource("RectangleShape2D_obeue")
 
-[node name="CardSlot" parent="." instance=ExtResource("7_7jvi3")]
+[node name="CardSlot" type="Sprite2D" parent="."]
 position = Vector2(0, 56)
+texture = ExtResource("61_adrq3")
+script = ExtResource("62_vmyy4")
 
-[node name="CardSlot2" parent="." instance=ExtResource("7_7jvi3")]
+[node name="Area2D" type="Area2D" parent="CardSlot"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardSlot/Area2D"]
+shape = SubResource("RectangleShape2D_j7cxb")
+
+[node name="CardSlot2" type="Sprite2D" parent="."]
 position = Vector2(0, -56)
+texture = ExtResource("61_adrq3")
+script = ExtResource("62_vmyy4")
+
+[node name="Area2D" type="Area2D" parent="CardSlot2"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardSlot2/Area2D"]
+shape = SubResource("RectangleShape2D_j7cxb")
 
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("card_manager")]
 position = Vector2(-352, 179)
@@ -178,11 +397,24 @@ offset_bottom = 31.0
 texture = ExtResource("11_2ssmn")
 expand_mode = 1
 
-[node name="Hokm Display Label" parent="." instance=ExtResource("12_lna7a")]
+[node name="Hokm Display Label" type="Label" parent="." node_paths=PackedStringArray("hokm_texture_display")]
 offset_left = -528.0
 offset_top = -213.0
 offset_right = -401.0
 offset_bottom = -190.0
+theme_override_font_sizes/font_size = 22
+text = "Hokm"
+vertical_alignment = 1
+script = ExtResource("68_qvxmn")
+hokm_texture_display = NodePath("Hokm Icon")
+
+[node name="Hokm Icon" type="TextureRect" parent="Hokm Display Label"]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -16.0
+offset_right = -8.0
+offset_bottom = 40.0
+texture = ExtResource("13_x1x6q")
 
 [node name="Clubs" type="TextureButton" parent="."]
 offset_left = 384.0
@@ -220,8 +452,37 @@ scale = Vector2(1.680001, 1.7999998)
 texture_normal = ExtResource("16_pm4q2")
 stretch_mode = 0
 
+[node name="Card (Localised Legacy)" type="Node2D" parent="."]
+position = Vector2(0, 210)
+script = ExtResource("73_s3ruo")
+
+[node name="Area2D" type="Area2D" parent="Card (Localised Legacy)" groups=["cards"]]
+script = ExtResource("74_1vdq6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Card (Localised Legacy)/Area2D"]
+shape = SubResource("RectangleShape2D_idd6q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Card (Localised Legacy)"]
+root_node = NodePath("../CardSprite")
+libraries = {
+&"": SubResource("AnimationLibrary_j2llb")
+}
+
+[node name="CardBackSprite" type="Sprite2D" parent="Card (Localised Legacy)"]
+texture = ExtResource("6_s3ruo")
+
+[node name="CardSprite" type="Sprite2D" parent="Card (Localised Legacy)"]
+z_index = -1
+texture = ExtResource("75_yn13t")
+
 [connection signal="pressed" from="Draw Button" to="." method="_on_button_pressed"]
+[connection signal="area_entered" from="CardSlot/Area2D" to="CardSlot" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="CardSlot2/Area2D" to="CardSlot2" method="_on_area_2d_area_entered"]
 [connection signal="pressed" from="Clubs" to="." method="_on_clubs_pressed"]
 [connection signal="pressed" from="Hearts" to="." method="_on_hearts_pressed"]
 [connection signal="pressed" from="Spades" to="." method="_on_spades_pressed"]
 [connection signal="pressed" from="Diamonds" to="." method="_on_diamonds_pressed"]
+[connection signal="card_action" from="Card (Localised Legacy)/Area2D" to="Card (Localised Legacy)" method="_on_area_2d_card_action"]
+[connection signal="card_release" from="Card (Localised Legacy)/Area2D" to="Card (Localised Legacy)" method="_on_area_2d_card_release"]
+[connection signal="mouse_entered" from="Card (Localised Legacy)/Area2D" to="Card (Localised Legacy)/CardSprite" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Card (Localised Legacy)/Area2D" to="Card (Localised Legacy)/CardSprite" method="_on_area_2d_mouse_exited"]

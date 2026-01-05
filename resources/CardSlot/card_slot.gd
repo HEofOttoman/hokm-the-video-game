@@ -6,7 +6,14 @@ extends Sprite2D
 
 @export var card_in_slot : bool = false
 
+@export var slot_type : SlotType
 
+enum SlotType {
+	Trick_Slot,
+	Discard_Slot,
+	Temporary_Reveal_Slot,
+	Auction_Slot 
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
