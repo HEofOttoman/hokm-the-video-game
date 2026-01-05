@@ -14,19 +14,21 @@ extends Node2D
 @export var y_max := -50
 
 @export var CARD_SEPARATION_WIDTH = 50
-@export var HAND_Y_POSITION = 250
-
-@export var player_hand : Array = []
+@export var HAND_Y_POSITION = 0 ## How far down the hand is (relative)
 var center_screen_x ## The width of the screen
+## ^Might be unnecessary if I an just animate it to the hand's position
 
-@export var card_manager : Node2D 
+@export var player_hand : Array = [] ## The data about which cards are in the player's hand
+
+
+#@export var card_manager : Node2D ## <-- Reference to deprecated card manager
 #= $"../Card Manager Card (DrawpointaKaHand)"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
 	
-	$"../Deck".card_drawn.connect(self._on_card_drawn)
+	#$"../Deck".card_drawn.connect(self._on_card_drawn) ## Already connected?
 
 func _on_card_drawn(card):
 	add_child(card)
@@ -34,7 +36,7 @@ func _on_card_drawn(card):
 	
 	add_card_to_hand(card)
 	
-	card.get_node("AnimationPlayer").play("card_flip")
+	card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
 	
 	
 
@@ -58,7 +60,6 @@ func update_hand_positions():
 ## Calculates the position of the hand
 #func calculate_card_position(index):
 	#var x_offset : float = (player_hand.size() - 1) * CARD_WIDTH ## Originally total width, but better change
-	#@warning_ignore("integer_division") ## Doesn't show up for barry for some reason
 	#var x_position : float = center_screen_x + (index * CARD_WIDTH) - (x_offset / 2)
 	#return x_position
 
@@ -68,6 +69,8 @@ func calculate_card_position(index):
 	#update_card_width() ## Works, but not enough
 	var x_offset : float = (player_hand.size() - 1) * CARD_SEPARATION_WIDTH
 	return (index * CARD_SEPARATION_WIDTH) - (x_offset / 2)
+
+
 
 func update_card_width(): ## Should pack cards closer together upon more cards being added (works but not enough)
 	CARD_SEPARATION_WIDTH = max(250 - (player_hand.size() * 10),100)

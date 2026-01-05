@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=17 format=3 uid="uid://dpr6mnd7ukuya"]
 
 [ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/testscene.gd" id="1_pyd4g"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="5_m6rcj"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="5_m14oq"]
 [ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="6_f4grl"]
-[ext_resource type="Script" uid="uid://ddxs4jecyhpms" path="res://resources/Card Resources/card_manager.gd" id="7_4pw1r"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="7_exaxi"]
 [ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="8_sl5y5"]
 [ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://resources/UI Elements/hakem_display.gd" id="8_xf0qg"]
@@ -40,7 +39,7 @@ offset_top = -336.0
 offset_right = -370.0
 offset_bottom = 331.0
 
-[node name="GameManager" type="Node" parent="."]
+[node name="Rule Umpire" type="Node" parent="."]
 script = ExtResource("3_pyd4g")
 
 [node name="PauseMenuController" type="Node" parent="."]
@@ -51,10 +50,9 @@ pause_menu_packed = ExtResource("4_b2thp")
 
 [node name="Player" type="Node" parent="."]
 
-[node name="Deck" parent="." node_paths=PackedStringArray("draw_point") instance=ExtResource("5_m14oq")]
+[node name="Deck" parent="." instance=ExtResource("5_m14oq")]
 z_index = 0
 position = Vector2(192.00002, 0)
-draw_point = NodePath("../Card Manager Card (DrawpointaKaHand)")
 
 [node name="Draw Button" type="Button" parent="."]
 anchors_preset = 15
@@ -94,10 +92,9 @@ position = Vector2(0, 56)
 [node name="TrickSlot2" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
 position = Vector2(0, -56)
 
-[node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("card_manager")]
+[node name="PlayerHand" type="Node2D" parent="."]
 position = Vector2(0, 252)
 script = ExtResource("5_m6rcj")
-card_manager = NodePath("../Card Manager Card (DrawpointaKaHand)")
 
 [node name="Player Deck Pile" type="Panel" parent="."]
 offset_left = -592.0
@@ -153,10 +150,6 @@ offset_bottom = 25.0
 text = "Opponent Decks"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Card Manager Card (DrawpointaKaHand)" type="Node2D" parent="." node_paths=PackedStringArray("player_hand_node")]
-script = ExtResource("7_4pw1r")
-player_hand_node = NodePath("../PlayerHand")
 
 [node name="Hakem Display Label" type="Label" parent="."]
 offset_left = -520.0

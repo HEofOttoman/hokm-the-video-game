@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cw2s6n4ya0dat"]
+[gd_scene load_steps=61 format=3 uid="uid://cw2s6n4ya0dat"]
 
 [ext_resource type="Texture2D" uid="uid://dxwji37u4j8a1" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png" id="1_ihuff"]
 [ext_resource type="Script" uid="uid://phuji5srflwy" path="res://resources/Deck/deck.gd" id="2_h3hq2"]
@@ -55,9 +55,95 @@
 [ext_resource type="Resource" uid="uid://cui43i17nesk5" path="res://resources/Card Resources/CardData/Cards/Q_Clubs.tres" id="49_0ow05"]
 [ext_resource type="Resource" uid="uid://dahtocmeiccjr" path="res://resources/Card Resources/CardData/Cards/Q_Diamonds.tres" id="50_e8lqy"]
 [ext_resource type="Resource" uid="uid://g3yoecbnuflt" path="res://resources/Card Resources/CardData/Cards/Q_Spades.tres" id="52_wvseu"]
+[ext_resource type="Texture2D" uid="uid://dkvb1b7ojrj1m" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_slot.png" id="56_0soqj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qqb2w"]
 size = Vector2(45, 65)
+
+[sub_resource type="Animation" id="Animation_qqb2w"]
+resource_name = "deck_disappear"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeckCounter:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(0.1, 1.5), Vector2(1e-05, 1.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeckBackSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.20071529, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1), Vector2(1, 1.5), Vector2(1, 1), Vector2(2, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0soqj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeckCounter:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeckBackSprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0soqj"]
+_data = {
+&"RESET": SubResource("Animation_0soqj"),
+&"deck_disappear": SubResource("Animation_qqb2w")
+}
 
 [node name="Deck" type="Sprite2D"]
 z_index = -1
@@ -86,3 +172,12 @@ offset_bottom = -32.0
 text = "52"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0soqj")
+}
+
+[node name="DeckBackSprite" type="Sprite2D" parent="."]
+scale = Vector2(1e-05, 1.5)
+texture = ExtResource("56_0soqj")

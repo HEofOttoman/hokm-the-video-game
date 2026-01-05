@@ -5,7 +5,8 @@ class_name Deck
 
 @export var cards : Array[Resource] ## Array countaining data of all cards in a 52-card standard deck
 @export var cardScene : PackedScene
-@export var draw_point : Node2D ## Where the cards are instantiated
+#@export var draw_point : Node2D 
+## Where the cards are instantiated (legacy code)
 
 @export var CARD_DRAW_SPEED : float = 0.2 ## Speed of the cards being drawn
 
@@ -14,6 +15,9 @@ signal card_drawn(card)
 func shuffle_deck():
 	cards.shuffle()
 	print("Cards have been shuffled")
+
+func _ready() -> void:
+	pass
 
 #signal deck_clicked
 #func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
@@ -32,7 +36,10 @@ func shuffle_deck():
 ## Draws a card from the Array of CardData resources
 func draw_card():
 	if cards.is_empty(): ## Checks whether the deck is empty or not
-		visible = false
+		$AnimationPlayer.play("deck_disappear") ## Plays the goofy animation to disappear the deck
+		## <-- Should play a sound effect here
+		
+		#visible = false ## Not needed the animation does that already
 		print("Deck is empty") ## Safely stops the game from crashing
 		return
 		
