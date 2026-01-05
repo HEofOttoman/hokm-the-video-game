@@ -6,6 +6,8 @@ extends Node2D
 @export var COLLISION_MASK_CARD = 1 # Should actually be a const in the tut but whatever
 @export var COLLISION_MASK_CARD_SLOT = 2
 
+@export var CARD_SMALLER_SCALE : float = 0.6 ## Determines the size a card should take in a card slot
+
 var screen_size 
 var is_hovering_on_card : bool ## Whether the mouse is on a card or not
 var card_being_dragged ## could be like hold as in the noontime tutorial?
@@ -19,7 +21,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-## The Barry method of detecting input (clunky)
+## The Barry method of detecting input (clunky and seems unnecessary)
 #func _input(event: InputEvent) -> void:
 	##if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 	#if event.is_action("ClickL"): 
@@ -44,6 +46,8 @@ func stop_drag():
 	var card_slot_found = raycast_check_for_card_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
 		player_hand_node.remove_card_from_hand(card_being_dragged)
+		# Card dropped in card slot
+		card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE, CARD_SMALLER_SCALE)
 		# Card dropped in empty card slot
 		print("Card slot found")
 		card_being_dragged.position = card_slot_found.position
@@ -89,8 +93,8 @@ func raycast_check_for_card_slot():
 	parameters.collision_mask = COLLISION_MASK_CARD_SLOT
 	var result = space_state.intersect_point(parameters)
 	if result.size() > 0:
+		print(result)
 		return result[0].collider.get_parent()
-		#print(result)
 		
 	return null
 

@@ -13,8 +13,9 @@ extends Node2D
 @export var y_min := 50
 @export var y_max := -50
 
-const HAND_COUNT = 5
-@export var card_scene : PackedScene = preload("res://resources/Card Resources/card.tscn")
+#const HAND_COUNT = 5 ## No longer needed, remove after next commit
+#@export var card_scene : PackedScene = preload("res://resources/Card Resources/card.tscn") ## No longer needed
+
 @export var CARD_SEPARATION_WIDTH = 50
 @export var HAND_Y_POSITION = 250
 
@@ -28,7 +29,7 @@ var center_screen_x ## The width of the screen
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
 	
-	#for i in range(HAND_COUNT): # Instantiates a card on start
+	#for i in range(HAND_COUNT): # Instantiates a card on start ## No longer needed, remove after next commit
 		#var new_card = card_scene.instantiate()
 		#card_manager.add_child(new_card)
 		#new_card.name = "Card"

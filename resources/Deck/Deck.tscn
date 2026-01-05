@@ -61,7 +61,7 @@ size = Vector2(45, 65)
 
 [node name="Deck" type="Sprite2D"]
 z_index = -1
-scale = Vector2(2, 2.154)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_ihuff")
 script = ExtResource("2_h3hq2")
 cards = Array[Resource]([ExtResource("3_gf3gb"), ExtResource("4_4r61v"), ExtResource("3_cfr7v"), ExtResource("6_qqb2w"), ExtResource("7_0soqj"), ExtResource("8_ggjff"), ExtResource("4_b8gvh"), ExtResource("10_ja7ux"), ExtResource("11_qqb2w"), ExtResource("11_58hjy"), ExtResource("5_5c0ok"), ExtResource("13_lbvur"), ExtResource("14_01q4u"), ExtResource("15_84t1m"), ExtResource("6_ek3k0"), ExtResource("17_7ltm6"), ExtResource("18_yxcdx"), ExtResource("19_yg5m4"), ExtResource("7_wuws0"), ExtResource("21_osktc"), ExtResource("22_ytctg"), ExtResource("23_fo2ua"), ExtResource("8_xqute"), ExtResource("25_lnyc4"), ExtResource("26_8j5p2"), ExtResource("27_8rj0w"), ExtResource("9_uah7t"), ExtResource("29_vt7tt"), ExtResource("30_vobwr"), ExtResource("31_a8phg"), ExtResource("10_mca83"), ExtResource("33_cwcgp"), ExtResource("34_1tksl"), ExtResource("35_35deu"), ExtResource("11_wajpg"), ExtResource("37_flcrm"), ExtResource("12_4s5md"), ExtResource("13_0d1dw"), ExtResource("14_lnx4g"), ExtResource("15_6ihv1"), ExtResource("43_0soqj"), ExtResource("42_txhy4"), ExtResource("16_xm3b7"), ExtResource("44_f13ec"), ExtResource("45_vv0w2"), ExtResource("46_kifvq"), ExtResource("17_v741o"), ExtResource("48_1m3bk"), ExtResource("49_0ow05"), ExtResource("50_e8lqy"), ExtResource("18_5el5g"), ExtResource("52_wvseu")])

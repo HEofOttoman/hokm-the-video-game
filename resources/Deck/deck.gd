@@ -28,6 +28,7 @@ func shuffle_deck():
 ## Draws a card from the Array of CardData resources
 func draw_card():
 	if cards.is_empty(): ## Checks whether the deck is empty or not
+		visible = false
 		print("Deck is empty") ## Safely stops the game from crashing
 		return
 		
@@ -48,8 +49,13 @@ func draw_card():
 		new_card.get_node("AnimationPlayer").play("card_flip")
 		print("cards instantiated")
 		
-		### Original Version
 		
+	### Original Version
+	#if cards.is_empty(): ## Checks whether the deck is empty or not
+		#print("Deck is empty") ## Safely stops the game from crashing
+		#return
+		
+	#else:
 		## Prepares the data
 		#var data = cards.pop_back()
 		#var card = cardScene.instantiate()
