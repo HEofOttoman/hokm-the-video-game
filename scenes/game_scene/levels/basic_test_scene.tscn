@@ -95,7 +95,7 @@ position = Vector2(0, 56)
 position = Vector2(0, -56)
 
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("card_manager")]
-position = Vector2(-352, 179)
+position = Vector2(0, 252)
 script = ExtResource("5_m6rcj")
 card_manager = NodePath("../Card Manager Card (DrawpointaKaHand)")
 
@@ -219,6 +219,7 @@ scale = Vector2(1.680001, 1.7999998)
 texture_normal = ExtResource("10_xf0qg")
 stretch_mode = 0
 
+[connection signal="card_drawn" from="Deck" to="PlayerHand" method="_on_card_drawn"]
 [connection signal="pressed" from="Draw Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Clubs" to="." method="_on_clubs_pressed"]
 [connection signal="pressed" from="Hearts" to="." method="_on_hearts_pressed"]

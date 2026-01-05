@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7cxb"]
 size = Vector2(44, 64)
 
-[node name="CardSlot" type="Sprite2D"]
+[node name="CardSlot" type="Sprite2D" groups=["card_slots"]]
 texture = ExtResource("1_tpsnn")
 script = ExtResource("2_cwo30")
 

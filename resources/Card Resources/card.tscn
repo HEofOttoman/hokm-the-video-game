@@ -117,12 +117,8 @@ _data = {
 &"card_flip": SubResource("Animation_mucyl")
 }
 
-[node name="Card" type="Node2D"]
+[node name="Card" type="Node2D" groups=["cards"]]
 script = ExtResource("2_ymwpd")
-value = null
-suit = null
-backtexture = null
-custom_default_scale = null
 
 [node name="Area2D" type="Area2D" parent="." groups=["cards"]]
 script = ExtResource("2_ejfkd")
@@ -145,5 +141,5 @@ texture = ExtResource("1_ejfkd")
 
 [connection signal="card_action" from="Area2D" to="." method="_on_area_2d_card_action"]
 [connection signal="card_release" from="Area2D" to="." method="_on_area_2d_card_release"]
-[connection signal="mouse_entered" from="Area2D" to="CardSprite" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="CardSprite" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

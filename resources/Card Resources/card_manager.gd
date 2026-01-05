@@ -1,4 +1,6 @@
 extends Node2D
+### OBSOLETE
+
 ## Based on the tutorials by Barry's Dev Hell - NOT FULLY IMPLEMENTED WITH OLD SYSTEM - Barry's is actually so overcomplicated
 ## https://www.youtube.com/watch?v=1mM73u1tvpU
 ## https://www.youtube.com/watch?v=2jMcuKdRh2w
@@ -6,7 +8,7 @@ extends Node2D
 @export var COLLISION_MASK_CARD = 1 # Should actually be a const in the tut but whatever
 @export var COLLISION_MASK_CARD_SLOT = 2
 
-@export var CARD_SMALLER_SCALE : float = 0.6 ## Determines the size a card should take in a card slot
+
 
 var screen_size 
 var is_hovering_on_card : bool ## Whether the mouse is on a card or not
@@ -72,33 +74,33 @@ func _process(_delta: float) -> void:
 		##else:
 		##is_hovering_on_card = false
 
-## Checking for card slots (barry, remove) 
-func raycast_check_for_card_slot():
-	var space_state = get_world_2d().direct_space_state
-	var parameters = PhysicsPointQueryParameters2D.new()
-	parameters.position = get_global_mouse_position()
-	parameters.collide_with_areas = true
-	parameters.collision_mask = COLLISION_MASK_CARD_SLOT
-	var result = space_state.intersect_point(parameters)
-	if result.size() > 0:
-		print(result)
-		return result[0].collider.get_parent()
-		
-	return null
-
-## The Barry method of raycasting for cards (not implemented)
-func raycast_check_for_card():
-	var space_state = get_world_2d().direct_space_state
-	var parameters = PhysicsPointQueryParameters2D.new()
-	parameters.position = get_global_mouse_position()
-	parameters.collide_with_areas = true
-	parameters.collision_mask = COLLISION_MASK_CARD
-	var result = space_state.intersect_point(parameters)
-	if result.size() > 0:
-		#return result[0].collider.get_parent()
+## Checking for card slots (barry, legacy code) 
+#func raycast_check_for_card_slot():
+	#var space_state = get_world_2d().direct_space_state
+	#var parameters = PhysicsPointQueryParameters2D.new()
+	#parameters.position = get_global_mouse_position()
+	#parameters.collide_with_areas = true
+	#parameters.collision_mask = COLLISION_MASK_CARD_SLOT
+	#var result = space_state.intersect_point(parameters)
+	#if result.size() > 0:
 		#print(result)
-		return get_card_with_highest_z_index(result)
-	return null
+		#return result[0].collider.get_parent()
+		#
+	#return null
+
+## The Barry method of raycasting for cards (legacy code)
+#func raycast_check_for_card():
+	#var space_state = get_world_2d().direct_space_state
+	#var parameters = PhysicsPointQueryParameters2D.new()
+	#parameters.position = get_global_mouse_position()
+	#parameters.collide_with_areas = true
+	#parameters.collision_mask = COLLISION_MASK_CARD
+	#var result = space_state.intersect_point(parameters)
+	#if result.size() > 0:
+		##return result[0].collider.get_parent()
+		##print(result)
+		#return get_card_with_highest_z_index(result)
+	#return null
 
 func get_card_with_highest_z_index(cards):
 	# Assume the first card in cards array has the highest z index

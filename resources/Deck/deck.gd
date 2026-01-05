@@ -9,6 +9,8 @@ class_name Deck
 
 @export var CARD_DRAW_SPEED : float = 0.2 ## Speed of the cards being drawn
 
+signal card_drawn(card)
+
 func shuffle_deck():
 	cards.shuffle()
 	print("Cards have been shuffled")
@@ -44,18 +46,21 @@ func draw_card():
 		new_card.suit = data.suit
 		new_card.cardtexture = data.cardtexture
 		
-		$"../Card Manager Card (DrawpointaKaHand)".add_child(new_card)
-		new_card.name = "card"
+		emit_signal("card_drawn", new_card)
 		
+		## Function of the code below migrated to playerhand.gd
+		#$"../PlayerHand".add_child(new_card)
+		#new_card.name = "card"
+		## ^Idk the use of this tbh
 		
-		$"../PlayerHand".add_card_to_hand(new_card) #, CARD_DRAW_SPEED)
-		new_card.get_node("AnimationPlayer").play("card_flip")
-		print("cards instantiated")
+		#$"../PlayerHand".add_card_to_hand(new_card) #, CARD_DRAW_SPEED)
+		#new_card.get_node("AnimationPlayer").play("card_flip")
+		#print("cards instantiated")
 		
 		$DeckCounter.text = str(cards.size()) ## Updates the deck counter
 		
 		
-	### Original Version
+	### Older Version
 	#if cards.is_empty(): ## Checks whether the deck is empty or not
 		#print("Deck is empty") ## Safely stops the game from crashing
 		#return

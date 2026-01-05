@@ -26,6 +26,17 @@ var center_screen_x ## The width of the screen
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
 	
+	$"../Deck".card_drawn.connect(self._on_card_drawn)
+
+func _on_card_drawn(card):
+	add_child(card)
+	card.global_position = $"../Deck".global_position
+	
+	add_card_to_hand(card)
+	
+	card.get_node("AnimationPlayer").play("card_flip")
+	
+	
 
 func add_card_to_hand(card):
 	if card not in player_hand:
