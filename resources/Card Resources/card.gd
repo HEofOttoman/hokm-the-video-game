@@ -40,13 +40,21 @@ func _ready() -> void:
 	## Card manager is the hand node from the noontime dreamer tutorial
 	
 
+#func _process(_delta):
+	#if dragging:
+		#var areas = $Area2D.get_overlapping_areas()
+		#if areas.size() > 0:
+			#print("OVERLAP:", areas)
+
 func get_hovered_card_slot():
-	
 	var areas = $Area2D.get_overlapping_areas()
 	for area in areas:
-		var slot = area.get_parent
-		if slot is CardSlot:
-			return slot
+		if area.is_in_group('card_slots'):
+			#print('FINALLY I FOUND YOU') ## I was so glad to get slots working finally lmao
+			return area.get_parent()
+		#var slot = area.get_parent
+		#if slot is CardSlot:
+			#return slot
 	
 	return null
 	
@@ -58,7 +66,11 @@ func _input(event: InputEvent) -> void: ## Better way to move cards that doesn't
 		#position = Vector2(clamp(mouse_position.x, 0, screen_size.x), 
 			#clamp(mouse_position.y, 0, screen_size.y))
 			## ^Review this code, the viewport doesn't clamp at the right places
+		#var areas = $Area2D.get_overlapping_areas()
+		#if areas.size() > 0:
+			#print("OVERLAP:", areas)
 
+### Inputs Section
 ## Detects Left Clicks
 func _on_area_2d_card_action(left: bool) -> void:
 	if left:

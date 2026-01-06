@@ -34,6 +34,13 @@ func add_card_to_slot(card): ## Places card inside of slot
 	
 	print('Card Added to slot')
 
+func remove_card_from_slot():
+	if not card_in_slot:
+		return
+	
+	card_in_slot = false
+	occupied_card = null
+	print('Card removed from slot')
 
 # Bad practice (moved to card)
 #func _on_area_2d_area_entered(area: Area2D) -> void:

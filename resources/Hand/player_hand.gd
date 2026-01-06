@@ -50,8 +50,12 @@ func _on_drag_started(card):
 func _on_drag_ended(card):
 	stop_drag(card)
 
-func start_drag(_card):
+func start_drag(card):
 	print('START DRAG CALLED')
+	
+	var card_slot_found = card.get_hovered_card_slot()
+	if card_slot_found and card_slot_found.card_in_slot == true: 
+		card_slot_found.remove_card_from_slot() ## Okay this works to fix the ghost slot bug, no need to make a new occupied state in the card
 	#card.scale = Vector2(1, 1)
 	## No use at all for starting card drag, was used for hover which is inside the card's script now.
 
@@ -59,21 +63,22 @@ func stop_drag(card): ## Should move cards to slots if found.
 	print('STOP DRAG CALLED')
 	card.scale = Vector2(1.05, 1.05)
 	var card_slot_found = card.get_hovered_card_slot()
-	print('CARD SLOT FOUND:', card_slot_found)
-	if card_slot_found and not card_slot_found.card_in_slot: ## Card dropped in empty card slot
+	if card_slot_found and card_slot_found.card_in_slot == false: ## Card dropped in empty card slot
 		## For later implementation
 		#if rulesEngine.can_play_card(card, card_slot_found):
 			#card_slot_found.add_card_to_slot()
 			# + the other lines
 		
-		print("Card slot found")
+		print('CARD SLOT FOUND:', card_slot_found)
 		remove_card_from_hand(card) 
 		card.position = card_slot_found.position
 		#card.get_node("$Area2D/CollisionShape2D").disabled = true
 		#ProjectUISoundController ## should play a click sound
-		card_slot_found.add_card_to_slot()
+		card_slot_found.add_card_to_slot(card)
+	
 	else:
-		add_card_to_hand(card)
+		print('CARD SLOT NOT FOUND')
+		add_card_to_hand(card) ## Failed to find a card slot
 	#card = null
 
 
