@@ -1,5 +1,5 @@
 # Hokm The Video Game
-![[Hokm the Video Game Banner.png]]
+![Hokm The Video Game Banner](<assets/Artworks/Hokm the Video Game Banner V2.png>)
 A video game adaptation of a unique Iranian card game.
 
 ## About the Project

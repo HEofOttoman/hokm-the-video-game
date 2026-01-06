@@ -84,7 +84,6 @@ func _on_area_2d_mouse_exited() -> void:
 	emit_signal("hovered_off", self)
 	
 
-
 ### Visuals Section - Handles Card Visuals
 ## Applies a card highlight effect when hovered
 

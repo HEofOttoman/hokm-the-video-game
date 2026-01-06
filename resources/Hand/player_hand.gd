@@ -13,22 +13,25 @@ extends Node2D
 @export var y_min := 50
 @export var y_max := -50
 
-@export var CARD_SEPARATION_WIDTH = 50
-@export var HAND_Y_POSITION = 0 ## How far down the hand is (relative)
+@export var CARD_SEPARATION_WIDTH : float = 50
+@export var HAND_Y_POSITION : float = 0 ## How far down the hand is (relative)
 var center_screen_x ## The width of the screen
 ## ^Might be unnecessary if I an just animate it to the hand's position
 
 @export var player_hand : Array = [] ## The data about which cards are in the player's hand
 
 
-#@export var card_manager : Node2D ## <-- Reference to deprecated card manager
-#= $"../Card Manager Card (DrawpointaKaHand)"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
 	
 	#$"../Deck".card_drawn.connect(self._on_card_drawn) ## Already connected?
+
+#func connect_card_signals(card):
+	#card.connect("hovered", on_hovered_over_card)
+	#card.connect("hovered_off", on_hovered_off_card)
 
 func _on_card_drawn(card):
 	add_child(card)
@@ -38,7 +41,36 @@ func _on_card_drawn(card):
 	
 	card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
 	
-	
+
+func _on_drag_started():
+	pass
+
+func _on_drag_ended():
+	pass
+
+#func start_drag(card):
+	#card_being_dragged = card 
+	#card.scale = Vector2(1, 1)
+#
+#func stop_drag():
+	#card_being_dragged.scale = Vector2(1.05, 1.05)
+	#var card_slot_found = raycast_check_for_card_slot()
+	#if card_slot_found and not card_slot_found.card_in_slot:
+		#player_hand_node.remove_card_from_hand(card_being_dragged)
+		## Card dropped in card slot
+		#card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE, CARD_SMALLER_SCALE)
+		## Card dropped in empty card slot
+		#print("Card slot found")
+		#card_being_dragged.position = card_slot_found.position
+		#card_being_dragged.get_node("$Area2D/CollisionShape2D").disabled = true
+		##ProjectUISoundController ## should play a click sound
+		#card_slot_found.card_in_slot = true
+	#else:
+		#player_hand_node.add_card_to_hand(card_being_dragged)
+	#
+	#card_being_dragged = null
+	#
+
 
 func add_card_to_hand(card):
 	if card not in player_hand:
@@ -51,9 +83,9 @@ func add_card_to_hand(card):
 func update_hand_positions():
 	for i in range(player_hand.size()):
 		## Get new card position based on the index passed in
-		var new_position = Vector2(calculate_card_position(i), HAND_Y_POSITION)
-		#print("Deck at", new_position) ## Helped troubleshoot when I had the bug of the deck going off screen
 		var card = player_hand[i]
+		var new_position = calculate_card_position(i)
+		#print("Deck at", new_position) ## Helped troubleshoot when I had the bug of the deck going off screen
 		card.starting_position = new_position
 		animate_card_to_position(card, new_position)
 
@@ -65,12 +97,17 @@ func update_hand_positions():
 
 ## Cleaner version of Barry's function, the hand is simply drawn relative to where the card manager is.
 ## Might be a cosmetic limitation for the animation
-func calculate_card_position(index):
-	#update_card_width() ## Works, but not enough
-	var x_offset : float = (player_hand.size() - 1) * CARD_SEPARATION_WIDTH
-	return (index * CARD_SEPARATION_WIDTH) - (x_offset / 2)
+#func calculate_card_position(index):
+	##update_card_width() ## Works, but not enough
+	#var x_offset : float = (player_hand.size() - 1) * CARD_SEPARATION_WIDTH
+	#return (index * CARD_SEPARATION_WIDTH) - (x_offset / 2)
 
-
+## Alternative suggested version of the function
+func calculate_card_position(index: int) -> Vector2:
+	var count := player_hand.size()
+	var total_width : float = (count - 1) * CARD_SEPARATION_WIDTH
+	var x : float = (index * CARD_SEPARATION_WIDTH) - total_width / 2.0
+	return Vector2(x, 0)
 
 func update_card_width(): ## Should pack cards closer together upon more cards being added (works but not enough)
 	CARD_SEPARATION_WIDTH = max(250 - (player_hand.size() * 10),100)
@@ -79,8 +116,12 @@ func update_card_width(): ## Should pack cards closer together upon more cards b
 	#CARD_WIDTH = max(250 - (player_hand.size() * 10),100)
 
 func animate_card_to_position(card, new_position):
+	if card.has_meta("tween"):
+		card.get_meta("tween").kill()
+	
 	var tween = get_tree().create_tween()
 	tween.tween_property(card,"position", new_position, 0.5)
+
 
 func remove_card_from_hand(card):
 	if card in player_hand:

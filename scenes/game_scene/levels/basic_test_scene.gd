@@ -10,9 +10,6 @@ func _ready() -> void:
 	randomize()
 	$Deck.shuffle_deck() ## Shuffles the deck of course
 
-func _on_button_pressed() -> void:
-	$Deck.draw_card()
-
 func start_game():
 	declaring_hakem()
 	

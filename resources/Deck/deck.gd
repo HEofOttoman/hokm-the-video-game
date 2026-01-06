@@ -17,7 +17,8 @@ func shuffle_deck():
 	print("Cards have been shuffled")
 
 func _ready() -> void:
-	pass
+	randomize() ## Ensures maximum randomness
+	shuffle_deck() ## Shuffles the deck of course
 
 #signal deck_clicked
 #func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
@@ -32,6 +33,9 @@ func _ready() -> void:
 		##deck_clicked.emit(true)
 	##if event.is_action_pressed("ClickR"):
 		##deck_clicked.emit(false)
+
+func _on_button_pressed() -> void:
+	draw_card()
 
 ## Draws a card from the Array of CardData resources
 func draw_card():
