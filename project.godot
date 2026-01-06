@@ -33,6 +33,11 @@ window/size/viewport_height=720
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg", "res://addons/maaacks_game_template/plugin.cfg")
 
+[global_group]
+
+cards=""
+card_slots=""
+
 [gui]
 
 theme/custom="res://resources/themes/hokm_theme.tres"

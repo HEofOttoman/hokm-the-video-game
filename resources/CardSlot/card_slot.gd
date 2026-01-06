@@ -1,17 +1,20 @@
 extends Sprite2D
+class_name CardSlot
 
 ## Based on the tutorial by Barry's dev hell : https://www.youtube.com/watch?v=1mM73u1tvpU 
 
 ## Collision mask & layer set to 2
 
-@export var card_in_slot : bool = false
+@export var card_in_slot : bool = false ## State of whether there is a card inside or not
 
-@export var slot_type : SlotType
+@export var slot_type : SlotType = SlotType.Trick_Slot
 
-enum SlotType {
+var occupied_card = null
+
+enum SlotType { ## Different slots have different behaviours
 	Trick_Slot,
 	Discard_Slot,
-	Temporary_Reveal_Slot,
+	Temporary_Reveal_Slot, # For 
 	Auction_Slot 
 }
 
@@ -19,16 +22,19 @@ enum SlotType {
 func _ready() -> void:
 	pass # Replace with function body.
 
+func add_card_to_slot(card): ## Places card inside of slot
+	card_in_slot = true
+	occupied_card = card
+	card.scale = Vector2(0.6, 0.6)
+	card.global_position = self.global_position
+	print('Card Added to slot')
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group('cards'):
-		if card_in_slot == false:
-			pass
-		elif card_in_slot:
-			return
-		pass # Replace with function body.
+# Bad practice
+#func _on_area_2d_area_entered(area: Area2D) -> void:
+	#if area.is_in_group('cards'):
+		#if card_in_slot == false:
+			#add_card_to_slot(area)
+		#elif card_in_slot:
+			#return
+		#pass # Replace with function body.

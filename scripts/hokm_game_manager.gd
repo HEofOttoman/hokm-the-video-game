@@ -5,6 +5,14 @@ class_name GameManager
 ## Number of players
 @export var player_count : int = 4
 
+enum HokmVariant { ## Same thing as player_count I guess
+	TWO_PLAYER,
+	THREE_PLAYER,
+	FOUR_PLAYER,
+}
+
+
+
 ## Umpire / RuleManager
 ### Checks if the turn is legal, and determines who wins
 

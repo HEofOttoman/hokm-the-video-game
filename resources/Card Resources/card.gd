@@ -13,10 +13,8 @@ extends Node2D
 
 @export var CARD_SMALLER_SCALE : float = 0.6 ## Determines the size a card should take in a card slot
 
-signal hovered(card)
-signal hovered_off(card)
-## ^Was used to talk to card manager, but migrated here.
-## Might be useful for implementing tutorials (seeing if instruction is followed?)
+signal hovered(card) ## Hovered singlas were used to talk to card manager, but migrated here.
+signal hovered_off(card) ## Might be useful for implementing tutorials (seeing if instruction is followed?)
 signal drag_started(card)
 signal drag_ended(card)
 
@@ -42,8 +40,16 @@ func _ready() -> void:
 	## Card manager is the hand node from the noontime dreamer tutorial
 	
 
-#func _process(_delta: float) -> void:
-
+func get_hovered_card_slot():
+	
+	var areas = $Area2D.get_overlapping_areas()
+	for area in areas:
+		var slot = area.get_parent
+		if slot is CardSlot:
+			return slot
+	
+	return null
+	
 
 func _input(event: InputEvent) -> void: ## Better way to move cards that doesn't run every frame
 	if dragging and event is InputEventMouseMotion: 

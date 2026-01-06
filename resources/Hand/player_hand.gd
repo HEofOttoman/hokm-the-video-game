@@ -20,7 +20,7 @@ var center_screen_x ## The width of the screen
 
 @export var player_hand : Array = [] ## The data about which cards are in the player's hand
 
-
+@export var rulesEngine = RulesEngine.new()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,9 +29,10 @@ func _ready() -> void:
 	
 	#$"../Deck".card_drawn.connect(self._on_card_drawn) ## Already connected?
 
-#func connect_card_signals(card):
-	#card.connect("hovered", on_hovered_over_card)
-	#card.connect("hovered_off", on_hovered_off_card)
+func connect_card_signals(card):
+	card.connect("drag_started", _on_drag_started)
+	card.connect("drag_ended", _on_drag_ended)
+
 
 func _on_card_drawn(card):
 	add_child(card)
@@ -42,34 +43,36 @@ func _on_card_drawn(card):
 	card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
 	
 
-func _on_drag_started():
-	pass
+func _on_drag_started(card):
+	start_drag(card)
 
-func _on_drag_ended():
-	pass
+func _on_drag_ended(card):
+	stop_drag(card)
 
-#func start_drag(card):
-	#card_being_dragged = card 
+func start_drag(_card):
 	#card.scale = Vector2(1, 1)
-#
-#func stop_drag():
-	#card_being_dragged.scale = Vector2(1.05, 1.05)
-	#var card_slot_found = raycast_check_for_card_slot()
-	#if card_slot_found and not card_slot_found.card_in_slot:
-		#player_hand_node.remove_card_from_hand(card_being_dragged)
-		## Card dropped in card slot
-		#card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE, CARD_SMALLER_SCALE)
-		## Card dropped in empty card slot
-		#print("Card slot found")
-		#card_being_dragged.position = card_slot_found.position
-		#card_being_dragged.get_node("$Area2D/CollisionShape2D").disabled = true
-		##ProjectUISoundController ## should play a click sound
-		#card_slot_found.card_in_slot = true
-	#else:
-		#player_hand_node.add_card_to_hand(card_being_dragged)
-	#
-	#card_being_dragged = null
-	#
+	pass ## No use at all for starting card drag, was used for hover which is inside the card's script now.
+
+func stop_drag(card): ## Should move cards to slots if found.
+	print('STOP DRAG CALLED')
+	card.scale = Vector2(1.05, 1.05)
+	var card_slot_found = card.get_hovered_card_slot()
+	
+	if card_slot_found and not card_slot_found.card_in_slot: ## Card dropped in empty card slot
+		## For later implementation
+		#if rulesEngine.can_play_card(card, card_slot_found):
+			#card_slot_found.add_card_to_slot()
+			# + the other lines
+		
+		print("Card slot found")
+		remove_card_from_hand(card) 
+		card.position = card_slot_found.position
+		#card.get_node("$Area2D/CollisionShape2D").disabled = true
+		#ProjectUISoundController ## should play a click sound
+		card_slot_found.add_card_to_slot()
+	else:
+		add_card_to_hand(card)
+	#card = null
 
 
 func add_card_to_hand(card):
