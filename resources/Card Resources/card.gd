@@ -4,7 +4,7 @@ extends Node2D
 ## Helped also by Barry's Dev Hell: https://www.youtube.com/watch?v=1mM73u1tvpU
 
 ## Unique Parts of a Card
-@export_range(1,13) var value : int = 1 ## IMPORTANT - Remember that in Hokm 2 is valued at 1 and 13 is the Ace!
+@export_range(1,13) var rank : int = 1 ## IMPORTANT - Remember that in Hokm 2 is valued at 1 and 13 is the Ace!
 @export_enum("Hearts", "Spades", "Diamonds", "Clubs") var suit : String = "Hearts"
 @export var cardtexture : Texture
 @export var backtexture : Texture = preload("res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png")
@@ -62,9 +62,10 @@ func _input(event: InputEvent) -> void: ## Better way to move cards that doesn't
 ## Detects Left Clicks
 func _on_area_2d_card_action(left: bool) -> void:
 	if left:
-		print(value, suit + " Left Click")
+		print(rank, suit + " Left Click")
 		dragging = true
-		emit_signal("drag_started")
+		emit_signal("drag_started", self) ## THIS TOO
+		
 	if not left:
 		print("Right Click")
 	
@@ -72,9 +73,10 @@ func _on_area_2d_card_action(left: bool) -> void:
 
 func _on_area_2d_card_release(left: bool) -> void: ## Releases cards when the LMB is no longer held down
 	if left:
-		print(value, suit + " Released")
+		print(rank, suit + " Released")
 		dragging = false
-		emit_signal("drag_ended")
+		emit_signal("drag_ended", self) ## BRO ADDING `self` IS WHAT FIXED THE HAND SNAP 
+		
 
 
 func _on_area_2d_mouse_entered() -> void:

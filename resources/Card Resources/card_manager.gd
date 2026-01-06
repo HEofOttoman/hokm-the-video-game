@@ -1,27 +1,28 @@
 extends Node2D
 ### OBSOLETE
+## SAFELY DISABLED
 
 ## Based on the tutorials by Barry's Dev Hell - NOT FULLY IMPLEMENTED WITH OLD SYSTEM - Barry's is actually so overcomplicated
 ## https://www.youtube.com/watch?v=1mM73u1tvpU
 ## https://www.youtube.com/watch?v=2jMcuKdRh2w
 
-@export var COLLISION_MASK_CARD = 1 # Should actually be a const in the tut but whatever
-@export var COLLISION_MASK_CARD_SLOT = 2
+#@export var COLLISION_MASK_CARD = 1 # Should actually be a const in the tut but whatever
+#@export var COLLISION_MASK_CARD_SLOT = 2
 
 
 
-var screen_size 
-var is_hovering_on_card : bool ## Whether the mouse is on a card or not
-var card_being_dragged ## could be like hold as in the noontime tutorial?
-@export var player_hand_node : Node
+#var screen_size 
+#var is_hovering_on_card : bool ## Whether the mouse is on a card or not
+#var card_being_dragged ## could be like hold as in the noontime tutorial?
+#@export var player_hand_node : Node
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+#func _ready() -> void:
+	#pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+#func _process(_delta: float) -> void:
+	#pass
 
 
 ## The Barry method of detecting input (clunky and seems unnecessary) (DELETED)

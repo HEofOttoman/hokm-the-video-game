@@ -17,11 +17,11 @@ enum Suit {
 }
 
 func can_play_card(
-	# A bunch of variables to be passed to determine if a move is legal or not
-	card, 
-	card_slot_found
+	## A bunch of variables to be passed to determine if a move is legal or not
+	#card: CardData, 
+	#card_slot_found
 ):
 	pass
 
 func determine_trick_winner():
-	
+	pass

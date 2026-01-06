@@ -11,6 +11,8 @@ class_name CardSlot
 
 var occupied_card = null
 
+@export var snap_sfx : AudioStream = preload("res://assets/Audio/kenney_ui-audio/Audio/click4.ogg")
+
 enum SlotType { ## Different slots have different behaviours
 	Trick_Slot,
 	Discard_Slot,
@@ -20,17 +22,20 @@ enum SlotType { ## Different slots have different behaviours
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 func add_card_to_slot(card): ## Places card inside of slot
 	card_in_slot = true
 	occupied_card = card
 	card.scale = Vector2(0.6, 0.6)
 	card.global_position = self.global_position
+	
+	
+	
 	print('Card Added to slot')
 
 
-# Bad practice
+# Bad practice (moved to card)
 #func _on_area_2d_area_entered(area: Area2D) -> void:
 	#if area.is_in_group('cards'):
 		#if card_in_slot == false:

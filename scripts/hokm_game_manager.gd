@@ -11,12 +11,14 @@ enum HokmVariant { ## Same thing as player_count I guess
 	FOUR_PLAYER,
 }
 
-
+func deal_cards(): ## Deal cards to each player
+	for i in player_count:
+		pass
 
 ## Umpire / RuleManager
 ### Checks if the turn is legal, and determines who wins
 
-@export var rules = RulesEngine
+@export var rules := RulesEngine.new()
 
 #hand.input_enabled = (player_id == )
 

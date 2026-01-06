@@ -30,16 +30,17 @@ func _ready() -> void:
 	#$"../Deck".card_drawn.connect(self._on_card_drawn) ## Already connected?
 
 func connect_card_signals(card):
-	card.connect("drag_started", _on_drag_started)
-	card.connect("drag_ended", _on_drag_ended)
+	card.drag_started.connect(_on_drag_started)
+	card.drag_ended.connect(_on_drag_ended)
 
 
 func _on_card_drawn(card):
 	add_child(card)
 	card.global_position = $"../Deck".global_position
 	
-	add_card_to_hand(card)
+	connect_card_signals(card)
 	
+	add_card_to_hand(card)
 	card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
 	
 
@@ -50,14 +51,15 @@ func _on_drag_ended(card):
 	stop_drag(card)
 
 func start_drag(_card):
+	print('START DRAG CALLED')
 	#card.scale = Vector2(1, 1)
-	pass ## No use at all for starting card drag, was used for hover which is inside the card's script now.
+	## No use at all for starting card drag, was used for hover which is inside the card's script now.
 
 func stop_drag(card): ## Should move cards to slots if found.
 	print('STOP DRAG CALLED')
 	card.scale = Vector2(1.05, 1.05)
 	var card_slot_found = card.get_hovered_card_slot()
-	
+	print('CARD SLOT FOUND:', card_slot_found)
 	if card_slot_found and not card_slot_found.card_in_slot: ## Card dropped in empty card slot
 		## For later implementation
 		#if rulesEngine.can_play_card(card, card_slot_found):

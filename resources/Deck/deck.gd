@@ -44,6 +44,7 @@ func draw_card():
 		## <-- Should play a sound effect here
 		
 		#visible = false ## Not needed the animation does that already
+		$"../Draw Button".hide()
 		print("Deck is empty") ## Safely stops the game from crashing
 		return
 		
@@ -53,7 +54,7 @@ func draw_card():
 		
 		var data = cards.pop_back()
 		var new_card = cardScene.instantiate()
-		new_card.value = data.value #
+		new_card.rank = data.rank #
 		new_card.suit = data.suit
 		new_card.cardtexture = data.cardtexture
 		
