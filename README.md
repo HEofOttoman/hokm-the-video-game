@@ -6,6 +6,7 @@ A video game adaptation of a unique Iranian card game.
 Hokm is a traditional Iranian trick-taking card game, which I have learned and enjoyed playing in November from my friend. I have taken it upon myself to make a video game adaptation as a learning experience.
 
 ## Rules
+I was taught the rules by my friend, though this website seems to be quite complete.
 https://www.pagat.com/whist/hokm.html
 
 ## License

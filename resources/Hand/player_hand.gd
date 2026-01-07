@@ -1,9 +1,12 @@
 extends Node2D
+#class_name Hand
 
 ## Based on barry's dev hell and another tutorial : https://www.youtube.com/watch?v=lATAS8YpzFE
 
 #@export var Card : PackedScene
 #@export var size : = "size" ## What is this meant to be? Idk
+
+@export_group('Visual Elements')
 
 @export var curve : Curve
 @export var rotation_curve : Curve
@@ -18,8 +21,10 @@ extends Node2D
 var center_screen_x ## The width of the screen
 ## ^Might be unnecessary if I an just animate it to the hand's position
 
-@export var player_hand : Array = [] ## The data about which cards are in the player's hand
-
+@export_group('Internal Variables')
+@export var player_id : int
+@export var cards_in_hand : Array = [] ## The data about which cards are in the player's hand, or just the hand.
+## ^ Cards_in_hand A.K.A player_hand
 @export var rulesEngine = RulesEngine.new()
 
 
@@ -34,7 +39,7 @@ func connect_card_signals(card):
 	card.drag_ended.connect(_on_drag_ended)
 
 
-func _on_card_drawn(card):
+func receive_card(card):
 	add_child(card)
 	card.global_position = $"../Deck".global_position
 	
@@ -83,17 +88,17 @@ func stop_drag(card): ## Should move cards to slots if found.
 
 
 func add_card_to_hand(card):
-	if card not in player_hand:
-		player_hand.insert(0, card)
+	if card not in cards_in_hand:
+		cards_in_hand.insert(0, card)
 		update_hand_positions()
 	else:
 		animate_card_to_position(card, card.starting_position)
 	
 
 func update_hand_positions():
-	for i in range(player_hand.size()):
+	for i in range(cards_in_hand.size()):
 		## Get new card position based on the index passed in
-		var card = player_hand[i]
+		var card = cards_in_hand[i]
 		var new_position = calculate_card_position(i)
 		#print("Deck at", new_position) ## Helped troubleshoot when I had the bug of the deck going off screen
 		card.starting_position = new_position
@@ -114,13 +119,13 @@ func update_hand_positions():
 
 ## Alternative suggested version of the function
 func calculate_card_position(index: int) -> Vector2:
-	var count := player_hand.size()
+	var count := cards_in_hand.size()
 	var total_width : float = (count - 1) * CARD_SEPARATION_WIDTH
 	var x : float = (index * CARD_SEPARATION_WIDTH) - total_width / 2.0
 	return Vector2(x, 0)
 
 func update_card_width(): ## Should pack cards closer together upon more cards being added (works but not enough)
-	CARD_SEPARATION_WIDTH = max(250 - (player_hand.size() * 10),100)
+	CARD_SEPARATION_WIDTH = max(250 - (cards_in_hand.size() * 10),100)
 
 #func set_card_width(): ## gets called whenever a card gets added or removed, so that the cards get closer together as more cards are in the hands, which I enjoy
 	#CARD_WIDTH = max(250 - (player_hand.size() * 10),100)
@@ -134,8 +139,8 @@ func animate_card_to_position(card, new_position):
 
 
 func remove_card_from_hand(card):
-	if card in player_hand:
-		player_hand.erase(card)
+	if card in cards_in_hand:
+		cards_in_hand.erase(card)
 		update_hand_positions()
 		
 

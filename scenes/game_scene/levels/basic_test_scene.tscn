@@ -42,9 +42,10 @@ offset_top = -336.0
 offset_right = -370.0
 offset_bottom = 331.0
 
-[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("trick_slots")]
+[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots")]
 script = ExtResource("3_pyd4g")
-player_count = 2
+deck = NodePath("../Deck")
+hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot2")]
 
 [node name="Rule Umpire" type="Node" parent="."]
@@ -92,9 +93,10 @@ position = Vector2(0, 56)
 [node name="TrickSlot2" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
 position = Vector2(0, -56)
 
-[node name="PlayerHand" type="Node2D" parent="."]
+[node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine")]
 position = Vector2(64, 290)
 script = ExtResource("5_m6rcj")
+rulesEngine = NodePath("../Rule Umpire")
 
 [node name="EnemyHand1" type="Node2D" parent="."]
 position = Vector2(64, -288)
@@ -244,15 +246,15 @@ scale = Vector2(1.680001, 1.7999998)
 texture_normal = ExtResource("10_xf0qg")
 stretch_mode = 0
 
-[node name="Button" type="Button" parent="."]
+[node name="Tutorial Overlay Button" type="Button" parent="."]
 offset_left = 512.0
 offset_top = -24.0
 offset_right = 614.0
 offset_bottom = 35.0
 text = "Tutorial"
 
-[connection signal="card_drawn" from="Deck" to="PlayerHand" method="_on_card_drawn"]
-[connection signal="pressed" from="Clubs" to="." method="_on_clubs_pressed"]
-[connection signal="pressed" from="Hearts" to="." method="_on_hearts_pressed"]
-[connection signal="pressed" from="Spades" to="." method="_on_spades_pressed"]
-[connection signal="pressed" from="Diamonds" to="." method="_on_diamonds_pressed"]
+[connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
+[connection signal="pressed" from="Clubs" to="Game Manager" method="_on_clubs_pressed"]
+[connection signal="pressed" from="Hearts" to="Game Manager" method="_on_hearts_pressed"]
+[connection signal="pressed" from="Spades" to="Game Manager" method="_on_spades_pressed"]
+[connection signal="pressed" from="Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
