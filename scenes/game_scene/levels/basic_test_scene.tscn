@@ -103,6 +103,9 @@ script = ExtResource("5_m6rcj")
 
 [node name="EnemyHand" type="Node2D" parent="."]
 position = Vector2(0, -288)
+script = ExtResource("5_m6rcj")
+
+[node name="AIController" type="Node" parent="EnemyHand"]
 
 [node name="Player Deck Pile" type="Panel" parent="."]
 offset_left = -592.0
