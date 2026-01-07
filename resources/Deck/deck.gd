@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Node2D
 class_name Deck
 
 ## Based on this tutorial: https://www.youtube.com/watch?v=e7iuMLdWjgw
@@ -34,7 +34,7 @@ func _ready() -> void:
 	##if event.is_action_pressed("ClickR"):
 		##deck_clicked.emit(false)
 
-func _on_button_pressed() -> void:
+func _on_draw_button_pressed() -> void: ## This was used to trigger drawing, useless for AI.
 	draw_card()
 
 ## Draws a card from the Array of CardData resources
@@ -44,7 +44,7 @@ func draw_card():
 		## <-- Should play a sound effect here
 		
 		#visible = false ## Not needed the animation does that already
-		$"../Draw Button".hide()
+		$DrawButton.hide()
 		print("Deck is empty") ## Safely stops the game from crashing
 		return
 		
@@ -58,7 +58,7 @@ func draw_card():
 		new_card.suit = data.suit
 		new_card.cardtexture = data.cardtexture
 		
-		emit_signal("card_drawn", new_card)
+		emit_signal("card_drawn", new_card) ## Informs the hands that cards drawn and to add it to their place
 		
 		## Function of the code below migrated to playerhand.gd
 		#$"../PlayerHand".add_child(new_card)
@@ -69,8 +69,8 @@ func draw_card():
 		#new_card.get_node("AnimationPlayer").play("card_flip")
 		#print("cards instantiated")
 		
-		$DeckCounter.text = str(cards.size()) ## Updates the deck counter
-		
+		$DeckSprite/DeckCounter.text = str(cards.size()) ## Updates the deck counter
+	
 		
 	### Older Version
 	#if cards.is_empty(): ## Checks whether the deck is empty or not

@@ -1,5 +1,7 @@
 extends Node2D
 
+## Old Root script idfk what I was doing
+
 signal hakem_declared 
 signal hokm_chosen(hokm)
 

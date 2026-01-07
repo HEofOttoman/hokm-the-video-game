@@ -5,33 +5,71 @@ class_name GameManager
 ## Number of players
 @export var player_count : int = 4
 
-var hokm_suit ## The current game's Hokm suit
-
-var hands : Array
-
 enum HokmVariant { ## Same thing as player_count I guess
 	TWO_PLAYER,
 	THREE_PLAYER,
 	FOUR_PLAYER,
 }
 
+@export var hands : Array[Node]
+@export var trick_slots : Array[CardSlot]
+
+var hakem_index : int
+var hokm_suit  ## The current game's Hokm suit
+var winner_index
+var current_player : int = 0
+
+var trick_cards : Array = []
+
+enum HokmGamePhase {
+	AUCTIONING, ## Setting Hakem and deciding Hokm
+	DEALING,
+	PLAYING,
+	SCORING
+}
+
+@export var game_phase : HokmGamePhase
+
+
+func _ready() -> void:
+	game_phase = HokmGamePhase.AUCTIONING
+	auctioning_game()
+
+func auctioning_game():
+	declaring_hakem()
+	declaring_hokm()
+
+func declaring_hakem():
+	$"../Deck".draw_card()
+	
+
+func declaring_hokm(): ## Process for declaring the hokm
+	## Add the process for declaring it here
+	pass
+	#hokm_chosen.emit(hokm)
+
+## Umpire / RuleManager
+### Checks if the turn is legal, and determines who wins
+
+@export var rulesEngine := RulesEngine.new()
+
+#hand.input_enabled = (player_id == )
+
+
+
+## TurnKeeper
+### Checks the current player
+### Advances turns
+
+
 func deal_cards(): ## Deal cards to each player
 	for i in player_count:
 		pass
 		
 
-func register_hands():
+#func register_hands(): ## idfk I forgot what I imagined this to work in
+	#for i in player_count: 
+		#hands.append()
+
+func advance_turn():
 	pass
-
-var winner_index
-
-## Umpire / RuleManager
-### Checks if the turn is legal, and determines who wins
-
-@export var rules := RulesEngine.new()
-
-#hand.input_enabled = (player_id == )
-
-## TurnKeeper
-### Checks the current player
-### Advances turns

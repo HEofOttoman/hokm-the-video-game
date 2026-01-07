@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://broxm5ifb5l5j"]
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://broxm5ifb5l5j"]
 
+[ext_resource type="Texture2D" uid="uid://dxwji37u4j8a1" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png" id="1_21ex7"]
 [ext_resource type="Texture2D" uid="uid://d32efqjf1ascv" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_hearts_08.png" id="1_mb6df"]
 [ext_resource type="Script" uid="uid://chu0ty2njk4y8" path="res://resources/Card Resources/CardData/CardData.gd" id="2_21ex7"]
 
 [resource]
 script = ExtResource("2_21ex7")
-value = 7
+rank = 8
 cardtexture = ExtResource("1_mb6df")

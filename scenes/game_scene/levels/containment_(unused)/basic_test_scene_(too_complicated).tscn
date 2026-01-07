@@ -230,14 +230,13 @@ script = ExtResource("5_8awfl")
 
 [node name="Player" type="Node" parent="."]
 
-[node name="Deck" type="Sprite2D" parent="." node_paths=PackedStringArray("draw_point")]
+[node name="Deck" type="Sprite2D" parent="."]
 position = Vector2(192.00002, 0)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("6_s3ruo")
 script = ExtResource("7_j3s37")
 cards = Array[Resource]([ExtResource("8_l72n7"), ExtResource("9_osrlf"), ExtResource("10_h077o"), ExtResource("11_3g3vu"), ExtResource("12_b4q1a"), ExtResource("13_2qfji"), ExtResource("14_c8g31"), ExtResource("15_was62"), ExtResource("16_eqgiu"), ExtResource("17_ni6c6"), ExtResource("18_lrjt0"), ExtResource("19_p5sjy"), ExtResource("20_hkltq"), ExtResource("21_7lkg3"), ExtResource("22_dvofj"), ExtResource("23_akirl"), ExtResource("24_3a60q"), ExtResource("25_jo7ka"), ExtResource("26_mmrim"), ExtResource("27_sy0c3"), ExtResource("28_8te8h"), ExtResource("29_28f3b"), ExtResource("30_6k1wg"), ExtResource("31_0oc8l"), ExtResource("32_pp7nk"), ExtResource("33_b4f8x"), ExtResource("34_im1md"), ExtResource("35_syln4"), ExtResource("36_g2ia2"), ExtResource("37_7546v"), ExtResource("38_v0gg8"), ExtResource("39_qsa8l"), ExtResource("40_i3uga"), ExtResource("41_qpl4g"), ExtResource("42_sdas8"), ExtResource("43_nqnpb"), ExtResource("44_dwrey"), ExtResource("45_wv4vc"), ExtResource("46_sa7um"), ExtResource("47_1q5ge"), ExtResource("48_duo18"), ExtResource("49_0n5jg"), ExtResource("50_d4c87"), ExtResource("51_8ain7"), ExtResource("52_x2f6h"), ExtResource("53_fqbkq"), ExtResource("54_32q6k"), ExtResource("55_m3dfc"), ExtResource("56_fbhts"), ExtResource("57_rg8qv"), ExtResource("58_wtse2"), ExtResource("59_8e3yj")])
 cardScene = ExtResource("60_jvmp7")
-draw_point = NodePath("../Card Manager Card (DrawpointaKaHand)")
 
 [node name="Area2D" type="Area2D" parent="Deck"]
 collision_mask = 8
@@ -313,10 +312,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardSlot2/Area2D"]
 shape = SubResource("RectangleShape2D_j7cxb")
 
-[node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("card_manager")]
+[node name="PlayerHand" type="Node2D" parent="."]
 position = Vector2(-352, 179)
 script = ExtResource("8_gg05e")
-card_manager = NodePath("../Card Manager Card (DrawpointaKaHand)")
 
 [node name="Player Deck Pile" type="Panel" parent="."]
 offset_left = -592.0
@@ -374,9 +372,8 @@ offset_bottom = 1.0
 text = "Opponent Decks"
 horizontal_alignment = 1
 
-[node name="Card Manager Card (DrawpointaKaHand)" type="Node2D" parent="." node_paths=PackedStringArray("player_hand_node")]
+[node name="Card Manager Card (DrawpointaKaHand)" type="Node2D" parent="."]
 script = ExtResource("9_3ovdq")
-player_hand_node = NodePath("../PlayerHand")
 
 [node name="Hakem Display Label" type="Label" parent="."]
 offset_left = -528.0

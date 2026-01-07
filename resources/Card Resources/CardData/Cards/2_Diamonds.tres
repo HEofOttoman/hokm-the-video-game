@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://cm013yv5bw32j"]
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://cm013yv5bw32j"]
 
+[ext_resource type="Texture2D" uid="uid://dxwji37u4j8a1" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png" id="1_cenfv"]
 [ext_resource type="Texture2D" uid="uid://dptisg6fbu8ls" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_diamonds_02.png" id="1_wgqpx"]
 [ext_resource type="Script" uid="uid://chu0ty2njk4y8" path="res://resources/Card Resources/CardData/CardData.gd" id="2_cenfv"]
 
