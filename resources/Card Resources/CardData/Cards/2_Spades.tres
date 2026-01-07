@@ -6,5 +6,5 @@
 
 [resource]
 script = ExtResource("2_temc7")
-suit = "Spades"
+suit = 2
 cardtexture = ExtResource("1_15afb")

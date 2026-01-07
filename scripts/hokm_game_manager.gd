@@ -3,7 +3,7 @@ class_name GameManager
 ## Should be the root of the scene?
 
 ## Number of players
-@export var player_count : int = 4
+@export var player_count : int = 4 ## Im confused, just defining variables I might need later
 
 enum HokmVariant { ## Same thing as player_count I guess
 	TWO_PLAYER,
@@ -18,6 +18,7 @@ var hakem_index : int
 var hokm_suit  ## The current game's Hokm suit
 var winner_index
 var current_player : int = 0
+var leading_suit : String
 
 var trick_cards : Array = []
 
@@ -55,7 +56,8 @@ func declaring_hokm(): ## Process for declaring the hokm
 
 #hand.input_enabled = (player_id == )
 
-
+func determine_trick_winner() -> int:
+	return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
 
 ## TurnKeeper
 ### Checks the current player

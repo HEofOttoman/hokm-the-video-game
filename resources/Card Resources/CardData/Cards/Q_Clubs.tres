@@ -7,6 +7,6 @@
 [resource]
 script = ExtResource("1_orn5n")
 rank = 12
-suit = "Clubs"
+suit = 4
 cardtexture = ExtResource("1_vbbto")
 metadata/_custom_type_script = "uid://chu0ty2njk4y8"

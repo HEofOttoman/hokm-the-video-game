@@ -7,5 +7,5 @@
 [resource]
 script = ExtResource("2_lp0pm")
 rank = 7
-suit = "Spades"
+suit = 2
 cardtexture = ExtResource("1_tah2f")

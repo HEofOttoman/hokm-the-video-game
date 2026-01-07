@@ -26,18 +26,24 @@ class_name RulesEngine
 
 func can_play_card(
 	## A bunch of variables to be passed to determine if a move is legal or not
-	card: CardData, 
-	card_slot_found
+	_card: CardData, 
+	_card_slot_found
 ):
 	pass
 
+func get_legal_cards(cards, lead_suit, hokm_suit):
+	pass
+
 ## In theory, this should assess the rank of a card, then pass it into a function that compares all cards drawn
-func get_card_strength(card: CardData, leading_suit : String, hokm_suit: String) -> int:
+func get_card_strength(card: CardData, leading_suit : CardData.Suit, hokm_suit: CardData.Suit) -> int:
 	if card.suit == leading_suit:
 		return 100 + card.rank
 	if card.suit == hokm_suit:
 		return 50 + card.rank
 	return card.rank
 
-func determine_trick_winner(hokm_suit):
+@warning_ignore("unused_parameter")
+func get_trick_winner(trick_cards, hokm_suit, leading_suit):
 	pass
+	#for i in trick_cards:
+		#get_card_strength(card: CardData, hokm_suit, leading_suit)

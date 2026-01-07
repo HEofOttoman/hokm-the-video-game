@@ -21,7 +21,15 @@ enum Rank {
 	ACE = 14
 	}
 
+enum Suit {
+	HEARTS = 1,
+	SPADES = 2,
+	DIAMONDS = 3,
+	CLUBS = 4
+}
+
 @export var rank : Rank = Rank.TWO
-@export_enum("Hearts", "Spades", "Diamonds", "Clubs") var suit : String = "Hearts"
+#@export_enum("Hearts", "Spades", "Diamonds", "Clubs") var suit : int = 0
+@export var suit : Suit = Suit.HEARTS
 @export var cardtexture : Texture 
 @export var backtexture : Texture = preload("res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png")

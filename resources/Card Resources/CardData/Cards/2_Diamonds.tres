@@ -6,5 +6,5 @@
 
 [resource]
 script = ExtResource("2_cenfv")
-suit = "Diamonds"
+suit = 3
 cardtexture = ExtResource("1_wgqpx")

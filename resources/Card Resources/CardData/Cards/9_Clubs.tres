@@ -6,6 +6,6 @@
 
 [resource]
 script = ExtResource("2_uvi1t")
-rank = 8
-suit = "Clubs"
+rank = 9
+suit = 4
 cardtexture = ExtResource("1_i4bv7")
