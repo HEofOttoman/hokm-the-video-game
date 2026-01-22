@@ -1,6 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=20 format=3 uid="uid://dpr6mnd7ukuya"]
 
-[ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/levels/basic_test_scene.gd" id="1_pyd4g"]
+[ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/testscene.gd" id="1_pyd4g"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_exaxi"]
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="3_pyd4g"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="8_sl5y5"]
 [ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://resources/UI Elements/hakem_display.gd" id="8_xf0qg"]
 [ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="9_m6rcj"]
+[ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="10_d5kay"]
 [ext_resource type="Texture2D" uid="uid://do1ovm5r6e6vt" path="res://assets/kenney_input-prompts/PlayStation Series/Vector/playstation_button_color_triangle.svg" id="10_obeue"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="10_tmcbe"]
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="10_xf0qg"]
@@ -40,7 +41,7 @@ metadata/_edit_lock_ = true
 offset_left = -592.0
 offset_top = -336.0
 offset_right = -370.0
-offset_bottom = 331.0
+offset_bottom = 104.0
 
 [node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots")]
 script = ExtResource("3_pyd4g")
@@ -63,7 +64,7 @@ pause_menu_packed = ExtResource("4_b2thp")
 
 [node name="Deck" parent="." instance=ExtResource("5_m14oq")]
 z_index = 0
-position = Vector2(192.00002, 0)
+position = Vector2(-132, 0)
 
 [node name="Hand Board" type="ColorRect" parent="."]
 visible = false
@@ -88,21 +89,68 @@ slot_type = 1
 [node name="TableTrickSlots" type="Node" parent="."]
 
 [node name="TrickSlot" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
-position = Vector2(0, 56)
+position = Vector2(64, 56)
 
 [node name="TrickSlot2" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
-position = Vector2(0, -56)
+position = Vector2(64, -56)
 
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine")]
-position = Vector2(64, 290)
+position = Vector2(64, 192)
 script = ExtResource("5_m6rcj")
 rulesEngine = NodePath("../Rule Umpire")
 
+[node name="PlayerIcon" type="TextureRect" parent="PlayerHand"]
+offset_left = -64.0
+offset_top = 32.0
+offset_right = 64.0
+offset_bottom = 168.0
+texture = ExtResource("10_d5kay")
+expand_mode = 1
+
 [node name="EnemyHand1" type="Node2D" parent="."]
-position = Vector2(64, -288)
+position = Vector2(64, -192)
 script = ExtResource("5_m6rcj")
 
+[node name="PlayerIcon1" type="TextureRect" parent="EnemyHand1"]
+offset_left = -64.0
+offset_top = -168.0
+offset_right = 64.0
+offset_bottom = -32.0
+texture = ExtResource("10_d5kay")
+expand_mode = 1
+
 [node name="AIController" type="Node" parent="EnemyHand1"]
+script = ExtResource("10_tmcbe")
+
+[node name="EnemyHand2 (Placeholder)" type="Node2D" parent="."]
+visible = false
+position = Vector2(448, 0)
+script = ExtResource("5_m6rcj")
+
+[node name="PlayerIcon2" type="TextureRect" parent="EnemyHand2 (Placeholder)"]
+offset_left = 40.0
+offset_top = -72.0
+offset_right = 168.0
+offset_bottom = 64.0
+texture = ExtResource("10_d5kay")
+expand_mode = 1
+
+[node name="AIController" type="Node" parent="EnemyHand2 (Placeholder)"]
+script = ExtResource("10_tmcbe")
+
+[node name="EnemyHand3 (Placeholder)" type="Node2D" parent="."]
+visible = false
+position = Vector2(-320, 0)
+script = ExtResource("5_m6rcj")
+
+[node name="PlayerIcon3" type="TextureRect" parent="EnemyHand3 (Placeholder)"]
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 72.0
+texture = ExtResource("10_d5kay")
+expand_mode = 1
+
+[node name="AIController" type="Node" parent="EnemyHand3 (Placeholder)"]
 script = ExtResource("10_tmcbe")
 
 [node name="Player Deck Pile" type="Panel" parent="."]
@@ -116,24 +164,24 @@ mouse_filter = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.14414415
-anchor_top = 0.008810572
+anchor_top = 0.03524229
 anchor_right = 0.9009009
-anchor_bottom = 0.10244352
+anchor_bottom = 0.12887524
 text = "Your Decks"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="CardSlot" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
-position = Vector2(72, 186)
+position = Vector2(48, 186)
 
 [node name="CardSlot2" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
-position = Vector2(72, 56)
+position = Vector2(48, 56)
 
 [node name="CardSlot3" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
-position = Vector2(152, 186)
+position = Vector2(176, 186)
 
 [node name="CardSlot4" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
-position = Vector2(152, 56)
+position = Vector2(176, 56)
 
 [node name="CardSlot5" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
 position = Vector2(48, 120)
@@ -247,10 +295,10 @@ texture_normal = ExtResource("10_xf0qg")
 stretch_mode = 0
 
 [node name="Tutorial Overlay Button" type="Button" parent="."]
-offset_left = 512.0
-offset_top = -24.0
-offset_right = 614.0
-offset_bottom = 35.0
+offset_left = -536.0
+offset_top = 32.0
+offset_right = -434.0
+offset_bottom = 91.0
 text = "Tutorial"
 
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]

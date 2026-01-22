@@ -25,7 +25,7 @@ var current_player : int = 0
 var leading_suit : CardData.Suit = CardData.Suit.HEARTS
 
 
-var trick_cards : Array = [] ## Used to look at the cards in a turn and compare them
+var trick_cards : Array = [] ## Used to look at the cards in a turn/trick and compare them
 
 enum HokmGamePhase {
 	AUCTIONING, ## Setting Hakem and deciding Hokm
