@@ -331,6 +331,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_ixa71")
 level_select_packed_scene = ExtResource("2_672y5")
+game_scene_path = "uid://dpr6mnd7ukuya"
 options_packed_scene = ExtResource("3_2k5l7")
 credits_packed_scene = ExtResource("4_vsp5b")
 
@@ -493,6 +494,7 @@ lock = true
 
 [node name="NewGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Play"
 
