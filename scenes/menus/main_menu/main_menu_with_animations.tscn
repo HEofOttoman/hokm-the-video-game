@@ -1,5 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://dhr7kwfkmlq7o"]
+[gd_scene load_steps=27 format=3 uid="uid://dhr7kwfkmlq7o"]
 
+[ext_resource type="PackedScene" uid="uid://dhjoc73h3n2ky" path="res://scenes/menus/level_select_menu/mode_select_menu.tscn" id="2_672y5"]
 [ext_resource type="Script" uid="uid://6kkgt00vvrar" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ixa71"]
 [ext_resource type="PackedScene" uid="uid://mhk7ai1jtttm" path="res://scenes/windows/main_menu_options_window.tscn" id="3_2k5l7"]
 [ext_resource type="PackedScene" uid="uid://dnaejbfe1nvn1" path="res://scenes/windows/main_menu_credits_window.tscn" id="4_vsp5b"]
@@ -329,7 +330,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_ixa71")
-game_scene_path = "uid://dpr6mnd7ukuya"
+level_select_packed_scene = ExtResource("2_672y5")
 options_packed_scene = ExtResource("3_2k5l7")
 credits_packed_scene = ExtResource("4_vsp5b")
 
@@ -503,9 +504,8 @@ text = "Continue"
 
 [node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-text = "Level Select"
+text = "Select Mode"
 
 [node name="OptionsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
