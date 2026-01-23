@@ -49,17 +49,21 @@ func can_play_card(
 	return true
 
 @warning_ignore("unused_parameter")
-func get_legal_cards(cards: Array, leading_suit : CardData.Suit, hokm_suit: CardData.Suit, hand_cards: Array[CardData]):
+func get_legal_cards(
+	hand_cards: Array, ## Cards inside hand
+	#leading_suit : CardData.Suit, ## Actually unnecessary, can calculate from trick_cards
+	hokm_suit: CardData.Suit, ## Suit of the hokm
+	## Cards inside the trick (table)
+	trick_cards: Array[CardData]) -> Array[CardData]:
 	var card_slot = 'cardslot' ## should I really be passing this in?
 	var legal_cards : Array
 	
-	for card in cards:
+	for card in hand_cards:
 		#can_play_card(card, card_slot, leading_suit, cards, hand)
-		can_play_card(card, card_slot, cards, hand_cards)
+		can_play_card(card, card_slot, trick_cards, hand_cards)
 		if true:
 			legal_cards.append(card)
-		else:
-			return
+	return legal_cards
 
 ## In theory, this should assess the rank of a card, then pass it into a function that compares all cards drawn
 func get_card_strength(card: CardData, leading_suit : CardData.Suit, hokm_suit: CardData.Suit) -> int:

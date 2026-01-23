@@ -143,6 +143,14 @@ expand_mode = 1
 [node name="AIController" type="Node" parent="EnemyHand1"]
 script = ExtResource("10_tmcbe")
 
+[node name="AITestingBtn" type="Button" parent="EnemyHand1"]
+offset_left = -48.0
+offset_top = -23.0
+offset_right = 54.0
+offset_bottom = 36.0
+text = "Test AI"
+metadata/_edit_use_anchors_ = true
+
 [node name="EnemyHand2 (Placeholder)" type="Node2D" parent="."]
 visible = false
 position = Vector2(448, 0)
@@ -323,6 +331,7 @@ offset_bottom = 91.0
 text = "Tutorial"
 
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
+[connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 [connection signal="pressed" from="Clubs" to="Game Manager" method="_on_clubs_pressed"]
 [connection signal="pressed" from="Hearts" to="Game Manager" method="_on_hearts_pressed"]
 [connection signal="pressed" from="Spades" to="Game Manager" method="_on_spades_pressed"]
