@@ -27,19 +27,39 @@ class_name RulesEngine
 func can_play_card(
 	## A bunch of variables to be passed to determine if a move is legal or not
 	card: CardData, 
-	_card_slot_found,
-	leading_suit
+	_card_slot_found: CardSlot,
+	#leading_suit : CardData.Suit,
+	trick_cards: Array,
+	hand_cards: Array[CardData]
 ) -> bool:
-	if card.Suit not in leading_suit:
-		return false
-	#elif:
-		
-	else:
+	var leading_suit: CardData.Suit = trick_cards[0].suit
+	
+	if trick_cards.is_empty():
+		print('Trick is empty, anything goes')
 		return true
+	if card.suit == leading_suit:
+		print('Card matches leading suit, ')
+		return true
+	for hand_card in hand_cards:
+		if hand_card.suit == leading_suit:
+			print('you have something that is the leading suit, ')
+			return false
+		#else: return true
+	
+	return true
 
 @warning_ignore("unused_parameter")
-func get_legal_cards(cards, leading_suit : CardData.Suit, hokm_suit: CardData.Suit):
-	pass
+func get_legal_cards(cards: Array, leading_suit : CardData.Suit, hokm_suit: CardData.Suit, hand_cards: Array[CardData]):
+	var card_slot = 'cardslot' ## should I really be passing this in?
+	var legal_cards : Array
+	
+	for card in cards:
+		#can_play_card(card, card_slot, leading_suit, cards, hand)
+		can_play_card(card, card_slot, cards, hand_cards)
+		if true:
+			legal_cards.append(card)
+		else:
+			return
 
 ## In theory, this should assess the rank of a card, then pass it into a function that compares all cards drawn
 func get_card_strength(card: CardData, leading_suit : CardData.Suit, hokm_suit: CardData.Suit) -> int:

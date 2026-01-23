@@ -184,8 +184,8 @@ func resolve_trick():
 	
 	#return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
 
-func _on_card_played(card, slot): ## Connect to signal emitted by something else
-	if not rulesEngine.can_play_card(card, slot, leading_suit):
+func _on_card_played(card, slot, hand_cards): ## Connect to signal emitted by something else
+	if not rulesEngine.can_play_card(card, slot, trick_cards, hand_cards):
 		#reject_play()
 		pass
 	

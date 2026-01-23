@@ -64,7 +64,7 @@ wait_time = 5.0
 script = ExtResource("3_pyd4g")
 deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
-trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot2")]
+trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
 rulesEngine = NodePath("../Rule Umpire")
 
 [node name="Rule Umpire" type="Node" parent="."]
@@ -101,7 +101,7 @@ position = Vector2(352, 73)
 shape = SubResource("RectangleShape2D_obeue")
 
 [node name="Discard Slot" parent="." instance=ExtResource("14_j7cxb")]
-position = Vector2(352, 0)
+position = Vector2(248, 0)
 slot_type = 1
 
 [node name="TableTrickSlots" type="Node" parent="."]
@@ -109,13 +109,14 @@ slot_type = 1
 [node name="TrickSlot" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
 position = Vector2(64, 56)
 
-[node name="TrickSlot2" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
+[node name="TrickSlot1" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
 position = Vector2(64, -56)
 
-[node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine")]
+[node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot")]
 position = Vector2(64, 192)
 script = ExtResource("5_m6rcj")
 rulesEngine = NodePath("../Rule Umpire")
+trick_slot = NodePath("../TableTrickSlots/TrickSlot")
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHand"]
 offset_left = -64.0
@@ -125,9 +126,11 @@ offset_bottom = 168.0
 texture = ExtResource("10_d5kay")
 expand_mode = 1
 
-[node name="EnemyHand1" type="Node2D" parent="."]
+[node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot")]
 position = Vector2(64, -192)
 script = ExtResource("5_m6rcj")
+rulesEngine = NodePath("../Rule Umpire")
+trick_slot = NodePath("../TableTrickSlots/TrickSlot1")
 
 [node name="PlayerIcon1" type="TextureRect" parent="EnemyHand1"]
 offset_left = -64.0

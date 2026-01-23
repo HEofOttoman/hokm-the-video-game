@@ -26,6 +26,7 @@ var center_screen_x ## The width of the screen
 @export var cards_in_hand : Array = [] ## The data about which cards are in the player's hand, or just the hand.
 ## ^ Cards_in_hand A.K.A player_hand
 @export var rulesEngine = RulesEngine.new()
+@export var trick_slot : CardSlot ## In this game, that slot is really all you need to put down?
 
 signal card_played(card: CardData, card_slot: CardSlot)
 
