@@ -27,6 +27,7 @@ var center_screen_x ## The width of the screen
 ## ^ Cards_in_hand A.K.A player_hand
 @export var rulesEngine = RulesEngine.new()
 
+signal card_played(card: CardData, card_slot: CardSlot)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -67,7 +68,7 @@ func start_drag(card):
 func stop_drag(card): ## Should move cards to slots if found.
 	print('STOP DRAG CALLED')
 	card.scale = Vector2(1.05, 1.05)
-	var card_slot_found = card.get_hovered_card_slot()
+	var card_slot_found : CardSlot = card.get_hovered_card_slot()
 	if card_slot_found and card_slot_found.card_in_slot == false: ## Card dropped in empty card slot
 		## For later implementation
 		#if rulesEngine.can_play_card(card, card_slot_found):
@@ -80,9 +81,10 @@ func stop_drag(card): ## Should move cards to slots if found.
 		#card.get_node("$Area2D/CollisionShape2D").disabled = true
 		#ProjectUISoundController ## should play a click sound
 		card_slot_found.add_card_to_slot(card)
+		emit_signal("card_played", card, card_slot_found)
 	
 	else:
-		print('CARD SLOT NOT FOUND')
+		print('CARD SLOT NOT FOUND', card, card_slot_found)
 		add_card_to_hand(card) ## Failed to find a card slot
 	#card = null
 

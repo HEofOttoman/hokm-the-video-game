@@ -29,6 +29,8 @@ enum Suit {
 	CLUBS = 4
 }
 
+@export var card_data : CardData
+
 @export var rank : Rank = Rank.TWO
 @export var suit : Suit = Suit.HEARTS
 

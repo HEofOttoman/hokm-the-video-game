@@ -87,7 +87,8 @@ func declaring_hakem():
 
 func declaring_hokm(): ## Process for declaring the hokm
 	## Add the process for declaring it here
-	pass
+	hokm_suit = CardData.Suit.values().pick_random()
+	print('Hokm suit:', hokm_suit)
 	#hokm_chosen.emit(hokm)
 
 func deal_remaining_cards():
@@ -101,8 +102,8 @@ func deal_remaining_cards():
 		for player_id in range(hands.size()):
 			deal_cards(player_id)
 	
-	await get_tree().create_timer(1.0).timeout
 	deck.discard_deck()
+	# Discarding remaining cards
 	
 	trick_play()
 
@@ -110,8 +111,16 @@ func trick_play():
 	current_game_phase = HokmGamePhase.TRICK_PLAY
 	print('Begin Trick Play', current_game_phase)
 	
-	
+	if trick_cards.size() == hands.size():
+		resolve_trick()
 
+func scoring_cards():
+	current_game_phase = HokmGamePhase.SCORING
+	
+	finish_game()
+
+func finish_game():
+	current_game_phase = HokmGamePhase.GAME_OVER
 
 func _on_card_drawn(card: Variant) -> void: ## Function used to add cards to hands automatically
 	hands[current_player].receive_card(card)
@@ -151,9 +160,29 @@ func _on_diamonds_pressed() -> void:
 #hand.input_enabled = (player_id == )
 
 
-func determine_trick_winner() -> int:
-	return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
+#func determine_trick_winner(): #trick_cards, leading_suit, hokm_suit
+	##return rulesEngine.get_trick_winner(trick_cards, leading_suit, hokm_suit)
+	#var card = trick_cards
+	#
+	#for i in range(1, trick_cards.size()):
+		#rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
+		##return card.rank
+
+func resolve_trick():
+	leading_suit = trick_cards[0]
+	var winning_card = trick_cards[0]
+	var highest_strength = rulesEngine.get_card_strength(winning_card, leading_suit, hokm_suit)
 	
+	for i in range(1, trick_cards.size()):
+		var card = trick_cards[i]
+		var strength = rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
+		
+		if strength > highest_strength:
+			strength = highest_strength
+			winning_card = card
+	return winning_card
+	
+	#return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
 
 func _on_card_played(card, slot): ## Connect to signal emitted by something else
 	if not rulesEngine.can_play_card(card, slot, leading_suit):
@@ -167,6 +196,7 @@ func _on_card_played(card, slot): ## Connect to signal emitted by something else
 	else: 
 		advance_turn()
 
+
 ## TurnKeeper
 ### Checks the current player
 ### Advances turns
@@ -175,8 +205,7 @@ func _on_card_played(card, slot): ## Connect to signal emitted by something else
 	#for i in player_count: 
 		#hands.append()
 
-func resolve_trick():
-	return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
+
 
 func advance_turn():
 	current_player = (current_player + 1) % hands.size()
