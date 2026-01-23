@@ -4,25 +4,24 @@ class_name AIController ## Basic Enemy AI if I can get this working
 #var hand : Array = []
 @onready var hand: Node2D = $".."
 @export var rulesEngine : RulesEngine = RulesEngine.new()
+@export var game_manager : GameManager
 
-func _on_card_drawn(new_card_data: CardData):
-	hand.player_hand.append(new_card_data)
-	
-
-
+## Idk why this function was here 
+#func _on_card_drawn(new_card_data: CardData):
+	#hand.player_hand.append(new_card_data)
 
 #func play_cards(lead_suit : CardData.Suit, hokm_suit : CardData.Suit):
 func take_turn():
 	var legal_cards : Array = rulesEngine.get_legal_cards(
 		hand.cards_in_hand, 
 		#GameManager.leading_suit, 
-		GameManager.hokm_suit, 
-		GameManager.trick_cards)
+		#GameManager.hokm_suit, 
+		game_manager.trick_cards)
 	
 	var chosen_card : CardData = choose_cards(
 		legal_cards,
-		GameManager.hokm_suit,
-		GameManager.trick_cards
+		game_manager.hokm_suit,
+		game_manager.trick_cards
 	)
 	
 	hand.remove_card_from_hand(chosen_card)
@@ -31,8 +30,22 @@ func take_turn():
 	#rulesEngine.can_play_card()
 
 ## Chooses cards and places them
-func choose_cards(legal_cards, trick_cards, hokm_suit) -> CardData:
-	return legal_cards.pick_random() # The dumbest version of the AI
+func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : Array[CardData]) -> CardData:
+	var best_card : CardData = legal_cards[0] ## Best card in an array legal cards 
+	var leading_suit : CardData.Suit = trick_cards[0].suit
+	var best_score := 0
+	
+	for card in legal_cards:
+		
+		
+		var score = rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
+		
+		if score > best_score:
+			score = best_score
+			card = best_card
+	
+	return best_card
+	#return legal_cards.pick_random() # The dumbest version of the AI
 	
 
 

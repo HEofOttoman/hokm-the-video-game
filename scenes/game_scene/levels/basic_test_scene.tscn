@@ -144,10 +144,10 @@ expand_mode = 1
 script = ExtResource("10_tmcbe")
 
 [node name="AITestingBtn" type="Button" parent="EnemyHand1"]
-offset_left = -48.0
-offset_top = -23.0
-offset_right = 54.0
-offset_bottom = 36.0
+offset_left = -184.0
+offset_top = -112.0
+offset_right = -82.0
+offset_bottom = -53.0
 text = "Test AI"
 metadata/_edit_use_anchors_ = true
 
@@ -164,8 +164,9 @@ offset_bottom = 64.0
 texture = ExtResource("10_d5kay")
 expand_mode = 1
 
-[node name="AIController" type="Node" parent="EnemyHand2 (Placeholder)"]
+[node name="AIController" type="Node" parent="EnemyHand2 (Placeholder)" node_paths=PackedStringArray("rulesEngine")]
 script = ExtResource("10_tmcbe")
+rulesEngine = NodePath("../../Rule Umpire")
 
 [node name="EnemyHand3 (Placeholder)" type="Node2D" parent="."]
 visible = false

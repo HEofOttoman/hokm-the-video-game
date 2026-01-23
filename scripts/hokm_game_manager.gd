@@ -16,13 +16,12 @@ enum HokmGameMode { ## Same thing as player_count I guess - Should change rules 
 @export var hands : Array[Node]
 @export var trick_slots : Array[CardSlot]
 
-var hakem_index : int ## Player ID
-var hokm_suit : CardData.Suit = CardData.Suit.HEARTS ## The current game's Hokm suit
-var winner_index : int
-
 var current_player : int = 0
-var leading_suit : CardData.Suit = CardData.Suit.HEARTS
+var winner_index : int
+var hakem_index : int ## Player ID
 
+#var leading_suit : CardData.Suit = CardData.Suit.HEARTS
+var hokm_suit : CardData.Suit = CardData.Suit.HEARTS ## The current game's Hokm suit
 var trick_cards : Array = [] ## Used to look at the cards in a turn/trick and compare them
 
 var cards_per_player = 13
@@ -169,7 +168,7 @@ func _on_diamonds_pressed() -> void:
 		##return card.rank
 
 func resolve_trick():
-	leading_suit = trick_cards[0]
+	var leading_suit = trick_cards[0]
 	var winning_card = trick_cards[0]
 	var highest_strength = rulesEngine.get_card_strength(winning_card, leading_suit, hokm_suit)
 	

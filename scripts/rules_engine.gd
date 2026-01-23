@@ -52,9 +52,10 @@ func can_play_card(
 func get_legal_cards(
 	hand_cards: Array, ## Cards inside hand
 	#leading_suit : CardData.Suit, ## Actually unnecessary, can calculate from trick_cards
-	hokm_suit: CardData.Suit, ## Suit of the hokm
-	## Cards inside the trick (table)
+	#hokm_suit: CardData.Suit, ## Suit of the hokm
+	## Suit of the hokm, is actually not needed for legality
 	trick_cards: Array[CardData]) -> Array[CardData]:
+	## Cards inside the trick (table)
 	var card_slot = 'cardslot' ## should I really be passing this in?
 	var legal_cards : Array
 	

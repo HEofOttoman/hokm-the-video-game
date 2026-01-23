@@ -67,7 +67,7 @@ func draw_card():
 		new_card.rank = data.rank #
 		new_card.suit = data.suit
 		new_card.cardtexture = data.cardtexture
-		
+		new_card.card_data = data
 		
 		emit_signal("card_drawn", new_card) ## Informs the hands that cards drawn and to add it to their place
 		
