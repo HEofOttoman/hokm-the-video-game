@@ -3,10 +3,10 @@ class_name GameManager
 ## Should be the root of the scene?
 
 ## Number of players
-#@export var player_count : int = 4 ## Im confused, just defining variables I might need later
-@export var player_count : HokmVariant = HokmVariant.TWO_PLAYER ## Yea that's right
+@export var player_count : HokmGameMode = HokmGameMode.TWO_PLAYER ## Yea that's right
 
-enum HokmVariant { ## Same thing as player_count I guess - Should change rules depending on the rules
+@export_group('Game Variables')
+enum HokmGameMode { ## Same thing as player_count I guess - Should change rules depending on the rules
 	TWO_PLAYER = 2,
 	THREE_PLAYER = 3,
 	FOUR_PLAYER = 4,
@@ -18,71 +18,102 @@ enum HokmVariant { ## Same thing as player_count I guess - Should change rules d
 
 var hakem_index : int ## Player ID
 var hokm_suit : CardData.Suit = CardData.Suit.HEARTS ## The current game's Hokm suit
-var winner_index
-
+var winner_index : int
 
 var current_player : int = 0
 var leading_suit : CardData.Suit = CardData.Suit.HEARTS
 
-
 var trick_cards : Array = [] ## Used to look at the cards in a turn/trick and compare them
 
+var cards_per_player = 13
+
 enum HokmGamePhase {
+	INIT,
+	DEAL_INITIAL_CARDS,
 	AUCTIONING, ## Setting Hakem and deciding Hokm
-	DEALING,
-	PLAYING,
-	SCORING
+	DEAL_REMAINING_CARDS,
+	TRICK_PLAY,
+	SCORING,
+	GAME_OVER
 }
 
-@export var game_phase : HokmGamePhase
-
+@export var current_game_phase : HokmGamePhase
 
 func _ready() -> void:
 	randomize()
 	deck.shuffle_deck()
 	
-	#deal_initial_cards()
-	
-	if player_count == HokmVariant.THREE_PLAYER: ## Checks if the game's rules are different and change accordingly
-		cards_per_player = 17
-	else: 
-		cards_per_player = 13
-	
-	start_game()
-	
+	initialise_game()
 	#for i in range(hands.size()):
 		#hands[i].player_id = i
-	
-	
 
-func start_game():
-	
-	game_phase = HokmGamePhase.AUCTIONING
+func initialise_game():
+	current_game_phase = HokmGamePhase.INIT
+	print('Game initial phase', current_game_phase)
 	#auctioning_game() ## Supposed to decide who is the Hakem, and choose the  and all that
 	
 	deal_initial_cards()
 
-var cards_per_player = 13
+func deal_initial_cards():
+	current_game_phase = HokmGamePhase.DEAL_INITIAL_CARDS
+	print('Dealing Initial Cards', current_game_phase)
+	
+	cards_per_player = 5
+	
+	for i in range(cards_per_player):
+		for player_id in range(hands.size()):
+			deal_cards(player_id)
+	
+	current_game_phase = HokmGamePhase.AUCTIONING
+	auctioning_game()
 
 func auctioning_game():
-	declaring_hakem()
-	declaring_hokm()
+	await declaring_hakem()
+	print('Hakem declared')
+	await declaring_hokm()
+	print('Hokm declared')
+	
+	await get_tree().create_timer(5.0).timeout
+	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
+	deal_remaining_cards()
 
 func declaring_hakem():
-	deck.draw_card()
+	var hakem = hands.pick_random()
+	
+	print('Hakem:', hakem)
 	return
+	#deck.draw_card()
+	#return
 
 func declaring_hokm(): ## Process for declaring the hokm
 	## Add the process for declaring it here
 	pass
 	#hokm_chosen.emit(hokm)
 
-func deal_initial_cards():
+func deal_remaining_cards():
+	print('Dealing Remaining Cards', current_game_phase)
+	if player_count == HokmGameMode.THREE_PLAYER: ## Checks if the game's rules are different and change accordingly
+		cards_per_player = 17
+	else: 
+		cards_per_player = 13
+	
 	for i in range(cards_per_player):
 		for player_id in range(hands.size()):
 			deal_cards(player_id)
+	
+	await get_tree().create_timer(1.0).timeout
+	deck.discard_deck()
+	
+	trick_play()
 
-func _on_card_drawn(card: Variant) -> void:
+func trick_play():
+	current_game_phase = HokmGamePhase.TRICK_PLAY
+	print('Begin Trick Play', current_game_phase)
+	
+	
+
+
+func _on_card_drawn(card: Variant) -> void: ## Function used to add cards to hands automatically
 	hands[current_player].receive_card(card)
 	current_player = (current_player + 1) % hands.size()
 
@@ -112,7 +143,6 @@ func _on_diamonds_pressed() -> void:
 	#hokm_chosen.emit(hokm)
 
 
-
 ## Umpire / RuleManager
 ### Checks if the turn is legal, and determines who wins
 
@@ -123,17 +153,30 @@ func _on_diamonds_pressed() -> void:
 
 func determine_trick_winner() -> int:
 	return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
+	
+
+func _on_card_played(card, slot): ## Connect to signal emitted by something else
+	if not rulesEngine.can_play_card(card, slot, leading_suit):
+		#reject_play()
+		pass
+	
+	trick_cards.append(card)
+	
+	if trick_cards.size() == player_count:
+		resolve_trick()
+	else: 
+		advance_turn()
 
 ## TurnKeeper
 ### Checks the current player
 ### Advances turns
 
-
-
-
 #func register_hands(): ## idfk I forgot what I imagined this to work in 
 	#for i in player_count: 
 		#hands.append()
 
+func resolve_trick():
+	return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
+
 func advance_turn():
-	pass
+	current_player = (current_player + 1) % hands.size()

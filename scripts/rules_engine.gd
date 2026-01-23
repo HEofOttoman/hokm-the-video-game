@@ -27,9 +27,11 @@ class_name RulesEngine
 func can_play_card(
 	## A bunch of variables to be passed to determine if a move is legal or not
 	_card: CardData, 
-	_card_slot_found
+	_card_slot_found,
+	leading_suit
 ):
-	pass
+	if not leading_suit:
+		return
 
 func get_legal_cards(cards, lead_suit, hokm_suit):
 	pass
@@ -44,6 +46,8 @@ func get_card_strength(card: CardData, leading_suit : CardData.Suit, hokm_suit: 
 
 @warning_ignore("unused_parameter")
 func get_trick_winner(trick_cards, hokm_suit, leading_suit):
-	pass
-	#for i in trick_cards:
-		#get_card_strength(card: CardData, hokm_suit, leading_suit)
+	var card
+	
+	for i in trick_cards:
+		#get_card_strength(card: CardData, leading_suit, hokm_suit)
+		return card.rank

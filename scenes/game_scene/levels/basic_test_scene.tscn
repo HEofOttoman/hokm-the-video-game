@@ -43,11 +43,15 @@ offset_top = -336.0
 offset_right = -370.0
 offset_bottom = 104.0
 
-[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots")]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots", "rulesEngine")]
 script = ExtResource("3_pyd4g")
 deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot2")]
+rulesEngine = NodePath("../Rule Umpire")
 
 [node name="Rule Umpire" type="Node" parent="."]
 script = ExtResource("3_tmcbe")

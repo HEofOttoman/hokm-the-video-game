@@ -16,9 +16,10 @@ func shuffle_deck():
 	cards.shuffle()
 	print("Cards have been shuffled")
 
-func _ready() -> void:
-	randomize() ## Ensures maximum randomness
-	shuffle_deck() ## Shuffles the deck of course
+## Should I handle inside of gamemanager or here?
+#func _ready() -> void:
+	#randomize() ## Ensures maximum randomness
+	#shuffle_deck() ## Shuffles the deck of course
 
 #signal deck_clicked
 #func _input_event(_viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
@@ -36,6 +37,15 @@ func _ready() -> void:
 
 func _on_draw_button_pressed() -> void: ## This was used to trigger drawing, useless for AI.
 	draw_card()
+
+func discard_deck(): ## Hides deck, even if there are still card remaining
+	$AnimationPlayer.play("deck_disappear") ## Plays the goofy animation to disappear the deck
+	## <-- Should play a sound effect here
+	
+	#visible = false ## Not needed the animation does that already
+	$DrawButton.hide()
+	print("Deck is empty") ## Safely stops the game from crashing
+	return
 
 ## Draws a card from the Array of CardData resources
 func draw_card():
