@@ -9,6 +9,7 @@ extends Node2D
 
 @export_group('Visual Elements')
 
+@export_subgroup('Fanned Layout')
 @export var curve : Curve
 @export var rotation_curve : Curve
 
@@ -17,6 +18,7 @@ extends Node2D
 @export var y_min := 50
 @export var y_max := -50
 
+@export_subgroup('Linear Layout')
 @export var CARD_SEPARATION_WIDTH : float = 50
 @export var HAND_Y_POSITION : float = 0 ## How far down the hand is (relative)
 var center_screen_x ## The width of the screen
@@ -39,6 +41,7 @@ func _ready() -> void:
 	
 	#$"../Deck".card_drawn.connect(self._on_card_drawn) ## Already connected?
 
+## Toggles all cards in the hand interactive or not
 func set_interactive(enabled: bool):
 	for card in cards_in_hand:
 		card.set_interactive(enabled)
@@ -107,6 +110,8 @@ func add_card_to_hand(card):
 	else:
 		animate_card_to_position(card, card.starting_position)
 	
+
+### Visual Elements
 
 func update_hand_positions():
 	for i in range(cards_in_hand.size()):

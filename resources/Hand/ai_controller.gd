@@ -15,9 +15,6 @@ enum Difficulty {
 	HARD
 }
 
-func _ready() -> void:
-	for card_in_hand in hand.cards_in_hand:
-		card_in_hand.set_interactive(false)
 
 func take_turn():
 	var legal_cards : Array = rulesEngine.get_legal_cards(

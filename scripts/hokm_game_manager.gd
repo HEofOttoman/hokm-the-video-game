@@ -215,7 +215,14 @@ func start_turn(player_index: int):
 	var active_hand := hands[player_index]
 	
 	active_hand.set_interactive(true)
+	
+	if active_hand.is_player_controlled:
+		print("Player's turn")
+	else:
+		print("AI's turn")
+		#hands[player_index].get_child().take_turn()
+		$"../EnemyHand1/AIController".take_turn()
 
 
 func _on_end_turn_test_btn_pressed() -> void:
-	pass # Replace with function body.
+	advance_turn() # Replace with function body.
