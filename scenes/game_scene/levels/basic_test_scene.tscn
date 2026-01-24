@@ -60,12 +60,21 @@ grow_vertical = 2
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots", "rulesEngine")]
+[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots", "ai_controllers", "rulesEngine")]
 script = ExtResource("3_pyd4g")
 deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
+ai_controllers = [NodePath("../EnemyHand1/AIController")]
 rulesEngine = NodePath("../Rule Umpire")
+
+[node name="EndTurnTestBtn" type="Button" parent="Game Manager"]
+anchors_preset = -1
+anchor_left = 0.35625
+anchor_right = 0.45078126
+anchor_bottom = 0.08194444
+text = "End Turn"
+metadata/_edit_use_anchors_ = true
 
 [node name="Rule Umpire" type="Node" parent="."]
 script = ExtResource("3_tmcbe")
@@ -117,6 +126,7 @@ position = Vector2(64, 192)
 script = ExtResource("5_m6rcj")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot")
+is_player_controlled = true
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHand"]
 offset_left = -64.0
@@ -331,6 +341,7 @@ offset_right = -434.0
 offset_bottom = 91.0
 text = "Tutorial"
 
+[connection signal="pressed" from="Game Manager/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 [connection signal="pressed" from="Clubs" to="Game Manager" method="_on_clubs_pressed"]

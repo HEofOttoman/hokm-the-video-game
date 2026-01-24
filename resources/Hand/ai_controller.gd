@@ -1,16 +1,24 @@
 extends Node
-class_name AIController ## Basic Enemy AI if I can get this working
+class_name AIController 
+## Controls a hand node as an AI
 
 #var hand : Array = []
 @onready var hand: Node2D = $".."
 @export var rulesEngine : RulesEngine = RulesEngine.new()
 @export var game_manager : GameManager
 
-## Idk why this function was here 
-#func _on_card_drawn(new_card_data: CardData):
-	#hand.player_hand.append(new_card_data)
+## AI Difficulty level. Currrently not implemented, DON'T TOUCH
+@export var difficulty : Difficulty = Difficulty.NORMAL
+enum Difficulty {
+	EASY,
+	NORMAL,
+	HARD
+}
 
-#func play_cards(lead_suit : CardData.Suit, hokm_suit : CardData.Suit):
+func _ready() -> void:
+	for card_in_hand in hand.cards_in_hand:
+		card_in_hand.set_interactive(false)
+
 func take_turn():
 	var legal_cards : Array = rulesEngine.get_legal_cards(
 		hand.cards_in_hand, 
@@ -31,25 +39,30 @@ func take_turn():
 
 ## Chooses cards and places them
 func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : Array[CardData]) -> CardData:
-	var best_card : CardData = legal_cards[0] ## Best card in an array legal cards 
-	var leading_suit : CardData.Suit = trick_cards[0].suit
-	var best_score := 0
-	
-	for card in legal_cards:
-		
-		
-		var score = rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
-		
-		if score > best_score:
-			score = best_score
-			card = best_card
-	
-	return best_card
-	#return legal_cards.pick_random() # The dumbest version of the AI
-	
+	match difficulty:
+		Difficulty.EASY:
+			return legal_cards.pick_random() # The dumbest version of the AI
+		Difficulty.NORMAL:
+			var best_card : CardData = legal_cards[0] ## Best card in an array legal cards 
+			var leading_suit : CardData.Suit = trick_cards[0].suit
+			var best_score := 0
+			
+			for card in legal_cards:
+				
+				
+				var score = rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
+				
+				if score > best_score:
+					score = best_score
+					card = best_card
+			
+			return best_card
+		#Difficulty.HARD:
+			#get_best_move()
+	print('can you even get this message?')
+	return legal_cards.pick_random()
 
-
-
+## Button to test the AI before actual turns
 func _on_ai_testing_btn_pressed() -> void:
 	print('Initialise AI test')
 	take_turn()

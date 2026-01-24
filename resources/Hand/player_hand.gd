@@ -1,5 +1,6 @@
 extends Node2D
-#class_name Hand
+#class_name HandClass
+## File name is a misnomer, this script is used by both AI and player controllers
 
 ## Based on barry's dev hell and another tutorial : https://www.youtube.com/watch?v=lATAS8YpzFE
 
@@ -26,7 +27,9 @@ var center_screen_x ## The width of the screen
 @export var cards_in_hand : Array = [] ## The data about which cards are in the player's hand, or just the hand.
 ## ^ Cards_in_hand A.K.A player_hand
 @export var rulesEngine = RulesEngine.new()
-@export var trick_slot : CardSlot ## In this game, that slot is really all you need to put down?
+@export var trick_slot : CardSlot ## In this game, that slot is really all you need to interact with, nothing else
+
+@export var is_player_controlled : bool = false ## Whether or not the hand is owned by a player
 
 signal card_played(card: CardData, card_slot: CardSlot)
 
@@ -35,6 +38,10 @@ func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
 	
 	#$"../Deck".card_drawn.connect(self._on_card_drawn) ## Already connected?
+
+func set_interactive(enabled: bool):
+	for card in cards_in_hand:
+		card.set_interactive(enabled)
 
 func connect_card_signals(card):
 	card.drag_started.connect(_on_drag_started)
@@ -48,7 +55,10 @@ func receive_card(card):
 	connect_card_signals(card)
 	
 	add_card_to_hand(card)
-	card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
+	if is_player_controlled:
+		card.flip_card(true) ## If owned by a player, flip the card
+	## Otherwise, card remains upside down
+	#card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
 	
 
 func _on_drag_started(card):

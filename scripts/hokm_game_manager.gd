@@ -15,6 +15,7 @@ enum HokmGameMode { ## Same thing as player_count I guess - Should change rules 
 @export var deck : Deck
 @export var hands : Array[Node]
 @export var trick_slots : Array[CardSlot]
+@export var ai_controllers: Array[AIController]
 
 var current_player : int = 0
 var winner_index : int
@@ -167,6 +168,7 @@ func _on_diamonds_pressed() -> void:
 		#rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
 		##return card.rank
 
+## Gets the card who wins the game
 func resolve_trick():
 	var leading_suit = trick_cards[0]
 	var winning_card = trick_cards[0]
@@ -179,6 +181,7 @@ func resolve_trick():
 		if strength > highest_strength:
 			strength = highest_strength
 			winning_card = card
+	winner_index = trick_cards.find(winning_card) ## Should find who put down the card..? (Probably won't work T-T)
 	return winning_card
 	
 	#return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
@@ -204,7 +207,15 @@ func _on_card_played(card, slot, hand_cards): ## Connect to signal emitted by so
 	#for i in player_count: 
 		#hands.append()
 
-
-
 func advance_turn():
 	current_player = (current_player + 1) % hands.size()
+	start_turn(current_player)
+
+func start_turn(player_index: int):
+	var active_hand := hands[player_index]
+	
+	active_hand.set_interactive(true)
+
+
+func _on_end_turn_test_btn_pressed() -> void:
+	pass # Replace with function body.
