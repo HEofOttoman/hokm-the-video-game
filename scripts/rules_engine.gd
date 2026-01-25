@@ -30,7 +30,7 @@ func can_play_card(
 	_card_slot_found: CardSlot,
 	#leading_suit : CardData.Suit,
 	trick_cards: Array,
-	hand_cards: Array[CardData]
+	hand_cards: Array
 ) -> bool:
 	var leading_suit: CardData.Suit = trick_cards[0].suit
 	
@@ -41,7 +41,7 @@ func can_play_card(
 		print('Card matches leading suit, ')
 		return true
 	for hand_card in hand_cards:
-		if hand_card.suit == leading_suit:
+		if hand_card.card_data.suit == leading_suit:
 			print('you have something that is the leading suit, ')
 			return false
 		#else: return true

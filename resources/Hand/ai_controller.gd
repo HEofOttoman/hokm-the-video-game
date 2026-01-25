@@ -31,6 +31,7 @@ func take_turn():
 	
 	hand.remove_card_from_hand(chosen_card)
 	hand.trick_slot.add_card_to_slot(chosen_card)
+	game_manager.play_card()
 	#rules.play_card(chosen)
 	#rulesEngine.can_play_card()
 

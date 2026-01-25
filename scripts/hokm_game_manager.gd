@@ -17,27 +17,26 @@ enum HokmGameMode { ## Same thing as player_count I guess - Should change rules 
 @export var trick_slots : Array[CardSlot]
 @export var ai_controllers: Array[AIController]
 
+@export_group('Runtime Variables')
 var current_player : int = 0
 var winner_index : int
 var hakem_index : int ## Player ID
 
-#var leading_suit : CardData.Suit = CardData.Suit.HEARTS
-var hokm_suit : CardData.Suit = CardData.Suit.HEARTS ## The current game's Hokm suit
-var trick_cards : Array = [] ## Used to look at the cards in a turn/trick and compare them
+@export var hokm_suit : CardData.Suit = CardData.Suit.HEARTS ## The current game's Hokm suit
+@export var trick_cards : Array = [] ## Used to look at the cards in a turn/trick and compare them
 
 var cards_per_player = 13
 
+@export var current_game_phase : HokmGamePhase
 enum HokmGamePhase {
-	INIT,
-	DEAL_INITIAL_CARDS,
+	INIT, ## Initial game start
+	DEAL_INITIAL_CARDS, ## Deals 5 cards to all players
 	AUCTIONING, ## Setting Hakem and deciding Hokm
-	DEAL_REMAINING_CARDS,
-	TRICK_PLAY,
-	SCORING,
+	DEAL_REMAINING_CARDS, ## Deals remaining cards to all players
+	TRICK_PLAY, ## Begin game
+	SCORING, ## Counts
 	GAME_OVER
 }
-
-@export var current_game_phase : HokmGamePhase
 
 func _ready() -> void:
 	randomize()
@@ -113,6 +112,8 @@ func trick_play():
 	
 	if trick_cards.size() == hands.size():
 		resolve_trick()
+	else: 
+		advance_turn()
 
 func scoring_cards():
 	current_game_phase = HokmGamePhase.SCORING
@@ -186,12 +187,18 @@ func resolve_trick():
 	
 	#return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
 
-func _on_card_played(card, slot, hand_cards): ## Connect to signal emitted by something else
-	if not rulesEngine.can_play_card(card, slot, trick_cards, hand_cards):
+#func connect_hand_signals(hand):
+	#hand.request_play_card.connect(play_card)
+
+func play_card(card, slot, hand_cards): ## Connect to signal emitted by something else
+	print('Game Manager copies, attempting to check if card is playable')
+	if rulesEngine.can_play_card(card.card_data, slot, trick_cards, hand_cards) == false:
 		#reject_play()
-		pass
+		print('error')
+		return "cannot play card"
 	
 	trick_cards.append(card)
+	
 	
 	if trick_cards.size() == player_count:
 		resolve_trick()
@@ -208,6 +215,7 @@ func _on_card_played(card, slot, hand_cards): ## Connect to signal emitted by so
 		#hands.append()
 
 func advance_turn():
+	print('next turn')
 	current_player = (current_player + 1) % hands.size()
 	start_turn(current_player)
 
@@ -218,6 +226,7 @@ func start_turn(player_index: int):
 	
 	if active_hand.is_player_controlled:
 		print("Player's turn")
+		## Show hint that
 	else:
 		print("AI's turn")
 		#hands[player_index].get_child().take_turn()

@@ -29,17 +29,19 @@ var center_screen_x ## The width of the screen
 @export var player_id : int
 @export var cards_in_hand : Array = [] ## The data about which cards are in the player's hand, or just the hand.
 ## ^ Cards_in_hand A.K.A player_hand
+@export var gameManager = GameManager.new()
 @export var rulesEngine = RulesEngine.new()
 @export var trick_slot : CardSlot ## In this game, that slot is really all you need to interact with, nothing else
+@export var HandLabel : Label
 
 @export var is_player_controlled : bool = false ## Whether or not the hand is owned by a player
 
-signal card_played(card, card_slot: CardSlot)
+#signal card_played(card, card_slot: CardSlot)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
-	
+	set_interactive(false)
 	#$"../Deck".card_drawn.connect(self._on_card_drawn) ## Already connected?
 
 ## Toggles all cards in the hand interactive or not
@@ -86,7 +88,7 @@ func stop_drag(card): ## Should move cards to slots if found.
 	print('STOP DRAG CALLED')
 	card.scale = Vector2(1.05, 1.05)
 	var card_slot_found : CardSlot = card.get_hovered_card_slot()
-	if card_slot_found and card_slot_found.card_in_slot == false: ## Card dropped in empty card slot
+	if card_slot_found and card_slot_found.card_in_slot == false and card_slot_found == trick_slot: ## Card dropped in empty card slot
 		## For later implementation
 		#if rulesEngine.can_play_card(card, card_slot_found):
 			#card_slot_found.add_card_to_slot()
@@ -98,12 +100,19 @@ func stop_drag(card): ## Should move cards to slots if found.
 		#card.get_node("$Area2D/CollisionShape2D").disabled = true
 		#ProjectUISoundController ## should play a click sound
 		card_slot_found.add_card_to_slot(card)
-		emit_signal("card_played", card, card_slot_found)
+		request_play_card(card, card_slot_found)
 	
 	else:
 		print('CARD SLOT NOT FOUND', card, card_slot_found)
 		add_card_to_hand(card) ## Failed to find a card slot
 	#card = null
+
+
+func request_play_card(card, card_slot_found):
+	print('card play requested, awaiting game manager')
+	gameManager._on_card_play_requested(card, card_slot_found, cards_in_hand)
+	#emit_signal("card_played", card, card_slot_found)
+	
 
 func remove_card_from_hand(card):
 	if card in cards_in_hand:
@@ -134,20 +143,7 @@ func update_hand_positions():
 		#card.starting_position = new_position
 		#animate_card_to_position(card, new_position)
 
-## Calculates the position of the hand
-#func calculate_card_position(index):
-	#var x_offset : float = (player_hand.size() - 1) * CARD_WIDTH ## Originally total width, but better change
-	#var x_position : float = center_screen_x + (index * CARD_WIDTH) - (x_offset / 2)
-	#return x_position
-
-## Cleaner version of Barry's function, the hand is simply drawn relative to where the card manager is.
-## Might be a cosmetic limitation for the animation
-#func calculate_card_position(index):
-	##update_card_width() ## Works, but not enough
-	#var x_offset : float = (player_hand.size() - 1) * CARD_SEPARATION_WIDTH
-	#return (index * CARD_SEPARATION_WIDTH) - (x_offset / 2)
-
-## Alternative suggested version of the function
+## Calculates the layout of the hand
 func calculate_card_position(index: int) -> Vector2:
 	var count := cards_in_hand.size()
 	var total_width : float = (count - 1) * CARD_SEPARATION_WIDTH

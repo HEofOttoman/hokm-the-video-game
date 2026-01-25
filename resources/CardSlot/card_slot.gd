@@ -29,7 +29,7 @@ func add_card_to_slot(card): ## Places card inside of slot
 	occupied_card = card
 	card.scale = Vector2(0.6, 0.6)
 	card.global_position = self.global_position
-	
+	card.rotation = self.rotation
 	
 	
 	print('Card Added to slot')

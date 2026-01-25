@@ -45,18 +45,12 @@ offset_bottom = -160.0
 
 [node name="720x720Square" type="Panel" parent="."]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -360.0
+offset_left = -304.0
 offset_top = -360.0
-offset_right = 360.0
+offset_right = 416.0
 offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -67,6 +61,7 @@ deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
 ai_controllers = [NodePath("../EnemyHand1/AIController")]
+trick_cards = [null]
 rulesEngine = NodePath("../Rule Umpire")
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
@@ -127,11 +122,13 @@ position = Vector2(64, 56)
 [node name="TrickSlot1" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
 position = Vector2(64, -56)
 
-[node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot")]
+[node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel")]
 position = Vector2(64, 192)
 script = ExtResource("5_m6rcj")
+gameManager = NodePath("../Game Manager")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot")
+HandLabel = NodePath("PlayerLabel")
 is_player_controlled = true
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHand"]
@@ -141,6 +138,15 @@ offset_right = 64.0
 offset_bottom = 168.0
 texture = ExtResource("10_d5kay")
 expand_mode = 1
+
+[node name="PlayerLabel" type="Label" parent="PlayerHand"]
+offset_left = -64.0
+offset_top = 32.0
+offset_right = 64.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Player 1 (You)"
+horizontal_alignment = 1
 
 [node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot")]
 position = Vector2(64, -192)
@@ -156,8 +162,18 @@ offset_bottom = -32.0
 texture = ExtResource("10_d5kay")
 expand_mode = 1
 
+[node name="PlayerLabel1" type="Label" parent="EnemyHand1"]
+offset_left = -64.0
+offset_top = -168.0
+offset_right = 64.0
+offset_bottom = -151.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Player 2 (AI)"
+horizontal_alignment = 1
+
 [node name="AIController" type="Node" parent="EnemyHand1"]
 script = ExtResource("10_tmcbe")
+difficulty = null
 
 [node name="AITestingBtn" type="Button" parent="EnemyHand1"]
 offset_left = -184.0
@@ -180,9 +196,19 @@ offset_bottom = 64.0
 texture = ExtResource("10_d5kay")
 expand_mode = 1
 
+[node name="PlayerLabel2" type="Label" parent="EnemyHand2 (Placeholder)"]
+offset_left = 40.0
+offset_top = -72.0
+offset_right = 168.0
+offset_bottom = -55.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Player 2 (AI)"
+horizontal_alignment = 1
+
 [node name="AIController" type="Node" parent="EnemyHand2 (Placeholder)" node_paths=PackedStringArray("rulesEngine")]
 script = ExtResource("10_tmcbe")
 rulesEngine = NodePath("../../Rule Umpire")
+difficulty = null
 
 [node name="EnemyHand3 (Placeholder)" type="Node2D" parent="."]
 visible = false
@@ -196,8 +222,17 @@ offset_bottom = 72.0
 texture = ExtResource("10_d5kay")
 expand_mode = 1
 
+[node name="PlayerLabel3" type="Label" parent="EnemyHand3 (Placeholder)"]
+offset_left = 16.0
+offset_top = -64.0
+offset_right = 115.0
+offset_bottom = -47.0
+text = "Player 4 (AI)"
+metadata/_edit_use_anchors_ = true
+
 [node name="AIController" type="Node" parent="EnemyHand3 (Placeholder)"]
 script = ExtResource("10_tmcbe")
+difficulty = null
 
 [node name="Player Deck Pile" type="Panel" parent="."]
 offset_left = -592.0
