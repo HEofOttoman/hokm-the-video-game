@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=20 format=3 uid="uid://dpr6mnd7ukuya"]
 
 [ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/testscene.gd" id="1_pyd4g"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
@@ -21,14 +21,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obeue"]
 size = Vector2(704, 152)
-
-[sub_resource type="Curve" id="Curve_d5kay"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50625, 0.23595512), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_el8cj"]
-_data = [Vector2(0.5, 0.22471917), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [node name="BasicHokmSetup" type="Node2D"]
 script = ExtResource("1_pyd4g")
@@ -64,6 +56,7 @@ offset_right = 360.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -75,6 +68,13 @@ hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
 ai_controllers = [NodePath("../EnemyHand1/AIController")]
 rulesEngine = NodePath("../Rule Umpire")
+
+[node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
+offset_left = -536.0
+offset_top = 32.0
+offset_right = -434.0
+offset_bottom = 91.0
+text = "Tutorial"
 
 [node name="EndTurnTestBtn" type="Button" parent="Game Manager"]
 anchors_preset = -1
@@ -94,8 +94,6 @@ script = ExtResource("3_exaxi")
 pause_menu_packed = ExtResource("4_b2thp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Player" type="Node" parent="."]
 
 [node name="Deck" parent="." instance=ExtResource("5_m14oq")]
 z_index = 0
@@ -132,8 +130,6 @@ position = Vector2(64, -56)
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot")]
 position = Vector2(64, 192)
 script = ExtResource("5_m6rcj")
-curve = SubResource("Curve_d5kay")
-rotation_curve = SubResource("Curve_el8cj")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot")
 is_player_controlled = true
@@ -343,13 +339,6 @@ offset_bottom = 61.000004
 scale = Vector2(1.680001, 1.7999998)
 texture_normal = ExtResource("10_xf0qg")
 stretch_mode = 0
-
-[node name="Tutorial Overlay Button" type="Button" parent="."]
-offset_left = -536.0
-offset_top = 32.0
-offset_right = -434.0
-offset_bottom = 91.0
-text = "Tutorial"
 
 [connection signal="pressed" from="Game Manager/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]

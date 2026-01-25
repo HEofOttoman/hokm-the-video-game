@@ -8,10 +8,11 @@ extends Node2D
 #@export var size : = "size" ## What is this meant to be? Idk
 
 @export_group('Visual Elements')
-
+@export var hand_layout_mode : HandLayoutMode = HandLayoutMode.LINEAR
+enum HandLayoutMode {FAN_CARDS, LINEAR}
 @export_subgroup('Fanned Layout')
-@export var curve : Curve
-@export var rotation_curve : Curve
+@export var curve : Curve = preload("res://resources/Card Resources/fanned_layout_curve.tres")
+@export var rotation_curve : Curve = preload("res://resources/Card Resources/rotation_curve.tres")
 
 @export var max_rotation_degrees := 10
 @export var x_sep := 10
@@ -19,8 +20,8 @@ extends Node2D
 @export var y_max := -50
 
 @export_subgroup('Linear Layout')
-@export var CARD_SEPARATION_WIDTH : float = 50
-@export var HAND_Y_POSITION : float = 0 ## How far down the hand is (relative)
+@export var CARD_SEPARATION_WIDTH : float = 25
+#@export var HAND_Y_POSITION : float = 0 ## How far down the hand is (relative)
 var center_screen_x ## The width of the screen
 ## ^Might be unnecessary if I an just animate it to the hand's position
 
@@ -33,7 +34,7 @@ var center_screen_x ## The width of the screen
 
 @export var is_player_controlled : bool = false ## Whether or not the hand is owned by a player
 
-signal card_played(card: CardData, card_slot: CardSlot)
+signal card_played(card, card_slot: CardSlot)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -60,6 +61,8 @@ func receive_card(card):
 	add_card_to_hand(card)
 	if is_player_controlled:
 		card.flip_card(true) ## If owned by a player, flip the card
+	elif is_player_controlled == false:
+		set_interactive(false)
 	## Otherwise, card remains upside down
 	#card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
 	
@@ -102,6 +105,11 @@ func stop_drag(card): ## Should move cards to slots if found.
 		add_card_to_hand(card) ## Failed to find a card slot
 	#card = null
 
+func remove_card_from_hand(card):
+	if card in cards_in_hand:
+		cards_in_hand.erase(card)
+		update_hand_positions()
+		
 
 func add_card_to_hand(card):
 	if card not in cards_in_hand:
@@ -112,15 +120,19 @@ func add_card_to_hand(card):
 	
 
 ### Visual Elements
-
 func update_hand_positions():
-	for i in range(cards_in_hand.size()):
-		## Get new card position based on the index passed in
-		var card = cards_in_hand[i]
-		var new_position = calculate_card_position(i)
-		#print("Deck at", new_position) ## Helped troubleshoot when I had the bug of the deck going off screen
-		card.starting_position = new_position
-		animate_card_to_position(card, new_position)
+	match hand_layout_mode:
+		HandLayoutMode.LINEAR:
+			layout_linear()
+		HandLayoutMode.FAN_CARDS:
+			fan_cards()
+	#for i in range(cards_in_hand.size()):
+		### Get new card position based on the index passed in
+		#var card = cards_in_hand[i]
+		#var new_position = calculate_card_position(i)
+		##print("Deck at", new_position) ## Helped troubleshoot when I had the bug of the deck going off screen
+		#card.starting_position = new_position
+		#animate_card_to_position(card, new_position)
 
 ## Calculates the position of the hand
 #func calculate_card_position(index):
@@ -145,9 +157,6 @@ func calculate_card_position(index: int) -> Vector2:
 func update_card_width(): ## Should pack cards closer together upon more cards being added (works but not enough)
 	CARD_SEPARATION_WIDTH = max(250 - (cards_in_hand.size() * 10),100)
 
-#func set_card_width(): ## gets called whenever a card gets added or removed, so that the cards get closer together as more cards are in the hands, which I enjoy
-	#CARD_WIDTH = max(250 - (player_hand.size() * 10),100)
-
 func animate_card_to_position(card, new_position):
 	if card.has_meta("tween"):
 		card.get_meta("tween").kill()
@@ -155,12 +164,44 @@ func animate_card_to_position(card, new_position):
 	var tween = get_tree().create_tween()
 	tween.tween_property(card,"position", new_position, 0.5)
 
+func layout_linear():
+	for i in range(cards_in_hand.size()):
+		## Get new card position based on the index passed in
+		var card = cards_in_hand[i]
+		var new_position = calculate_card_position(i)
+		#print("Deck at", new_position) ## Helped troubleshoot when I had the bug of the deck going off screen
+		card.starting_position = new_position
+		animate_card_to_position(card, new_position)
 
-func remove_card_from_hand(card):
-	if card in cards_in_hand:
-		cards_in_hand.erase(card)
-		update_hand_positions()
+## Puts the cards in a fan layout
+func fan_cards():
+	var count := cards_in_hand.size()
+	if count == 1:
+		animate_card_to_position(cards_in_hand[0], Vector2.ZERO)
+		return
+	
+	var spread := CARD_SEPARATION_WIDTH * count -1
+	
+	for i in count:
+		var t := float(i) / float(count - 1) ## T is the place of the card between left & right
+		var card = cards_in_hand[i]
 		
+		var x = lerp(-spread / 2, 
+		spread / 2, 
+		t)
+		
+		var y = lerp(y_min, y_max, curve.sample(t))
+		
+		
+		var rot = deg_to_rad(max_rotation_degrees) * rotation_curve.sample(t)
+		
+		var pos = Vector2(x, y)
+		
+		card.starting_position = pos
+		card.rotation = rot
+		card.z_index = i
+		
+		animate_card_to_position(card, pos)
 
 ## Try to fan out the cards... help I just can't (tutorial: https://www.youtube.com/watch?v=waVOR2ehpuU)
 #func _update_cards() -> void:
