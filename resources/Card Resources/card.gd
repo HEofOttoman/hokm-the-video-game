@@ -167,3 +167,11 @@ func flip_card(flipped: bool):
 		$AnimationPlayer.play("card_flip")
 	else:
 		$AnimationPlayer.play_backwards("card_flip")
+
+## Moved from hand.gd
+func animate_card_to_position(new_position):
+	if has_meta("tween"):
+		get_meta("tween").kill()
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(self,"position", new_position, 0.5)

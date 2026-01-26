@@ -52,12 +52,13 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots", "rulesEngine")]
+[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
 script = ExtResource("3_pyd4g")
 deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
 rulesEngine = NodePath("../Rule Umpire")
+score_piles = [NodePath("../Player Deck Pile"), NodePath("../Opponent Deck Pile")]
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
 offset_left = -536.0

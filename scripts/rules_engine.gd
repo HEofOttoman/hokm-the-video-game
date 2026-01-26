@@ -98,7 +98,6 @@ func get_legal_cards(
 	print('LEGAL CARDS:', legal_cards)
 	return legal_cards
 
-
 ## In theory, this should assess the rank of a card, then pass it into a function that compares all cards drawn
 func get_card_strength(card: CardData, 
 	leading_suit : CardData.Suit, 

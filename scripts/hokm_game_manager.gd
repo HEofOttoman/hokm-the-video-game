@@ -17,8 +17,9 @@ enum HokmGameMode { ## Same thing as player_count I guess - Should change rules 
 @export var trick_slots : Array[CardSlot]
 @export var ai_controllers: Array[AIController]
 @export var rulesEngine := RulesEngine.new()
+@export var score_piles : Array[Control]
 
-@export_group('Runtime Variables')
+@export_group('Runtime Variables') ## Exposed for debugging ig
 var current_player : int = 0 # The ID of the current player
 var winner_index : int ## The ID of the winner of the last trick, so game knows who to give turn to next
 var hakem_index : int ## Player ID of the hakem
@@ -28,10 +29,9 @@ var hakem_index : int ## Player ID of the hakem
 #@export var trick_card : Dictionary = {
 	#player_index, card_data
 #}
-@export var tricks_won: Dictionary = {
-	0 : 0,
-	1 : 0
-}
+
+@export var tricks_won : Array[int] = [0, 0] ## Tricks won in a single round
+@export var score : Array[int] = [0, 0]
 
 var cards_per_player = 13
 
@@ -221,6 +221,15 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 		print("AI's turn")
 		#hands[player_index].get_child().take_turn()
 		$"../EnemyHand1/AIController".take_turn()
+
+func end_round():
+	if winner_index == hakem_index and tricks_won[winner_index] == 7:
+		score[winner_index] += 2
+	elif winner_index != hakem_index:
+		score[winner_index] += 3
+	else:
+		score[winner_index] += 1
+
 
 func _on_end_turn_test_btn_pressed() -> void:
 	advance_turn() # Replace with function body.
