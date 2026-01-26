@@ -68,7 +68,7 @@ func draw_card():
 		new_card.suit = data.suit
 		new_card.cardtexture = data.cardtexture
 		new_card.card_data = data
-		new_card.name = str('RANK:', new_card.rank, 'SUIT:', new_card.suit) ## Names the card
+		new_card.name = str('RANK: ', new_card.rank, ' SUIT: ', new_card.suit) ## Names the card
 		emit_signal("card_drawn", new_card) ## Informs the hands that cards drawn and to add it to their place
 		
 		## Function of the code below migrated to playerhand.gd

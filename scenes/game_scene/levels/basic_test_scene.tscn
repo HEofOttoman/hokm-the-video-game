@@ -52,10 +52,11 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "rulesEngine")]
+[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots", "rulesEngine")]
 script = ExtResource("3_pyd4g")
 deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
+trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
 rulesEngine = NodePath("../Rule Umpire")
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
@@ -72,6 +73,22 @@ anchor_right = 0.45078126
 anchor_bottom = 0.08194444
 text = "End Turn"
 metadata/_edit_use_anchors_ = true
+
+[node name="ResolveTrickDebugBtn" type="Button" parent="Game Manager"]
+anchors_preset = -1
+anchor_left = 0.35625
+anchor_right = 0.45078126
+anchor_bottom = 0.08194444
+offset_top = 72.0
+offset_bottom = 72.0
+text = "Resolve Trick"
+metadata/_edit_use_anchors_ = true
+
+[node name="LeadingSuitDebugLbl" type="Label" parent="Game Manager"]
+offset_left = -160.0
+offset_top = -88.0
+offset_bottom = -71.0
+text = "LEADING SUIT:"
 
 [node name="Rule Umpire" type="Node" parent="."]
 script = ExtResource("3_tmcbe")
@@ -103,6 +120,7 @@ position = Vector2(64, -56)
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel")]
 position = Vector2(64, 192)
 script = ExtResource("5_m6rcj")
+hand_layout_mode = 0
 gameManager = NodePath("../Game Manager")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot")
@@ -123,12 +141,13 @@ offset_top = 32.0
 offset_right = 64.0
 offset_bottom = 49.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Player 1 (You)"
+text = "Player 0 (You)"
 horizontal_alignment = 1
 
 [node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot")]
 position = Vector2(64, -192)
 script = ExtResource("5_m6rcj")
+player_id = 1
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot1")
 
@@ -146,7 +165,7 @@ offset_top = -168.0
 offset_right = 64.0
 offset_bottom = -151.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Player 2 (AI)"
+text = "Player 1 (AI)"
 horizontal_alignment = 1
 
 [node name="AIController" type="Node" parent="EnemyHand1" node_paths=PackedStringArray("game_manager", "rulesEngine")]
@@ -225,7 +244,7 @@ anchor_left = 0.14414415
 anchor_top = 0.03524229
 anchor_right = 0.9009009
 anchor_bottom = 0.12887524
-text = "Your Decks"
+text = "Score: 0/7"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -353,6 +372,7 @@ texture_normal = ExtResource("10_xf0qg")
 stretch_mode = 0
 
 [connection signal="pressed" from="Game Manager/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
+[connection signal="pressed" from="Game Manager/ResolveTrickDebugBtn" to="Game Manager" method="_on_resolve_trick_debug_btn_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 [connection signal="pressed" from="Clubs" to="Game Manager" method="_on_clubs_pressed"]

@@ -28,6 +28,10 @@ var hakem_index : int ## Player ID of the hakem
 #@export var trick_card : Dictionary = {
 	#player_index, card_data
 #}
+@export var tricks_won: Dictionary = {
+	0 : 0,
+	1 : 0
+}
 
 var cards_per_player = 13
 
@@ -83,13 +87,11 @@ func declaring_hakem():
 	var hakem = hands.pick_random()
 	hakem_index = hands.find(hakem)
 	
-	print('Hakem:', hakem, 'Index:', hakem_index)
+	print('Hakem: ', hakem, ' Index: ', hakem_index)
 	
 	current_player = hakem_index
 	
-	print('Hakem:', hakem)
-	print('Hakem declared')
-	return
+	return current_player
 	#deck.draw_card()
 	#return
 
@@ -121,11 +123,6 @@ func trick_play():
 	
 	start_turn(hakem_index)
 	
-	
-	#if trick_cards.size() == hands.size():
-		#resolve_trick()
-	#else: 
-		#advance_turn()
 
 func scoring_cards():
 	current_game_phase = HokmGamePhase.SCORING
@@ -150,7 +147,6 @@ func deal_cards(_player_id): ## Deal cards to each player
 		hands[current_player].receive_card(card)
 		current_player = (current_player + 1) % hands.size()
 
-
 func _on_clubs_pressed() -> void:
 	hokm_suit = CardData.Suit.CLUBS
 	#hokm_chosen.emit(hokm)
@@ -164,83 +160,61 @@ func _on_diamonds_pressed() -> void:
 	hokm_suit = CardData.Suit.DIAMONDS
 	#hokm_chosen.emit(hokm)
 
-
 ## Umpire / RuleManager
 ### Checks if the turn is legal, and determines who wins
 
-#hand.input_enabled = (player_id == )
-
-#func determine_trick_winner(): #trick_cards, leading_suit, hokm_suit
-	##return rulesEngine.get_trick_winner(trick_cards, leading_suit, hokm_suit)
-	#var card = trick_cards
-	#
-	#for i in range(1, trick_cards.size()):
-		#rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
-		##return card.rank
-
 ## Gets the card who wins the game
 func resolve_trick():
+	print('Resolving Trick')
 	var winning_card = rulesEngine.evaluate_trick(trick_cards, hokm_suit)
-	#var leading_suit = trick_cards[0]
-	#var winning_card = trick_cards[0]
-	#var highest_strength = rulesEngine.get_card_strength(winning_card, leading_suit, hokm_suit)
-	#
-	#for i in range(1, trick_cards.size()):
-		#var card = trick_cards[i]
-		#var strength = rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
-		#
-		#if strength > highest_strength:
-			#strength = highest_strength
-			#winning_card = card
 	winner_index = trick_cards.find(winning_card) ## Should find who put down the card..? (Probably won't work T-T)
-	trick_cards.clear()
-	#return winning_card
 	
-	#return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
-
-#func connect_hand_signals(hand):
-	#hand.request_play_card.connect(play_card)
+	print('WINNER: ', winner_index)
+	
+	trick_cards.clear()
+	for slot in trick_slots:
+		slot.remove_card_from_slot()
+	start_turn(winner_index)
 
 @warning_ignore("unused_parameter")
 func play_card(card, slot, hand_cards, player_id: int): ## Adds the
-	print('Game Manager copies, attempting to check if card is playable')
+	#print('Game Manager copies, attempting to check if card is playable')
 	if player_id != current_player:
-		return "not this player's turn"
+		push_error("NOT THIS PLAYER'S TURN")
+		print("SERIOUS ERROR: NOT THIS PLAYER'S TURN")
+		return
 	
 	if rulesEngine.can_play_card(card.card_data, 
 	#slot, 
 	trick_cards, 
 	hand_cards) == false:
 		#reject_play()
-		print('error')
-		return "cannot play card"
+		print('Move is ILLEGAL')
+		return
 	
 	trick_cards.append(card)
+	print('Card is playable, appending to trick')
 	
 	if trick_cards.size() == player_count:
 		resolve_trick()
 	else: 
+		print('Advancing turn')
 		advance_turn()
-
-## TurnKeeper
-### Checks the current player
-### Advances turns
 
 #func register_hands(): ## idfk I forgot what I imagined this to work in 
 	#for i in player_count: 
 		#hands.append()
 
 func advance_turn():
-	print('next turn')
+	print('Next Turn')
 	current_player = (current_player + 1) % hands.size()
 	start_turn(current_player)
 
 func start_turn(player_index: int): ## Starts the turn of the player with corresponding player id/index
 	var active_hand := hands[player_index]
 	
-	active_hand.set_interactive(true)
-	
 	if active_hand.is_player_controlled:
+		active_hand.set_interactive(true)
 		print("Player's turn")
 		## Show hint that
 	else:
@@ -250,3 +224,8 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 
 func _on_end_turn_test_btn_pressed() -> void:
 	advance_turn() # Replace with function body.
+
+
+func _on_resolve_trick_debug_btn_pressed() -> void:
+	resolve_trick()
+	# Replace with function body.

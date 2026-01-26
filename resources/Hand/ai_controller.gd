@@ -16,6 +16,9 @@ enum Difficulty {
 
 
 func take_turn():
+	print('Thinking Cooldown')
+	await get_tree().create_timer(3.0).timeout ## Stops game from going too fast, inject animation here
+	
 	var legal_cards : Array = rulesEngine.get_legal_cards(
 		hand.cards_in_hand, 
 		#GameManager.leading_suit, 
@@ -31,6 +34,8 @@ func take_turn():
 	print('CHOSEN CARD:', chosen_card)
 	
 	hand.remove_card_from_hand(chosen_card)
+	chosen_card.flip_card(true)
+	hand.animate_card_to_position(chosen_card, hand.trick_slot)
 	hand.trick_slot.add_card_to_slot(chosen_card)
 	#hand.request_card_play(chosen_card, hand.trick_slot, hand.cards, hand.player_id)
 	game_manager.play_card(chosen_card, hand.trick_slot, hand.cards_in_hand, hand.player_id)
@@ -59,7 +64,6 @@ func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : A
 			
 			
 			for card in legal_cards:
-				
 				
 				var score = rulesEngine.get_card_strength(card.card_data, 
 				leading_suit, 
