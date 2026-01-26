@@ -26,10 +26,11 @@ class_name RulesEngine
 
 func can_play_card(
 	## A bunch of variables to be passed to determine if a move is legal or not
-	card: CardData, 
-	_card_slot_found: CardSlot,
+	card, 
+	#_card_slot_found: CardSlot, ## Whether the card slot is empty, is it even necessary?? ## nope it isn't
 	#leading_suit : CardData.Suit,
-	trick_cards: Array,
+	trick_cards: Array, ## The cards within the current trick
+	## The cards within the player's hand
 	hand_cards: Array
 ) -> bool:
 	
@@ -43,7 +44,11 @@ func can_play_card(
 		return true
 	
 	var leading_suit : CardData.Suit = trick_cards[0].card_data.suit
-	print("TRICK CARDS:", leading_suit)
+	print("LEADING SUIT:", leading_suit)
+	
+	for i in trick_cards.size():
+		print(i, " => ", trick_cards[i])
+	print("TRICK CARDS:", trick_cards)
 	
 	if card.suit == leading_suit:
 		print('Card matches leading suit, ')
@@ -67,35 +72,46 @@ func get_leading_suit(trick_cards: Array):
 	
 	return leading_suit
 
-@warning_ignore("unused_parameter")
 func get_legal_cards(
 	hand_cards: Array, ## Cards inside hand
 	#leading_suit : CardData.Suit, ## Actually unnecessary, can calculate from trick_cards
 	#hokm_suit: CardData.Suit, ## Suit of the hokm
 	## Suit of the hokm, is actually not needed for legality
-	trick_cards: Array[CardData]) -> Array[CardData]:
+	#trick_cards: Array[CardData]) -> Array[CardData]:
+	trick_cards: Array) -> Array:
 	## Cards inside the trick (table)
-	var card_slot = 'cardslot' ## should I really be passing this in?
+	#var card_slot = 'cardslot' ## should I really be passing this in? Yea I shouldn't
 	var legal_cards : Array
 	
+	for i in trick_cards.size():
+		print(i, " => ", trick_cards[i])
+	print("TRICK CARDS:", trick_cards)
+	
 	for card in hand_cards:
-		#can_play_card(card, card_slot, leading_suit, cards, hand)
-		can_play_card(card, card_slot, trick_cards, hand_cards)
+		#can_play_card(card, card_slot, trick_cards, hand_cards)
+		can_play_card(card, 
+		trick_cards, 
+		hand_cards)
+			
 		if true:
 			legal_cards.append(card)
+	print('LEGAL CARDS:', legal_cards)
 	return legal_cards
 
+
 ## In theory, this should assess the rank of a card, then pass it into a function that compares all cards drawn
-func get_card_strength(card: CardData, leading_suit : CardData.Suit, hokm_suit: CardData.Suit) -> int:
+func get_card_strength(card: CardData, 
+	leading_suit : CardData.Suit, 
+	hokm_suit: 
+	CardData.Suit) -> int:
 	if card.suit == leading_suit:
 		return 100 + card.rank
 	if card.suit == hokm_suit:
 		return 50 + card.rank
-	print(card.rank)
+	print('CARD STRENGTH:', card.rank)
 	return card.rank
 
 ## Evaluates cards in the trick and returns a winning card.
-
 func evaluate_trick(trick_cards, hokm_suit):
 	var leading_suit = trick_cards[0]
 	var winning_card = trick_cards[0]
@@ -111,11 +127,3 @@ func evaluate_trick(trick_cards, hokm_suit):
 	#winner_index = trick_cards.find(winning_card) ## Should find who put down the card..? (Probably won't work T-T)
 	#trick_cards.clear()
 	return winning_card
-
-#@warning_ignore("unused_parameter")
-#func get_trick_winner(trick_cards, hokm_suit, leading_suit):
-	#var card = trick_cards
-	#
-	#for i in trick_cards:
-		#get_card_strength(card, leading_suit, hokm_suit)
-		##return card.rank

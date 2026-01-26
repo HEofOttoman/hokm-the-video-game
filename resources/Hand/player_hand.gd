@@ -112,7 +112,11 @@ func request_play_card(card, card_slot_found):
 		print(i, " => ", gameManager.trick_cards[i])
 	print("TRICK CARDS:", gameManager.trick_cards)
 	
-	if gameManager.rulesEngine.can_play_card(card.card_data, card_slot_found, gameManager.trick_cards, cards_in_hand) == false:
+	#if gameManager.rulesEngine.can_play_card(card.card_data, card_slot_found, gameManager.trick_cards, cards_in_hand) == false:
+	if gameManager.rulesEngine.can_play_card(card.card_data, 
+	#card_slot_found, 
+	gameManager.trick_cards, 
+	cards_in_hand) == false:
 		print('hand: card play not possible')
 		return "cannot play card"
 		#card_slot_found.add_card_to_slot()

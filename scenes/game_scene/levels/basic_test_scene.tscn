@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=19 format=3 uid="uid://dpr6mnd7ukuya"]
 
 [ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/testscene.gd" id="1_pyd4g"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
@@ -18,9 +18,6 @@
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="10_tmcbe"]
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="10_xf0qg"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="14_j7cxb"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_obeue"]
-size = Vector2(704, 152)
 
 [node name="BasicHokmSetup" type="Node2D"]
 script = ExtResource("1_pyd4g")
@@ -55,12 +52,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots", "ai_controllers", "rulesEngine")]
+[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "rulesEngine")]
 script = ExtResource("3_pyd4g")
 deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
-trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
-ai_controllers = [NodePath("../EnemyHand1/AIController")]
 rulesEngine = NodePath("../Rule Umpire")
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
@@ -92,22 +87,6 @@ pause_menu_packed = ExtResource("4_b2thp")
 [node name="Deck" parent="." instance=ExtResource("5_m14oq")]
 z_index = 0
 position = Vector2(-132, 0)
-
-[node name="Hand Board" type="ColorRect" parent="."]
-visible = false
-visibility_layer = 512
-offset_left = -352.0
-offset_top = 179.0
-offset_right = 352.0
-offset_bottom = 331.0
-mouse_filter = 2
-color = Color(0.17254902, 0.13725491, 0.13725491, 1)
-
-[node name="Area2D" type="Area2D" parent="Hand Board"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand Board/Area2D"]
-position = Vector2(352, 73)
-shape = SubResource("RectangleShape2D_obeue")
 
 [node name="Discard Slot" parent="." instance=ExtResource("14_j7cxb")]
 position = Vector2(248, 0)
@@ -170,8 +149,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Player 2 (AI)"
 horizontal_alignment = 1
 
-[node name="AIController" type="Node" parent="EnemyHand1"]
+[node name="AIController" type="Node" parent="EnemyHand1" node_paths=PackedStringArray("game_manager", "rulesEngine")]
 script = ExtResource("10_tmcbe")
+game_manager = NodePath("../../Game Manager")
+rulesEngine = NodePath("../../Rule Umpire")
 
 [node name="AITestingBtn" type="Button" parent="EnemyHand1"]
 offset_left = -184.0

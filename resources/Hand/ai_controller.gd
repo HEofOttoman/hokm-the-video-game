@@ -2,10 +2,9 @@ extends Node
 class_name AIController 
 ## Controls a hand node as an AI
 
-#var hand : Array = []
 @onready var hand: Node2D = $".."
+@export var game_manager : GameManager = GameManager.new()
 @export var rulesEngine : RulesEngine = RulesEngine.new()
-@export var game_manager : GameManager
 
 ## AI Difficulty level. Currrently not implemented, DON'T TOUCH
 @export var difficulty : Difficulty = Difficulty.NORMAL
@@ -23,38 +22,53 @@ func take_turn():
 		#GameManager.hokm_suit, 
 		game_manager.trick_cards)
 	
-	var chosen_card : CardData = choose_cards(
+	#var chosen_card : CardData = choose_cards(
+	var chosen_card := choose_cards(
 		legal_cards,
 		game_manager.hokm_suit,
 		game_manager.trick_cards
 	)
+	print('CHOSEN CARD:', chosen_card)
 	
 	hand.remove_card_from_hand(chosen_card)
 	hand.trick_slot.add_card_to_slot(chosen_card)
 	#hand.request_card_play(chosen_card, hand.trick_slot, hand.cards, hand.player_id)
-	game_manager.play_card(chosen_card, hand.trick_slot, hand.cards, hand.player_id)
+	game_manager.play_card(chosen_card, hand.trick_slot, hand.cards_in_hand, hand.player_id)
 	#rules.play_card(chosen)
 	#rulesEngine.can_play_card()
 
 ## Chooses cards and places them
-func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : Array[CardData]) -> CardData:
+#func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : Array[CardData]) -> CardData:
+func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : Array) -> Object:
 	match difficulty:
 		Difficulty.EASY:
 			return legal_cards.pick_random() # The dumbest version of the AI
 		Difficulty.NORMAL:
-			var best_card : CardData = legal_cards[0] ## Best card in an array legal cards 
-			var leading_suit : CardData.Suit = trick_cards[0].suit
+			#var best_card : CardData = legal_cards[0] ## Best card in an array legal cards 
+			var best_card = legal_cards[0] ## Best card in an array legal cards 
+			#var leading_suit : CardData.Suit = trick_cards[0].suit
+			
+			if trick_cards.is_empty():
+				return legal_cards.pick_random() ## IMPORTANT failsafe if trick_cards is empty,
+				## ^ Otherwise, `Out of bounds get index '0' (on base: 'Array')`
+			
+			var leading_suit : CardData.Suit = trick_cards[0].card_data.suit
+			print("LEADING SUIT:", leading_suit)
+			
 			var best_score := 0
+			
 			
 			for card in legal_cards:
 				
 				
-				var score = rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
+				var score = rulesEngine.get_card_strength(card.card_data, 
+				leading_suit, 
+				hokm_suit)
 				
 				if score > best_score:
 					score = best_score
 					card = best_card
-			
+			print('BEST CARD:', best_card)
 			return best_card
 		#Difficulty.HARD:
 			#get_best_move()

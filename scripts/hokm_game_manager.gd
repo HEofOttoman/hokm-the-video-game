@@ -23,8 +23,8 @@ var current_player : int = 0 # The ID of the current player
 var winner_index : int ## The ID of the winner of the last trick, so game knows who to give turn to next
 var hakem_index : int ## Player ID of the hakem
 
-@export var hokm_suit : CardData.Suit = CardData.Suit.HEARTS ## The current game's Hokm suit
-@export var trick_cards : Array = [] ## Used to look at the cards in a turn/trick and compare them
+@export var hokm_suit : CardData.Suit = CardData.Suit.HEARTS ## The current game's Hokm suit.
+@export var trick_cards : Array = [] ## Used to look at the cards in a turn/trick and compare them. An array of instantiated card nodes.
 #@export var trick_card : Dictionary = {
 	#player_index, card_data
 #}
@@ -201,11 +201,16 @@ func resolve_trick():
 #func connect_hand_signals(hand):
 	#hand.request_play_card.connect(play_card)
 
+@warning_ignore("unused_parameter")
 func play_card(card, slot, hand_cards, player_id: int): ## Adds the
 	print('Game Manager copies, attempting to check if card is playable')
 	if player_id != current_player:
 		return "not this player's turn"
-	if rulesEngine.can_play_card(card.card_data, slot, trick_cards, hand_cards) == false:
+	
+	if rulesEngine.can_play_card(card.card_data, 
+	#slot, 
+	trick_cards, 
+	hand_cards) == false:
 		#reject_play()
 		print('error')
 		return "cannot play card"
