@@ -16,14 +16,18 @@ enum HokmGameMode { ## Same thing as player_count I guess - Should change rules 
 @export var hands : Array[Node]
 @export var trick_slots : Array[CardSlot]
 @export var ai_controllers: Array[AIController]
+@export var rulesEngine := RulesEngine.new()
 
 @export_group('Runtime Variables')
-var current_player : int = 0
-var winner_index : int
-var hakem_index : int ## Player ID
+var current_player : int = 0 # The ID of the current player
+var winner_index : int ## The ID of the winner of the last trick, so game knows who to give turn to next
+var hakem_index : int ## Player ID of the hakem
 
 @export var hokm_suit : CardData.Suit = CardData.Suit.HEARTS ## The current game's Hokm suit
 @export var trick_cards : Array = [] ## Used to look at the cards in a turn/trick and compare them
+#@export var trick_card : Dictionary = {
+	#player_index, card_data
+#}
 
 var cards_per_player = 13
 
@@ -34,8 +38,8 @@ enum HokmGamePhase {
 	AUCTIONING, ## Setting Hakem and deciding Hokm
 	DEAL_REMAINING_CARDS, ## Deals remaining cards to all players
 	TRICK_PLAY, ## Begin game
-	SCORING, ## Counts
-	GAME_OVER
+	SCORING, ## Counts points
+	GAME_OVER ## Ends game
 }
 
 func _ready() -> void:
@@ -68,18 +72,23 @@ func deal_initial_cards():
 
 func auctioning_game():
 	await declaring_hakem()
-	print('Hakem declared')
 	await declaring_hokm()
 	print('Hokm declared')
 	
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
 	deal_remaining_cards()
 
 func declaring_hakem():
 	var hakem = hands.pick_random()
+	hakem_index = hands.find(hakem)
+	
+	print('Hakem:', hakem, 'Index:', hakem_index)
+	
+	current_player = hakem_index
 	
 	print('Hakem:', hakem)
+	print('Hakem declared')
 	return
 	#deck.draw_card()
 	#return
@@ -110,10 +119,13 @@ func trick_play():
 	current_game_phase = HokmGamePhase.TRICK_PLAY
 	print('Begin Trick Play', current_game_phase)
 	
-	if trick_cards.size() == hands.size():
-		resolve_trick()
-	else: 
-		advance_turn()
+	start_turn(hakem_index)
+	
+	
+	#if trick_cards.size() == hands.size():
+		#resolve_trick()
+	#else: 
+		#advance_turn()
 
 func scoring_cards():
 	current_game_phase = HokmGamePhase.SCORING
@@ -156,10 +168,7 @@ func _on_diamonds_pressed() -> void:
 ## Umpire / RuleManager
 ### Checks if the turn is legal, and determines who wins
 
-@export var rulesEngine := RulesEngine.new()
-
 #hand.input_enabled = (player_id == )
-
 
 #func determine_trick_winner(): #trick_cards, leading_suit, hokm_suit
 	##return rulesEngine.get_trick_winner(trick_cards, leading_suit, hokm_suit)
@@ -171,27 +180,31 @@ func _on_diamonds_pressed() -> void:
 
 ## Gets the card who wins the game
 func resolve_trick():
-	var leading_suit = trick_cards[0]
-	var winning_card = trick_cards[0]
-	var highest_strength = rulesEngine.get_card_strength(winning_card, leading_suit, hokm_suit)
-	
-	for i in range(1, trick_cards.size()):
-		var card = trick_cards[i]
-		var strength = rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
-		
-		if strength > highest_strength:
-			strength = highest_strength
-			winning_card = card
+	var winning_card = rulesEngine.evaluate_trick(trick_cards, hokm_suit)
+	#var leading_suit = trick_cards[0]
+	#var winning_card = trick_cards[0]
+	#var highest_strength = rulesEngine.get_card_strength(winning_card, leading_suit, hokm_suit)
+	#
+	#for i in range(1, trick_cards.size()):
+		#var card = trick_cards[i]
+		#var strength = rulesEngine.get_card_strength(card, leading_suit, hokm_suit)
+		#
+		#if strength > highest_strength:
+			#strength = highest_strength
+			#winning_card = card
 	winner_index = trick_cards.find(winning_card) ## Should find who put down the card..? (Probably won't work T-T)
-	return winning_card
+	trick_cards.clear()
+	#return winning_card
 	
 	#return rulesEngine.get_trick_winner(trick_cards, hokm_suit, leading_suit)
 
 #func connect_hand_signals(hand):
 	#hand.request_play_card.connect(play_card)
 
-func play_card(card, slot, hand_cards): ## Connect to signal emitted by something else
+func play_card(card, slot, hand_cards, player_id: int): ## Adds the
 	print('Game Manager copies, attempting to check if card is playable')
+	if player_id != current_player:
+		return "not this player's turn"
 	if rulesEngine.can_play_card(card.card_data, slot, trick_cards, hand_cards) == false:
 		#reject_play()
 		print('error')
@@ -199,12 +212,10 @@ func play_card(card, slot, hand_cards): ## Connect to signal emitted by somethin
 	
 	trick_cards.append(card)
 	
-	
 	if trick_cards.size() == player_count:
 		resolve_trick()
 	else: 
 		advance_turn()
-
 
 ## TurnKeeper
 ### Checks the current player
@@ -219,7 +230,7 @@ func advance_turn():
 	current_player = (current_player + 1) % hands.size()
 	start_turn(current_player)
 
-func start_turn(player_index: int):
+func start_turn(player_index: int): ## Starts the turn of the player with corresponding player id/index
 	var active_hand := hands[player_index]
 	
 	active_hand.set_interactive(true)
@@ -231,7 +242,6 @@ func start_turn(player_index: int):
 		print("AI's turn")
 		#hands[player_index].get_child().take_turn()
 		$"../EnemyHand1/AIController".take_turn()
-
 
 func _on_end_turn_test_btn_pressed() -> void:
 	advance_turn() # Replace with function body.

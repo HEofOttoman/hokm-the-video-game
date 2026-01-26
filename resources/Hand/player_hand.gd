@@ -29,10 +29,11 @@ var center_screen_x ## The width of the screen
 @export var player_id : int
 @export var cards_in_hand : Array = [] ## The data about which cards are in the player's hand, or just the hand.
 ## ^ Cards_in_hand A.K.A player_hand
+
 @export var gameManager = GameManager.new()
 @export var rulesEngine = RulesEngine.new()
 @export var trick_slot : CardSlot ## In this game, that slot is really all you need to interact with, nothing else
-@export var HandLabel : Label
+@export var HandLabel : Label ## The label to display hand information in
 
 @export var is_player_controlled : bool = false ## Whether or not the hand is owned by a player
 
@@ -92,14 +93,12 @@ func stop_drag(card): ## Should move cards to slots if found.
 		## For later implementation
 		#if rulesEngine.can_play_card(card, card_slot_found):
 			#card_slot_found.add_card_to_slot()
-			# + the other lines
+			
 		
-		print('CARD SLOT FOUND:', card_slot_found)
-		remove_card_from_hand(card) 
-		card.position = card_slot_found.position
-		#card.get_node("$Area2D/CollisionShape2D").disabled = true
-		#ProjectUISoundController ## should play a click sound
-		card_slot_found.add_card_to_slot(card)
+		#print('CARD SLOT FOUND:', card_slot_found)
+		#remove_card_from_hand(card) 
+		#card.position = card_slot_found.position
+		#card_slot_found.add_card_to_slot(card)
 		request_play_card(card, card_slot_found)
 	
 	else:
@@ -109,8 +108,21 @@ func stop_drag(card): ## Should move cards to slots if found.
 
 
 func request_play_card(card, card_slot_found):
+	for i in gameManager.trick_cards.size():
+		print(i, " => ", gameManager.trick_cards[i])
+	print("TRICK CARDS:", gameManager.trick_cards)
+	
+	if gameManager.rulesEngine.can_play_card(card.card_data, card_slot_found, gameManager.trick_cards, cards_in_hand) == false:
+		print('hand: card play not possible')
+		return "cannot play card"
+		#card_slot_found.add_card_to_slot()
+	
+	print('CARD SLOT FOUND:', card_slot_found)
+	remove_card_from_hand(card) 
+	card.position = card_slot_found.position
+	card_slot_found.add_card_to_slot(card)
 	print('card play requested, awaiting game manager')
-	gameManager._on_card_play_requested(card, card_slot_found, cards_in_hand)
+	gameManager.play_card(card, card_slot_found, cards_in_hand, player_id)
 	#emit_signal("card_played", card, card_slot_found)
 	
 

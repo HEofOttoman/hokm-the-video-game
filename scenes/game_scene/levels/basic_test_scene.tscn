@@ -61,7 +61,6 @@ deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
 ai_controllers = [NodePath("../EnemyHand1/AIController")]
-trick_cards = [null]
 rulesEngine = NodePath("../Rule Umpire")
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
@@ -173,7 +172,6 @@ horizontal_alignment = 1
 
 [node name="AIController" type="Node" parent="EnemyHand1"]
 script = ExtResource("10_tmcbe")
-difficulty = null
 
 [node name="AITestingBtn" type="Button" parent="EnemyHand1"]
 offset_left = -184.0
@@ -208,7 +206,6 @@ horizontal_alignment = 1
 [node name="AIController" type="Node" parent="EnemyHand2 (Placeholder)" node_paths=PackedStringArray("rulesEngine")]
 script = ExtResource("10_tmcbe")
 rulesEngine = NodePath("../../Rule Umpire")
-difficulty = null
 
 [node name="EnemyHand3 (Placeholder)" type="Node2D" parent="."]
 visible = false
@@ -232,7 +229,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AIController" type="Node" parent="EnemyHand3 (Placeholder)"]
 script = ExtResource("10_tmcbe")
-difficulty = null
 
 [node name="Player Deck Pile" type="Panel" parent="."]
 offset_left = -592.0
