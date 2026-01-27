@@ -103,12 +103,18 @@ func get_card_strength(card: CardData,
 	leading_suit : CardData.Suit, 
 	hokm_suit: 
 	CardData.Suit) -> int:
+	var card_strength : int
+	
 	if card.suit == leading_suit:
-		return 100 + card.rank
+		card_strength = 100 + card.rank
+		#return card_strength
 	if card.suit == hokm_suit:
-		return 50 + card.rank
-	print('CARD STRENGTH:', card.rank)
-	return card.rank
+		card_strength = 50 + card.rank
+		#return card_strength 
+	else:
+		card_strength = card.rank
+	print('CARD STRENGTH:', card_strength)
+	return card_strength
 
 ## Evaluates cards in the trick and returns a winning card.
 func evaluate_trick(trick_cards, hokm_suit):

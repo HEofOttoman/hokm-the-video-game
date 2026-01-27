@@ -184,7 +184,8 @@ metadata/_edit_use_anchors_ = true
 scale = Vector2(1e-05, 1.5)
 texture = ExtResource("56_0soqj")
 
-[node name="DrawButton" type="TextureButton" parent="."]
+[node name="DbgDrawButton" type="TextureButton" parent="."]
+visible = false
 offset_left = -21.333334
 offset_top = 32.666668
 offset_right = 21.333334
@@ -193,4 +194,4 @@ texture_normal = ExtResource("57_ggjff")
 ignore_texture_size = true
 stretch_mode = 0
 
-[connection signal="pressed" from="DrawButton" to="." method="_on_draw_button_pressed"]
+[connection signal="pressed" from="DbgDrawButton" to="." method="_on_draw_button_pressed"]

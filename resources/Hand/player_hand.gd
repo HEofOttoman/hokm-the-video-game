@@ -77,16 +77,15 @@ func _on_drag_ended(card):
 	stop_drag(card)
 
 func start_drag(card):
-	print('START DRAG CALLED')
+	#print('START DRAG CALLED') ## Was used to debug
 	
 	var card_slot_found = card.get_hovered_card_slot()
 	if card_slot_found and card_slot_found.card_in_slot == true: 
 		card_slot_found.remove_card_from_slot() ## Okay this works to fix the ghost slot bug, no need to make a new occupied state in the card
-	#card.scale = Vector2(1, 1)
 	## No use at all for starting card drag, was used for hover which is inside the card's script now.
 
 func stop_drag(card): ## Should move cards to slots if found.
-	print('STOP DRAG CALLED')
+	#print('STOP DRAG CALLED') ## Was used to debug
 	card.scale = Vector2(1.05, 1.05)
 	var card_slot_found : CardSlot = card.get_hovered_card_slot()
 	if card_slot_found and card_slot_found.card_in_slot == false and card_slot_found == trick_slot: ## Card dropped in empty card slot
@@ -95,24 +94,22 @@ func stop_drag(card): ## Should move cards to slots if found.
 			#card_slot_found.add_card_to_slot()
 			
 		
-		#print('CARD SLOT FOUND:', card_slot_found)
+		print('CARD SLOT FOUND:', card_slot_found)
 		#remove_card_from_hand(card) 
 		#card.position = card_slot_found.position
 		#card_slot_found.add_card_to_slot(card)
 		request_play_card(card, card_slot_found)
 	
 	else:
-		print('CARD SLOT NOT FOUND', card, card_slot_found)
+		#print('CARD SLOT NOT FOUND', card, card_slot_found)
+		print('CARD SLOT NOT FOUND')
 		add_card_to_hand(card) ## Failed to find a card slot
-	#card = null
-
 
 func request_play_card(card, card_slot_found):
 	for i in gameManager.trick_cards.size():
 		print(i, " => ", gameManager.trick_cards[i])
 	print("TRICK CARDS:", gameManager.trick_cards)
 	
-	#if gameManager.rulesEngine.can_play_card(card.card_data, card_slot_found, gameManager.trick_cards, cards_in_hand) == false:
 	if gameManager.rulesEngine.can_play_card(card.card_data, 
 	#card_slot_found, 
 	gameManager.trick_cards, 
@@ -121,9 +118,8 @@ func request_play_card(card, card_slot_found):
 		return "cannot play card"
 		#card_slot_found.add_card_to_slot()
 	
-	print('CARD SLOT FOUND:', card_slot_found)
 	remove_card_from_hand(card) 
-	card.position = card_slot_found.position
+	#card.position = card_slot_found.position
 	card_slot_found.add_card_to_slot(card)
 	print('card play requested, awaiting game manager')
 	gameManager.play_card(card, card_slot_found, cards_in_hand, player_id)

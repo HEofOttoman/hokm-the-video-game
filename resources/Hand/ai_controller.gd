@@ -35,12 +35,10 @@ func take_turn():
 	
 	hand.remove_card_from_hand(chosen_card)
 	chosen_card.flip_card(true)
-	hand.animate_card_to_position(chosen_card, hand.trick_slot)
+	hand.animate_card_to_position(chosen_card, hand.trick_slot.global_position) # AHA THATS IT WHY CARDS ARENT SHOWING
 	hand.trick_slot.add_card_to_slot(chosen_card)
 	#hand.request_card_play(chosen_card, hand.trick_slot, hand.cards, hand.player_id)
 	game_manager.play_card(chosen_card, hand.trick_slot, hand.cards_in_hand, hand.player_id)
-	#rules.play_card(chosen)
-	#rulesEngine.can_play_card()
 
 ## Chooses cards and places them
 #func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : Array[CardData]) -> CardData:
@@ -77,6 +75,7 @@ func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : A
 		#Difficulty.HARD:
 			#get_best_move()
 	print('can you even get this message?')
+	push_error('wow you got this message somehow')
 	return legal_cards.pick_random()
 
 ## Button to test the AI before actual turns

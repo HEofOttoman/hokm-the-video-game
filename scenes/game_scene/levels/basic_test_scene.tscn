@@ -372,6 +372,13 @@ scale = Vector2(1.680001, 1.7999998)
 texture_normal = ExtResource("10_xf0qg")
 stretch_mode = 0
 
+[node name="Console" type="TextEdit" parent="."]
+offset_left = 384.0
+offset_right = 624.0
+offset_bottom = 360.0
+editable = false
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="Game Manager/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
 [connection signal="pressed" from="Game Manager/ResolveTrickDebugBtn" to="Game Manager" method="_on_resolve_trick_debug_btn_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]

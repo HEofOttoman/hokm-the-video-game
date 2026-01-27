@@ -122,10 +122,11 @@ func trick_play():
 	print('Begin Trick Play', current_game_phase)
 	
 	start_turn(hakem_index)
-	
 
-func scoring_cards():
+func scoring_game():
 	current_game_phase = HokmGamePhase.SCORING
+	
+	print(tricks_won)
 	
 	finish_game()
 
@@ -141,7 +142,6 @@ func deal_cards(_player_id): ## Deal cards to each player
 	if not card:
 		return
 	
-	#hands[player_id].receive_card()
 	
 	for i in range(cards_per_player):
 		hands[current_player].receive_card(card)
@@ -165,7 +165,11 @@ func _on_diamonds_pressed() -> void:
 
 ## Gets the card who wins the game
 func resolve_trick():
+	if trick_cards.is_empty(): ## Safeguard ig
+		push_error('Trick cards is empty, invalid')
 	print('Resolving Trick')
+	await get_tree().create_timer(1.5).timeout ## Stops game from going too fast
+	
 	var winning_card = rulesEngine.evaluate_trick(trick_cards, hokm_suit)
 	winner_index = trick_cards.find(winning_card) ## Should find who put down the card..? (Probably won't work T-T)
 	
@@ -173,7 +177,12 @@ func resolve_trick():
 	
 	trick_cards.clear()
 	for slot in trick_slots:
+		slot.occupied_card.queue_free() ## Clears cards from game
 		slot.remove_card_from_slot()
+	
+	tricks_won[winner_index] += 1
+	print('TRICKS WON: ', tricks_won)
+	
 	start_turn(winner_index)
 
 @warning_ignore("unused_parameter")
@@ -189,7 +198,8 @@ func play_card(card, slot, hand_cards, player_id: int): ## Adds the
 	trick_cards, 
 	hand_cards) == false:
 		#reject_play()
-		print('Move is ILLEGAL')
+		print('Move is ILLEGAL, returning card')
+		hands[player_id].add_card_to_hand(card)
 		return
 	
 	trick_cards.append(card)
@@ -201,9 +211,10 @@ func play_card(card, slot, hand_cards, player_id: int): ## Adds the
 		print('Advancing turn')
 		advance_turn()
 
-#func register_hands(): ## idfk I forgot what I imagined this to work in 
-	#for i in player_count: 
-		#hands.append()
+### Supposed to be a failsafe if player IDs ever mismatch somehow
+#func register_hands(): 
+	#for hand in hands: 
+		#hand.player_id = hands[hand]
 
 func advance_turn():
 	print('Next Turn')
@@ -222,13 +233,16 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 		#hands[player_index].get_child().take_turn()
 		$"../EnemyHand1/AIController".take_turn()
 
+## Ending the round, aka 7 tricks won (keeping the game short first, limited to 1 round)
 func end_round():
-	if winner_index == hakem_index and tricks_won[winner_index] == 7:
-		score[winner_index] += 2
-	elif winner_index != hakem_index:
-		score[winner_index] += 3
-	else:
-		score[winner_index] += 1
+	scoring_game()
+	
+	#if winner_index == hakem_index and tricks_won[winner_index] == 7:
+		#score[winner_index] += 2
+	#elif winner_index != hakem_index and tricks_won[winner_index] == 7:
+		#score[winner_index] += 3
+	#else:
+		#score[winner_index] += 1
 
 
 func _on_end_turn_test_btn_pressed() -> void:

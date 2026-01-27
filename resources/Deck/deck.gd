@@ -43,7 +43,7 @@ func discard_deck(): ## Hides deck, even if there are still card remaining
 	## <-- Should play a sound effect here
 	
 	#visible = false ## Not needed the animation does that already
-	$DrawButton.hide()
+	$DbgDrawButton.hide()
 	print("Deck is empty") ## Safely stops the game from crashing
 	return
 

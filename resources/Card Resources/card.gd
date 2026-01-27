@@ -116,7 +116,7 @@ func _on_area_2d_card_action(left: bool) -> void:
 	if not interactive: ## Additional safeguard from moving
 			return
 	if left:
-		print(rank, ' ', suit, " Left Click")
+		#print(rank, ' ', suit, " Left Click") ## Used to debug, now just console spam 
 		dragging = true
 		emit_signal("drag_started", self) ## THIS TOO
 		
@@ -127,7 +127,7 @@ func _on_area_2d_card_action(left: bool) -> void:
 
 func _on_area_2d_card_release(left: bool) -> void: ## Releases cards when the LMB is no longer held down
 	if left:
-		print(rank, ' ', suit, " Released")
+		#print(rank, ' ', suit, " Released") ## Used to debug, now just console spam
 		dragging = false
 		emit_signal("drag_ended", self) ## BRO ADDING `self` IS WHAT FIXED THE HAND SNAP 
 		
