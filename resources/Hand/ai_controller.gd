@@ -33,11 +33,13 @@ func take_turn():
 	)
 	print('CHOSEN CARD:', chosen_card)
 	
-	hand.remove_card_from_hand(chosen_card)
+	#hand.remove_card_from_hand(chosen_card)
 	chosen_card.flip_card(true)
-	hand.animate_card_to_position(chosen_card, hand.trick_slot.global_position) # AHA THATS IT WHY CARDS ARENT SHOWING
 	hand.trick_slot.add_card_to_slot(chosen_card)
-	#hand.request_card_play(chosen_card, hand.trick_slot, hand.cards, hand.player_id)
+	chosen_card.animate_card_to_position(hand.trick_slot.global_position) # AHA THATS IT WHY CARDS ARENT SHOWING
+	hand.remove_card_from_hand(chosen_card)
+	hand.update_hand_positions()
+	#hand.request_play_card(chosen_card, hand.trick_slot) ## Somehow going through the hand first ruins everything
 	game_manager.play_card(chosen_card, hand.trick_slot, hand.cards_in_hand, hand.player_id)
 
 ## Chooses cards and places them

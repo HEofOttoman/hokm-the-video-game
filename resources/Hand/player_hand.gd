@@ -106,9 +106,10 @@ func stop_drag(card): ## Should move cards to slots if found.
 		add_card_to_hand(card) ## Failed to find a card slot
 
 func request_play_card(card, card_slot_found):
-	for i in gameManager.trick_cards.size():
-		print(i, " => ", gameManager.trick_cards[i])
-	print("TRICK CARDS:", gameManager.trick_cards)
+	#for i in gameManager.trick_cards.size():
+		#print(i, " => ", gameManager.trick_cards[i])
+	#print("TRICK CARDS:", gameManager.trick_cards)
+	## ^Helped debug null trick_cards[]
 	
 	if gameManager.rulesEngine.can_play_card(card.card_data, 
 	#card_slot_found, 
@@ -147,13 +148,6 @@ func update_hand_positions():
 			layout_linear()
 		HandLayoutMode.FAN_CARDS:
 			fan_cards()
-	#for i in range(cards_in_hand.size()):
-		### Get new card position based on the index passed in
-		#var card = cards_in_hand[i]
-		#var new_position = calculate_card_position(i)
-		##print("Deck at", new_position) ## Helped troubleshoot when I had the bug of the deck going off screen
-		#card.starting_position = new_position
-		#animate_card_to_position(card, new_position)
 
 ## Calculates the layout of the hand
 func calculate_card_position(index: int) -> Vector2:

@@ -103,13 +103,13 @@ func get_card_strength(card: CardData,
 	leading_suit : CardData.Suit, 
 	hokm_suit: 
 	CardData.Suit) -> int:
-	var card_strength : int
+	var card_strength : int = 0
 	
 	if card.suit == leading_suit:
-		card_strength = 100 + card.rank
+		card_strength = 50 + card.rank
 		#return card_strength
 	if card.suit == hokm_suit:
-		card_strength = 50 + card.rank
+		card_strength = 100 + card.rank
 		#return card_strength 
 	else:
 		card_strength = card.rank

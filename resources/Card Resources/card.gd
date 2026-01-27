@@ -174,4 +174,4 @@ func animate_card_to_position(new_position):
 		get_meta("tween").kill()
 	
 	var tween = get_tree().create_tween()
-	tween.tween_property(self,"position", new_position, 0.5)
+	tween.tween_property(self,"global_position", new_position, 0.5)

@@ -182,7 +182,9 @@ func resolve_trick():
 	
 	tricks_won[winner_index] += 1
 	print('TRICKS WON: ', tricks_won)
+	$"Score Label".text = str('TRICKS WON: ', tricks_won)
 	
+	current_player = winner_index ## Hopefully that works.. I keep having winner ID mismatches (trick win goes to wrong player)
 	start_turn(winner_index)
 
 @warning_ignore("unused_parameter")
