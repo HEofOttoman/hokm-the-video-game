@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqfeyf3vdqexp"]
+
+[ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="1_7x7n5"]
+
+[node name="HokmTutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7x7n5")

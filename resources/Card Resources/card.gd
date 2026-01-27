@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name CardInstance
 ## Based on this tutorial; https://www.youtube.com/watch?v=e7iuMLdWjgw (Noontime Dreamer)
 ## Helped also by Barry's Dev Hell: https://www.youtube.com/watch?v=1mM73u1tvpU
 

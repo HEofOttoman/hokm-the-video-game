@@ -1,11 +1,11 @@
 [gd_scene load_steps=19 format=3 uid="uid://dpr6mnd7ukuya"]
 
-[ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/testscene.gd" id="1_pyd4g"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_exaxi"]
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="3_pyd4g"]
 [ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="3_tmcbe"]
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_b2thp"]
+[ext_resource type="Texture2D" uid="uid://xwtvlh4cxojg" path="res://assets/kenney_input-prompts/Flairs/Double/flair_disabled_cross.png" id="4_d5kay"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="5_m6rcj"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="5_m14oq"]
 [ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="6_f4grl"]
@@ -14,13 +14,12 @@
 [ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://resources/UI Elements/hakem_display.gd" id="8_xf0qg"]
 [ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="9_m6rcj"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="10_d5kay"]
-[ext_resource type="Texture2D" uid="uid://do1ovm5r6e6vt" path="res://assets/kenney_input-prompts/PlayStation Series/Vector/playstation_button_color_triangle.svg" id="10_obeue"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="10_tmcbe"]
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="10_xf0qg"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="14_j7cxb"]
+[ext_resource type="Script" uid="uid://obi3ylgdxkhr" path="res://resources/UI Elements/score_pile.gd" id="15_el8cj"]
 
 [node name="BasicHokmSetup" type="Node2D"]
-script = ExtResource("1_pyd4g")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -2
@@ -34,12 +33,6 @@ texture = ExtResource("2_f4grl")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="Panel" type="Panel" parent="."]
-offset_left = -592.0
-offset_top = -336.0
-offset_right = -272.0
-offset_bottom = -200.0
-
 [node name="720x720Square" type="Panel" parent="."]
 visible = false
 offset_left = -304.0
@@ -49,37 +42,52 @@ offset_bottom = 360.0
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="UILayer" type="CanvasLayer" parent="."]
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="Hakem Display Label" type="Label" parent="."]
-offset_left = -520.0
-offset_top = -304.0
-offset_right = -393.0
-offset_bottom = -281.0
+[node name="InfoPanel1" type="Panel" parent="."]
+offset_left = -592.0
+offset_top = -336.0
+offset_right = -272.0
+offset_bottom = -166.0
+
+[node name="Hakem Display Label" type="Label" parent="InfoPanel1"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 32.0
+offset_right = 199.0
+offset_bottom = 55.0
 theme_override_font_sizes/font_size = 22
-text = "Hakem:"
+text = "HAKEM:"
 vertical_alignment = 1
 script = ExtResource("8_xf0qg")
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="Hakem Display Label"]
-layout_mode = 0
+[node name="TextureRect" type="TextureRect" parent="InfoPanel1/Hakem Display Label"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = -0.44094488
 anchor_top = -0.6956522
 anchor_right = -0.062992126
 anchor_bottom = 1.3913044
-texture = ExtResource("10_obeue")
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_d5kay")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Hokm Display Label" parent="." instance=ExtResource("6_f4grl")]
-offset_left = -520.0
-offset_top = -256.0
-offset_right = -393.0
-offset_bottom = -233.0
+[node name="Hokm Display Label" parent="InfoPanel1" instance=ExtResource("6_f4grl")]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 80.0
+offset_right = 199.0
+offset_bottom = 103.0
+text = "HOKM"
 metadata/_edit_use_anchors_ = true
 
-[node name="Hokm Icon" parent="Hokm Display Label" index="0"]
+[node name="Hokm Icon" parent="InfoPanel1/Hokm Display Label" index="0"]
 anchor_left = -0.44094488
 anchor_top = -0.6956522
 anchor_right = -0.062992126
@@ -96,7 +104,7 @@ deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
 rulesEngine = NodePath("../Rule Umpire")
-score_piles = [NodePath("../Player Deck Pile"), NodePath("../Opponent Deck Pile")]
+score_piles = [NodePath("../Player1ScorePile/Player Deck Pile"), NodePath("../Enemy1ScorePile/Opponent Deck Pile")]
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
 offset_left = -576.0
@@ -130,16 +138,17 @@ text = "Resolve Trick"
 metadata/_edit_use_anchors_ = true
 
 [node name="LeadingSuitDebugLbl" type="Label" parent="Game Manager"]
-offset_left = -160.0
-offset_top = -88.0
-offset_bottom = -71.0
+offset_left = -168.0
+offset_top = -104.0
+offset_right = -8.0
+offset_bottom = -87.0
 text = "LEADING SUIT:"
 
 [node name="Score Label" type="Label" parent="Game Manager"]
-offset_left = -160.0
-offset_top = -136.0
-offset_right = -65.0
-offset_bottom = -119.0
+offset_left = -520.0
+offset_top = -198.0
+offset_right = -423.0
+offset_bottom = -181.0
 text = "TRICKS WON:"
 
 [node name="Rule Umpire" type="Node" parent="."]
@@ -228,6 +237,7 @@ game_manager = NodePath("../../Game Manager")
 rulesEngine = NodePath("../../Rule Umpire")
 
 [node name="AITestingBtn" type="Button" parent="EnemyHand1"]
+visible = false
 offset_left = -184.0
 offset_top = -112.0
 offset_right = -82.0
@@ -284,80 +294,104 @@ metadata/_edit_use_anchors_ = true
 [node name="AIController" type="Node" parent="EnemyHand3 (Placeholder)"]
 script = ExtResource("10_tmcbe")
 
-[node name="Player Deck Pile" type="Panel" parent="."]
-offset_left = -592.0
-offset_top = 104.0
-offset_right = -370.0
-offset_bottom = 331.0
+[node name="Player1ScorePile" type="Node2D" parent="."]
+position = Vector2(-480, 224)
+script = ExtResource("15_el8cj")
+
+[node name="Player Deck Pile" type="Panel" parent="Player1ScorePile"]
+offset_left = -112.0
+offset_top = -88.0
+offset_right = 112.0
+offset_bottom = 96.0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Player Deck Pile"]
+[node name="Label" type="Label" parent="Player1ScorePile/Player Deck Pile"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.14414415
 anchor_top = 0.03524229
 anchor_right = 0.9009009
 anchor_bottom = 0.12887524
-text = "Score: 0/7"
+text = "Your Score: 0/7"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="CardSlot" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(48, 186)
 
-[node name="CardSlot2" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot2" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(48, 56)
 
-[node name="CardSlot3" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot3" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(176, 186)
 
-[node name="CardSlot4" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot4" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(176, 56)
 
-[node name="CardSlot5" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot5" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(48, 120)
 
-[node name="CardSlot6" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot6" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(112, 120)
 
-[node name="CardSlot7" parent="Player Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot7" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(176, 120)
 
-[node name="Opponent Deck Pile" type="Panel" parent="."]
-offset_left = 384.0
-offset_top = -336.0
-offset_right = 600.0
-offset_bottom = -152.0
+[node name="Enemy1ScorePile" type="Node2D" parent="."]
+position = Vector2(488, -240)
+
+[node name="Opponent Deck Pile" type="Panel" parent="Enemy1ScorePile"]
+offset_left = -112.0
+offset_top = -88.0
+offset_right = 112.0
+offset_bottom = 96.0
 mouse_filter = 2
 
-[node name="Deck Label" type="Label" parent="Opponent Deck Pile"]
-layout_mode = 0
-offset_left = 23.0
-offset_right = 191.0
-offset_bottom = 25.0
-text = "Opponent Decks"
+[node name="Deck Label" type="Label" parent="Enemy1ScorePile/Opponent Deck Pile"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.17391305
+grow_horizontal = 2
+grow_vertical = 2
+text = "Opponent Score: 0/7"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="CardSlot" parent="Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(136, 130)
 
-[node name="CardSlot2" parent="Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot2" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(40, 89)
 
-[node name="CardSlot3" parent="Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot3" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(88, 130)
 
-[node name="CardSlot4" parent="Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot4" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(136, 57)
 
-[node name="CardSlot5" parent="Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot5" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(184, 130)
 
-[node name="CardSlot6" parent="Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot6" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(88, 57)
 
-[node name="CardSlot7" parent="Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+[node name="CardSlot7" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(184, 57)
 
 [node name="Clubs" type="TextureButton" parent="."]
@@ -419,4 +453,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Spades" to="Game Manager" method="_on_spades_pressed"]
 [connection signal="pressed" from="Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
 
-[editable path="Hokm Display Label"]
+[editable path="InfoPanel1/Hokm Display Label"]

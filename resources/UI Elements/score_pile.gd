@@ -1,6 +1,16 @@
 extends Node2D
-#class_name HandClass
-## File name is a misnomer, this script is used by both AI and player controllers
+class_name ScorePile
+## Lays out the cards won of a player like the hand
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+	#pass
+
+### -----------
 
 ## Based on barry's dev hell and another tutorial : https://www.youtube.com/watch?v=lATAS8YpzFE
 
@@ -40,10 +50,10 @@ var center_screen_x ## The width of the screen
 #signal card_played(card, card_slot: CardSlot)
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	center_screen_x = get_viewport().size.x / 2
-	set_interactive(false)
-	#$"../Deck".card_drawn.connect(self._on_card_drawn) ## Already connected?
+#func _ready() -> void:
+	#center_screen_x = get_viewport().size.x / 2
+	#set_interactive(false)
+	##$"../Deck".card_drawn.connect(self._on_card_drawn) ## Already connected?
 
 ## Toggles all cards in the hand interactive or not
 func set_interactive(enabled: bool):

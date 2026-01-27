@@ -88,7 +88,7 @@ func declaring_hakem():
 	hakem_index = hands.find(hakem)
 	
 	print('Hakem: ', hakem, ' Index: ', hakem_index)
-	$"../Hakem Display Label".text = str("Hakem: ", hakem.name) # Replace with function body.
+	$"../InfoPanel1/Hakem Display Label".text = str("Hakem: ", hakem.name) # Replace with function body.
 
 	
 	current_player = hakem_index
@@ -101,7 +101,7 @@ func declaring_hokm(): ## Process for declaring the hokm
 	## Add the process for declaring it here
 	hokm_suit = CardData.Suit.values().pick_random()
 	print('Hokm suit:', hokm_suit)
-	$"../Hokm Display Label"._on_hokm_chosen(hokm_suit)
+	$"../InfoPanel1/Hokm Display Label"._on_hokm_chosen(hokm_suit)
 	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
 	#hokm_chosen.emit(hokm)
 
@@ -136,6 +136,8 @@ func scoring_game():
 
 func finish_game():
 	current_game_phase = HokmGamePhase.GAME_OVER
+	print('GAME OVER!!! THANKS FOR PLAYING!!!')
+	push_error('Game is over :>>') ## IDK how to end game yet
 
 func _on_card_drawn(card: Variant) -> void: ## Function used to add cards to hands automatically
 	hands[current_player].receive_card(card)
@@ -171,18 +173,21 @@ func _on_diamonds_pressed() -> void:
 func resolve_trick():
 	if trick_cards.is_empty(): ## Safeguard ig
 		push_error('Trick cards is empty, invalid')
+		return
 	print('Resolving Trick')
 	await get_tree().create_timer(1.5).timeout ## Stops game from going too fast
 	
 	var winning_card = rulesEngine.evaluate_trick(trick_cards, hokm_suit)
 	winner_index = trick_cards.find(winning_card) ## Should find who put down the card..? (Probably won't work T-T)
-	## OH YEAH THATS WHY! THE FIRST PLAYER MIGHT BE THE AI, THUS INDEX 0, THUS I GET THE TRICK!
+	## OH YEAH THATS WHY! THE FIRST CARD MIGHT BE FROM THE AI, THUS INDEX 0, THUS  GET THE TRICK!
 	
 	print('WINNER: ', winner_index)
 	
 	trick_cards.clear()
 	for slot in trick_slots:
 		slot.occupied_card.queue_free() ## Clears cards from game
+		#slot.occupied_card.flip_card(false)
+		#slot.occupied_card.animate_card_to_position($"../Player1ScorePile".global_position)
 		slot.remove_card_from_slot()
 	
 	tricks_won[winner_index] += 1
@@ -210,6 +215,11 @@ func play_card(card, slot, hand_cards, player_id: int): ## Adds the
 		return
 	
 	trick_cards.append(card)
+	#trick_cards.append({
+		#'player_index' : player_id,
+		#'card' : card
+	#})
+	
 	print('Card is playable, appending to trick')
 	
 	if trick_cards.size() == player_count:
@@ -223,13 +233,17 @@ func play_card(card, slot, hand_cards, player_id: int): ## Adds the
 	#for hand in hands: 
 		#hand.player_id = hands[hand]
 
-func advance_turn():
+func advance_turn(): ## Advances hand
 	print('Next Turn')
+	
 	current_player = (current_player + 1) % hands.size()
 	start_turn(current_player)
 
 func start_turn(player_index: int): ## Starts the turn of the player with corresponding player id/index
 	var active_hand := hands[player_index]
+	
+	if tricks_won[current_player] == 7: ## Checks to see if 7 tricks have been won and ends game accordi
+		end_round()
 	
 	if active_hand.is_player_controlled:
 		active_hand.set_interactive(true)
