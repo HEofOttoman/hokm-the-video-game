@@ -88,6 +88,8 @@ func declaring_hakem():
 	hakem_index = hands.find(hakem)
 	
 	print('Hakem: ', hakem, ' Index: ', hakem_index)
+	$"../Hakem Display Label".text = str("Hakem: ", hakem.name) # Replace with function body.
+
 	
 	current_player = hakem_index
 	
@@ -99,6 +101,8 @@ func declaring_hokm(): ## Process for declaring the hokm
 	## Add the process for declaring it here
 	hokm_suit = CardData.Suit.values().pick_random()
 	print('Hokm suit:', hokm_suit)
+	$"../Hokm Display Label"._on_hokm_chosen(hokm_suit)
+	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
 	#hokm_chosen.emit(hokm)
 
 func deal_remaining_cards():
@@ -172,6 +176,7 @@ func resolve_trick():
 	
 	var winning_card = rulesEngine.evaluate_trick(trick_cards, hokm_suit)
 	winner_index = trick_cards.find(winning_card) ## Should find who put down the card..? (Probably won't work T-T)
+	## OH YEAH THATS WHY! THE FIRST PLAYER MIGHT BE THE AI, THUS INDEX 0, THUS I GET THE TRICK!
 	
 	print('WINNER: ', winner_index)
 	

@@ -105,6 +105,7 @@ func stop_drag(card): ## Should move cards to slots if found.
 		print('CARD SLOT NOT FOUND')
 		add_card_to_hand(card) ## Failed to find a card slot
 
+## Called when a card is dropped into the card slot
 func request_play_card(card, card_slot_found):
 	#for i in gameManager.trick_cards.size():
 		#print(i, " => ", gameManager.trick_cards[i])
@@ -127,12 +128,14 @@ func request_play_card(card, card_slot_found):
 	#emit_signal("card_played", card, card_slot_found)
 	
 
+## Removes the card from the cards_in_hand array and updates hand layout 
 func remove_card_from_hand(card):
 	if card in cards_in_hand:
 		cards_in_hand.erase(card)
 		update_hand_positions()
 		
 
+## Adds the card to the array and updates card to position
 func add_card_to_hand(card):
 	if card not in cards_in_hand:
 		cards_in_hand.insert(0, card)
@@ -142,6 +145,7 @@ func add_card_to_hand(card):
 	
 
 ### Visual Elements
+## Updates the cards
 func update_hand_positions():
 	match hand_layout_mode:
 		HandLayoutMode.LINEAR:
@@ -159,6 +163,7 @@ func calculate_card_position(index: int) -> Vector2:
 func update_card_width(): ## Should pack cards closer together upon more cards being added (works but not enough)
 	CARD_SEPARATION_WIDTH = max(250 - (cards_in_hand.size() * 10),100)
 
+## Possibly will deprecate and move to card class
 func animate_card_to_position(card, new_position):
 	if card.has_meta("tween"):
 		card.get_meta("tween").kill()
@@ -166,6 +171,7 @@ func animate_card_to_position(card, new_position):
 	var tween = get_tree().create_tween()
 	tween.tween_property(card,"position", new_position, 0.5)
 
+## Spreads the cards out on a horizontal line
 func layout_linear():
 	for i in range(cards_in_hand.size()):
 		## Get new card position based on the index passed in

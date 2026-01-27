@@ -61,15 +61,13 @@ func can_play_card(
 	
 	return true
 
-func get_leading_suit(trick_cards: Array):
+func get_leading_suit(trick_cards: Array): ## Gets the leading suit from trick_cards
 	var leading_suit
-	
 	if trick_cards.is_empty(): 
 		leading_suit = null
-		print('leading suit is free')
+		print('No cards in trick')
 	else:
 		leading_suit = trick_cards[0].card_data.suit
-	
 	return leading_suit
 
 func get_legal_cards(
@@ -89,11 +87,13 @@ func get_legal_cards(
 	
 	for card in hand_cards:
 		#can_play_card(card, card_slot, trick_cards, hand_cards)
-		can_play_card(card, 
+		#can_play_card(card, 
+		#trick_cards, 
+		#hand_cards)
+		#if true:
+		if can_play_card(card, 
 		trick_cards, 
-		hand_cards)
-			
-		if true:
+		hand_cards) == true: ## MY MISTAKE!!! I didn't check the value 
 			legal_cards.append(card)
 	print('LEGAL CARDS:', legal_cards)
 	return legal_cards
@@ -108,7 +108,7 @@ func get_card_strength(card: CardData,
 	if card.suit == leading_suit:
 		card_strength = 50 + card.rank
 		#return card_strength
-	if card.suit == hokm_suit:
+	elif card.suit == hokm_suit: ## My mistake: I used an if statement, not elif T-T
 		card_strength = 100 + card.rank
 		#return card_strength 
 	else:

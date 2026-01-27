@@ -70,8 +70,10 @@ func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : A
 				hokm_suit)
 				
 				if score > best_score:
-					score = best_score
-					card = best_card
+					#score = best_score ## My mistake: switched these two around somehow 
+					#card = best_card
+					best_score = score
+					best_card = card
 			print('BEST CARD:', best_card)
 			return best_card
 		#Difficulty.HARD:
