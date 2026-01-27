@@ -57,7 +57,7 @@ func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : A
 				return legal_cards.pick_random() ## IMPORTANT failsafe if trick_cards is empty,
 				## ^ Otherwise, `Out of bounds get index '0' (on base: 'Array')`
 			
-			var leading_suit : CardData.Suit = trick_cards[0].card_data.suit
+			var leading_suit : CardData.Suit = trick_cards[0].card.card_data.suit
 			print("LEADING SUIT:", leading_suit)
 			
 			var best_score := 0

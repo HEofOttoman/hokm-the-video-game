@@ -12,6 +12,7 @@ class_name Deck
 
 signal card_drawn(card)
 
+## Shuffles deck with MAX randomness
 func shuffle_deck():
 	cards.shuffle()
 	print("Cards have been shuffled")
@@ -35,6 +36,7 @@ func shuffle_deck():
 	##if event.is_action_pressed("ClickR"):
 		##deck_clicked.emit(false)
 
+## Called when the draw button (debug only) is pressed
 func _on_draw_button_pressed() -> void: ## This was used to trigger drawing, useless for AI.
 	draw_card()
 

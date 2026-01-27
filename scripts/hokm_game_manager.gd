@@ -178,7 +178,9 @@ func resolve_trick():
 	await get_tree().create_timer(1.5).timeout ## Stops game from going too fast
 	
 	var winning_card = rulesEngine.evaluate_trick(trick_cards, hokm_suit)
-	winner_index = trick_cards.find(winning_card) ## Should find who put down the card..? (Probably won't work T-T)
+	winner_index = winning_card.player_index
+	
+	#winner_index = trick_cards.find(winning_card) ## Should find who put down the card..? (Probably won't work T-T)
 	## OH YEAH THATS WHY! THE FIRST CARD MIGHT BE FROM THE AI, THUS INDEX 0, THUS  GET THE TRICK!
 	
 	print('WINNER: ', winner_index)
@@ -214,11 +216,8 @@ func play_card(card, slot, hand_cards, player_id: int): ## Adds the
 		hands[player_id].add_card_to_hand(card)
 		return
 	
-	trick_cards.append(card)
-	#trick_cards.append({
-		#'player_index' : player_id,
-		#'card' : card
-	#})
+	#trick_cards.append(card)
+	trick_cards.append(TrickEntry.new(player_id, card))
 	
 	print('Card is playable, appending to trick')
 	
