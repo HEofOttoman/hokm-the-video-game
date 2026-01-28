@@ -185,22 +185,26 @@ func resolve_trick():
 	
 	print('WINNER: ', winner_index)
 	
-	trick_cards.clear()
-	for slot in trick_slots:
-		slot.occupied_card.queue_free() ## Clears cards from game
-		#slot.occupied_card.flip_card(false)
-		#slot.occupied_card.animate_card_to_position($"../Player1ScorePile".global_position)
-		slot.remove_card_from_slot()
-	
 	tricks_won[winner_index] += 1
 	print('TRICKS WON: ', tricks_won)
 	$"Score Label".text = str('TRICKS WON: ', tricks_won)
+	
+	trick_cards.clear()
+	for slot in trick_slots: ## Animates cards to respective score piles
+		var winner_pile : ScorePile = hands[winner_index].score_pile
+		#slot.occupied_card.queue_free() ## Clears cards from game
+		slot.occupied_card.set_interactive(false)
+		slot.occupied_card.flip_card(false)
+		slot.occupied_card.animate_card_to_position(winner_pile.global_position)
+		winner_pile.add_card_to_pile(slot.occupied_card, tricks_won[winner_index])
+		slot.remove_card_from_slot()
 	
 	current_player = winner_index ## Hopefully that works.. I keep having winner ID mismatches (trick win goes to wrong player)
 	start_turn(winner_index)
 
 @warning_ignore("unused_parameter")
-func play_card(card, slot, hand_cards, player_id: int): ## Adds the
+#func play_card(card, slot, hand_cards, player_id: int): ## Adds the
+func add_card_to_trick(card, slot, hand_cards, player_id: int): ## Adds the
 	#print('Game Manager copies, attempting to check if card is playable')
 	if player_id != current_player:
 		push_error("NOT THIS PLAYER'S TURN")

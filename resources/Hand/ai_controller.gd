@@ -40,7 +40,9 @@ func take_turn():
 	hand.remove_card_from_hand(chosen_card)
 	hand.update_hand_positions()
 	#hand.request_play_card(chosen_card, hand.trick_slot) ## Somehow going through the hand first ruins everything
-	game_manager.play_card(chosen_card, hand.trick_slot, hand.cards_in_hand, hand.player_id)
+	#game_manager.play_card(chosen_card, hand.trick_slot, hand.cards_in_hand, hand.player_id)
+	game_manager.add_card_to_trick(chosen_card, hand.trick_slot, hand.cards_in_hand, hand.player_id)
+	
 
 ## Chooses cards and places them
 #func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : Array[CardData]) -> CardData:

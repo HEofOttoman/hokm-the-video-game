@@ -1,5 +1,5 @@
 extends Node2D
-#class_name HandClass
+class_name HandClass
 ## File name is a misnomer, this script is used by both AI and player controllers
 
 ## Based on barry's dev hell and another tutorial : https://www.youtube.com/watch?v=lATAS8YpzFE
@@ -34,6 +34,7 @@ var center_screen_x ## The width of the screen
 @export var rulesEngine = RulesEngine.new()
 @export var trick_slot : CardSlot ## In this game, that slot is really all you need to interact with, nothing else
 @export var HandLabel : Label ## The label to display hand information in
+@export var score_pile : ScorePile
 
 @export var is_player_controlled : bool = false ## Whether or not the hand is owned by a player
 
@@ -126,7 +127,8 @@ func on_card_dropped(card, card_slot_found):
 	#card.position = card_slot_found.position
 	card_slot_found.add_card_to_slot(card)
 	print('card play requested, awaiting game manager')
-	gameManager.play_card(card, card_slot_found, cards_in_hand, player_id)
+	#gameManager.play_card(card, card_slot_found, cards_in_hand, player_id)
+	gameManager.add_card_to_trick(card, card_slot_found, cards_in_hand, player_id)
 	#emit_signal("card_played", card, card_slot_found)
 	
 

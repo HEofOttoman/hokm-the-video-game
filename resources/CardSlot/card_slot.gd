@@ -34,6 +34,7 @@ func add_card_to_slot(card): ## Places card inside of slot
 	
 	print('Card Added to slot')
 
+## Resets card slot variables, doesn't change card position
 func remove_card_from_slot():
 	if not card_in_slot:
 		return

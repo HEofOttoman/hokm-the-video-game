@@ -44,6 +44,78 @@ metadata/_edit_use_anchors_ = true
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
+[node name="Clubs" type="TextureButton" parent="UILayer"]
+visible = false
+offset_left = -4.0000153
+offset_top = 96.0
+offset_right = 51.999985
+offset_bottom = 152.00002
+scale = Vector2(1.680001, 1.7999998)
+texture_normal = ExtResource("7_exaxi")
+stretch_mode = 0
+
+[node name="Hearts" type="TextureButton" parent="UILayer"]
+visible = false
+offset_left = -98.000015
+offset_top = 96.000015
+offset_right = -42.000015
+offset_bottom = 152.00002
+scale = Vector2(1.680001, 1.7999998)
+texture_normal = ExtResource("8_sl5y5")
+stretch_mode = 0
+
+[node name="Spades" type="TextureButton" parent="UILayer"]
+visible = false
+offset_left = -192.00002
+offset_top = 96.000015
+offset_right = -136.00002
+offset_bottom = 152.00002
+scale = Vector2(1.680001, 1.7999998)
+texture_normal = ExtResource("9_m6rcj")
+stretch_mode = 0
+
+[node name="Diamonds" type="TextureButton" parent="UILayer"]
+visible = false
+offset_left = 89.999985
+offset_top = 96.0
+offset_right = 145.99998
+offset_bottom = 152.0
+scale = Vector2(1.680001, 1.7999998)
+texture_normal = ExtResource("10_xf0qg")
+stretch_mode = 0
+
+[node name="DebugLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="EndTurnTestBtn" type="Button" parent="DebugLayer"]
+anchors_preset = -1
+anchor_left = 0.35625
+anchor_right = 0.45078126
+anchor_bottom = 0.08194444
+offset_left = -1032.0
+offset_top = -40.0
+offset_right = -1032.0
+offset_bottom = -40.0
+text = "End Turn"
+
+[node name="ResolveTrickDebugBtn" type="Button" parent="DebugLayer"]
+anchors_preset = -1
+anchor_left = 0.35625
+anchor_right = 0.45078126
+anchor_bottom = 0.08194444
+offset_left = -1032.0
+offset_top = -112.0
+offset_right = -993.0
+offset_bottom = -112.0
+text = "Resolve Trick"
+
+[node name="LeadingSuitDebugLbl" type="Label" parent="DebugLayer"]
+offset_left = -168.0
+offset_top = -104.0
+offset_right = -8.0
+offset_bottom = -87.0
+text = "LEADING SUIT:"
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
@@ -104,45 +176,15 @@ deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
 rulesEngine = NodePath("../Rule Umpire")
-score_piles = [null, NodePath("../Enemy1ScorePile/Opponent Deck Pile")]
+score_piles = [null, null]
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
+visible = false
 offset_left = -576.0
 offset_top = 32.0
 offset_right = -474.0
 offset_bottom = 91.0
 text = "Tutorial"
-
-[node name="EndTurnTestBtn" type="Button" parent="Game Manager"]
-anchors_preset = -1
-anchor_left = 0.35625
-anchor_right = 0.45078126
-anchor_bottom = 0.08194444
-offset_left = -1032.0
-offset_top = -40.0
-offset_right = -1032.0
-offset_bottom = -40.0
-text = "End Turn"
-metadata/_edit_use_anchors_ = true
-
-[node name="ResolveTrickDebugBtn" type="Button" parent="Game Manager"]
-anchors_preset = -1
-anchor_left = 0.35625
-anchor_right = 0.45078126
-anchor_bottom = 0.08194444
-offset_left = -1032.0
-offset_top = -112.0
-offset_right = -993.0
-offset_bottom = -112.0
-text = "Resolve Trick"
-metadata/_edit_use_anchors_ = true
-
-[node name="LeadingSuitDebugLbl" type="Label" parent="Game Manager"]
-offset_left = -168.0
-offset_top = -104.0
-offset_right = -8.0
-offset_bottom = -87.0
-text = "LEADING SUIT:"
 
 [node name="Score Label" type="Label" parent="Game Manager"]
 offset_left = -520.0
@@ -174,13 +216,13 @@ slot_type = 1
 
 [node name="TrickSlot" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
 z_index = -1
-position = Vector2(64, 56)
+position = Vector2(112, 16)
 
 [node name="TrickSlot1" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
 z_index = -1
-position = Vector2(64, -56)
+position = Vector2(16, -16)
 
-[node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel")]
+[node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile")]
 position = Vector2(64, 192)
 script = ExtResource("5_m6rcj")
 hand_layout_mode = 0
@@ -188,6 +230,7 @@ gameManager = NodePath("../Game Manager")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot")
 HandLabel = NodePath("PlayerLabel")
+score_pile = NodePath("../Player1ScorePile")
 is_player_controlled = true
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHand"]
@@ -208,12 +251,13 @@ text = "Player 0 (You)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot")]
+[node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot", "score_pile")]
 position = Vector2(64, -192)
 script = ExtResource("5_m6rcj")
 player_id = 1
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot1")
+score_pile = NodePath("../Enemy1ScorePile")
 
 [node name="PlayerIcon1" type="TextureRect" parent="EnemyHand1"]
 offset_left = -64.0
@@ -245,6 +289,12 @@ offset_right = -82.0
 offset_bottom = -53.0
 text = "Test AI"
 metadata/_edit_use_anchors_ = true
+
+[node name="Player1ScorePile" parent="." instance=ExtResource("14_d5kay")]
+position = Vector2(-320, 323)
+
+[node name="Enemy1ScorePile" parent="." instance=ExtResource("14_d5kay")]
+position = Vector2(448, -281)
 
 [node name="EnemyHand2 (Placeholder)" type="Node2D" parent="."]
 visible = false
@@ -295,102 +345,6 @@ metadata/_edit_use_anchors_ = true
 [node name="AIController" type="Node" parent="EnemyHand3 (Placeholder)"]
 script = ExtResource("10_tmcbe")
 
-[node name="Player1ScorePile" parent="." instance=ExtResource("14_d5kay")]
-position = Vector2(-480, 224)
-
-[node name="Enemy1ScorePile" type="Node2D" parent="."]
-position = Vector2(488, -240)
-
-[node name="Opponent Deck Pile" type="Panel" parent="Enemy1ScorePile"]
-offset_left = -112.0
-offset_top = -88.0
-offset_right = 112.0
-offset_bottom = 96.0
-mouse_filter = 2
-
-[node name="CardSlot" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(136, 130)
-
-[node name="CardSlot2" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(40, 89)
-
-[node name="CardSlot3" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(88, 130)
-
-[node name="CardSlot4" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(136, 57)
-
-[node name="CardSlot5" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(184, 130)
-
-[node name="CardSlot6" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(88, 57)
-
-[node name="CardSlot7" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(184, 57)
-
-[node name="Deck Label" type="Label" parent="Enemy1ScorePile"]
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.17391305
-offset_left = -72.0
-offset_top = -80.0
-offset_right = 92.0
-offset_bottom = -63.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Opponent Score: 0/7"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Clubs" type="TextureButton" parent="."]
-visible = false
-offset_left = -4.0000153
-offset_top = 96.0
-offset_right = 51.999985
-offset_bottom = 152.00002
-scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("7_exaxi")
-stretch_mode = 0
-
-[node name="Hearts" type="TextureButton" parent="."]
-visible = false
-offset_left = -98.000015
-offset_top = 96.000015
-offset_right = -42.000015
-offset_bottom = 152.00002
-scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("8_sl5y5")
-stretch_mode = 0
-
-[node name="Spades" type="TextureButton" parent="."]
-visible = false
-offset_left = -192.00002
-offset_top = 96.000015
-offset_right = -136.00002
-offset_bottom = 152.00002
-scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("9_m6rcj")
-stretch_mode = 0
-
-[node name="Diamonds" type="TextureButton" parent="."]
-visible = false
-offset_left = 89.999985
-offset_top = 96.0
-offset_right = 145.99998
-offset_bottom = 152.0
-scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("10_xf0qg")
-stretch_mode = 0
-
 [node name="Console" type="TextEdit" parent="."]
 offset_left = 360.0
 offset_top = -88.0
@@ -401,14 +355,15 @@ text = "Console"
 editable = false
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Game Manager/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
-[connection signal="pressed" from="Game Manager/ResolveTrickDebugBtn" to="Game Manager" method="_on_resolve_trick_debug_btn_pressed"]
+[connection signal="pressed" from="UILayer/Clubs" to="Game Manager" method="_on_clubs_pressed"]
+[connection signal="pressed" from="UILayer/Hearts" to="Game Manager" method="_on_hearts_pressed"]
+[connection signal="pressed" from="UILayer/Spades" to="Game Manager" method="_on_spades_pressed"]
+[connection signal="pressed" from="UILayer/Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
+[connection signal="pressed" from="DebugLayer/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
+[connection signal="pressed" from="DebugLayer/ResolveTrickDebugBtn" to="Game Manager" method="_on_resolve_trick_debug_btn_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
-[connection signal="pressed" from="Clubs" to="Game Manager" method="_on_clubs_pressed"]
-[connection signal="pressed" from="Hearts" to="Game Manager" method="_on_hearts_pressed"]
-[connection signal="pressed" from="Spades" to="Game Manager" method="_on_spades_pressed"]
-[connection signal="pressed" from="Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
 
 [editable path="InfoPanel1/Hokm Display Label"]
 [editable path="Player1ScorePile"]
+[editable path="Enemy1ScorePile"]
