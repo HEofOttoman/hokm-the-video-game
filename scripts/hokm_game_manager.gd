@@ -88,7 +88,7 @@ func declaring_hakem():
 	hakem_index = hands.find(hakem)
 	
 	print('Hakem: ', hakem, ' Index: ', hakem_index)
-	$"../InfoPanel1/Hakem Display Label".text = str("Hakem: ", hakem.name) # Replace with function body.
+	$"../HUDLayer/InfoPanel1/Hakem Display Label".text = str("Hakem: ", hakem.name) # Replace with function body.
 
 	
 	current_player = hakem_index
@@ -101,7 +101,7 @@ func declaring_hokm(): ## Process for declaring the hokm
 	## Add the process for declaring it here
 	hokm_suit = CardData.Suit.values().pick_random()
 	print('Hokm suit:', hokm_suit)
-	$"../InfoPanel1/Hokm Display Label"._on_hokm_chosen(hokm_suit)
+	$"../HUDLayer/Hokm Display Label"._on_hokm_chosen(hokm_suit)
 	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
 	#hokm_chosen.emit(hokm)
 
@@ -187,7 +187,7 @@ func resolve_trick():
 	
 	tricks_won[winner_index] += 1
 	print('TRICKS WON: ', tricks_won)
-	$"Score Label".text = str('TRICKS WON: ', tricks_won)
+	$"../HUDLayer/Score Label".text = str('TRICKS WON: ', tricks_won)
 	
 	trick_cards.clear()
 	for slot in trick_slots: ## Animates cards to respective score piles

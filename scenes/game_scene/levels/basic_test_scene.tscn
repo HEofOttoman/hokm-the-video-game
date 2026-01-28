@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=20 format=3 uid="uid://dpr6mnd7ukuya"]
 
+[ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="1_el8cj"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_exaxi"]
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="3_pyd4g"]
@@ -33,116 +34,57 @@ texture = ExtResource("2_f4grl")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
+[node name="BackgroundColor" type="ColorRect" parent="."]
+z_index = -2
+material = ExtResource("1_el8cj")
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
 [node name="720x720Square" type="Panel" parent="."]
 visible = false
-offset_left = -304.0
+offset_left = -336.0
 offset_top = -360.0
-offset_right = 416.0
+offset_right = 384.0
 offset_bottom = 360.0
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
-[node name="Clubs" type="TextureButton" parent="UILayer"]
+[node name="InfoPanel1" type="Panel" parent="HUDLayer"]
 visible = false
-offset_left = -4.0000153
-offset_top = 96.0
-offset_right = 51.999985
-offset_bottom = 152.00002
-scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("7_exaxi")
-stretch_mode = 0
-
-[node name="Hearts" type="TextureButton" parent="UILayer"]
-visible = false
-offset_left = -98.000015
-offset_top = 96.000015
-offset_right = -42.000015
-offset_bottom = 152.00002
-scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("8_sl5y5")
-stretch_mode = 0
-
-[node name="Spades" type="TextureButton" parent="UILayer"]
-visible = false
-offset_left = -192.00002
-offset_top = 96.000015
-offset_right = -136.00002
-offset_bottom = 152.00002
-scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("9_m6rcj")
-stretch_mode = 0
-
-[node name="Diamonds" type="TextureButton" parent="UILayer"]
-visible = false
-offset_left = 89.999985
-offset_top = 96.0
-offset_right = 145.99998
-offset_bottom = 152.0
-scale = Vector2(1.680001, 1.7999998)
-texture_normal = ExtResource("10_xf0qg")
-stretch_mode = 0
-
-[node name="DebugLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="EndTurnTestBtn" type="Button" parent="DebugLayer"]
 anchors_preset = -1
-anchor_left = 0.35625
-anchor_right = 0.45078126
-anchor_bottom = 0.08194444
-offset_left = -1032.0
-offset_top = -40.0
-offset_right = -1032.0
-offset_bottom = -40.0
-text = "End Turn"
+anchor_left = -0.50625
+anchor_top = -0.46666667
+anchor_right = -0.3
+anchor_bottom = -0.15555556
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="ResolveTrickDebugBtn" type="Button" parent="DebugLayer"]
+[node name="Hakem Display Label" type="Label" parent="HUDLayer/InfoPanel1"]
+layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.35625
-anchor_right = 0.45078126
-anchor_bottom = 0.08194444
-offset_left = -1032.0
-offset_top = -112.0
-offset_right = -993.0
-offset_bottom = -112.0
-text = "Resolve Trick"
-
-[node name="LeadingSuitDebugLbl" type="Label" parent="DebugLayer"]
-offset_left = -168.0
-offset_top = -104.0
-offset_right = -8.0
-offset_bottom = -87.0
-text = "LEADING SUIT:"
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-
-[node name="InfoPanel1" type="Panel" parent="."]
-offset_left = -592.0
-offset_top = -336.0
-offset_right = -272.0
-offset_bottom = -166.0
-
-[node name="Hakem Display Label" type="Label" parent="InfoPanel1"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 32.0
-offset_right = 199.0
-offset_bottom = 55.0
+anchor_left = 0.28125
+anchor_top = 0.15384616
+anchor_right = 0.96875
+anchor_bottom = 0.26442307
 theme_override_font_sizes/font_size = 22
 text = "HAKEM:"
 vertical_alignment = 1
 script = ExtResource("8_xf0qg")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="InfoPanel1/Hakem Display Label"]
+[node name="TextureRect" type="TextureRect" parent="HUDLayer/InfoPanel1/Hakem Display Label"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.44094488
+anchor_left = -0.3181819
 anchor_top = -0.6956522
-anchor_right = -0.062992126
+anchor_right = -0.069316216
 anchor_bottom = 1.3913044
 grow_horizontal = 2
 grow_vertical = 2
@@ -150,25 +92,100 @@ texture = ExtResource("4_d5kay")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Hokm Display Label" parent="InfoPanel1" instance=ExtResource("6_f4grl")]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 80.0
-offset_right = 199.0
-offset_bottom = 103.0
-text = "HOKM"
+[node name="Score Label" type="Label" parent="HUDLayer"]
+anchors_preset = -1
+anchor_left = -0.45
+anchor_top = -0.25555557
+anchor_right = -0.37421876
+anchor_bottom = -0.23194444
+offset_top = 1.5258789e-05
+text = "TRICKS WON:"
 metadata/_edit_use_anchors_ = true
 
-[node name="Hokm Icon" parent="InfoPanel1/Hokm Display Label" index="0"]
-anchor_left = -0.44094488
-anchor_top = -0.6956522
-anchor_right = -0.062992126
-anchor_bottom = 1.7391304
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
+[node name="Hokm Display Label" parent="HUDLayer" instance=ExtResource("6_f4grl")]
+offset_left = -576.0
+offset_top = -240.0
+offset_right = -512.0
+offset_bottom = -217.0
+
+[node name="Container" type="HBoxContainer" parent="HUDLayer"]
+anchors_preset = -1
+anchor_left = -0.059375
+anchor_top = 0.44444445
+anchor_right = 0.05
+anchor_bottom = 0.4888889
+offset_left = 4.0
+offset_right = 4.0
+alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Clubs" type="TextureButton" parent="HUDLayer/Container"]
+layout_mode = 2
+texture_normal = ExtResource("7_exaxi")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Hearts" type="TextureButton" parent="HUDLayer/Container"]
+layout_mode = 2
+texture_normal = ExtResource("8_sl5y5")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Spades" type="TextureButton" parent="HUDLayer/Container"]
+layout_mode = 2
+texture_normal = ExtResource("9_m6rcj")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Diamonds" type="TextureButton" parent="HUDLayer/Container"]
+layout_mode = 2
+texture_normal = ExtResource("10_xf0qg")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="DebugLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Console" type="TextEdit" parent="DebugLayer"]
+anchors_preset = -1
+anchor_left = -0.49375
+anchor_top = -0.14444445
+anchor_right = -0.30625
+anchor_bottom = 0.35555556
+mouse_filter = 2
+text = "Console"
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="EndTurnTestBtn" type="Button" parent="DebugLayer"]
+anchors_preset = -1
+anchor_left = -0.48125
+anchor_top = 0.18888889
+anchor_right = -0.38671875
+anchor_bottom = 0.27083334
+text = "End Turn"
+metadata/_edit_use_anchors_ = true
+
+[node name="ResolveTrickDebugBtn" type="Button" parent="DebugLayer"]
+anchors_preset = -1
+anchor_left = -0.4875
+anchor_top = 0.044444446
+anchor_right = -0.3625
+anchor_bottom = 0.12638889
+text = "Resolve Trick"
+metadata/_edit_use_anchors_ = true
+
+[node name="LeadingSuitDebugLbl" type="Label" parent="DebugLayer"]
+anchors_preset = -1
+anchor_left = -0.45
+anchor_top = -0.2
+anchor_right = -0.325
+anchor_bottom = -0.17638889
+text = "LEADING SUIT:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 
 [node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
 script = ExtResource("3_pyd4g")
@@ -186,13 +203,6 @@ offset_right = -474.0
 offset_bottom = 91.0
 text = "Tutorial"
 
-[node name="Score Label" type="Label" parent="Game Manager"]
-offset_left = -520.0
-offset_top = -198.0
-offset_right = -423.0
-offset_bottom = -181.0
-text = "TRICKS WON:"
-
 [node name="Rule Umpire" type="Node" parent="."]
 script = ExtResource("3_tmcbe")
 
@@ -206,24 +216,34 @@ pause_menu_packed = ExtResource("4_b2thp")
 
 [node name="Deck" parent="." instance=ExtResource("5_m14oq")]
 z_index = 0
-position = Vector2(-132, 0)
+position = Vector2(-196, 1)
 
 [node name="Discard Slot" parent="." instance=ExtResource("14_j7cxb")]
-position = Vector2(248, 0)
+position = Vector2(184, 1)
 slot_type = 1
 
 [node name="TableTrickSlots" type="Node" parent="."]
 
+[node name="Table Panel" type="Panel" parent="TableTrickSlots"]
+self_modulate = Color(1, 1, 1, 0.404)
+z_index = -1
+offset_left = -320.0
+offset_top = -360.0
+offset_right = 320.0
+offset_bottom = 360.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
 [node name="TrickSlot" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
 z_index = -1
-position = Vector2(112, 16)
+position = Vector2(48, 17)
 
 [node name="TrickSlot1" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
 z_index = -1
-position = Vector2(16, -16)
+position = Vector2(-48, -15)
 
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile")]
-position = Vector2(64, 192)
+position = Vector2(0, 193)
 script = ExtResource("5_m6rcj")
 hand_layout_mode = 0
 gameManager = NodePath("../Game Manager")
@@ -233,46 +253,62 @@ HandLabel = NodePath("PlayerLabel")
 score_pile = NodePath("../Player1ScorePile")
 is_player_controlled = true
 
+[node name="HandPanel" type="Panel" parent="PlayerHand"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.404)
+offset_left = -322.0
+offset_top = -56.0
+offset_right = 320.0
+offset_bottom = 59.0
+mouse_filter = 2
+
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHand"]
-offset_left = -64.0
-offset_top = 32.0
-offset_right = 64.0
-offset_bottom = 168.0
+offset_left = -24.0
+offset_top = 31.0
+offset_right = 24.0
+offset_bottom = 79.0
 texture = ExtResource("10_d5kay")
 expand_mode = 1
 
 [node name="PlayerLabel" type="Label" parent="PlayerHand"]
 offset_left = -64.0
-offset_top = 32.0
+offset_top = 87.0
 offset_right = 64.0
-offset_bottom = 49.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_bottom = 104.0
 text = "Player 0 (You)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot", "score_pile")]
-position = Vector2(64, -192)
+position = Vector2(0, -191)
 script = ExtResource("5_m6rcj")
 player_id = 1
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot1")
 score_pile = NodePath("../Enemy1ScorePile")
 
+[node name="HandPanel" type="Panel" parent="EnemyHand1"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.404)
+offset_left = -322.0
+offset_top = -53.0
+offset_right = 320.0
+offset_bottom = 62.0
+mouse_filter = 2
+
 [node name="PlayerIcon1" type="TextureRect" parent="EnemyHand1"]
-offset_left = -64.0
-offset_top = -168.0
-offset_right = 64.0
-offset_bottom = -32.0
+offset_left = -24.0
+offset_top = -121.0
+offset_right = 24.0
+offset_bottom = -73.0
 texture = ExtResource("10_d5kay")
 expand_mode = 1
 
 [node name="PlayerLabel1" type="Label" parent="EnemyHand1"]
 offset_left = -64.0
-offset_top = -168.0
+offset_top = -65.0
 offset_right = 64.0
-offset_bottom = -151.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_bottom = -48.0
 text = "Player 1 (AI)"
 horizontal_alignment = 1
 
@@ -291,10 +327,10 @@ text = "Test AI"
 metadata/_edit_use_anchors_ = true
 
 [node name="Player1ScorePile" parent="." instance=ExtResource("14_d5kay")]
-position = Vector2(-320, 323)
+position = Vector2(-384, 324)
 
 [node name="Enemy1ScorePile" parent="." instance=ExtResource("14_d5kay")]
-position = Vector2(448, -281)
+position = Vector2(384, -280)
 
 [node name="EnemyHand2 (Placeholder)" type="Node2D" parent="."]
 visible = false
@@ -345,25 +381,14 @@ metadata/_edit_use_anchors_ = true
 [node name="AIController" type="Node" parent="EnemyHand3 (Placeholder)"]
 script = ExtResource("10_tmcbe")
 
-[node name="Console" type="TextEdit" parent="."]
-offset_left = 360.0
-offset_top = -88.0
-offset_right = 600.0
-offset_bottom = 272.0
-mouse_filter = 2
-text = "Console"
-editable = false
-metadata/_edit_use_anchors_ = true
-
-[connection signal="pressed" from="UILayer/Clubs" to="Game Manager" method="_on_clubs_pressed"]
-[connection signal="pressed" from="UILayer/Hearts" to="Game Manager" method="_on_hearts_pressed"]
-[connection signal="pressed" from="UILayer/Spades" to="Game Manager" method="_on_spades_pressed"]
-[connection signal="pressed" from="UILayer/Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
+[connection signal="pressed" from="HUDLayer/Container/Clubs" to="Game Manager" method="_on_clubs_pressed"]
+[connection signal="pressed" from="HUDLayer/Container/Hearts" to="Game Manager" method="_on_hearts_pressed"]
+[connection signal="pressed" from="HUDLayer/Container/Spades" to="Game Manager" method="_on_spades_pressed"]
+[connection signal="pressed" from="HUDLayer/Container/Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
 [connection signal="pressed" from="DebugLayer/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
 [connection signal="pressed" from="DebugLayer/ResolveTrickDebugBtn" to="Game Manager" method="_on_resolve_trick_debug_btn_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 
-[editable path="InfoPanel1/Hokm Display Label"]
 [editable path="Player1ScorePile"]
 [editable path="Enemy1ScorePile"]

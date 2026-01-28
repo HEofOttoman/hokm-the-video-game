@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://3ipinosqhxal"]
+
+[ext_resource type="Shader" uid="uid://bciheiwidfsvl" path="res://resources/shaders/balatro_paint_mix.gdshader" id="1_sun1k"]
+
+[resource]
+shader = ExtResource("1_sun1k")
+shader_parameter/polar_coordinates = false
+shader_parameter/polar_center = Vector2(0.5, 0.5)
+shader_parameter/polar_zoom = 1.0
+shader_parameter/polar_repeat = 1.0
+shader_parameter/spin_rotation = 0.0
+shader_parameter/spin_speed = 1.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/colour_1 = Color(0.8666667, 0.8352941, 0.6862745, 1)
+shader_parameter/colour_2 = Color(0.6955032, 0.6955031, 0.6955031, 1)
+shader_parameter/colour_3 = Color(0, 0, 0, 1)
+shader_parameter/contrast = 2.0
+shader_parameter/spin_amount = 0.36
+shader_parameter/pixel_filter = 700.0
