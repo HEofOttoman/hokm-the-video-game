@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhjoc73h3n2ky"]
+[gd_scene load_steps=10 format=3 uid="uid://dhjoc73h3n2ky"]
 
 [ext_resource type="Script" uid="uid://ba7rjqhcmnyaq" path="res://scenes/menus/level_select_menu/mode_select_menu.gd" id="1_sg15o"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_if8b8"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://wjq7li836lwj" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="3_sg15o"]
 [ext_resource type="FontFile" uid="uid://b7olp1jygawca" path="res://assets/Fonts/Freehand Font/Freehand-Regular.ttf" id="5_sg15o"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="6_y33mg"]
+[ext_resource type="Texture2D" uid="uid://dxwji37u4j8a1" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png" id="7_y33mg"]
+[ext_resource type="Texture2D" uid="uid://dkvb1b7ojrj1m" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_slot.png" id="8_ijxxm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sg15o"]
 font_size = 30
@@ -31,7 +33,6 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,6 +79,36 @@ text = "Select Game Mode"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="2PMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 160.0
+offset_right = 444.66565
+offset_bottom = 579.0
+
+[node name="Panel" type="PanelContainer" parent="2PMarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="2PMarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Subtitle" type="Label" parent="2PMarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "2-Player"
+label_settings = SubResource("LabelSettings_sg15o")
+horizontal_alignment = 1
+
+[node name="Thumbnail" type="TextureRect" parent="2PMarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_y33mg")
+expand_mode = 4
+
+[node name="2P-Btn" type="Button" parent="2PMarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+metadata/_edit_use_anchors_ = true
+
 [node name="Prototype Panel" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -93,54 +124,22 @@ layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Prototype Panel/MarginContainer"]
 layout_mode = 2
-alignment = 2
+alignment = 1
 
 [node name="Subtitle" type="Label" parent="Prototype Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Tutorial"
+text = "3-Player"
 label_settings = SubResource("LabelSettings_sg15o")
 horizontal_alignment = 1
 
 [node name="Thumbnail" type="TextureRect" parent="Prototype Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+texture = ExtResource("7_y33mg")
 expand_mode = 4
-
-[node name="HSeparator" type="HSeparator" parent="Prototype Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
 
 [node name="Prototype-Btn" type="Button" parent="Prototype Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Play"
-metadata/_edit_use_anchors_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_left = 144.0
-offset_top = 160.0
-offset_right = 444.66565
-offset_bottom = 579.0
-
-[node name="Panel" type="PanelContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Subtitle" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "2-Player"
-label_settings = SubResource("LabelSettings_sg15o")
-horizontal_alignment = 1
-
-[node name="Thumbnail" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("6_y33mg")
-expand_mode = 4
-
-[node name="2P-Btn" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Play"
+text = "WIP"
 metadata/_edit_use_anchors_ = true
 
 [node name="4P Container" type="PanelContainer" parent="."]
@@ -162,12 +161,12 @@ horizontal_alignment = 1
 
 [node name="Thumbnail" type="TextureRect" parent="4P Container/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("6_y33mg")
+texture = ExtResource("8_ijxxm")
 expand_mode = 4
 
-[node name="2P-Btn" type="Button" parent="4P Container/VBoxContainer"]
+[node name="4P-Btn" type="Button" parent="4P Container/VBoxContainer"]
 layout_mode = 2
-text = "Play"
+text = "WIP"
 metadata/_edit_use_anchors_ = true
 
 [node name="MenuButtonsMargin" type="MarginContainer" parent="."]
@@ -195,6 +194,6 @@ size_flags_horizontal = 0
 text = "Back"
 
 [connection signal="item_activated" from="Control/LevelButtonsContainer" to="." method="_on_level_buttons_container_item_activated"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/2P-Btn" to="." method="_on_2p_btn_pressed"]
-[connection signal="pressed" from="4P Container/VBoxContainer/2P-Btn" to="." method="_on_2p_btn_pressed"]
+[connection signal="pressed" from="2PMarginContainer/VBoxContainer/2P-Btn" to="." method="_on_2p_btn_pressed"]
+[connection signal="pressed" from="4P Container/VBoxContainer/4P-Btn" to="." method="_on_2p_btn_pressed"]
 [connection signal="pressed" from="MenuButtonsMargin/MenuButtons/CloseButton" to="." method="_on_close_button_pressed"]

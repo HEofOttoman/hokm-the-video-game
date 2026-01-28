@@ -16,8 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="10_d5kay"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="10_tmcbe"]
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="10_xf0qg"]
+[ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="14_d5kay"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="14_j7cxb"]
-[ext_resource type="Script" uid="uid://obi3ylgdxkhr" path="res://resources/UI Elements/score_pile.gd" id="15_el8cj"]
 
 [node name="BasicHokmSetup" type="Node2D"]
 
@@ -104,7 +104,7 @@ deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
 rulesEngine = NodePath("../Rule Umpire")
-score_piles = [NodePath("../Player1ScorePile/Player Deck Pile"), NodePath("../Enemy1ScorePile/Opponent Deck Pile")]
+score_piles = [null, NodePath("../Enemy1ScorePile/Opponent Deck Pile")]
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
 offset_left = -576.0
@@ -206,6 +206,7 @@ offset_bottom = 49.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Player 0 (You)"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot")]
 position = Vector2(64, -192)
@@ -294,55 +295,8 @@ metadata/_edit_use_anchors_ = true
 [node name="AIController" type="Node" parent="EnemyHand3 (Placeholder)"]
 script = ExtResource("10_tmcbe")
 
-[node name="Player1ScorePile" type="Node2D" parent="."]
+[node name="Player1ScorePile" parent="." instance=ExtResource("14_d5kay")]
 position = Vector2(-480, 224)
-script = ExtResource("15_el8cj")
-
-[node name="Player Deck Pile" type="Panel" parent="Player1ScorePile"]
-offset_left = -112.0
-offset_top = -88.0
-offset_right = 112.0
-offset_bottom = 96.0
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="Player1ScorePile/Player Deck Pile"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.14414415
-anchor_top = 0.03524229
-anchor_right = 0.9009009
-anchor_bottom = 0.12887524
-text = "Your Score: 0/7"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="CardSlot" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(48, 186)
-
-[node name="CardSlot2" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(48, 56)
-
-[node name="CardSlot3" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(176, 186)
-
-[node name="CardSlot4" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(176, 56)
-
-[node name="CardSlot5" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(48, 120)
-
-[node name="CardSlot6" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(112, 120)
-
-[node name="CardSlot7" parent="Player1ScorePile/Player Deck Pile" instance=ExtResource("14_j7cxb")]
-visible = false
-position = Vector2(176, 120)
 
 [node name="Enemy1ScorePile" type="Node2D" parent="."]
 position = Vector2(488, -240)
@@ -353,18 +307,6 @@ offset_top = -88.0
 offset_right = 112.0
 offset_bottom = 96.0
 mouse_filter = 2
-
-[node name="Deck Label" type="Label" parent="Enemy1ScorePile/Opponent Deck Pile"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.17391305
-grow_horizontal = 2
-grow_vertical = 2
-text = "Opponent Score: 0/7"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="CardSlot" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
 visible = false
@@ -393,6 +335,21 @@ position = Vector2(88, 57)
 [node name="CardSlot7" parent="Enemy1ScorePile/Opponent Deck Pile" instance=ExtResource("14_j7cxb")]
 visible = false
 position = Vector2(184, 57)
+
+[node name="Deck Label" type="Label" parent="Enemy1ScorePile"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.17391305
+offset_left = -72.0
+offset_top = -80.0
+offset_right = 92.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Opponent Score: 0/7"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Clubs" type="TextureButton" parent="."]
 visible = false
@@ -454,3 +411,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
 
 [editable path="InfoPanel1/Hokm Display Label"]
+[editable path="Player1ScorePile"]

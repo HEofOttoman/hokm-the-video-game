@@ -2,14 +2,6 @@ extends Node2D
 class_name ScorePile
 ## Lays out the cards won of a player like the hand
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
-
 ### -----------
 
 ## Based on barry's dev hell and another tutorial : https://www.youtube.com/watch?v=lATAS8YpzFE
@@ -36,7 +28,8 @@ var center_screen_x ## The width of the screen
 ## ^Might be unnecessary if I an just animate it to the hand's position
 
 @export_group('Internal Variables')
-@export var player_id : int
+
+@export var owner_id : int
 @export var cards_in_hand : Array = [] ## The data about which cards are in the player's hand, or just the hand.
 ## ^ Cards_in_hand A.K.A player_hand
 
@@ -136,7 +129,6 @@ func on_card_dropped(card, card_slot_found):
 	#card.position = card_slot_found.position
 	card_slot_found.add_card_to_slot(card)
 	print('card play requested, awaiting game manager')
-	gameManager.play_card(card, card_slot_found, cards_in_hand, player_id)
 	#emit_signal("card_played", card, card_slot_found)
 	
 
