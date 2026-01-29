@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=21 format=3 uid="uid://dpr6mnd7ukuya"]
 
 [ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="1_el8cj"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_exaxi"]
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="3_pyd4g"]
 [ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="3_tmcbe"]
+[ext_resource type="Script" uid="uid://bftae8jkury7d" path="res://resources/UI Elements/ui_manager.gd" id="3_wtj6l"]
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_b2thp"]
 [ext_resource type="Texture2D" uid="uid://xwtvlh4cxojg" path="res://assets/kenney_input-prompts/Flairs/Double/flair_disabled_cross.png" id="4_d5kay"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="5_m6rcj"]
@@ -46,17 +47,23 @@ color = Color(0.24840015, 0.24840018, 0.24840015, 1)
 
 [node name="720x720Square" type="Panel" parent="."]
 visible = false
-offset_left = -336.0
+offset_left = -360.0
 offset_top = -360.0
-offset_right = 384.0
+offset_right = 360.0
 offset_bottom = 360.0
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="HUDLayer" type="CanvasLayer" parent="."]
+[node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label")]
+script = ExtResource("3_wtj6l")
+hakem_display_label = NodePath("HUDLayer/InfoPanel1/Hakem Display Label")
+hokm_display_label = NodePath("HUDLayer/Hokm Display Label")
+score_display_label = NodePath("HUDLayer/Score Label")
+
+[node name="HUDLayer" type="CanvasLayer" parent="UIManager"]
 follow_viewport_enabled = true
 
-[node name="InfoPanel1" type="Panel" parent="HUDLayer"]
+[node name="InfoPanel1" type="Panel" parent="UIManager/HUDLayer"]
 visible = false
 anchors_preset = -1
 anchor_left = -0.50625
@@ -66,7 +73,7 @@ anchor_bottom = -0.15555556
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Hakem Display Label" type="Label" parent="HUDLayer/InfoPanel1"]
+[node name="Hakem Display Label" type="Label" parent="UIManager/HUDLayer/InfoPanel1"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.28125
@@ -79,7 +86,7 @@ vertical_alignment = 1
 script = ExtResource("8_xf0qg")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="HUDLayer/InfoPanel1/Hakem Display Label"]
+[node name="TextureRect" type="TextureRect" parent="UIManager/HUDLayer/InfoPanel1/Hakem Display Label"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.3181819
@@ -92,7 +99,7 @@ texture = ExtResource("4_d5kay")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Score Label" type="Label" parent="HUDLayer"]
+[node name="Score Label" type="Label" parent="UIManager/HUDLayer"]
 anchors_preset = -1
 anchor_left = -0.45
 anchor_top = -0.25555557
@@ -102,13 +109,13 @@ offset_top = 1.5258789e-05
 text = "TRICKS WON:"
 metadata/_edit_use_anchors_ = true
 
-[node name="Hokm Display Label" parent="HUDLayer" instance=ExtResource("6_f4grl")]
+[node name="Hokm Display Label" parent="UIManager/HUDLayer" instance=ExtResource("6_f4grl")]
 offset_left = -576.0
 offset_top = -240.0
 offset_right = -512.0
 offset_bottom = -217.0
 
-[node name="Container" type="HBoxContainer" parent="HUDLayer"]
+[node name="Container" type="HBoxContainer" parent="UIManager/HUDLayer"]
 anchors_preset = -1
 anchor_left = -0.059375
 anchor_top = 0.44444445
@@ -119,34 +126,34 @@ offset_right = 4.0
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Clubs" type="TextureButton" parent="HUDLayer/Container"]
+[node name="Clubs" type="TextureButton" parent="UIManager/HUDLayer/Container"]
 layout_mode = 2
 texture_normal = ExtResource("7_exaxi")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Hearts" type="TextureButton" parent="HUDLayer/Container"]
+[node name="Hearts" type="TextureButton" parent="UIManager/HUDLayer/Container"]
 layout_mode = 2
 texture_normal = ExtResource("8_sl5y5")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Spades" type="TextureButton" parent="HUDLayer/Container"]
+[node name="Spades" type="TextureButton" parent="UIManager/HUDLayer/Container"]
 layout_mode = 2
 texture_normal = ExtResource("9_m6rcj")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Diamonds" type="TextureButton" parent="HUDLayer/Container"]
+[node name="Diamonds" type="TextureButton" parent="UIManager/HUDLayer/Container"]
 layout_mode = 2
 texture_normal = ExtResource("10_xf0qg")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="DebugLayer" type="CanvasLayer" parent="."]
+[node name="DebugLayer" type="CanvasLayer" parent="UIManager"]
 visible = false
 
-[node name="Console" type="TextEdit" parent="DebugLayer"]
+[node name="Console" type="TextEdit" parent="UIManager/DebugLayer"]
 anchors_preset = -1
 anchor_left = -0.49375
 anchor_top = -0.14444445
@@ -157,7 +164,7 @@ text = "Console"
 editable = false
 metadata/_edit_use_anchors_ = true
 
-[node name="EndTurnTestBtn" type="Button" parent="DebugLayer"]
+[node name="EndTurnTestBtn" type="Button" parent="UIManager/DebugLayer"]
 anchors_preset = -1
 anchor_left = -0.48125
 anchor_top = 0.18888889
@@ -166,7 +173,7 @@ anchor_bottom = 0.27083334
 text = "End Turn"
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolveTrickDebugBtn" type="Button" parent="DebugLayer"]
+[node name="ResolveTrickDebugBtn" type="Button" parent="UIManager/DebugLayer"]
 anchors_preset = -1
 anchor_left = -0.4875
 anchor_top = 0.044444446
@@ -175,7 +182,7 @@ anchor_bottom = 0.12638889
 text = "Resolve Trick"
 metadata/_edit_use_anchors_ = true
 
-[node name="LeadingSuitDebugLbl" type="Label" parent="DebugLayer"]
+[node name="LeadingSuitDebugLbl" type="Label" parent="UIManager/DebugLayer"]
 anchors_preset = -1
 anchor_left = -0.45
 anchor_top = -0.2
@@ -187,8 +194,9 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
+[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
 script = ExtResource("3_pyd4g")
+ui_manager = NodePath("../UIManager")
 deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
@@ -381,12 +389,15 @@ metadata/_edit_use_anchors_ = true
 [node name="AIController" type="Node" parent="EnemyHand3 (Placeholder)"]
 script = ExtResource("10_tmcbe")
 
-[connection signal="pressed" from="HUDLayer/Container/Clubs" to="Game Manager" method="_on_clubs_pressed"]
-[connection signal="pressed" from="HUDLayer/Container/Hearts" to="Game Manager" method="_on_hearts_pressed"]
-[connection signal="pressed" from="HUDLayer/Container/Spades" to="Game Manager" method="_on_spades_pressed"]
-[connection signal="pressed" from="HUDLayer/Container/Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
-[connection signal="pressed" from="DebugLayer/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
-[connection signal="pressed" from="DebugLayer/ResolveTrickDebugBtn" to="Game Manager" method="_on_resolve_trick_debug_btn_pressed"]
+[connection signal="pressed" from="UIManager/HUDLayer/Container/Clubs" to="Game Manager" method="_on_clubs_pressed"]
+[connection signal="pressed" from="UIManager/HUDLayer/Container/Hearts" to="Game Manager" method="_on_hearts_pressed"]
+[connection signal="pressed" from="UIManager/HUDLayer/Container/Spades" to="Game Manager" method="_on_spades_pressed"]
+[connection signal="pressed" from="UIManager/HUDLayer/Container/Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
+[connection signal="pressed" from="UIManager/DebugLayer/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
+[connection signal="pressed" from="UIManager/DebugLayer/ResolveTrickDebugBtn" to="Game Manager" method="_on_resolve_trick_debug_btn_pressed"]
+[connection signal="round_ended" from="Game Manager" to="UIManager" method="_on_game_manager_round_ended"]
+[connection signal="trick_resolved" from="Game Manager" to="UIManager" method="_on_game_manager_trick_resolved"]
+[connection signal="turn_started" from="Game Manager" to="UIManager" method="_on_game_manager_turn_started"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 

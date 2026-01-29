@@ -12,6 +12,7 @@ enum HokmGameMode { ## Same thing as player_count I guess - Should change rules 
 	FOUR_PLAYER = 4,
 }
 
+@export var ui_manager : UIManager = UIManager.new()
 @export var deck : Deck
 @export var hands : Array[Node]
 @export var trick_slots : Array[CardSlot]
@@ -45,6 +46,11 @@ enum HokmGamePhase {
 	SCORING, ## Counts points
 	GAME_OVER ## Ends game
 }
+
+signal turn_started(player_index)
+signal trick_resolved(winner_id)
+signal round_ended(game_score)
+
 
 func _ready() -> void:
 	randomize()
@@ -88,7 +94,7 @@ func declaring_hakem():
 	hakem_index = hands.find(hakem)
 	
 	print('Hakem: ', hakem, ' Index: ', hakem_index)
-	$"../HUDLayer/InfoPanel1/Hakem Display Label".text = str("Hakem: ", hakem.name) # Replace with function body.
+	ui_manager.hakem_display_label.text = str("Hakem: ", hakem.name) # Replace with function body.
 
 	
 	current_player = hakem_index
@@ -101,7 +107,7 @@ func declaring_hokm(): ## Process for declaring the hokm
 	## Add the process for declaring it here
 	hokm_suit = CardData.Suit.values().pick_random()
 	print('Hokm suit:', hokm_suit)
-	$"../HUDLayer/Hokm Display Label"._on_hokm_chosen(hokm_suit)
+	ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit)
 	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
 	#hokm_chosen.emit(hokm)
 
@@ -187,7 +193,8 @@ func resolve_trick():
 	
 	tricks_won[winner_index] += 1
 	print('TRICKS WON: ', tricks_won)
-	$"../HUDLayer/Score Label".text = str('TRICKS WON: ', tricks_won)
+	ui_manager.score_display_label.text = str('TRICKS WON: ', tricks_won)
+	emit_signal('trick_resolved', winner_index) ## For UI manager
 	
 	GameSfxBus.play(GameSfxBus.trick_won)
 	trick_cards.clear()
@@ -244,6 +251,7 @@ func advance_turn(): ## Advances hand
 	start_turn(current_player)
 
 func start_turn(player_index: int): ## Starts the turn of the player with corresponding player id/index
+	emit_signal('turn_started', player_index)
 	var active_hand := hands[player_index]
 	
 	if tricks_won[current_player] == 7: ## Checks to see if 7 tricks have been won and ends game accordi
@@ -260,14 +268,15 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 
 ## Ending the round, aka 7 tricks won (keeping the game short first, limited to 1 round)
 func end_round():
-	scoring_game()
-	
 	#if winner_index == hakem_index and tricks_won[winner_index] == 7:
 		#score[winner_index] += 2
 	#elif winner_index != hakem_index and tricks_won[winner_index] == 7:
 		#score[winner_index] += 3
 	#else:
 		#score[winner_index] += 1
+	
+	emit_signal('round_ended', score)
+	scoring_game()
 
 
 func _on_end_turn_test_btn_pressed() -> void:
