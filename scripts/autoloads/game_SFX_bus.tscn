@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpoywmknb3qko"]
+
+[ext_resource type="Script" uid="uid://lhs2plwrqbb" path="res://scripts/autoloads/Game_SFX_bus.gd" id="1_d0e5g"]
+[ext_resource type="AudioStream" uid="uid://b5ekr7k1jsjyc" path="res://assets/Audio/kenney_ui-audio/Audio/switch4.ogg" id="3_52seu"]
+[ext_resource type="AudioStream" uid="uid://b80q46tptl4uk" path="res://assets/Audio/kenney_ui-audio/Audio/rollover1.ogg" id="3_m0luc"]
+
+[node name="GameSfxBus" type="Node"]
+script = ExtResource("1_d0e5g")
+card_flip = ExtResource("3_52seu")
+trick_won = ExtResource("3_m0luc")

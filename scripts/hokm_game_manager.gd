@@ -189,6 +189,7 @@ func resolve_trick():
 	print('TRICKS WON: ', tricks_won)
 	$"../HUDLayer/Score Label".text = str('TRICKS WON: ', tricks_won)
 	
+	GameSfxBus.play(GameSfxBus.trick_won)
 	trick_cards.clear()
 	for slot in trick_slots: ## Animates cards to respective score piles
 		var winner_pile : ScorePile = hands[winner_index].score_pile

@@ -83,9 +83,10 @@ func layout_cards():
 		#var offset = min(i, 5) * card_spacing
 		#card.position = Vector2(offset, 0)
 		## Get new card position based on the index passed in
+		#var new_position = Vector2(0, -i * card_spacing) ## Lays out cards upwards
 		var new_position = calculate_card_position(i)
-		#print("Deck at", new_position) ## Helped troubleshoot when I had the bug of the deck going off screen
 		card.starting_position = new_position
+		card.rotation = lerp(-0.05, 0.05, float(i) / max(1, cards_in_pile.size() - 1))
 		animate_card_to_position(card, new_position)
 
 ## Calculates the layout of the hand

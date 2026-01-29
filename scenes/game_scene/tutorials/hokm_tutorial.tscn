@@ -31,4 +31,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Deck" parent="." instance=ExtResource("2_35jne")]
-position = Vector2(397, 337)
+position = Vector2(392.00003, 344)

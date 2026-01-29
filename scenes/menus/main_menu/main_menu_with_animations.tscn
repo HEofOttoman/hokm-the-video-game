@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dhr7kwfkmlq7o"]
+[gd_scene load_steps=28 format=3 uid="uid://dhr7kwfkmlq7o"]
 
 [ext_resource type="PackedScene" uid="uid://dhjoc73h3n2ky" path="res://scenes/menus/level_select_menu/mode_select_menu.tscn" id="2_672y5"]
 [ext_resource type="Script" uid="uid://6kkgt00vvrar" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ixa71"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_6xh1d"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="5_x5bcm"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="6_2k5l7"]
+[ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="8_8dhfv"]
 [ext_resource type="Script" uid="uid://dmkubt2nsnsbn" path="res://addons/maaacks_game_template/base/nodes/labels/config_version_label.gd" id="8_672y5"]
 [ext_resource type="Script" uid="uid://bkwlopi4qn32o" path="res://addons/maaacks_game_template/base/nodes/labels/config_name_label.gd" id="9_8dhfv"]
 [ext_resource type="FontFile" uid="uid://b7olp1jygawca" path="res://assets/Fonts/Freehand Font/Freehand-Regular.ttf" id="9_x5bcm"]
@@ -331,7 +332,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_ixa71")
 level_select_packed_scene = ExtResource("2_672y5")
-game_scene_path = "uid://dpr6mnd7ukuya"
+game_scene_path = "uid://cqfeyf3vdqexp"
 options_packed_scene = ExtResource("3_2k5l7")
 credits_packed_scene = ExtResource("4_vsp5b")
 
@@ -360,6 +361,20 @@ grow_vertical = 2
 texture = ExtResource("6_2k5l7")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="ColorTextureRect" type="ColorRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.26500002)
+material = ExtResource("8_8dhfv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
 
 [node name="VersionMargin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -389,7 +404,7 @@ offset_left = -88.0
 offset_top = -26.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v0.0.13"
+text = "v0.0.19"
 script = ExtResource("8_672y5")
 
 [node name="Music Playing Label" type="Label" parent="VersionMargin/VersionContainer"]
@@ -494,9 +509,8 @@ lock = true
 
 [node name="NewGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-text = "Play"
+text = "Play Tutorial"
 
 [node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true

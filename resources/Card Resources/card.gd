@@ -165,6 +165,7 @@ func flip_card(flipped: bool):
 	card_face_up = flipped
 	if flipped == true:
 		$AnimationPlayer.play("card_flip")
+		GameSfxBus.play(GameSfxBus.card_flip)
 	else:
 		$AnimationPlayer.play_backwards("card_flip")
 
