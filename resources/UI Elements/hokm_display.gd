@@ -11,7 +11,6 @@ extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	hokm_texture_current = null
 	hokm_texture_display.texture = hokm_texture_current
 
 func _on_hokm_chosen(hokm: CardData.Suit) -> void:

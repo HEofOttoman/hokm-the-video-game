@@ -15,6 +15,10 @@ enum Difficulty {
 }
 
 
+func choose_hokm() -> CardData.Suit: ## Chooses hokm suit if given
+	var hokm_suit = CardData.Suit.values().pick_random()
+	return hokm_suit
+
 func take_turn():
 	print('Thinking Cooldown')
 	await get_tree().create_timer(3.0).timeout ## Stops game from going too fast, inject animation here

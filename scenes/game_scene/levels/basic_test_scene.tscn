@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=27 format=3 uid="uid://dpr6mnd7ukuya"]
 
 [ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="1_el8cj"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
@@ -6,8 +6,11 @@
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="3_pyd4g"]
 [ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="3_tmcbe"]
 [ext_resource type="Script" uid="uid://bftae8jkury7d" path="res://resources/UI Elements/ui_manager.gd" id="3_wtj6l"]
+[ext_resource type="Script" uid="uid://bmlwpkrav3q56" path="res://addons/maaacks_game_template/extras/scripts/win_lose_manager.gd" id="3_y85nq"]
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_b2thp"]
+[ext_resource type="PackedScene" uid="uid://ba11po12cvait" path="res://scenes/windows/game_won_window.tscn" id="4_bljjq"]
 [ext_resource type="Texture2D" uid="uid://xwtvlh4cxojg" path="res://assets/kenney_input-prompts/Flairs/Double/flair_disabled_cross.png" id="4_d5kay"]
+[ext_resource type="PackedScene" uid="uid://bx7s80d8smic4" path="res://scenes/windows/level_lost_window.tscn" id="5_bljjq"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="5_m6rcj"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="5_m14oq"]
 [ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="6_f4grl"]
@@ -20,6 +23,42 @@
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="10_xf0qg"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="14_d5kay"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="14_j7cxb"]
+
+[sub_resource type="Animation" id="Animation_wtj6l"]
+resource_name = "fade_in_&_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_onchg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y85nq"]
+_data = {
+&"RESET": SubResource("Animation_onchg"),
+&"fade_in_&_out": SubResource("Animation_wtj6l")
+}
 
 [node name="BasicHokmSetup" type="Node2D"]
 
@@ -54,19 +93,51 @@ offset_bottom = 360.0
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label")]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Win Lose Manager" type="Node" parent="."]
+script = ExtResource("3_y85nq")
+main_menu_scene_path = "uid://dhr7kwfkmlq7o"
+ending_scene_path = "uid://cegpeogqhswj3"
+game_won_scene = ExtResource("4_bljjq")
+game_lost_scene = ExtResource("5_bljjq")
+
+[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
+script = ExtResource("3_pyd4g")
+ui_manager = NodePath("../UIManager")
+deck = NodePath("../Deck")
+hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
+trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
+rulesEngine = NodePath("../Rule Umpire")
+score_piles = [null, null]
+
+[node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
+visible = false
+offset_left = -576.0
+offset_top = 32.0
+offset_right = -474.0
+offset_bottom = 91.0
+text = "Tutorial"
+
+[node name="Rule Umpire" type="Node" parent="."]
+script = ExtResource("3_tmcbe")
+
+[node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
 script = ExtResource("3_wtj6l")
 hakem_display_label = NodePath("HUDLayer/InfoPanel1/Hakem Display Label")
 hokm_display_label = NodePath("HUDLayer/Hokm Display Label")
 score_display_label = NodePath("HUDLayer/Score Label")
+turn_indicator = NodePath("HUDLayer/Turn Indicator")
+turn_prompt = NodePath("HUDLayer/Turn Prompt")
 
 [node name="HUDLayer" type="CanvasLayer" parent="UIManager"]
 follow_viewport_enabled = true
 
 [node name="InfoPanel1" type="Panel" parent="UIManager/HUDLayer"]
-visible = false
+self_modulate = Color(1, 1, 1, 0.133)
 anchors_preset = -1
-anchor_left = -0.50625
+anchor_left = -0.5
 anchor_top = -0.46666667
 anchor_right = -0.3
 anchor_bottom = -0.15555556
@@ -76,17 +147,19 @@ metadata/_edit_use_anchors_ = true
 [node name="Hakem Display Label" type="Label" parent="UIManager/HUDLayer/InfoPanel1"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.28125
-anchor_top = 0.15384616
-anchor_right = 0.96875
-anchor_bottom = 0.26442307
+anchor_left = 0.27272728
+anchor_top = 1.1071428
+anchor_right = 0.96022725
+anchor_bottom = 1.2177198
+offset_top = -63.999985
+offset_bottom = -63.999985
 theme_override_font_sizes/font_size = 22
 text = "HAKEM:"
 vertical_alignment = 1
 script = ExtResource("8_xf0qg")
-metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="UIManager/HUDLayer/InfoPanel1/Hakem Display Label"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.3181819
@@ -97,7 +170,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_d5kay")
 expand_mode = 1
-metadata/_edit_use_anchors_ = true
+
+[node name="Hokm Display Label" parent="UIManager/HUDLayer" instance=ExtResource("6_f4grl")]
+offset_left = -576.0
+offset_top = -312.0
+offset_right = -512.0
+offset_bottom = -289.0
 
 [node name="Score Label" type="Label" parent="UIManager/HUDLayer"]
 anchors_preset = -1
@@ -105,15 +183,18 @@ anchor_left = -0.45
 anchor_top = -0.25555557
 anchor_right = -0.37421876
 anchor_bottom = -0.23194444
-offset_top = 1.5258789e-05
+offset_top = -71.999985
+offset_bottom = -72.0
 text = "TRICKS WON:"
-metadata/_edit_use_anchors_ = true
 
-[node name="Hokm Display Label" parent="UIManager/HUDLayer" instance=ExtResource("6_f4grl")]
-offset_left = -576.0
-offset_top = -240.0
-offset_right = -512.0
-offset_bottom = -217.0
+[node name="Turn Indicator" type="Label" parent="UIManager/HUDLayer"]
+offset_left = -640.0
+offset_top = -224.0
+offset_right = -384.0
+offset_bottom = -160.0
+text = "Player %'s Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Container" type="HBoxContainer" parent="UIManager/HUDLayer"]
 anchors_preset = -1
@@ -149,6 +230,22 @@ layout_mode = 2
 texture_normal = ExtResource("10_xf0qg")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
+
+[node name="Turn Prompt" type="Label" parent="UIManager/HUDLayer"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -128.0
+offset_top = 64.0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 20
+text = "YOUR TURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UIManager/HUDLayer/Turn Prompt"]
+libraries = {
+&"": SubResource("AnimationLibrary_y85nq")
+}
 
 [node name="DebugLayer" type="CanvasLayer" parent="UIManager"]
 visible = false
@@ -190,29 +287,6 @@ anchor_right = -0.325
 anchor_bottom = -0.17638889
 text = "LEADING SUIT:"
 metadata/_edit_use_anchors_ = true
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-
-[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
-script = ExtResource("3_pyd4g")
-ui_manager = NodePath("../UIManager")
-deck = NodePath("../Deck")
-hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
-trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
-rulesEngine = NodePath("../Rule Umpire")
-score_piles = [null, null]
-
-[node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
-visible = false
-offset_left = -576.0
-offset_top = 32.0
-offset_right = -474.0
-offset_bottom = 91.0
-text = "Tutorial"
-
-[node name="Rule Umpire" type="Node" parent="."]
-script = ExtResource("3_tmcbe")
 
 [node name="TurnKeeper" type="Node" parent="."]
 
@@ -389,15 +463,15 @@ metadata/_edit_use_anchors_ = true
 [node name="AIController" type="Node" parent="EnemyHand3 (Placeholder)"]
 script = ExtResource("10_tmcbe")
 
+[connection signal="round_ended" from="Game Manager" to="UIManager" method="_on_game_manager_round_ended"]
+[connection signal="trick_resolved" from="Game Manager" to="UIManager" method="_on_game_manager_trick_resolved"]
+[connection signal="turn_started" from="Game Manager" to="UIManager" method="_on_game_manager_turn_started"]
 [connection signal="pressed" from="UIManager/HUDLayer/Container/Clubs" to="Game Manager" method="_on_clubs_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/Container/Hearts" to="Game Manager" method="_on_hearts_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/Container/Spades" to="Game Manager" method="_on_spades_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/Container/Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
 [connection signal="pressed" from="UIManager/DebugLayer/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
 [connection signal="pressed" from="UIManager/DebugLayer/ResolveTrickDebugBtn" to="Game Manager" method="_on_resolve_trick_debug_btn_pressed"]
-[connection signal="round_ended" from="Game Manager" to="UIManager" method="_on_game_manager_round_ended"]
-[connection signal="trick_resolved" from="Game Manager" to="UIManager" method="_on_game_manager_trick_resolved"]
-[connection signal="turn_started" from="Game Manager" to="UIManager" method="_on_game_manager_turn_started"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 

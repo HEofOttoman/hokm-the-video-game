@@ -47,9 +47,9 @@ enum HokmGamePhase {
 	GAME_OVER ## Ends game
 }
 
-signal turn_started(player_index)
-signal trick_resolved(winner_id)
-signal round_ended(game_score)
+signal turn_started(player_index: int, text : String)
+signal trick_resolved(winner_id: int)
+signal round_ended(game_score: Array[int])
 
 
 func _ready() -> void:
@@ -144,6 +144,10 @@ func finish_game():
 	current_game_phase = HokmGamePhase.GAME_OVER
 	print('GAME OVER!!! THANKS FOR PLAYING!!!')
 	push_error('Game is over :>>') ## IDK how to end game yet
+	if tricks_won[0] == 7:
+		$"../Win Lose Manager".game_won() ## ok, now I do
+	else:
+		$"../Win Lose Manager".game_lost()
 
 func _on_card_drawn(card: Variant) -> void: ## Function used to add cards to hands automatically
 	hands[current_player].receive_card(card)
@@ -251,7 +255,7 @@ func advance_turn(): ## Advances hand
 	start_turn(current_player)
 
 func start_turn(player_index: int): ## Starts the turn of the player with corresponding player id/index
-	emit_signal('turn_started', player_index)
+	#emit_signal('turn_started', player_index)
 	var active_hand := hands[player_index]
 	
 	if tricks_won[current_player] == 7: ## Checks to see if 7 tricks have been won and ends game accordi
@@ -259,10 +263,12 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 	
 	if active_hand.is_player_controlled:
 		active_hand.set_interactive(true)
+		emit_signal('turn_started', player_index, 'YOUR TURN')
 		print("Player's turn")
 		## Show hint that
 	else:
 		print("AI's turn")
+		emit_signal('turn_started', player_index, str("PLAYER ", player_index, "'S TURN"))
 		#hands[player_index].get_child().take_turn()
 		$"../EnemyHand1/AIController".take_turn()
 
@@ -277,7 +283,6 @@ func end_round():
 	
 	emit_signal('round_ended', score)
 	scoring_game()
-
 
 func _on_end_turn_test_btn_pressed() -> void:
 	advance_turn() # Replace with function body.

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqfeyf3vdqexp"]
+[gd_scene load_steps=6 format=3 uid="uid://cqfeyf3vdqexp"]
 
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="1_7x7n5"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="2_35jne"]
 [ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="2_em8bv"]
 [ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="3_xt2cy"]
+[ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="5_4vetv"]
 
 [node name="HokmTutorial" type="Control" node_paths=PackedStringArray("deck", "rulesEngine")]
 layout_mode = 3
@@ -34,3 +35,8 @@ grow_vertical = 2
 position = Vector2(392.00003, 344)
 
 [node name="UI" type="Node" parent="."]
+
+[node name="HandClass" type="Node2D" parent="."]
+position = Vector2(640, 576)
+script = ExtResource("5_4vetv")
+metadata/_custom_type_script = "uid://dxbgl3telxva0"
