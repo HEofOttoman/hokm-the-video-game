@@ -1,8 +1,8 @@
 extends Node
 class_name UIManager
 
-@onready var hud_layer: CanvasLayer = $HUDLayer
-@onready var debug_layer: CanvasLayer = $DebugLayer
+@onready var hud_layer: Node = $HUDLayer
+@onready var debug_layer: Node = $DebugLayer
 
 @export var hakem_display_label : Node
 @export var hokm_display_label : Node
@@ -16,10 +16,12 @@ func _input(_event: InputEvent) -> void:
 
 
 func _on_game_manager_round_ended(score: Variant) -> void:
+	
 	pass # Replace with function body.
 
 
 func _on_game_manager_trick_resolved(winner_id: Variant) -> void:
+	
 	pass # Replace with function body.
 
 

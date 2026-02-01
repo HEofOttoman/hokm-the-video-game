@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cegpeogqhswj3"]
+[gd_scene load_steps=6 format=3 uid="uid://cegpeogqhswj3"]
 
 [ext_resource type="PackedScene" uid="uid://b70k3m1utqn6g" path="res://scenes/credits/scrolling_credits.tscn" id="1_0sycx"]
 [ext_resource type="Script" uid="uid://br1857twdktc8" path="res://scenes/end_credits/end_credits.gd" id="2_2v40y"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="3_bfvdl"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="4_1kqi1"]
+[ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="4_2v40y"]
 
 [node name="EndCredits" instance=ExtResource("1_0sycx")]
 script = ExtResource("2_2v40y")
@@ -13,6 +14,7 @@ force_mouse_mode_visible = false
 [node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_bfvdl")]
 
 [node name="BackgroundColor" type="ColorRect" parent="." index="1"]
+material = ExtResource("4_2v40y")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +24,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="BackgroundTextureRect" type="TextureRect" parent="." index="2"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,6 +33,9 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ScrollContainer" parent="." index="3"]
+scroll_vertical = 2092
 
 [node name="CenterContainer" type="CenterContainer" parent="." index="4"]
 layout_mode = 0

@@ -1,6 +1,6 @@
 extends Node
 class_name AIController 
-## Controls a hand node as an AI
+## Controls a hand node as an AI (parented to a hand node)
 
 @onready var hand: Node2D = $".."
 @export var game_manager : GameManager = GameManager.new()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dpr6mnd7ukuya"]
+[gd_scene load_steps=28 format=3 uid="uid://dpr6mnd7ukuya"]
 
 [ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="1_el8cj"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="6_f4grl"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="7_exaxi"]
 [ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="8_sl5y5"]
+[ext_resource type="Script" uid="uid://cxwpdcfwdt3rl" path="res://scripts/tutorial_controller.gd" id="8_w5ath"]
 [ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://resources/UI Elements/hakem_display.gd" id="8_xf0qg"]
 [ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="9_m6rcj"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="10_d5kay"]
@@ -23,21 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="10_xf0qg"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="14_d5kay"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="14_j7cxb"]
-
-[sub_resource type="Animation" id="Animation_wtj6l"]
-resource_name = "fade_in_&_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_onchg"]
 length = 0.001
@@ -52,6 +38,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wtj6l"]
+resource_name = "fade_in_&_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y85nq"]
@@ -123,6 +124,9 @@ text = "Tutorial"
 [node name="Rule Umpire" type="Node" parent="."]
 script = ExtResource("3_tmcbe")
 
+[node name="TutorialController" type="Node" parent="."]
+script = ExtResource("8_w5ath")
+
 [node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
 script = ExtResource("3_wtj6l")
 hakem_display_label = NodePath("HUDLayer/InfoPanel1/Hakem Display Label")
@@ -145,18 +149,18 @@ mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Hakem Display Label" type="Label" parent="UIManager/HUDLayer/InfoPanel1"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.27272728
-anchor_top = 1.1071428
-anchor_right = 0.96022725
-anchor_bottom = 1.2177198
-offset_top = -63.999985
-offset_bottom = -63.999985
+anchor_left = 0.25000003
+anchor_top = 0.71428573
+anchor_right = 0.9375
+anchor_bottom = 0.82486266
 theme_override_font_sizes/font_size = 22
 text = "HAKEM:"
 vertical_alignment = 1
 script = ExtResource("8_xf0qg")
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="UIManager/HUDLayer/InfoPanel1/Hakem Display Label"]
 visible = false
@@ -180,21 +184,23 @@ offset_bottom = -289.0
 [node name="Score Label" type="Label" parent="UIManager/HUDLayer"]
 anchors_preset = -1
 anchor_left = -0.45
-anchor_top = -0.25555557
+anchor_top = -0.36666667
 anchor_right = -0.37421876
-anchor_bottom = -0.23194444
-offset_top = -71.999985
-offset_bottom = -72.0
+anchor_bottom = -0.34305555
 text = "TRICKS WON:"
+metadata/_edit_use_anchors_ = true
 
 [node name="Turn Indicator" type="Label" parent="UIManager/HUDLayer"]
-offset_left = -640.0
-offset_top = -224.0
-offset_right = -384.0
-offset_bottom = -160.0
+anchors_preset = -1
+anchor_left = -0.45
+anchor_top = -0.32222223
+anchor_right = -0.35
+anchor_bottom = -0.26666668
+offset_bottom = 1.5258789e-05
 text = "Player %'s Turn"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Container" type="HBoxContainer" parent="UIManager/HUDLayer"]
 anchors_preset = -1
@@ -466,12 +472,6 @@ script = ExtResource("10_tmcbe")
 [connection signal="round_ended" from="Game Manager" to="UIManager" method="_on_game_manager_round_ended"]
 [connection signal="trick_resolved" from="Game Manager" to="UIManager" method="_on_game_manager_trick_resolved"]
 [connection signal="turn_started" from="Game Manager" to="UIManager" method="_on_game_manager_turn_started"]
-[connection signal="pressed" from="UIManager/HUDLayer/Container/Clubs" to="Game Manager" method="_on_clubs_pressed"]
-[connection signal="pressed" from="UIManager/HUDLayer/Container/Hearts" to="Game Manager" method="_on_hearts_pressed"]
-[connection signal="pressed" from="UIManager/HUDLayer/Container/Spades" to="Game Manager" method="_on_spades_pressed"]
-[connection signal="pressed" from="UIManager/HUDLayer/Container/Diamonds" to="Game Manager" method="_on_diamonds_pressed"]
-[connection signal="pressed" from="UIManager/DebugLayer/EndTurnTestBtn" to="Game Manager" method="_on_end_turn_test_btn_pressed"]
-[connection signal="pressed" from="UIManager/DebugLayer/ResolveTrickDebugBtn" to="Game Manager" method="_on_resolve_trick_debug_btn_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 

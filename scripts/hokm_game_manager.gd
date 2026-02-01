@@ -47,10 +47,22 @@ enum HokmGamePhase {
 	GAME_OVER ## Ends game
 }
 
+### --- UI Signals ---
+
+## Turn started for hand of player_index
 signal turn_started(player_index: int, text : String)
+## Trick won for hand of winn_index
 signal trick_resolved(winner_id: int)
+## Round ended
 signal round_ended(game_score: Array[int])
 
+### --- Tutorial Signals ---
+@warning_ignore("unused_signal")
+signal state_changed(state: HokmGamePhase)
+@warning_ignore("unused_signal")
+signal card_played(played_id, card)
+@warning_ignore("unused_signal")
+signal card_drawn(player_id, card)
 
 func _ready() -> void:
 	randomize()
@@ -143,7 +155,7 @@ func scoring_game():
 func finish_game():
 	current_game_phase = HokmGamePhase.GAME_OVER
 	print('GAME OVER!!! THANKS FOR PLAYING!!!')
-	push_error('Game is over :>>') ## IDK how to end game yet
+	#push_error('Game is over :>>') # 
 	if tricks_won[0] == 7:
 		$"../Win Lose Manager".game_won() ## ok, now I do
 	else:
