@@ -1,14 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqfeyf3vdqexp"]
+[gd_scene load_steps=16 format=3 uid="uid://cqfeyf3vdqexp"]
 
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="1_7x7n5"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="2_35jne"]
 [ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="2_em8bv"]
 [ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="3_xt2cy"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="4_dwhfr"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="5_4vetv"]
+[ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="5_nq74a"]
 [ext_resource type="Script" uid="uid://c4ok1cutaltqu" path="res://resources/Hand/player_controller.gd" id="6_r6rpl"]
 [ext_resource type="PackedScene" uid="uid://cig6thybdjvsv" path="res://resources/UI Elements/ui_manager.tscn" id="6_s5ocf"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="7_pqmp0"]
 [ext_resource type="Script" uid="uid://cxwpdcfwdt3rl" path="res://scripts/tutorial_controller.gd" id="9_i210u"]
+[ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="12_nq74a"]
 
 [sub_resource type="Animation" id="Animation_onchg"]
 length = 0.001
@@ -46,7 +49,7 @@ _data = {
 &"fade_in_&_out": SubResource("Animation_wtj6l")
 }
 
-[node name="HokmTutorial" type="Control" node_paths=PackedStringArray("ui_manager", "deck", "hands", "rulesEngine")]
+[node name="HokmTutorial" type="Control" node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,6 +60,7 @@ script = ExtResource("1_7x7n5")
 ui_manager = NodePath("UIManager")
 deck = NodePath("Deck")
 hands = [NodePath("PlayerHandClass"), NodePath("AIHandClass")]
+trick_slots = [NodePath("CardSlot"), NodePath("CardSlot1")]
 rulesEngine = NodePath("RulesEngine")
 
 [node name="RulesEngine" type="Node" parent="."]
@@ -72,6 +76,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="BgColorRect" type="ColorRect" parent="."]
 visible = false
@@ -83,6 +88,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="CenterTablePanel" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.28800002)
@@ -91,15 +97,25 @@ layout_mode = 0
 offset_left = 280.0
 offset_right = 1000.0
 offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="PauseMenuController" type="Node" parent="."]
+script = ExtResource("4_dwhfr")
+pause_menu_packed = ExtResource("5_nq74a")
+
+[node name="TutorialController" type="Node" parent="."]
+script = ExtResource("9_i210u")
+metadata/_custom_type_script = "uid://cxwpdcfwdt3rl"
 
 [node name="Deck" parent="." instance=ExtResource("2_35jne")]
 position = Vector2(392.00003, 344)
 
-[node name="PlayerHandClass" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine")]
+[node name="PlayerHandClass" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot")]
 position = Vector2(640, 576)
 script = ExtResource("5_4vetv")
 gameManager = NodePath("..")
 rulesEngine = NodePath("../RulesEngine")
+trick_slot = NodePath("../CardSlot")
 is_player_controlled = true
 metadata/_custom_type_script = "uid://dxbgl3telxva0"
 
@@ -109,31 +125,45 @@ hand = NodePath("..")
 gameManager = NodePath("../..")
 rulesEngine = NodePath("../../RulesEngine")
 
-[node name="AIHandClass" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine")]
+[node name="PlayerLabel" type="Label" parent="PlayerHandClass"]
+offset_left = -64.0
+offset_top = 48.0
+offset_right = 64.0
+offset_bottom = 65.0
+text = "Player 0 (You)"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AIHandClass" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot")]
 position = Vector2(640, 160)
 script = ExtResource("5_4vetv")
 gameManager = NodePath("..")
 rulesEngine = NodePath("../RulesEngine")
-is_player_controlled = true
+trick_slot = NodePath("../CardSlot1")
 metadata/_custom_type_script = "uid://dxbgl3telxva0"
 
 [node name="AIController" type="Node" parent="AIHandClass"]
 script = ExtResource("7_pqmp0")
 
-[node name="UIManager" parent="." instance=ExtResource("6_s5ocf")]
+[node name="CardSlot" parent="." instance=ExtResource("12_nq74a")]
+position = Vector2(696, 368)
 
-[node name="Hakem Display Label" parent="UIManager/HUDLayer/InfoPanel1" index="0"]
-visible = false
+[node name="CardSlot1" parent="." instance=ExtResource("12_nq74a")]
+position = Vector2(584, 336)
+
+[node name="UIManager" parent="." instance=ExtResource("6_s5ocf")]
 
 [node name="AnimationPlayer" parent="UIManager/HUDLayer/Turn Prompt" index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_y85nq")
 }
 
-[node name="TutorialController" type="Node" parent="."]
-script = ExtResource("9_i210u")
-metadata/_custom_type_script = "uid://cxwpdcfwdt3rl"
+[node name="DebugLayer" parent="UIManager" index="1"]
+mouse_filter = 2
 
+[connection signal="round_ended" from="." to="UIManager" method="_on_game_manager_round_ended"]
+[connection signal="trick_resolved" from="." to="UIManager" method="_on_game_manager_trick_resolved"]
+[connection signal="turn_started" from="." to="UIManager" method="_on_game_manager_turn_started"]
 [connection signal="card_drawn" from="Deck" to="." method="_on_card_drawn"]
 
 [editable path="UIManager"]

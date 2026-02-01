@@ -307,6 +307,7 @@ z_index = 0
 position = Vector2(-196, 1)
 
 [node name="Discard Slot" parent="." instance=ExtResource("14_j7cxb")]
+visible = false
 position = Vector2(184, 1)
 slot_type = 1
 
