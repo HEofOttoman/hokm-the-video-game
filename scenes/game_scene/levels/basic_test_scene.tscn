@@ -114,6 +114,7 @@ rulesEngine = NodePath("../Rule Umpire")
 score_piles = [null, null]
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
+visible = false
 offset_left = 472.0
 offset_top = 264.0
 offset_right = 574.0
@@ -137,6 +138,51 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Dimmer" type="ColorRect" parent="TutorialController/TutorialLayer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel" type="Panel" parent="TutorialController/TutorialLayer"]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 167.0
+offset_right = 1285.0
+offset_bottom = 624.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TutorialController/TutorialLayer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.80625
+anchor_top = 0.24444444
+anchor_right = 1.0
+anchor_bottom = 0.85555553
+grow_horizontal = 2
+grow_vertical = 2
+text = "Welcome to Hokm!
+Let's learn the basics."
+metadata/_edit_use_anchors_ = true
+
+[node name="NextButton" type="Button" parent="TutorialController/TutorialLayer"]
+layout_mode = 0
+offset_left = 1064.0
+offset_top = 544.0
+offset_right = 1137.0
+offset_bottom = 603.0
+text = "Next"
+
+[node name="SkipButton" type="Button" parent="TutorialController/TutorialLayer"]
+layout_mode = 0
+offset_left = 1168.0
+offset_top = 544.0
+offset_right = 1241.0
+offset_bottom = 603.0
+text = "Skip"
 
 [node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
 script = ExtResource("3_wtj6l")

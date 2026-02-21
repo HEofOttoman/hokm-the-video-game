@@ -6,6 +6,8 @@ class_name TutorialController
 @export var game_manager: GameManager = GameManager.new()
 
 @export var tutorial_ui : Control
+@export var tutorial_text : RichTextLabel
+var text_tween : Tween
 
 enum TutorialStep {
 	NONE,
@@ -18,16 +20,25 @@ enum TutorialStep {
 	COMPLETE
 }
 
-func on_continue_button_pressed():
+func on_continue_button_pressed() -> void:
 	return
 
+func typewrite() -> void:
+	if text_tween:
+		text_tween.kill()
+	
+	text_tween = create_tween()
+	
+	text_tween.tween_property(tutorial_text, "visible_characters", 1000, 0.7)
+	text_tween.tween_property(tutorial_text, "visible_characters", -1, 0.1)
+	
 
-func start_tutorial():
+func start_tutorial() -> void:
 	tutorial_ui.show()
 	tutorial_step = TutorialStep.INTRO
 	print("Welcome to hokm! Let's learn the basics.")
 	
-	await on_continue_button_pressed()
+	#await on_continue_button_pressed()
 	
 	tutorial_step = TutorialStep.DEALING
 	
@@ -49,7 +60,7 @@ func _on_hokm_tutorial_card_drawn(_player_id: Variant, _card: Variant) -> void:
 	#pass # Replace with function body.
 
 
-func _on_hokm_tutorial_round_ended(game_score: Array[int]) -> void:
+func _on_hokm_tutorial_round_ended(_game_score: Array[int]) -> void:
 	if TutorialStep.WIN_TRICK:
 		print('GREAT! You won the round!')
 		finish_tutorial()
@@ -57,11 +68,14 @@ func _on_hokm_tutorial_round_ended(game_score: Array[int]) -> void:
 
 func _on_hokm_tutorial_trick_resolved(winner_id: int) -> void:
 	#pass # Replace with function body.
-	if tutorial_step == TutorialStep.FOLLOW_SUIT:
-		print("great! you won the trick")
-		print("repeat what you've learned until one player reaches 7 tricks")
-		print('Whoever does so first, wins.')
-		print('GOOD LUCK')
+	if game_manager.current_player == winner_id:
+		if tutorial_step == TutorialStep.FOLLOW_SUIT:
+			print("great! you won the trick")
+			print("repeat what you've learned until one player reaches 7 tricks")
+			print('Whoever does so first, wins.')
+			print('GOOD LUCK')
+		else:
+			print('oh too bad, see if you can win the next round!')
 
 
 func _on_hokm_tutorial_turn_started(player_index: int, _text: String) -> void:

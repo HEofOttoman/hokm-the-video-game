@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhjoc73h3n2ky"]
+[gd_scene load_steps=11 format=3 uid="uid://dhjoc73h3n2ky"]
 
 [ext_resource type="Script" uid="uid://ba7rjqhcmnyaq" path="res://scenes/menus/level_select_menu/mode_select_menu.gd" id="1_sg15o"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_if8b8"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_sg15o"]
+[ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="3_8iqnn"]
 [ext_resource type="Script" uid="uid://wjq7li836lwj" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="3_sg15o"]
 [ext_resource type="FontFile" uid="uid://b7olp1jygawca" path="res://assets/Fonts/Freehand Font/Freehand-Regular.ttf" id="5_sg15o"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="6_y33mg"]
@@ -31,6 +32,19 @@ grow_vertical = 2
 texture = ExtResource("2_sg15o")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="ColorTextureRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.26500002)
+material = ExtResource("3_8iqnn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1

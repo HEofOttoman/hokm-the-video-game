@@ -6,6 +6,7 @@ class_name SFXBus
 @export var card_flip : AudioStream
 @export var trick_won : AudioStream
 @export var game_won : AudioStream
+@export var round_won : AudioStream
 
 func play(audio_stream: AudioStream):
 	var player = AudioStreamPlayer.new()

@@ -1,5 +1,5 @@
 shader_type canvas_item;
-/// Ported by Noobytube: https://godotshaders.com/shader/balatro-paint-mix/
+/// Ported by Noobytube: https://godotshaders.com/shader/balatro-paint-mix/ under CC0
 //I DONT OWN THIS i just took it directly from balatros source code teehee
 //and then converted it into godots shader language myself
 //shoutouts localthunk, buy balatro

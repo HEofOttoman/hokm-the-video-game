@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_game_template/base/nodes/autoloads/ui_sound_controller/ui_sound_controller.gd" id="4_xkrf4"]
 [ext_resource type="PackedScene" uid="uid://cwt4p3bufkke5" path="res://addons/maaacks_game_template/base/nodes/windows/confirmation_overlaid_window.tscn" id="5_6xh1d"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="5_x5bcm"]
-[ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="6_2k5l7"]
+[ext_resource type="Texture2D" uid="uid://cqomn3151i8ea" path="res://assets/Artworks/Hokm tVG Main Menu Background v2.png" id="7_8dhfv"]
 [ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="8_8dhfv"]
 [ext_resource type="Script" uid="uid://dmkubt2nsnsbn" path="res://addons/maaacks_game_template/base/nodes/labels/config_version_label.gd" id="8_672y5"]
 [ext_resource type="Script" uid="uid://bkwlopi4qn32o" path="res://addons/maaacks_game_template/base/nodes/labels/config_name_label.gd" id="9_8dhfv"]
@@ -358,13 +358,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_2k5l7")
+texture = ExtResource("7_8dhfv")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
 [node name="ColorTextureRect" type="ColorRect" parent="."]
-visible = false
 self_modulate = Color(1, 1, 1, 0.26500002)
 material = ExtResource("8_8dhfv")
 layout_mode = 1
@@ -400,8 +399,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -88.0
+offset_left = -120.0
 offset_top = -26.0
+offset_right = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "v0.0.20 Alpha"
