@@ -114,18 +114,29 @@ rulesEngine = NodePath("../Rule Umpire")
 score_piles = [null, null]
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
-visible = false
-offset_left = -576.0
-offset_top = 32.0
-offset_right = -474.0
-offset_bottom = 91.0
+offset_left = 472.0
+offset_top = 264.0
+offset_right = 574.0
+offset_bottom = 323.0
 text = "Tutorial"
 
 [node name="Rule Umpire" type="Node" parent="."]
 script = ExtResource("3_tmcbe")
 
-[node name="TutorialController" type="Node" parent="."]
+[node name="TutorialController" type="Node" parent="." node_paths=PackedStringArray("game_manager", "tutorial_ui")]
 script = ExtResource("8_w5ath")
+game_manager = NodePath("../Game Manager")
+tutorial_ui = NodePath("TutorialLayer")
+
+[node name="TutorialLayer" type="Control" parent="TutorialController"]
+layout_mode = 3
+anchor_left = -0.5
+anchor_top = -0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
 script = ExtResource("3_wtj6l")
@@ -294,8 +305,6 @@ anchor_bottom = -0.17638889
 text = "LEADING SUIT:"
 metadata/_edit_use_anchors_ = true
 
-[node name="TurnKeeper" type="Node" parent="."]
-
 [node name="PauseMenuController" type="Node" parent="."]
 script = ExtResource("3_exaxi")
 pause_menu_packed = ExtResource("4_b2thp")
@@ -368,13 +377,14 @@ text = "Player 0 (You)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot", "score_pile")]
+[node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot", "score_pile", "ai_controller")]
 position = Vector2(0, -191)
 script = ExtResource("5_m6rcj")
 player_id = 1
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot1")
 score_pile = NodePath("../Enemy1ScorePile")
+ai_controller = NodePath("AIController")
 
 [node name="HandPanel" type="Panel" parent="EnemyHand1"]
 visible = false

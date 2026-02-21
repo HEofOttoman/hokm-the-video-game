@@ -1,6 +1,7 @@
 extends Node2D
 class_name HandClass
-## File name is a misnomer, this script is used by both AI and player controllers
+## File name is a misnomer, this script is used by both AI and player controllers.
+## Acts as a visual & code container
 
 ## Based on barry's dev hell and another tutorial : https://www.youtube.com/watch?v=lATAS8YpzFE
 
@@ -37,6 +38,7 @@ var center_screen_x ## The width of the screen
 @export var score_pile : ScorePile
 
 @export var is_player_controlled : bool = false ## Whether or not the hand is owned by a player
+@export var ai_controller: AIController ## This should only be !null if `is_player_controlled` is false.
 
 #signal card_played(card, card_slot: CardSlot)
 

@@ -68,6 +68,8 @@ func _ready() -> void:
 	randomize()
 	deck.shuffle_deck()
 	
+	print('Hands:', hands)
+	
 	initialise_game()
 	#for i in range(hands.size()):
 		#hands[i].player_id = i
@@ -154,6 +156,7 @@ func scoring_game():
 
 func finish_game():
 	current_game_phase = HokmGamePhase.GAME_OVER
+	GameSfxBus.play(GameSfxBus.game_won)
 	print('GAME OVER!!! THANKS FOR PLAYING!!!')
 	#push_error('Game is over :>>') # 
 	if tricks_won[0] == 7:
@@ -261,13 +264,23 @@ func add_card_to_trick(card, slot, hand_cards, player_id: int): ## Adds the
 		#hand.player_id = hands[hand]
 
 func advance_turn(): ## Advances hand
-	print('Next Turn')
+	print('Advancing Turn')
+	
+	print('Hands:', hands)
+	
+	assert(hands.size() > 0, "GameManager: No hands assigned!")
 	
 	current_player = (current_player + 1) % hands.size()
 	start_turn(current_player)
 
 func start_turn(player_index: int): ## Starts the turn of the player with corresponding player id/index
 	#emit_signal('turn_started', player_index)
+	## check if someone won BEFORE starting the turn
+	#for i in range(tricks_won.size()):
+		#if tricks_won[i] >= 7:
+			#end_round()
+			#return
+	
 	var active_hand := hands[player_index]
 	
 	if tricks_won[current_player] == 7: ## Checks to see if 7 tricks have been won and ends game accordi
@@ -277,12 +290,13 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 		active_hand.set_interactive(true)
 		emit_signal('turn_started', player_index, 'YOUR TURN')
 		print("Player's turn")
-		## Show hint that
+		## Show hint that it is the player's turn
 	else:
 		print("AI's turn")
 		emit_signal('turn_started', player_index, str("PLAYER ", player_index, "'S TURN"))
 		#hands[player_index].get_child().take_turn()
-		$"../EnemyHand1/AIController".take_turn()
+		#$"../EnemyHand1/AIController".take_turn()
+		active_hand.ai_controller.take_turn()
 
 ## Ending the round, aka 7 tricks won (keeping the game short first, limited to 1 round)
 func end_round():

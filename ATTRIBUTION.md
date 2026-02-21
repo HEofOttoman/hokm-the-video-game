@@ -12,9 +12,6 @@ Henry Wauzivuff
 #### Rules of Hokm
 FerdowSki
 
-#### Programming Help
-Noontime Dreamer - [Tutorial on Card Game Basics](https://www.youtube.com/watch?v=e7iuMLdWjgw)
-
 
 #### Music
 Nasser Abdollahi - Ziyafat

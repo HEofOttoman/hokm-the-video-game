@@ -74,7 +74,8 @@ mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Hokm Display Label" parent="HUDLayer" instance=ExtResource("4_oqib0")]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.07777778
 anchor_right = 0.1
@@ -89,26 +90,23 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.14444445
+anchor_top = 0.21111111
 anchor_right = 0.12578125
-anchor_bottom = 0.16805555
+anchor_bottom = 0.23472223
 text = "TRICKS WON:"
 metadata/_edit_use_anchors_ = true
 
 [node name="Turn Indicator" type="Label" parent="HUDLayer"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.45
-anchor_top = -0.32222223
-anchor_right = -0.35
-anchor_bottom = -0.26666668
-offset_left = 640.0
-offset_top = 368.0
-offset_right = 640.0
-offset_bottom = 368.0
+anchor_left = 0.05
+anchor_top = 0.12222222
+anchor_right = 0.15
+anchor_bottom = 0.17777775
 text = "Player %'s Turn"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Container" type="HBoxContainer" parent="HUDLayer"]
 layout_mode = 1

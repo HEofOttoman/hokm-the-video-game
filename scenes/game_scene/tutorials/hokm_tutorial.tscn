@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqfeyf3vdqexp"]
+[gd_scene load_steps=17 format=3 uid="uid://cqfeyf3vdqexp"]
 
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="1_7x7n5"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="2_35jne"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="7_pqmp0"]
 [ext_resource type="Script" uid="uid://cxwpdcfwdt3rl" path="res://scripts/tutorial_controller.gd" id="9_i210u"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="12_nq74a"]
+[ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="13_lmcoq"]
 
 [sub_resource type="Animation" id="Animation_onchg"]
 length = 0.001
@@ -56,6 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_7x7n5")
 ui_manager = NodePath("UIManager")
 deck = NodePath("Deck")
@@ -103,19 +105,21 @@ mouse_filter = 2
 script = ExtResource("4_dwhfr")
 pause_menu_packed = ExtResource("5_nq74a")
 
-[node name="TutorialController" type="Node" parent="."]
+[node name="TutorialController" type="Node" parent="." node_paths=PackedStringArray("game_manager")]
 script = ExtResource("9_i210u")
+game_manager = NodePath("..")
 metadata/_custom_type_script = "uid://cxwpdcfwdt3rl"
 
 [node name="Deck" parent="." instance=ExtResource("2_35jne")]
 position = Vector2(392.00003, 344)
 
-[node name="PlayerHandClass" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot")]
+[node name="PlayerHandClass" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "score_pile")]
 position = Vector2(640, 576)
 script = ExtResource("5_4vetv")
 gameManager = NodePath("..")
 rulesEngine = NodePath("../RulesEngine")
 trick_slot = NodePath("../CardSlot")
+score_pile = NodePath("../ScorePile")
 is_player_controlled = true
 metadata/_custom_type_script = "uid://dxbgl3telxva0"
 
@@ -134,12 +138,14 @@ text = "Player 0 (You)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="AIHandClass" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot")]
+[node name="AIHandClass" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "score_pile", "ai_controller")]
 position = Vector2(640, 160)
 script = ExtResource("5_4vetv")
 gameManager = NodePath("..")
 rulesEngine = NodePath("../RulesEngine")
 trick_slot = NodePath("../CardSlot1")
+score_pile = NodePath("../ScorePile2")
+ai_controller = NodePath("AIController")
 metadata/_custom_type_script = "uid://dxbgl3telxva0"
 
 [node name="AIController" type="Node" parent="AIHandClass"]
@@ -161,8 +167,20 @@ libraries = {
 [node name="DebugLayer" parent="UIManager" index="1"]
 mouse_filter = 2
 
+[node name="ScorePile" parent="." instance=ExtResource("13_lmcoq")]
+position = Vector2(384, 672)
+
+[node name="ScorePile2" parent="." instance=ExtResource("13_lmcoq")]
+position = Vector2(896, 96)
+
+[connection signal="card_drawn" from="." to="TutorialController" method="_on_hokm_tutorial_card_drawn"]
+[connection signal="card_played" from="." to="TutorialController" method="_on_hokm_tutorial_card_played"]
+[connection signal="round_ended" from="." to="TutorialController" method="_on_hokm_tutorial_round_ended"]
 [connection signal="round_ended" from="." to="UIManager" method="_on_game_manager_round_ended"]
+[connection signal="state_changed" from="." to="TutorialController" method="_on_hokm_tutorial_state_changed"]
+[connection signal="trick_resolved" from="." to="TutorialController" method="_on_hokm_tutorial_trick_resolved"]
 [connection signal="trick_resolved" from="." to="UIManager" method="_on_game_manager_trick_resolved"]
+[connection signal="turn_started" from="." to="TutorialController" method="_on_hokm_tutorial_turn_started"]
 [connection signal="turn_started" from="." to="UIManager" method="_on_game_manager_turn_started"]
 [connection signal="card_drawn" from="Deck" to="." method="_on_card_drawn"]
 

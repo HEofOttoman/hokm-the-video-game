@@ -128,7 +128,7 @@ alignment = 1
 
 [node name="Subtitle" type="Label" parent="Prototype Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "3-Player"
+text = "3-Player (WIP)"
 label_settings = SubResource("LabelSettings_sg15o")
 horizontal_alignment = 1
 
@@ -155,7 +155,7 @@ alignment = 1
 
 [node name="Subtitle" type="Label" parent="4P Container/VBoxContainer"]
 layout_mode = 2
-text = "4-Player"
+text = "4-Player (WIP)"
 label_settings = SubResource("LabelSettings_sg15o")
 horizontal_alignment = 1
 

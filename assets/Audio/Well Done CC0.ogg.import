@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://boip62bg0nlf"
+path="res://.godot/imported/Well Done CC0.ogg-5f5060992a442a5b0a42ac202618fef5.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/Well Done CC0.ogg"
+dest_files=["res://.godot/imported/Well Done CC0.ogg-5f5060992a442a5b0a42ac202618fef5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

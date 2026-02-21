@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bt03c0al0xk0g"
+path="res://.godot/imported/correct_answer jingle.mp3-85847e38170ae62708d9846badd37886.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/correct_answer jingle.mp3"
+dest_files=["res://.godot/imported/correct_answer jingle.mp3-85847e38170ae62708d9846badd37886.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
