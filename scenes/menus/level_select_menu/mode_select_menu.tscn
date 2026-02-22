@@ -142,7 +142,7 @@ alignment = 1
 
 [node name="Subtitle" type="Label" parent="Prototype Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "3-Player (WIP)"
+text = "3-Player"
 label_settings = SubResource("LabelSettings_sg15o")
 horizontal_alignment = 1
 
@@ -153,6 +153,7 @@ expand_mode = 4
 
 [node name="Prototype-Btn" type="Button" parent="Prototype Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "WIP"
 metadata/_edit_use_anchors_ = true
 
@@ -169,7 +170,7 @@ alignment = 1
 
 [node name="Subtitle" type="Label" parent="4P Container/VBoxContainer"]
 layout_mode = 2
-text = "4-Player (WIP)"
+text = "4-Player"
 label_settings = SubResource("LabelSettings_sg15o")
 horizontal_alignment = 1
 
@@ -180,6 +181,7 @@ expand_mode = 4
 
 [node name="4P-Btn" type="Button" parent="4P Container/VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "WIP"
 metadata/_edit_use_anchors_ = true
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvaltk266wmbh"]
+
+[ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://resources/UI Elements/hakem_display.gd" id="1_uvhnw"]
+[ext_resource type="Texture2D" uid="uid://dgivyxvbghbme" path="res://assets/Sprites/Misc/Hakem Crown.png" id="2_escd4"]
+
+[node name="HakemDisplayLabel" type="Label"]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.022222223
+anchor_right = 0.134375
+anchor_bottom = 0.054166667
+theme_override_font_sizes/font_size = 22
+text = "Hakem"
+vertical_alignment = 1
+script = ExtResource("1_uvhnw")
+
+[node name="HakemCrown" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.44444445
+anchor_top = -0.6956522
+anchor_right = -0.06931623
+anchor_bottom = 1.3913044
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_escd4")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true

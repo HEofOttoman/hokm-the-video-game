@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cqfeyf3vdqexp"]
+[gd_scene load_steps=14 format=3 uid="uid://cqfeyf3vdqexp"]
 
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="1_7x7n5"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="2_35jne"]
@@ -14,43 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="12_nq74a"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="13_lmcoq"]
 
-[sub_resource type="Animation" id="Animation_onchg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_wtj6l"]
-resource_name = "fade_in_&_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_y85nq"]
-_data = {
-&"RESET": SubResource("Animation_onchg"),
-&"fade_in_&_out": SubResource("Animation_wtj6l")
-}
-
-[node name="HokmTutorial" type="Control" node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine")]
+[node name="HokmTutorial" type="Control" node_paths=PackedStringArray("deck", "hands", "trick_slots", "rulesEngine")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +23,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_7x7n5")
-ui_manager = NodePath("UIManager")
 deck = NodePath("Deck")
 hands = [NodePath("PlayerHandClass"), NodePath("AIHandClass")]
 trick_slots = [NodePath("CardSlot"), NodePath("CardSlot1")]
@@ -157,31 +120,20 @@ position = Vector2(696, 368)
 [node name="CardSlot1" parent="." instance=ExtResource("12_nq74a")]
 position = Vector2(584, 336)
 
-[node name="UIManager" parent="." instance=ExtResource("6_s5ocf")]
-
-[node name="AnimationPlayer" parent="UIManager/HUDLayer/Turn Prompt" index="0"]
-libraries = {
-&"": SubResource("AnimationLibrary_y85nq")
-}
-
-[node name="DebugLayer" parent="UIManager" index="1"]
-mouse_filter = 2
-
 [node name="ScorePile" parent="." instance=ExtResource("13_lmcoq")]
 position = Vector2(384, 672)
 
 [node name="ScorePile2" parent="." instance=ExtResource("13_lmcoq")]
 position = Vector2(896, 96)
 
+[node name="UIManager" parent="." instance=ExtResource("6_s5ocf")]
+
 [connection signal="card_drawn" from="." to="TutorialController" method="_on_hokm_tutorial_card_drawn"]
 [connection signal="card_played" from="." to="TutorialController" method="_on_hokm_tutorial_card_played"]
 [connection signal="round_ended" from="." to="TutorialController" method="_on_hokm_tutorial_round_ended"]
-[connection signal="round_ended" from="." to="UIManager" method="_on_game_manager_round_ended"]
 [connection signal="state_changed" from="." to="TutorialController" method="_on_hokm_tutorial_state_changed"]
 [connection signal="trick_resolved" from="." to="TutorialController" method="_on_hokm_tutorial_trick_resolved"]
-[connection signal="trick_resolved" from="." to="UIManager" method="_on_game_manager_trick_resolved"]
 [connection signal="turn_started" from="." to="TutorialController" method="_on_hokm_tutorial_turn_started"]
-[connection signal="turn_started" from="." to="UIManager" method="_on_game_manager_turn_started"]
 [connection signal="card_drawn" from="Deck" to="." method="_on_card_drawn"]
 
 [editable path="UIManager"]

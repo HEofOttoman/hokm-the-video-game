@@ -404,7 +404,7 @@ offset_top = -26.0
 offset_right = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v0.0.20 Alpha"
+text = "v0.0.21 Alpha"
 script = ExtResource("8_672y5")
 
 [node name="Music Playing Label" type="Label" parent="VersionMargin/VersionContainer"]
@@ -509,6 +509,7 @@ lock = true
 
 [node name="NewGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Play Tutorial"
 

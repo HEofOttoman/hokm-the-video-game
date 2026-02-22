@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cig6thybdjvsv"]
+[gd_scene load_steps=13 format=3 uid="uid://cig6thybdjvsv"]
 
 [ext_resource type="Script" uid="uid://bftae8jkury7d" path="res://resources/UI Elements/ui_manager.gd" id="1_yrdgn"]
 [ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://resources/UI Elements/hakem_display.gd" id="2_bufnx"]
+[ext_resource type="PackedScene" uid="uid://dvaltk266wmbh" path="res://resources/UI Elements/hakem_display_label.tscn" id="3_bufnx"]
 [ext_resource type="Texture2D" uid="uid://xwtvlh4cxojg" path="res://assets/kenney_input-prompts/Flairs/Double/flair_disabled_cross.png" id="3_dh4tk"]
 [ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="4_oqib0"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="5_38tb1"]
@@ -47,7 +48,7 @@ _data = {
 
 [node name="UIManager" type="CanvasLayer" node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
 script = ExtResource("1_yrdgn")
-hakem_display_label = NodePath("DebugLayer/VBoxContainer/Hakem Display Label")
+hakem_display_label = NodePath("HUDLayer/HakemDisplayLabel")
 hokm_display_label = NodePath("HUDLayer/Hokm Display Label")
 score_display_label = NodePath("HUDLayer/Score Label")
 turn_indicator = NodePath("HUDLayer/Turn Indicator")
@@ -68,7 +69,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.033333335
 anchor_right = 0.2
-anchor_bottom = 0.26666668
+anchor_bottom = 0.37777779
 offset_bottom = -1.5258789e-05
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
@@ -86,13 +87,18 @@ offset_right = 0.0
 offset_bottom = 0.0
 metadata/_edit_use_anchors_ = true
 
+[node name="HakemDisplayLabel" parent="HUDLayer" instance=ExtResource("3_bufnx")]
+layout_mode = 1
+anchor_top = 0.15555556
+anchor_bottom = 0.1875
+
 [node name="Score Label" type="Label" parent="HUDLayer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.21111111
+anchor_top = 0.31111112
 anchor_right = 0.12578125
-anchor_bottom = 0.23472223
+anchor_bottom = 0.33472222
 text = "TRICKS WON:"
 metadata/_edit_use_anchors_ = true
 
@@ -100,9 +106,9 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.12222222
+anchor_top = 0.22222222
 anchor_right = 0.15
-anchor_bottom = 0.17777775
+anchor_bottom = 0.27777776
 text = "Player %'s Turn"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -183,7 +189,7 @@ metadata/_edit_use_anchors_ = true
 [node name="VBoxContainer" type="VBoxContainer" parent="DebugLayer"]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 208.0
+offset_top = 272.0
 offset_right = 240.0
 offset_bottom = 496.0
 alignment = 1

@@ -95,8 +95,10 @@ func deal_initial_cards():
 	auctioning_game()
 
 func auctioning_game():
-	await declaring_hakem()
-	await declaring_hokm()
+	#await declaring_hakem()
+	declaring_hakem()
+	#await declaring_hokm()
+	declaring_hokm()
 	print('Hokm declared')
 	
 	await get_tree().create_timer(3.0).timeout
@@ -108,8 +110,10 @@ func declaring_hakem():
 	hakem_index = hands.find(hakem)
 	
 	print('Hakem: ', hakem, ' Index: ', hakem_index)
-	ui_manager.hakem_display_label.text = str("Hakem: ", hakem.name) # Replace with function body.
-
+	#ui_manager.hakem_display_label.text = str("Hakem: ", hakem.name) # Replace with function body
+	#ui_manager.hakem_display_label.text = str("Player ", hakem_index)
+	#print(ui_manager.hakem_display_label)
+	ui_manager.hakem_display_label.display_hakem(hakem_index)
 	
 	current_player = hakem_index
 	
@@ -266,9 +270,9 @@ func add_card_to_trick(card, slot, hand_cards, player_id: int): ## Adds the
 func advance_turn(): ## Advances hand
 	print('Advancing Turn')
 	
-	print('Hands:', hands)
+	#print('Hands:', hands)
 	
-	assert(hands.size() > 0, "GameManager: No hands assigned!")
+	assert(hands.size() > 0, "GameManager: No hands assigned!") ## Tutorial breaks here for some reason
 	
 	current_player = (current_player + 1) % hands.size()
 	start_turn(current_player)
@@ -282,6 +286,9 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 			#return
 	
 	var active_hand := hands[player_index]
+	
+	for hand in hands: ## Ensures that the hand is not interactible if it's not your turn.
+		hand.set_interactive(false)
 	
 	if tricks_won[current_player] == 7: ## Checks to see if 7 tricks have been won and ends game accordi
 		end_round()
