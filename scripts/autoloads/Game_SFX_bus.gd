@@ -5,6 +5,7 @@ class_name SFXBus
 @export_group('Sound Effects')
 @export var card_flip : AudioStream
 @export var trick_won : AudioStream
+@export var card_dropped : AudioStream
 @export var game_won : AudioStream
 @export var round_won : AudioStream
 

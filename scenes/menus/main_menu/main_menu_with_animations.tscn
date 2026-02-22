@@ -404,22 +404,23 @@ offset_top = -26.0
 offset_right = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v0.0.21 Alpha"
+text = "v1.0.0 Beta"
 script = ExtResource("8_672y5")
 
 [node name="Music Playing Label" type="Label" parent="VersionMargin/VersionContainer"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.33400002
+anchor_left = 0.31105697
 anchor_top = 1.0
-anchor_right = 0.33400002
+anchor_right = 0.40362027
 anchor_bottom = 1.0
 offset_left = -375.17603
 offset_top = -26.0
 offset_right = -0.17602539
 grow_horizontal = 0
 grow_vertical = 0
-text = "Currently Playing: Nasser Abdollahi - Ziafat"
+text = "Currently Playing: Nasser Abdollahi - Ziafat (Adjust Audio)"
+metadata/_edit_use_anchors_ = true
 
 [node name="MenuContainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true

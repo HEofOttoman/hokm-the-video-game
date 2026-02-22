@@ -75,7 +75,8 @@ func start_tutorial() -> void:
 	#print("Welcome to hokm! Let's learn the basics.")
 	
 	await next_button.pressed
-	typewrite("In hokm, one of the players will be crowned king at the beginning of the round. Look at where the crown is to know who it is.")
+	step_indicator.text = "Auctioning & Dealing"
+	typewrite("In Hokm, one of the players will be crowned king at the beginning of the round. Look at where the crown is to know who it is.")
 	
 	tutorial_step = TutorialStep.DEALING
 	
@@ -91,18 +92,24 @@ func start_tutorial() -> void:
 	#await text_timer.timeout
 	
 	await next_button.pressed
+	step_indicator.text = "Card Play"
 	typewrite("The king will then go first. He can put down any card. The other player then has to match the suit of the first card.")
 	
 	await next_button.pressed
 	typewrite("If one lacks a leading suit card, then you may use any card (no value) or one of the trump suit.")
 	
 	await next_button.pressed
-	typewrite("Whoever has the put down the highest ranked card will win the deck. A trump card outvalues all other cards in addition to its own value.")
+	step_indicator.text = "Winning & Losing"
+	typewrite("Whoever has put down the highest ranked card will win the deck. A trump card outvalues all other cards in addition to its own value.")
 	
 	await next_button.pressed
 	typewrite("The first player to win 7 decks will win the round. Towards the end, the game tends to change very quickly as people run out of cards.")
 	
 	await next_button.pressed
+	typewrite("Usually, the winner of the whole game is the first to win 7 rounds, though I haven't implemented that yet.")
+	
+	await next_button.pressed
+	step_indicator.text = "Finish"
 	typewrite("Have fun!")
 	next_button.hide()
 	finish_button.show()

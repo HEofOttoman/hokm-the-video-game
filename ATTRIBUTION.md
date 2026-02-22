@@ -1,32 +1,26 @@
 # Attribution
 
 ## Collaborators
-(C)2025 Henry Wauzivuff et al. Most Rights Reserved
-
+<!--(C)2025 Henry Wauzivuff et al. Most Rights Reserved-->
 #### Development
 Henry Wauzivuff
 
-#### Banner 
+#### Art & Assets
 Henry Wauzivuff
 
 #### Rules of Hokm
-FerdowSki
+FerdowSki my man
 
 
-#### Music
+#### Music & SFX
 Nasser Abdollahi - Ziyafat
-
+Kenney's SFX
 
 ## Sourced
 #### Godot Engine Logo
 Author: Andrea Calabró  
 Source: [godotengine.org : press](https://godotengine.org/press/)  
 License: [CC BY 4.0 International](https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt) 
-
-#### Git Logo
-Author: [Jason Long](https://bsky.app/profile/jasonlong.me)  
-Source: [git-scm.com : logos](https://git-scm.com/downloads/logos)  
-License: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) 
 
 #### Kenney's Assets
 Author: [Kenney](https://kenney.nl)
@@ -40,11 +34,6 @@ License: [CC0](https://creativecommons.org/public-domain/cc0/)
 Author: [Juan Linietsky, Ariel Manzur, and contributors](https://godotengine.org/contact)  
 Source: [godotengine.org](https://godotengine.org/)  
 License: [MIT License](https://github.com/godotengine/godot/blob/master/LICENSE.txt)  
-
-#### Visual Studio Code
-Author: [Microsoft](https://opensource.microsoft.com/)  
-Source: [github: vscode](https://github.com/microsoft/vscode)  
-License: [MIT License](https://github.com/microsoft/vscode/blob/main/LICENSE.txt)
 
 #### Git
 ![Git Logo](/assets/git_logo/Git-Logo-2Color.png)  

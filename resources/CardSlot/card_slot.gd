@@ -31,7 +31,7 @@ func add_card_to_slot(card): ## Places card inside of slot
 	card.global_position = self.global_position
 	card.rotation = self.rotation
 	
-	
+	GameSfxBus.play(GameSfxBus.card_dropped)
 	print('Card Added to slot')
 
 ## Resets card slot variables, doesn't change card position
