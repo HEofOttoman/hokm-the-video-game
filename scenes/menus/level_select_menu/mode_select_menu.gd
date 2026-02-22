@@ -4,7 +4,7 @@ extends Control
 
 
 func _on_2p_btn_pressed() -> void:
-	SceneLoader.load_scene('res://scenes/game_scene/levels/basic_test_scene.tscn')
+	SceneLoader.load_scene("res://scenes/game_scene/levels/2p_hokm_prototype.tscn")
 	pass # Replace with function body.
 
 

@@ -1,29 +1,29 @@
 [gd_scene load_steps=28 format=3 uid="uid://dpr6mnd7ukuya"]
 
-[ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="1_el8cj"]
-[ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_f4grl"]
-[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_exaxi"]
-[ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="3_pyd4g"]
-[ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="3_tmcbe"]
-[ext_resource type="Script" uid="uid://bftae8jkury7d" path="res://resources/UI Elements/ui_manager.gd" id="3_wtj6l"]
-[ext_resource type="Script" uid="uid://bmlwpkrav3q56" path="res://addons/maaacks_game_template/extras/scripts/win_lose_manager.gd" id="3_y85nq"]
-[ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_b2thp"]
-[ext_resource type="PackedScene" uid="uid://ba11po12cvait" path="res://scenes/windows/game_won_window.tscn" id="4_bljjq"]
-[ext_resource type="PackedScene" uid="uid://bx7s80d8smic4" path="res://scenes/windows/level_lost_window.tscn" id="5_bljjq"]
-[ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="5_m6rcj"]
-[ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="5_m14oq"]
-[ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="6_f4grl"]
-[ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="7_exaxi"]
-[ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="8_sl5y5"]
-[ext_resource type="Script" uid="uid://cxwpdcfwdt3rl" path="res://scripts/tutorial_controller.gd" id="8_w5ath"]
-[ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="9_m6rcj"]
-[ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="10_d5kay"]
-[ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="10_tmcbe"]
-[ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="10_xf0qg"]
-[ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="14_d5kay"]
-[ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="14_j7cxb"]
-[ext_resource type="PackedScene" uid="uid://dvaltk266wmbh" path="res://resources/UI Elements/hakem_display_label.tscn" id="17_iwl72"]
-[ext_resource type="Texture2D" uid="uid://dgivyxvbghbme" path="res://assets/Sprites/Misc/Hakem Crown.png" id="23_qtplx"]
+[ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="1_p3ypm"]
+[ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="2_1r4cq"]
+[ext_resource type="Script" uid="uid://bmlwpkrav3q56" path="res://addons/maaacks_game_template/extras/scripts/win_lose_manager.gd" id="3_pr027"]
+[ext_resource type="PackedScene" uid="uid://ba11po12cvait" path="res://scenes/windows/game_won_window.tscn" id="4_uiynk"]
+[ext_resource type="PackedScene" uid="uid://bx7s80d8smic4" path="res://scenes/windows/level_lost_window.tscn" id="5_8mnqj"]
+[ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="6_103aj"]
+[ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="7_eg3ek"]
+[ext_resource type="Script" uid="uid://cxwpdcfwdt3rl" path="res://scripts/tutorial_controller.gd" id="8_8ycwu"]
+[ext_resource type="Script" uid="uid://bftae8jkury7d" path="res://resources/UI Elements/ui_manager.gd" id="9_rnmyu"]
+[ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="10_73siw"]
+[ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="11_he7j7"]
+[ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="12_3hwx4"]
+[ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="13_fbs3b"]
+[ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="14_cen0b"]
+[ext_resource type="PackedScene" uid="uid://dvaltk266wmbh" path="res://resources/UI Elements/hakem_display_label.tscn" id="15_oofwr"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="16_3tb7h"]
+[ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="17_x5e23"]
+[ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="18_7b6e0"]
+[ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="19_ic7de"]
+[ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="20_f84ns"]
+[ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="21_n36pl"]
+[ext_resource type="Texture2D" uid="uid://dgivyxvbghbme" path="res://assets/Sprites/Misc/Hakem Crown.png" id="22_1onrs"]
+[ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="23_llag2"]
+[ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="24_xiar1"]
 
 [sub_resource type="Animation" id="Animation_onchg"]
 length = 0.001
@@ -71,13 +71,13 @@ offset_right = 637.0
 offset_bottom = 376.0
 size_flags_horizontal = 0
 mouse_filter = 2
-texture = ExtResource("2_f4grl")
+texture = ExtResource("1_p3ypm")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="BackgroundColor" type="ColorRect" parent="."]
 z_index = -2
-material = ExtResource("1_el8cj")
+material = ExtResource("2_1r4cq")
 offset_left = -640.0
 offset_top = -360.0
 offset_right = 640.0
@@ -98,14 +98,14 @@ metadata/_edit_use_anchors_ = true
 wait_time = 5.0
 
 [node name="Win Lose Manager" type="Node" parent="."]
-script = ExtResource("3_y85nq")
+script = ExtResource("3_pr027")
 main_menu_scene_path = "uid://dhr7kwfkmlq7o"
 ending_scene_path = "uid://cegpeogqhswj3"
-game_won_scene = ExtResource("4_bljjq")
-game_lost_scene = ExtResource("5_bljjq")
+game_won_scene = ExtResource("4_uiynk")
+game_lost_scene = ExtResource("5_8mnqj")
 
 [node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
-script = ExtResource("3_pyd4g")
+script = ExtResource("6_103aj")
 ui_manager = NodePath("../UIManager")
 deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
@@ -122,10 +122,10 @@ toggle_mode = true
 text = "Tutorial"
 
 [node name="Rule Umpire" type="Node" parent="."]
-script = ExtResource("3_tmcbe")
+script = ExtResource("7_eg3ek")
 
 [node name="TutorialController" type="Node" parent="." node_paths=PackedStringArray("game_manager", "tutorial_ui", "step_indicator", "tutorial_text", "next_button", "finish_button")]
-script = ExtResource("8_w5ath")
+script = ExtResource("8_8ycwu")
 game_manager = NodePath("../Game Manager")
 tutorial_ui = NodePath("TutorialLayer")
 step_indicator = NodePath("TutorialLayer/StepIndicator")
@@ -209,7 +209,7 @@ offset_bottom = 611.0
 text = "Finish"
 
 [node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
-script = ExtResource("3_wtj6l")
+script = ExtResource("9_rnmyu")
 hakem_display_label = NodePath("HUDLayer/HakemDisplayLabel")
 hokm_display_label = NodePath("HUDLayer/Hokm Display Label")
 score_display_label = NodePath("HUDLayer/Score Label")
@@ -229,7 +229,7 @@ anchor_bottom = -0.15555556
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Hokm Display Label" parent="UIManager/HUDLayer" instance=ExtResource("6_f4grl")]
+[node name="Hokm Display Label" parent="UIManager/HUDLayer" instance=ExtResource("10_73siw")]
 offset_left = -576.0
 offset_top = -312.0
 offset_right = -512.0
@@ -271,25 +271,25 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Clubs" type="TextureButton" parent="UIManager/HUDLayer/Container"]
 layout_mode = 2
-texture_normal = ExtResource("7_exaxi")
+texture_normal = ExtResource("11_he7j7")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Hearts" type="TextureButton" parent="UIManager/HUDLayer/Container"]
 layout_mode = 2
-texture_normal = ExtResource("8_sl5y5")
+texture_normal = ExtResource("12_3hwx4")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Spades" type="TextureButton" parent="UIManager/HUDLayer/Container"]
 layout_mode = 2
-texture_normal = ExtResource("9_m6rcj")
+texture_normal = ExtResource("13_fbs3b")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Diamonds" type="TextureButton" parent="UIManager/HUDLayer/Container"]
 layout_mode = 2
-texture_normal = ExtResource("10_xf0qg")
+texture_normal = ExtResource("14_cen0b")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
@@ -309,7 +309,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_y85nq")
 }
 
-[node name="HakemDisplayLabel" parent="UIManager/HUDLayer" instance=ExtResource("17_iwl72")]
+[node name="HakemDisplayLabel" parent="UIManager/HUDLayer" instance=ExtResource("15_oofwr")]
 anchor_left = -0.45
 anchor_top = -0.35555556
 anchor_right = -0.365625
@@ -357,16 +357,16 @@ text = "LEADING SUIT:"
 metadata/_edit_use_anchors_ = true
 
 [node name="PauseMenuController" type="Node" parent="."]
-script = ExtResource("3_exaxi")
-pause_menu_packed = ExtResource("4_b2thp")
+script = ExtResource("16_3tb7h")
+pause_menu_packed = ExtResource("17_x5e23")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Deck" parent="." instance=ExtResource("5_m14oq")]
+[node name="Deck" parent="." instance=ExtResource("18_7b6e0")]
 z_index = 0
 position = Vector2(-196, 1)
 
-[node name="Discard Slot" parent="." instance=ExtResource("14_j7cxb")]
+[node name="Discard Slot" parent="." instance=ExtResource("19_ic7de")]
 visible = false
 position = Vector2(184, 1)
 slot_type = 1
@@ -383,17 +383,17 @@ offset_bottom = 360.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="TrickSlot" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
+[node name="TrickSlot" parent="TableTrickSlots" instance=ExtResource("19_ic7de")]
 z_index = -1
 position = Vector2(48, 17)
 
-[node name="TrickSlot1" parent="TableTrickSlots" instance=ExtResource("14_j7cxb")]
+[node name="TrickSlot1" parent="TableTrickSlots" instance=ExtResource("19_ic7de")]
 z_index = -1
 position = Vector2(-48, -15)
 
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile")]
 position = Vector2(0, 193)
-script = ExtResource("5_m6rcj")
+script = ExtResource("20_f84ns")
 hand_layout_mode = 0
 gameManager = NodePath("../Game Manager")
 rulesEngine = NodePath("../Rule Umpire")
@@ -416,7 +416,7 @@ offset_left = -24.0
 offset_top = 31.0
 offset_right = 24.0
 offset_bottom = 79.0
-texture = ExtResource("10_d5kay")
+texture = ExtResource("21_n36pl")
 expand_mode = 1
 
 [node name="PlayerLabel" type="Label" parent="PlayerHand"]
@@ -434,12 +434,12 @@ offset_left = -16.0
 offset_top = 2.0
 offset_right = 20.0
 offset_bottom = 41.0
-texture = ExtResource("23_qtplx")
+texture = ExtResource("22_1onrs")
 expand_mode = 1
 
 [node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("rulesEngine", "trick_slot", "score_pile", "ai_controller")]
 position = Vector2(0, -191)
-script = ExtResource("5_m6rcj")
+script = ExtResource("20_f84ns")
 player_id = 1
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot1")
@@ -460,7 +460,7 @@ offset_left = -24.0
 offset_top = -121.0
 offset_right = 24.0
 offset_bottom = -73.0
-texture = ExtResource("10_d5kay")
+texture = ExtResource("21_n36pl")
 expand_mode = 1
 
 [node name="PlayerLabel1" type="Label" parent="EnemyHand1"]
@@ -472,7 +472,7 @@ text = "Player 1 (AI)"
 horizontal_alignment = 1
 
 [node name="AIController" type="Node" parent="EnemyHand1" node_paths=PackedStringArray("game_manager", "rulesEngine")]
-script = ExtResource("10_tmcbe")
+script = ExtResource("23_llag2")
 game_manager = NodePath("../../Game Manager")
 rulesEngine = NodePath("../../Rule Umpire")
 
@@ -491,26 +491,26 @@ offset_left = -16.0
 offset_top = -153.0
 offset_right = 20.0
 offset_bottom = -114.0
-texture = ExtResource("23_qtplx")
+texture = ExtResource("22_1onrs")
 expand_mode = 1
 
-[node name="Player1ScorePile" parent="." instance=ExtResource("14_d5kay")]
+[node name="Player1ScorePile" parent="." instance=ExtResource("24_xiar1")]
 position = Vector2(-384, 324)
 
-[node name="Enemy1ScorePile" parent="." instance=ExtResource("14_d5kay")]
+[node name="Enemy1ScorePile" parent="." instance=ExtResource("24_xiar1")]
 position = Vector2(384, -280)
 
 [node name="EnemyHand2 (Placeholder)" type="Node2D" parent="."]
 visible = false
 position = Vector2(448, 0)
-script = ExtResource("5_m6rcj")
+script = ExtResource("20_f84ns")
 
 [node name="PlayerIcon2" type="TextureRect" parent="EnemyHand2 (Placeholder)"]
 offset_left = 40.0
 offset_top = -72.0
 offset_right = 168.0
 offset_bottom = 64.0
-texture = ExtResource("10_d5kay")
+texture = ExtResource("21_n36pl")
 expand_mode = 1
 
 [node name="PlayerLabel2" type="Label" parent="EnemyHand2 (Placeholder)"]
@@ -523,19 +523,19 @@ text = "Player 2 (AI)"
 horizontal_alignment = 1
 
 [node name="AIController" type="Node" parent="EnemyHand2 (Placeholder)" node_paths=PackedStringArray("rulesEngine")]
-script = ExtResource("10_tmcbe")
+script = ExtResource("23_llag2")
 rulesEngine = NodePath("../../Rule Umpire")
 
 [node name="EnemyHand3 (Placeholder)" type="Node2D" parent="."]
 visible = false
 position = Vector2(-320, 0)
-script = ExtResource("5_m6rcj")
+script = ExtResource("20_f84ns")
 
 [node name="PlayerIcon3" type="TextureRect" parent="EnemyHand3 (Placeholder)"]
 offset_top = -64.0
 offset_right = 128.0
 offset_bottom = 72.0
-texture = ExtResource("10_d5kay")
+texture = ExtResource("21_n36pl")
 expand_mode = 1
 
 [node name="PlayerLabel3" type="Label" parent="EnemyHand3 (Placeholder)"]
@@ -547,7 +547,7 @@ text = "Player 4 (AI)"
 metadata/_edit_use_anchors_ = true
 
 [node name="AIController" type="Node" parent="EnemyHand3 (Placeholder)"]
-script = ExtResource("10_tmcbe")
+script = ExtResource("23_llag2")
 
 [connection signal="card_played" from="Game Manager" to="TutorialController" method="_on_card_played"]
 [connection signal="round_ended" from="Game Manager" to="TutorialController" method="_on_round_ended"]
