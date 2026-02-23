@@ -122,6 +122,7 @@ func on_card_dropped(card, card_slot_found):
 	gameManager.trick_cards, 
 	cards_in_hand) == false:
 		print('hand: card play not possible')
+		add_card_to_hand(card) ## Rejects card play if the card is not possible
 		return "cannot play card"
 		#card_slot_found.add_card_to_slot()
 	
@@ -141,7 +142,7 @@ func remove_card_from_hand(card):
 		update_hand_positions()
 		
 
-## Adds the card to the array and updates card to position
+## Adds the card to the array and updates card to position. Also returns card in case of invalid plays.
 func add_card_to_hand(card):
 	if card not in cards_in_hand:
 		cards_in_hand.insert(0, card)

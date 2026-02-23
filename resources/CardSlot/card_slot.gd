@@ -24,10 +24,11 @@ enum SlotType { ## Different slots have different behaviours
 func _ready() -> void:
 	pass
 
-func add_card_to_slot(card): ## Places card inside of slot
+func add_card_to_slot(card: CardInstance): ## Places card inside of slot
 	card_in_slot = true
 	occupied_card = card
-	card.scale = Vector2(0.6, 0.6)
+	card.set_interactive(false) ## Added to stop card from being able to be taken out after dropping it for the first time
+	card.scale = Vector2(1.15, 1.15)
 	card.global_position = self.global_position
 	card.rotation = self.rotation
 	

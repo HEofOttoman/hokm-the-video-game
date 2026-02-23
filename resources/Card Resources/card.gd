@@ -143,7 +143,9 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	is_hovered = false
-	highlight_card(false)
+	if interactive: ## Stops the card from resizing back up after dropping the card
+		highlight_card(false)
+	#highlight_card(false)
 	emit_signal("hovered_off", self)
 	
 
