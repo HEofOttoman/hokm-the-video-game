@@ -1,31 +1,25 @@
 # Attribution
 
 ## Collaborators
-<!--(C)2025 Henry Wauzivuff et al. Most Rights Reserved-->
-#### Development
-Henry Wauzivuff
+### Henry Wauzivuff
+#### Main Developer
+![Henry Wauzivuff Icon](/assets/Artworks/HenryWauzivuff Icon.jpg)
+Developer & programmer
 
-#### Art & Assets
-Henry Wauzivuff
-
+### Ferdowski
 #### Rules of Hokm
-FerdowSki my man
+![Ferdowskimyman](/assets/Artworks/Ferdowski Icon.png)
+All of this is possible because of FerdowSki (my man) who happened to teach me this game in late 2025
 
+### Art & Assets
+Henry Wauzivuff - Custom Assets
+Kenney.nl - [Playing Cards Pack](https://kenney.nl/assets/playing-cards-pack)
+Noobytube - [Balatro Paint Mix (CC0)](https://godotshaders.com/shader/balatro-paint-mix/)
 
 #### Music & SFX
-Nasser Abdollahi - Ziyafat
-Kenney's SFX
-
-## Sourced
-#### Godot Engine Logo
-Author: Andrea Calabró  
-Source: [godotengine.org : press](https://godotengine.org/press/)  
-License: [CC BY 4.0 International](https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt) 
-
-#### Kenney's Assets
-Author: [Kenney](https://kenney.nl)
-Source: [Kenney.nl](https://kenney.nl)
-License: [CC0](https://creativecommons.org/public-domain/cc0/)
+Nasser Abdollahi - [Ziyafat](https://www.youtube.com/watch?v=NsyFWR9IYHQ)
+Robin Alciatore & Erik Satie - [Gymnopédies - No. 1 lent et douloureux](https://en.wikipedia.org/wiki/File:Erik_Satie_-_gymnopedies_-_la_1_ere._lent_et_douloureux.ogg)
+Kenney.nl - [UI Audio SFX](https://kenney.nl/assets/ui-audio)
 
 
 ## Tools
