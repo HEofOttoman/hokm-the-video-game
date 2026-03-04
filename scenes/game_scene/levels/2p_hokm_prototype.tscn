@@ -104,14 +104,13 @@ ending_scene_path = "uid://cegpeogqhswj3"
 game_won_scene = ExtResource("4_uiynk")
 game_lost_scene = ExtResource("5_8mnqj")
 
-[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
+[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine")]
 script = ExtResource("6_103aj")
 ui_manager = NodePath("../UIManager")
 deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1")]
 rulesEngine = NodePath("../Rule Umpire")
-score_piles = [null, null]
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
 offset_left = 512.0

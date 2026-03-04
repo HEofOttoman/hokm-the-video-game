@@ -15,10 +15,10 @@ enum HokmGameMode { ## Same thing as player_count I guess - Should change rules 
 @export var ui_manager : UIManager = UIManager.new()
 @export var deck : Deck
 @export var hands : Array[Node]
-@export var trick_slots : Array[CardSlot]
+@export var trick_slots : Array[CardSlot] ## Might also be unused
 @export var ai_controllers: Array[AIController]
 @export var rulesEngine := RulesEngine.new()
-@export var score_piles : Array[Control]
+@export var score_piles : Array[Control] ## Might be unused..
 
 @export_group('Runtime Variables') ## Exposed for debugging ig
 var current_player : int = 0 # The ID of the current player
@@ -73,6 +73,16 @@ func _ready() -> void:
 	initialise_game()
 	#for i in range(hands.size()):
 		#hands[i].player_id = i
+
+## Starts a new round
+func start_new_round()-> void:
+	#trick_slots.clear()
+	for h in hands:
+		h.score_pile.cards_in_pile.clear()
+	
+	deck.build_deck()
+	
+	current_game_phase = HokmGamePhase.INIT
 
 func initialise_game():
 	current_game_phase = HokmGamePhase.INIT
@@ -316,6 +326,10 @@ func end_round():
 	
 	emit_signal('round_ended', score)
 	scoring_game()
+	
+	#if score[winner_index] == 7:
+		#scoring_game()
+	
 
 func _on_end_turn_test_btn_pressed() -> void:
 	advance_turn() # Replace with function body.

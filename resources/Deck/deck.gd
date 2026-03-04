@@ -107,3 +107,7 @@ func draw_card():
 		#
 		#
 		#print("Card ", card.value, card.suit, " drawn") ## Confirms that shuffle function works	
+
+## Restores all cards to the deck
+func build_deck() -> void:
+	pass

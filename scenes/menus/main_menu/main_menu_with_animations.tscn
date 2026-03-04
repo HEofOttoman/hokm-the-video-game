@@ -404,7 +404,7 @@ offset_top = -26.0
 offset_right = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.0.3 Beta"
+text = "v1.0.4 Beta"
 script = ExtResource("8_672y5")
 
 [node name="Music Playing Label" type="Label" parent="VersionMargin/VersionContainer"]
