@@ -1,0 +1,172 @@
+[gd_scene load_steps=17 format=3 uid="uid://cjr1ineh8ayt"]
+
+[ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="1_wv07j"]
+[ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="2_1aijo"]
+[ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_kc246"]
+[ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_ewgxo"]
+[ext_resource type="Script" uid="uid://bmlwpkrav3q56" path="res://addons/maaacks_game_template/extras/scripts/win_lose_manager.gd" id="5_v4sq6"]
+[ext_resource type="PackedScene" uid="uid://ba11po12cvait" path="res://scenes/windows/game_won_window.tscn" id="6_bdj1t"]
+[ext_resource type="PackedScene" uid="uid://bx7s80d8smic4" path="res://scenes/windows/level_lost_window.tscn" id="7_2pe2v"]
+[ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="8_bdj1t"]
+[ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="9_2pe2v"]
+[ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="9_dkdgu"]
+[ext_resource type="PackedScene" uid="uid://cig6thybdjvsv" path="res://resources/UI Elements/ui_manager.tscn" id="10_mvlga"]
+[ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="12_c8ffb"]
+[ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="13_fxmio"]
+[ext_resource type="Texture2D" uid="uid://dgivyxvbghbme" path="res://assets/Sprites/Misc/Hakem Crown.png" id="14_heqth"]
+[ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="15_ld525"]
+[ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="16_fxmio"]
+
+[node name="3pHokmPrototype" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -2
+offset_top = -16.0
+offset_right = 1277.0
+offset_bottom = 736.0
+size_flags_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("1_wv07j")
+expand_mode = 1
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+z_index = -2
+material = ExtResource("2_1aijo")
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+metadata/_edit_lock_ = true
+
+[node name="CenterTablePanel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.28800002)
+z_index = -1
+offset_left = 280.0
+offset_right = 1000.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="PauseMenuController" type="Node" parent="."]
+script = ExtResource("3_kc246")
+pause_menu_packed = ExtResource("4_ewgxo")
+
+[node name="Win Lose Manager" type="Node" parent="."]
+script = ExtResource("5_v4sq6")
+main_menu_scene_path = "uid://dhr7kwfkmlq7o"
+ending_scene_path = "uid://cegpeogqhswj3"
+game_won_scene = ExtResource("6_bdj1t")
+game_lost_scene = ExtResource("7_2pe2v")
+
+[node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
+process_mode = 4
+script = ExtResource("8_bdj1t")
+player_count = 3
+ui_manager = NodePath("../UIManager")
+deck = NodePath("../Deck")
+hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
+trick_slots = [NodePath("../CardSlot"), NodePath("../CardSlot1")]
+rulesEngine = NodePath("../Rule Umpire")
+score_piles = [NodePath(""), NodePath("")]
+
+[node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
+offset_left = 1176.0
+offset_top = 656.0
+offset_right = 1278.0
+offset_bottom = 715.0
+toggle_mode = true
+text = "Tutorial"
+
+[node name="Rule Umpire" type="Node" parent="."]
+script = ExtResource("9_dkdgu")
+
+[node name="UIManager" parent="." instance=ExtResource("10_mvlga")]
+
+[node name="Deck" parent="." instance=ExtResource("9_2pe2v")]
+position = Vector2(480.00003, 352)
+
+[node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile")]
+position = Vector2(638, 544)
+script = ExtResource("12_c8ffb")
+hand_layout_mode = 0
+gameManager = NodePath("../Game Manager")
+rulesEngine = NodePath("../Rule Umpire")
+trick_slot = NodePath("../CardSlot")
+HandLabel = NodePath("PlayerLabel")
+score_pile = NodePath("")
+is_player_controlled = true
+
+[node name="PlayerIcon" type="TextureRect" parent="PlayerHand"]
+offset_left = -24.0
+offset_top = 31.0
+offset_right = 24.0
+offset_bottom = 79.0
+texture = ExtResource("13_fxmio")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerLabel" type="Label" parent="PlayerHand"]
+offset_left = -64.0
+offset_top = 87.0
+offset_right = 64.0
+offset_bottom = 104.0
+text = "Player 0 (You)"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HakemCrown" type="TextureRect" parent="PlayerHand"]
+visible = false
+offset_left = -16.0
+offset_top = 2.0
+offset_right = 20.0
+offset_bottom = 41.0
+texture = ExtResource("14_heqth")
+expand_mode = 1
+
+[node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
+position = Vector2(638, 160)
+script = ExtResource("12_c8ffb")
+player_id = 1
+gameManager = NodePath("../Game Manager")
+rulesEngine = NodePath("../Rule Umpire")
+trick_slot = NodePath("../CardSlot1")
+HandLabel = NodePath("PlayerLabel1")
+score_pile = NodePath("")
+ai_controller = NodePath("AIController")
+
+[node name="PlayerIcon1" type="TextureRect" parent="EnemyHand1"]
+offset_left = -24.0
+offset_top = -121.0
+offset_right = 24.0
+offset_bottom = -73.0
+texture = ExtResource("13_fxmio")
+expand_mode = 1
+
+[node name="PlayerLabel1" type="Label" parent="EnemyHand1"]
+offset_left = -64.0
+offset_top = -65.0
+offset_right = 64.0
+offset_bottom = -48.0
+text = "Player 1 (AI)"
+horizontal_alignment = 1
+
+[node name="AIController" type="Node" parent="EnemyHand1" node_paths=PackedStringArray("game_manager", "rulesEngine")]
+script = ExtResource("15_ld525")
+game_manager = NodePath("../../Game Manager")
+rulesEngine = NodePath("../../Rule Umpire")
+
+[node name="HakemCrown" type="TextureRect" parent="EnemyHand1"]
+visible = false
+offset_left = -16.0
+offset_top = -153.0
+offset_right = 20.0
+offset_bottom = -114.0
+texture = ExtResource("14_heqth")
+expand_mode = 1
+
+[node name="CardSlot" parent="." instance=ExtResource("16_fxmio")]
+position = Vector2(600, 360)
+
+[node name="CardSlot1" parent="." instance=ExtResource("16_fxmio")]
+position = Vector2(680, 344.00003)
+
+[connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]

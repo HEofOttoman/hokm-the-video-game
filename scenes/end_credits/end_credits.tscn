@@ -17,18 +17,7 @@ scroll_paused = true
 [node name="BackgroundMusicPlayer" parent="." index="0" instance=ExtResource("3_bfvdl")]
 stream = ExtResource("4_bfvdl")
 
-[node name="BackgroundColor" type="ColorRect" parent="." index="1"]
-material = ExtResource("4_2v40y")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="BackgroundTextureRect" type="TextureRect" parent="." index="2"]
-visible = false
+[node name="BackgroundTextureRect" type="TextureRect" parent="." index="1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,37 +28,41 @@ texture = ExtResource("6_1kqi1")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="BackgroundColor" type="ColorRect" parent="." index="2"]
+self_modulate = Color(0.40069774, 0.40069774, 0.40069768, 0.51900005)
+material = ExtResource("4_2v40y")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ScrollContainer" parent="." index="3"]
-scroll_vertical = 2433
+scroll_vertical = 2378
 
 [node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" index="1"]
 text = "
 [font_size=48]Collaborators[/font_size]
-<!--(C)2025 Henry Wauzivuff et al. Most Rights Reserved-->
-[font_size=24]Development[/font_size]
-Henry Wauzivuff
+[font_size=32]Henry Wauzivuff[/font_size]
+[font_size=24]Main Developer[/font_size]
+[img=80]res:///assets/Artworks/HenryWauzivuff Icon.jpg[/img]
+Developer & programmer
 
-[font_size=24]Art & Assets[/font_size]
-Henry Wauzivuff
-
+[font_size=32]Ferdowski[/font_size]
 [font_size=24]Rules of Hokm[/font_size]
-FerdowSki my man
+[img=80]res:///assets/Artworks/Ferdowski Icon.png[/img]
+All of this is possible because of FerdowSki (my man) who happened to teach me this game in late 2025
 
+[font_size=32]Art & Assets[/font_size]
+Henry Wauzivuff - Custom Assets
+Kenney.nl - [url=https://kenney.nl/assets/playing-cards-pack]Playing Cards Pack[/url]
+Noobytube - [url=https://godotshaders.com/shader/balatro-paint-mix/]Balatro Paint Mix (CC0)[/url]
 
 [font_size=24]Music & SFX[/font_size]
-Nasser Abdollahi - Ziyafat
-Kenney's SFX
-
-[font_size=48]Sourced[/font_size]
-[font_size=24]Godot Engine Logo[/font_size]
-Author: Andrea Calabró  
-Source: [url=https://godotengine.org/press/]godotengine.org : press[/url]  
-License: [url=https://github.com/godotengine/godot/blob/master/LOGO_LICENSE.txt]CC BY 4.0 International[/url] 
-
-[font_size=24]Kenney's Assets[/font_size]
-Author: [url=https://kenney.nl]Kenney[/url]
-Source: [url=https://kenney.nl]Kenney.nl[/url]
-License: [url=https://creativecommons.org/public-domain/cc0/]CC0[/url]
+Nasser Abdollahi - [url=https://www.youtube.com/watch?v=NsyFWR9IYHQ]Ziyafat[/url]
+Robin Alciatore & Erik Satie - [url=https://en.wikipedia.org/wiki/File:Erik_Satie_-_gymnopedies_-_la_1_ere._lent_et_douloureux.ogg]Gymnopédies - No. 1 lent et douloureux[/url]
+Kenney.nl - [url=https://kenney.nl/assets/ui-audio]UI Audio SFX[/url]
 
 
 [font_size=48]Tools[/font_size]

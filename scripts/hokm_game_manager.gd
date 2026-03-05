@@ -16,9 +16,9 @@ enum HokmGameMode { ## Same thing as player_count I guess - Should change rules 
 @export var deck : Deck
 @export var hands : Array[Node]
 @export var trick_slots : Array[CardSlot] ## Might also be unused
-@export var ai_controllers: Array[AIController]
+@export var ai_controllers: Array[AIController] ## Also not good.
 @export var rulesEngine := RulesEngine.new()
-@export var score_piles : Array[Control] ## Might be unused..
+@export var score_piles : Array[ScorePile] ## Might be unused..
 
 @export_group('Runtime Variables') ## Exposed for debugging ig
 var current_player : int = 0 # The ID of the current player
@@ -74,13 +74,13 @@ func _ready() -> void:
 	#for i in range(hands.size()):
 		#hands[i].player_id = i
 
-## Starts a new round
+## Starts a new round.
 func start_new_round()-> void:
 	#trick_slots.clear()
-	for h in hands:
-		h.score_pile.cards_in_pile.clear()
 	
-	deck.build_deck()
+	for hand in hands:
+		hand.score_pile.cards_in_pile.clear()
+	deck.reset_deck()
 	
 	current_game_phase = HokmGamePhase.INIT
 
@@ -317,9 +317,12 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 
 ## Ending the round, aka 7 tricks won (keeping the game short first, limited to 1 round)
 func end_round():
-	#if winner_index == hakem_index and tricks_won[winner_index] == 7:
+	#if score[winner_index] == 7:
+		#scoring_game()
+	
+	#if winner_index == hakem_index and tricks_won[winner_index] > 7:
 		#score[winner_index] += 2
-	#elif winner_index != hakem_index and tricks_won[winner_index] == 7:
+	#elif winner_index != hakem_index and tricks_won[winner_index] > 7:
 		#score[winner_index] += 3
 	#else:
 		#score[winner_index] += 1
@@ -327,8 +330,7 @@ func end_round():
 	emit_signal('round_ended', score)
 	scoring_game()
 	
-	#if score[winner_index] == 7:
-		#scoring_game()
+	
 	
 
 func _on_end_turn_test_btn_pressed() -> void:

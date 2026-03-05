@@ -3,6 +3,7 @@ class_name Deck
 
 ## Based on this tutorial: https://www.youtube.com/watch?v=e7iuMLdWjgw
 
+@export var original_deck_data : Array[CardData] ## Array containing all of the card data
 @export var cards : Array[Resource] ## Array countaining data of all cards in a 52-card standard deck
 @export var cardScene : PackedScene
 #@export var draw_point : Node2D 
@@ -108,6 +109,8 @@ func draw_card():
 		#
 		#print("Card ", card.value, card.suit, " drawn") ## Confirms that shuffle function works	
 
-## Restores all cards to the deck
-func build_deck() -> void:
-	pass
+## Restores all cards to the deck and shuffles
+func reset_deck() -> void:
+	cards = original_deck_data.duplicate()
+	print("Cards reset")
+	shuffle_deck()
