@@ -121,6 +121,13 @@ offset_bottom = 339.0
 toggle_mode = true
 text = "Tutorial"
 
+[node name="NewRoundTestBtn" type="Button" parent="Game Manager"]
+offset_left = -616.0
+offset_top = -64.0
+offset_right = -473.0
+offset_bottom = -5.0
+text = "New Round"
+
 [node name="Rule Umpire" type="Node" parent="."]
 script = ExtResource("7_eg3ek")
 
@@ -559,6 +566,7 @@ script = ExtResource("23_llag2")
 [connection signal="turn_started" from="Game Manager" to="TutorialController" method="_on_turn_started"]
 [connection signal="turn_started" from="Game Manager" to="UIManager" method="_on_game_manager_turn_started"]
 [connection signal="toggled" from="Game Manager/Tutorial Overlay Button" to="TutorialController" method="_on_tutorial_toggled"]
+[connection signal="pressed" from="Game Manager/NewRoundTestBtn" to="Game Manager" method="_on_new_round_test_btn_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/NextButton" to="TutorialController" method="_on_next_button_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/FinishButton" to="TutorialController" method="_on_finish_button_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]

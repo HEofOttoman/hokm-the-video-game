@@ -62,10 +62,10 @@ script = ExtResource("8_bdj1t")
 player_count = 3
 ui_manager = NodePath("../UIManager")
 deck = NodePath("../Deck")
-hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
-trick_slots = [NodePath("../CardSlot"), NodePath("../CardSlot1")]
+hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1"), NodePath("../EnemyHand2")]
+trick_slots = [NodePath("../CardSlot"), NodePath("../CardSlot1"), NodePath("../CardSlot2")]
 rulesEngine = NodePath("../Rule Umpire")
-score_piles = [NodePath("../PlayerHand/ScorePile"), NodePath("../EnemyHand1/ScorePile")]
+score_piles = [NodePath("../PlayerHand/ScorePile"), NodePath("../EnemyHand1/ScorePile"), NodePath("../EnemyHand2/ScorePile")]
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
 offset_left = 1176.0
@@ -150,8 +150,8 @@ rulesEngine = NodePath("../../Rule Umpire")
 position = Vector2(450, -96)
 
 [node name="EnemyHand2" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
-process_mode = 4
-position = Vector2(864, 352)
+position = Vector2(960, 352)
+rotation = -1.5707964
 script = ExtResource("12_c8ffb")
 player_id = 1
 gameManager = NodePath("../Game Manager")
@@ -162,18 +162,20 @@ score_pile = NodePath("ScorePile")
 ai_controller = NodePath("AIController")
 
 [node name="PlayerIcon1" type="TextureRect" parent="EnemyHand2"]
-offset_left = 136.0
-offset_top = -40.0
-offset_right = 184.0
-offset_bottom = 8.0
+offset_left = 23.999992
+offset_top = 103.99999
+offset_right = 71.99999
+offset_bottom = 152.0
+rotation = 1.5707964
 texture = ExtResource("13_fxmio")
 expand_mode = 1
 
 [node name="PlayerLabel1" type="Label" parent="EnemyHand2"]
-offset_left = 96.0
-offset_top = 16.0
-offset_right = 224.0
-offset_bottom = 33.0
+offset_left = -48.000004
+offset_top = 63.999992
+offset_right = 80.0
+offset_bottom = 81.0
+rotation = 1.5707964
 text = "Player 2 (AI)"
 horizontal_alignment = 1
 
@@ -183,7 +185,7 @@ game_manager = NodePath("../../Game Manager")
 rulesEngine = NodePath("../../Rule Umpire")
 
 [node name="ScorePile" parent="EnemyHand2" instance=ExtResource("15_heqth")]
-position = Vector2(224, 224)
+position = Vector2(-288, 127.999985)
 
 [node name="CardSlot" parent="." instance=ExtResource("16_fxmio")]
 position = Vector2(600, 360)

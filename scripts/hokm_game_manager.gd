@@ -340,3 +340,7 @@ func _on_end_turn_test_btn_pressed() -> void:
 func _on_resolve_trick_debug_btn_pressed() -> void:
 	resolve_trick()
 	# Replace with function body.
+
+
+func _on_new_round_test_btn_pressed() -> void:
+	start_new_round() # Replace with function body.

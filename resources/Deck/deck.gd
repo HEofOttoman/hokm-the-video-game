@@ -57,7 +57,8 @@ func draw_card():
 		## <-- Should play a sound effect here
 		
 		#visible = false ## Not needed the animation does that already
-		$DrawButton.hide()
+		#$DrawButton.hide()
+		$DbgDrawButton.hide()
 		print("Deck is empty") ## Safely stops the game from crashing
 		return
 		
