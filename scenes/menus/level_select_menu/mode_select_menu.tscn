@@ -153,7 +153,6 @@ expand_mode = 4
 
 [node name="3P-Btn" type="Button" parent="Prototype Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-disabled = true
 text = "WIP"
 metadata/_edit_use_anchors_ = true
 

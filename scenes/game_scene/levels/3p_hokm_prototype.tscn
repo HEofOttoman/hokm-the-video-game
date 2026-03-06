@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cig6thybdjvsv" path="res://resources/UI Elements/ui_manager.tscn" id="10_mvlga"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="12_c8ffb"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="13_fxmio"]
-[ext_resource type="Texture2D" uid="uid://dgivyxvbghbme" path="res://assets/Sprites/Misc/Hakem Crown.png" id="14_heqth"]
+[ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="15_heqth"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="15_ld525"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="16_fxmio"]
 
@@ -58,7 +58,6 @@ game_won_scene = ExtResource("6_bdj1t")
 game_lost_scene = ExtResource("7_2pe2v")
 
 [node name="Game Manager" type="Node" parent="." node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
-process_mode = 4
 script = ExtResource("8_bdj1t")
 player_count = 3
 ui_manager = NodePath("../UIManager")
@@ -66,7 +65,7 @@ deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]
 trick_slots = [NodePath("../CardSlot"), NodePath("../CardSlot1")]
 rulesEngine = NodePath("../Rule Umpire")
-score_piles = [NodePath(""), NodePath("")]
+score_piles = [NodePath("../PlayerHand/ScorePile"), NodePath("../EnemyHand1/ScorePile")]
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager"]
 offset_left = 1176.0
@@ -87,12 +86,11 @@ position = Vector2(480.00003, 352)
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile")]
 position = Vector2(638, 544)
 script = ExtResource("12_c8ffb")
-hand_layout_mode = 0
 gameManager = NodePath("../Game Manager")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../CardSlot")
 HandLabel = NodePath("PlayerLabel")
-score_pile = NodePath("")
+score_pile = NodePath("ScorePile")
 is_player_controlled = true
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHand"]
@@ -113,14 +111,8 @@ text = "Player 0 (You)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="HakemCrown" type="TextureRect" parent="PlayerHand"]
-visible = false
-offset_left = -16.0
-offset_top = 2.0
-offset_right = 20.0
-offset_bottom = 41.0
-texture = ExtResource("14_heqth")
-expand_mode = 1
+[node name="ScorePile" parent="PlayerHand" instance=ExtResource("15_heqth")]
+position = Vector2(-446, 96)
 
 [node name="EnemyHand1" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
 position = Vector2(638, 160)
@@ -130,7 +122,7 @@ gameManager = NodePath("../Game Manager")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../CardSlot1")
 HandLabel = NodePath("PlayerLabel1")
-score_pile = NodePath("")
+score_pile = NodePath("ScorePile")
 ai_controller = NodePath("AIController")
 
 [node name="PlayerIcon1" type="TextureRect" parent="EnemyHand1"]
@@ -154,19 +146,54 @@ script = ExtResource("15_ld525")
 game_manager = NodePath("../../Game Manager")
 rulesEngine = NodePath("../../Rule Umpire")
 
-[node name="HakemCrown" type="TextureRect" parent="EnemyHand1"]
-visible = false
-offset_left = -16.0
-offset_top = -153.0
-offset_right = 20.0
-offset_bottom = -114.0
-texture = ExtResource("14_heqth")
+[node name="ScorePile" parent="EnemyHand1" instance=ExtResource("15_heqth")]
+position = Vector2(450, -96)
+
+[node name="EnemyHand2" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
+process_mode = 4
+position = Vector2(864, 352)
+script = ExtResource("12_c8ffb")
+player_id = 1
+gameManager = NodePath("../Game Manager")
+rulesEngine = NodePath("../Rule Umpire")
+trick_slot = NodePath("../CardSlot2")
+HandLabel = NodePath("PlayerLabel1")
+score_pile = NodePath("ScorePile")
+ai_controller = NodePath("AIController")
+
+[node name="PlayerIcon1" type="TextureRect" parent="EnemyHand2"]
+offset_left = 136.0
+offset_top = -40.0
+offset_right = 184.0
+offset_bottom = 8.0
+texture = ExtResource("13_fxmio")
 expand_mode = 1
+
+[node name="PlayerLabel1" type="Label" parent="EnemyHand2"]
+offset_left = 96.0
+offset_top = 16.0
+offset_right = 224.0
+offset_bottom = 33.0
+text = "Player 2 (AI)"
+horizontal_alignment = 1
+
+[node name="AIController" type="Node" parent="EnemyHand2" node_paths=PackedStringArray("game_manager", "rulesEngine")]
+script = ExtResource("15_ld525")
+game_manager = NodePath("../../Game Manager")
+rulesEngine = NodePath("../../Rule Umpire")
+
+[node name="ScorePile" parent="EnemyHand2" instance=ExtResource("15_heqth")]
+position = Vector2(224, 224)
 
 [node name="CardSlot" parent="." instance=ExtResource("16_fxmio")]
 position = Vector2(600, 360)
 
 [node name="CardSlot1" parent="." instance=ExtResource("16_fxmio")]
-position = Vector2(680, 344.00003)
+position = Vector2(642.00006, 279)
+
+[node name="CardSlot2" parent="." instance=ExtResource("16_fxmio")]
+position = Vector2(682, 360)
+
+[node name="SubViewport" type="SubViewport" parent="."]
 
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
