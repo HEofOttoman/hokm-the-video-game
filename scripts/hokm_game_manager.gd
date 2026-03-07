@@ -79,10 +79,19 @@ func start_new_round()-> void:
 	#trick_slots.clear()
 	
 	for hand in hands:
-		hand.score_pile.cards_in_pile.clear()
+		#hand.score_pile.cards_in_pile.clear() 
+		while not hand.score_pile.cards_in_pile.is_empty(): ## Otherwise button press fails
+			for card in hand.score_pile.cards_in_pile: ## Actually deletes card
+				hand.score_pile.remove_card_from_pile(card)
+				card.queue_free()
+		while not hand.cards_in_hand.is_empty():
+			for card in hand.cards_in_hand:
+				hand.remove_card_from_hand(card)
+				card.queue_free()
 	deck.reset_deck()
 	
 	current_game_phase = HokmGamePhase.INIT
+	#initialise_game()
 
 func initialise_game():
 	current_game_phase = HokmGamePhase.INIT
@@ -143,7 +152,7 @@ func deal_remaining_cards():
 	print('Dealing Remaining Cards', current_game_phase)
 	if player_count == HokmGameMode.THREE_PLAYER: ## Checks if the game's rules are different and change accordingly
 		cards_per_player = 17
-	else: 
+	else:
 		cards_per_player = 13
 	
 	for i in range(cards_per_player):
@@ -252,9 +261,9 @@ func add_card_to_trick(card, slot, hand_cards, player_id: int): ## Adds the
 		print("SERIOUS ERROR: NOT THIS PLAYER'S TURN")
 		return
 	
-	if rulesEngine.can_play_card(card.card_data, 
+	if rulesEngine.can_play_card(card.card_data,
 	#slot, 
-	trick_cards, 
+	trick_cards,
 	hand_cards) == false:
 		#reject_play()
 		print('Move is ILLEGAL, returning card')
@@ -268,7 +277,7 @@ func add_card_to_trick(card, slot, hand_cards, player_id: int): ## Adds the
 	
 	if trick_cards.size() == player_count:
 		resolve_trick()
-	else: 
+	else:
 		print('Advancing turn')
 		advance_turn()
 

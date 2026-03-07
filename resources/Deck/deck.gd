@@ -4,7 +4,7 @@ class_name Deck
 ## Based on this tutorial: https://www.youtube.com/watch?v=e7iuMLdWjgw
 
 @export var original_deck_data : Array[CardData] ## Array containing all of the card data
-@export var cards : Array[Resource] ## Array countaining data of all cards in a 52-card standard deck
+@export var cards : Array[CardData] ## Array countaining data of all cards in a 52-card standard deck
 @export var cardScene : PackedScene
 #@export var draw_point : Node2D 
 ## Where the cards are instantiated (legacy code)
