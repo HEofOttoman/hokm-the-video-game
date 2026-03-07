@@ -2,6 +2,10 @@ extends Control
 
 # Ad hoc version of the level selector
 
+func _on_4p_button_pressed() -> void:
+	SceneLoader.load_scene("res://scenes/game_scene/levels/4p_hokm_prototype.tscn")
+	
+
 func _on_3p_btn_pressed() -> void:
 	SceneLoader.load_scene("res://scenes/game_scene/levels/3p_hokm_prototype.tscn")
 	pass # Replace with function body.

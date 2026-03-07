@@ -3,8 +3,8 @@ class_name Deck
 
 ## Based on this tutorial: https://www.youtube.com/watch?v=e7iuMLdWjgw
 
-@export var original_deck_data : Array[CardData] ## Array containing all of the card data
-@export var cards : Array[CardData] ## Array countaining data of all cards in a 52-card standard deck
+@export var original_deck_data : Array[CardData] ## Array containing all of the card data in a standard 52-card deck
+@export var cards : Array[CardData] ## Array countaining data of all cards in a 52-card standard deck within the state of the game. Ie, if a card is taken, it will be removed from this array.
 @export var cardScene : PackedScene
 #@export var draw_point : Node2D 
 ## Where the cards are instantiated (legacy code)

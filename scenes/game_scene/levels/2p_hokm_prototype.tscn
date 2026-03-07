@@ -398,6 +398,26 @@ position = Vector2(48, 17)
 z_index = -1
 position = Vector2(-48, -15)
 
+[node name="TableTrickSlots2" type="Node" parent="."]
+
+[node name="Table Panel" type="Panel" parent="TableTrickSlots2"]
+self_modulate = Color(1, 1, 1, 0.404)
+z_index = -1
+offset_left = -320.0
+offset_top = -360.0
+offset_right = 320.0
+offset_bottom = 360.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="TrickSlot" parent="TableTrickSlots2" instance=ExtResource("19_ic7de")]
+z_index = -1
+position = Vector2(48, 17)
+
+[node name="TrickSlot1" parent="TableTrickSlots2" instance=ExtResource("19_ic7de")]
+z_index = -1
+position = Vector2(-48, -15)
+
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile")]
 position = Vector2(0, 193)
 script = ExtResource("20_f84ns")

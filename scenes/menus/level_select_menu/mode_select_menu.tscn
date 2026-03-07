@@ -180,7 +180,6 @@ expand_mode = 4
 
 [node name="4P-Btn" type="Button" parent="4P Container/VBoxContainer"]
 layout_mode = 2
-disabled = true
 text = "WIP"
 metadata/_edit_use_anchors_ = true
 
@@ -211,5 +210,5 @@ text = "Back"
 [connection signal="item_activated" from="Control/LevelButtonsContainer" to="." method="_on_level_buttons_container_item_activated"]
 [connection signal="pressed" from="2PMarginContainer/VBoxContainer/2P-Btn" to="." method="_on_2p_btn_pressed"]
 [connection signal="pressed" from="Prototype Panel/MarginContainer/VBoxContainer/3P-Btn" to="." method="_on_3p_btn_pressed"]
-[connection signal="pressed" from="4P Container/VBoxContainer/4P-Btn" to="." method="_on_2p_btn_pressed"]
+[connection signal="pressed" from="4P Container/VBoxContainer/4P-Btn" to="." method="_on_4p_button_pressed"]
 [connection signal="pressed" from="MenuButtonsMargin/MenuButtons/CloseButton" to="." method="_on_close_button_pressed"]
