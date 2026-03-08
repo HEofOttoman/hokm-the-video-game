@@ -122,6 +122,7 @@ toggle_mode = true
 text = "Tutorial"
 
 [node name="NewRoundTestBtn" type="Button" parent="Game Manager"]
+visible = false
 offset_left = -616.0
 offset_top = -64.0
 offset_right = -473.0
@@ -214,6 +215,11 @@ offset_top = 552.0
 offset_right = 1246.0
 offset_bottom = 611.0
 text = "Finish"
+
+[node name="PauseMenuController" type="Node" parent="." node_paths=PackedStringArray("canvas_layer")]
+script = ExtResource("16_3tb7h")
+pause_menu_packed = ExtResource("17_x5e23")
+canvas_layer = NodePath("../UIManager/HUDLayer")
 
 [node name="UIManager" type="Node" parent="." node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
 script = ExtResource("9_rnmyu")
@@ -362,10 +368,6 @@ anchor_right = -0.325
 anchor_bottom = -0.17638889
 text = "LEADING SUIT:"
 metadata/_edit_use_anchors_ = true
-
-[node name="PauseMenuController" type="Node" parent="."]
-script = ExtResource("16_3tb7h")
-pause_menu_packed = ExtResource("17_x5e23")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

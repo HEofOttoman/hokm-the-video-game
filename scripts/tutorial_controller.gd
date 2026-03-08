@@ -14,6 +14,8 @@ class_name TutorialController
 @export var next_button: Button
 @export var finish_button: Button
 
+@export_enum('2P', '3P', '4P') var tutorial_mode
+
 var text_tween : Tween
 var text_timer : Timer
 
@@ -65,6 +67,7 @@ func advance_tutorial() -> void:
 	#step_indicator.text = str('(', tutorial_step, '/7)')
 
 
+## Basically a big slideshow of text.
 func start_tutorial() -> void:
 	tutorial_ui.show()
 	next_button.show()

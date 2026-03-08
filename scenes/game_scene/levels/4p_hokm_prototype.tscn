@@ -187,9 +187,10 @@ rotation = 1.5707964
 
 [node name="PlayerHands" type="Node" parent="."]
 
-[node name="PlayerHand" type="Node2D" parent="PlayerHands"]
+[node name="PlayerHand" type="Node2D" parent="PlayerHands" node_paths=PackedStringArray("HandLabel")]
 position = Vector2(0, 224)
 script = ExtResource("7_x13lw")
+HandLabel = NodePath("PlayerLabel")
 is_player_controlled = true
 
 [node name="PlayerLabel" type="Label" parent="PlayerHands/PlayerHand"]
@@ -212,11 +213,53 @@ offset_left = -64.0
 offset_top = 56.0
 offset_right = 64.0
 offset_bottom = 73.0
-text = "Player 2 (AI)"
+text = "Player 1 (AI)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="AIController" type="Node" parent="PlayerHands/EnemyHand1"]
+script = ExtResource("8_e8k7y")
+metadata/_custom_type_script = "uid://dftt5gfnf3hod"
+
+[node name="EnemyHand2" type="Node2D" parent="PlayerHands" node_paths=PackedStringArray("ai_controller")]
+position = Vector2(320, 0)
+rotation = -1.5707964
+script = ExtResource("7_x13lw")
+player_id = 2
+ai_controller = NodePath("AIController")
+
+[node name="PlayerLabel2" type="Label" parent="PlayerHands/EnemyHand2"]
+offset_left = -64.0
+offset_top = -56.0
+offset_right = 64.0
+offset_bottom = -39.0
+rotation = 1.5707964
+text = "Player 2 (AI)"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand2"]
+script = ExtResource("8_e8k7y")
+metadata/_custom_type_script = "uid://dftt5gfnf3hod"
+
+[node name="EnemyHand3" type="Node2D" parent="PlayerHands" node_paths=PackedStringArray("ai_controller")]
+position = Vector2(-320, 0)
+rotation = -1.5707964
+script = ExtResource("7_x13lw")
+player_id = 2
+ai_controller = NodePath("AIController")
+
+[node name="PlayerLabel2" type="Label" parent="PlayerHands/EnemyHand3"]
+offset_left = -64.0
+offset_top = -56.0
+offset_right = 64.0
+offset_bottom = -39.0
+rotation = 1.5707964
+text = "Player 3 (AI)"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand3"]
 script = ExtResource("8_e8k7y")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"
 

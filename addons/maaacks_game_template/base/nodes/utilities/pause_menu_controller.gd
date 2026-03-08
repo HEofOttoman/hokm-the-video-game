@@ -4,6 +4,7 @@ extends Node
 
 @export var pause_menu_packed : PackedScene
 @export var focused_viewport : Viewport
+@export var canvas_layer : CanvasLayer ## Ad hoc fix
 
 var pause_menu : Node
 
@@ -27,3 +28,4 @@ func _ready() -> void:
 	pause_menu.z_index = 5 ## Necessary to counteract the effect of Barry's card hover effect
 	pause_menu.hide()
 	get_tree().current_scene.call_deferred("add_child", pause_menu)
+	#canvas_layer.call_deferred("add_child", pause_menu)

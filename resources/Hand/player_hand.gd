@@ -132,7 +132,7 @@ func on_card_dropped(card, card_slot_found):
 	print('card play requested, awaiting game manager')
 	#gameManager.play_card(card, card_slot_found, cards_in_hand, player_id)
 	gameManager.add_card_to_trick(card, card_slot_found, cards_in_hand, player_id)
-	#emit_signal("card_played", card, card_slot_found)
+	#emit_signal("card_played", card, card_slot_found, cards_in_hand, player_id)
 	
 
 ## Removes the card from the cards_in_hand array and updates hand layout 
