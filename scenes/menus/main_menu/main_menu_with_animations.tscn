@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dhr7kwfkmlq7o"]
+[gd_scene format=3 uid="uid://dhr7kwfkmlq7o"]
 
 [ext_resource type="PackedScene" uid="uid://dhjoc73h3n2ky" path="res://scenes/menus/level_select_menu/mode_select_menu.tscn" id="2_672y5"]
 [ext_resource type="Script" uid="uid://6kkgt00vvrar" path="res://scenes/menus/main_menu/main_menu_with_animations.gd" id="2_ixa71"]
@@ -323,7 +323,7 @@ states/Start/position = Vector2(82, 123)
 transitions = ["Intro", "OpenMainMenu", SubResource("11"), "OpenMainMenu", "OpenSubMenu", SubResource("14"), "Start", "Intro", SubResource("AnimationNodeStateMachineTransition_j0orr"), "OpenSubMenu", "OpenMainMenu", SubResource("AnimationNodeStateMachineTransition_63dxc")]
 graph_offset = Vector2(-180.277, 49)
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1677392754]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -336,22 +336,20 @@ game_scene_path = "uid://cqfeyf3vdqexp"
 options_packed_scene = ExtResource("3_2k5l7")
 credits_packed_scene = ExtResource("4_vsp5b")
 
-[node name="UISoundController" type="Node" parent="."]
+[node name="UISoundController" type="Node" parent="." unique_id=28157276]
 script = ExtResource("4_xkrf4")
 
-[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_2kqig")
-}
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1919675926]
+libraries/ = SubResource("AnimationLibrary_2kqig")
 
-[node name="MenuAnimationTree" type="AnimationTree" parent="."]
+[node name="MenuAnimationTree" type="AnimationTree" parent="." unique_id=708153641]
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
-[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("5_x5bcm")]
+[node name="BackgroundMusicPlayer" parent="." unique_id=811214543 instance=ExtResource("5_x5bcm")]
 
-[node name="BackgroundTextureRect" type="TextureRect" parent="."]
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=1575734791]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -363,7 +361,7 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_lock_ = true
 
-[node name="ColorTextureRect" type="ColorRect" parent="."]
+[node name="ColorTextureRect" type="ColorRect" parent="." unique_id=421282831]
 self_modulate = Color(1, 1, 1, 0.26500002)
 material = ExtResource("8_8dhfv")
 layout_mode = 1
@@ -375,7 +373,7 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="VersionMargin" type="MarginContainer" parent="."]
+[node name="VersionMargin" type="MarginContainer" parent="." unique_id=1652212069]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -387,12 +385,12 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VersionContainer" type="Control" parent="VersionMargin"]
+[node name="VersionContainer" type="Control" parent="VersionMargin" unique_id=703873986]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="VersionLabel" type="Label" parent="VersionMargin/VersionContainer"]
+[node name="VersionLabel" type="Label" parent="VersionMargin/VersionContainer" unique_id=200568624]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -404,10 +402,10 @@ offset_top = -26.0
 offset_right = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.0.4 Beta"
+text = "v1.0.5 Beta"
 script = ExtResource("8_672y5")
 
-[node name="Music Playing Label" type="Label" parent="VersionMargin/VersionContainer"]
+[node name="Music Playing Label" type="Label" parent="VersionMargin/VersionContainer" unique_id=546460433]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.31105697
@@ -422,7 +420,7 @@ grow_vertical = 0
 text = "Currently Playing: Nasser Abdollahi - Ziafat (Adjust Audio)"
 metadata/_edit_use_anchors_ = true
 
-[node name="MenuContainer" type="MarginContainer" parent="."]
+[node name="MenuContainer" type="MarginContainer" parent="." unique_id=1781994780]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -431,16 +429,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleMargin" type="MarginContainer" parent="MenuContainer"]
+[node name="TitleMargin" type="MarginContainer" parent="MenuContainer" unique_id=1664697169]
 layout_mode = 2
 theme_override_constants/margin_top = 24
 
-[node name="TitleContainer" type="Control" parent="MenuContainer/TitleMargin"]
+[node name="TitleContainer" type="Control" parent="MenuContainer/TitleMargin" unique_id=1849906229]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="MenuContainer/TitleMargin/TitleContainer"]
+[node name="TitleLabel" type="Label" parent="MenuContainer/TitleMargin/TitleContainer" unique_id=1477109637]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -454,16 +452,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("9_8dhfv")
 
-[node name="SubTitleMargin" type="MarginContainer" parent="MenuContainer"]
+[node name="SubTitleMargin" type="MarginContainer" parent="MenuContainer" unique_id=459994614]
 layout_mode = 2
 theme_override_constants/margin_top = 92
 
-[node name="SubTitleContainer" type="Control" parent="MenuContainer/SubTitleMargin"]
+[node name="SubTitleContainer" type="Control" parent="MenuContainer/SubTitleMargin" unique_id=882817000]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SubTitleLabel" type="Label" parent="MenuContainer/SubTitleMargin/SubTitleContainer"]
+[node name="SubTitleLabel" type="Label" parent="MenuContainer/SubTitleMargin/SubTitleContainer" unique_id=1078076519]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -476,18 +474,18 @@ text = "By Henry Wauzivuff"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuButtonsMargin" type="MarginContainer" parent="MenuContainer"]
+[node name="MenuButtonsMargin" type="MarginContainer" parent="MenuContainer" unique_id=1803316451]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 136
 theme_override_constants/margin_bottom = 8
 
-[node name="MenuButtonsContainer" type="Control" parent="MenuContainer/MenuButtonsMargin"]
+[node name="MenuButtonsContainer" type="Control" parent="MenuContainer/MenuButtonsMargin" unique_id=1940883636]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MenuButtonsBoxContainer" type="BoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer"]
+[node name="MenuButtonsBoxContainer" type="BoxContainer" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer" unique_id=1523217112]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -508,39 +506,39 @@ vertical = true
 script = ExtResource("10_j8onx")
 lock = true
 
-[node name="NewGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+[node name="NewGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1632498434]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Play Tutorial"
 
-[node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+[node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1572354419]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Continue"
 
-[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+[node name="LevelSelectButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1941245519]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Select Mode"
 
-[node name="OptionsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+[node name="OptionsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1499921468]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Options"
 
-[node name="CreditsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+[node name="CreditsButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=465930210]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Credits"
 
-[node name="ExitButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+[node name="ExitButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" unique_id=1918331783]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit"
 
-[node name="NewGameConfirmation" parent="." instance=ExtResource("5_6xh1d")]
+[node name="NewGameConfirmation" parent="." unique_id=1143351940 instance=ExtResource("5_6xh1d")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(420, 200)
@@ -555,7 +553,7 @@ text = "Are you sure you want to start a new game?
 All progress in the current game will be lost."
 title = "New Game"
 
-[node name="MouseFilter" type="Control" parent="."]
+[node name="MouseFilter" type="Control" parent="." unique_id=1747960787]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

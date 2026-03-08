@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://bunl7gom5x00w"]
+[gd_scene format=3 uid="uid://bunl7gom5x00w"]
 
 [ext_resource type="Script" uid="uid://dj6spr03iv5iq" path="res://scenes/game_scene/testscene.gd" id="1_n0wl8"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_b4fpx"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="7_7jvi3"]
 [ext_resource type="Script" uid="uid://phuji5srflwy" path="res://resources/Deck/deck.gd" id="7_j3s37"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="8_gg05e"]
+[ext_resource type="Script" uid="uid://chu0ty2njk4y8" path="res://resources/Card Resources/CardData/CardData.gd" id="8_j3s37"]
 [ext_resource type="Resource" uid="uid://cuu18kcnudg7r" path="res://resources/Card Resources/CardData/Cards/2_Clubs.tres" id="8_l72n7"]
 [ext_resource type="Script" uid="uid://ddxs4jecyhpms" path="res://resources/Card Resources/card_manager.gd" id="9_3ovdq"]
 [ext_resource type="Resource" uid="uid://cm013yv5bw32j" path="res://resources/Card Resources/CardData/Cards/2_Diamonds.tres" id="9_osrlf"]
@@ -197,10 +198,10 @@ _data = {
 &"card_flip": SubResource("Animation_mucyl")
 }
 
-[node name="BasicHokmTutorial1" type="Node2D"]
+[node name="BasicHokmTutorial1" type="Node2D" unique_id=1956204406]
 script = ExtResource("1_n0wl8")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=682625974]
 z_index = -2
 offset_left = -640.0
 offset_top = -376.0
@@ -211,40 +212,40 @@ mouse_filter = 2
 texture = ExtResource("2_b4fpx")
 expand_mode = 1
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=2024432081]
 offset_left = -592.0
 offset_top = -336.0
 offset_right = -370.0
 offset_bottom = 331.0
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." unique_id=797716099]
 
-[node name="PauseMenuController" type="Node" parent="."]
+[node name="PauseMenuController" type="Node" parent="." unique_id=379032998]
 script = ExtResource("3_6ai5h")
 pause_menu_packed = ExtResource("4_y2urp")
 
-[node name="InputManager (Barry)" type="Node2D" parent="."]
+[node name="InputManager (Barry)" type="Node2D" parent="." unique_id=470839820]
 script = ExtResource("5_8awfl")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1593789512]
 
-[node name="Player" type="Node" parent="."]
+[node name="Player" type="Node" parent="." unique_id=2048587279]
 
-[node name="Deck" type="Sprite2D" parent="."]
+[node name="Deck" type="Sprite2D" parent="." unique_id=2055929001]
 position = Vector2(192.00002, 0)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("6_s3ruo")
 script = ExtResource("7_j3s37")
-cards = Array[Resource]([ExtResource("8_l72n7"), ExtResource("9_osrlf"), ExtResource("10_h077o"), ExtResource("11_3g3vu"), ExtResource("12_b4q1a"), ExtResource("13_2qfji"), ExtResource("14_c8g31"), ExtResource("15_was62"), ExtResource("16_eqgiu"), ExtResource("17_ni6c6"), ExtResource("18_lrjt0"), ExtResource("19_p5sjy"), ExtResource("20_hkltq"), ExtResource("21_7lkg3"), ExtResource("22_dvofj"), ExtResource("23_akirl"), ExtResource("24_3a60q"), ExtResource("25_jo7ka"), ExtResource("26_mmrim"), ExtResource("27_sy0c3"), ExtResource("28_8te8h"), ExtResource("29_28f3b"), ExtResource("30_6k1wg"), ExtResource("31_0oc8l"), ExtResource("32_pp7nk"), ExtResource("33_b4f8x"), ExtResource("34_im1md"), ExtResource("35_syln4"), ExtResource("36_g2ia2"), ExtResource("37_7546v"), ExtResource("38_v0gg8"), ExtResource("39_qsa8l"), ExtResource("40_i3uga"), ExtResource("41_qpl4g"), ExtResource("42_sdas8"), ExtResource("43_nqnpb"), ExtResource("44_dwrey"), ExtResource("45_wv4vc"), ExtResource("46_sa7um"), ExtResource("47_1q5ge"), ExtResource("48_duo18"), ExtResource("49_0n5jg"), ExtResource("50_d4c87"), ExtResource("51_8ain7"), ExtResource("52_x2f6h"), ExtResource("53_fqbkq"), ExtResource("54_32q6k"), ExtResource("55_m3dfc"), ExtResource("56_fbhts"), ExtResource("57_rg8qv"), ExtResource("58_wtse2"), ExtResource("59_8e3yj")])
+cards = Array[ExtResource("8_j3s37")]([ExtResource("8_l72n7"), ExtResource("9_osrlf"), ExtResource("10_h077o"), ExtResource("11_3g3vu"), ExtResource("12_b4q1a"), ExtResource("13_2qfji"), ExtResource("14_c8g31"), ExtResource("15_was62"), ExtResource("16_eqgiu"), ExtResource("17_ni6c6"), ExtResource("18_lrjt0"), ExtResource("19_p5sjy"), ExtResource("20_hkltq"), ExtResource("21_7lkg3"), ExtResource("22_dvofj"), ExtResource("23_akirl"), ExtResource("24_3a60q"), ExtResource("25_jo7ka"), ExtResource("26_mmrim"), ExtResource("27_sy0c3"), ExtResource("28_8te8h"), ExtResource("29_28f3b"), ExtResource("30_6k1wg"), ExtResource("31_0oc8l"), ExtResource("32_pp7nk"), ExtResource("33_b4f8x"), ExtResource("34_im1md"), ExtResource("35_syln4"), ExtResource("36_g2ia2"), ExtResource("37_7546v"), ExtResource("38_v0gg8"), ExtResource("39_qsa8l"), ExtResource("40_i3uga"), ExtResource("41_qpl4g"), ExtResource("42_sdas8"), ExtResource("43_nqnpb"), ExtResource("44_dwrey"), ExtResource("45_wv4vc"), ExtResource("46_sa7um"), ExtResource("47_1q5ge"), ExtResource("48_duo18"), ExtResource("49_0n5jg"), ExtResource("50_d4c87"), ExtResource("51_8ain7"), ExtResource("52_x2f6h"), ExtResource("53_fqbkq"), ExtResource("54_32q6k"), ExtResource("55_m3dfc"), ExtResource("56_fbhts"), ExtResource("57_rg8qv"), ExtResource("58_wtse2"), ExtResource("59_8e3yj")])
 cardScene = ExtResource("60_jvmp7")
 
-[node name="Area2D" type="Area2D" parent="Deck"]
+[node name="Area2D" type="Area2D" parent="Deck" unique_id=107978214]
 collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck/Area2D" unique_id=1904719787]
 shape = SubResource("RectangleShape2D_qqb2w")
 
-[node name="DeckCounter" type="RichTextLabel" parent="Deck"]
+[node name="DeckCounter" type="RichTextLabel" parent="Deck" unique_id=564851268]
 anchors_preset = -1
 anchor_left = 0.25
 anchor_top = 0.25
@@ -258,7 +259,7 @@ text = "52"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Draw Button" type="Button" parent="."]
+[node name="Draw Button" type="Button" parent="." unique_id=110908317]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -272,7 +273,7 @@ size_flags_horizontal = 0
 text = "Draw
 "
 
-[node name="Hand Board" type="ColorRect" parent="."]
+[node name="Hand Board" type="ColorRect" parent="." unique_id=1135027034]
 visible = false
 visibility_layer = 512
 offset_left = -352.0
@@ -282,48 +283,48 @@ offset_bottom = 331.0
 mouse_filter = 2
 color = Color(0.17254902, 0.13725491, 0.13725491, 1)
 
-[node name="Area2D" type="Area2D" parent="Hand Board"]
+[node name="Area2D" type="Area2D" parent="Hand Board" unique_id=209207165]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand Board/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand Board/Area2D" unique_id=1201202438]
 position = Vector2(352, 73)
 shape = SubResource("RectangleShape2D_obeue")
 
-[node name="CardSlot" type="Sprite2D" parent="."]
+[node name="CardSlot" type="Sprite2D" parent="." unique_id=1793445366]
 position = Vector2(0, 56)
 texture = ExtResource("61_adrq3")
 script = ExtResource("62_vmyy4")
 
-[node name="Area2D" type="Area2D" parent="CardSlot"]
+[node name="Area2D" type="Area2D" parent="CardSlot" unique_id=745410805]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CardSlot/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardSlot/Area2D" unique_id=1624749727]
 shape = SubResource("RectangleShape2D_j7cxb")
 
-[node name="CardSlot2" type="Sprite2D" parent="."]
+[node name="CardSlot2" type="Sprite2D" parent="." unique_id=377748762]
 position = Vector2(0, -56)
 texture = ExtResource("61_adrq3")
 script = ExtResource("62_vmyy4")
 
-[node name="Area2D" type="Area2D" parent="CardSlot2"]
+[node name="Area2D" type="Area2D" parent="CardSlot2" unique_id=1155457743]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CardSlot2/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardSlot2/Area2D" unique_id=901822107]
 shape = SubResource("RectangleShape2D_j7cxb")
 
-[node name="PlayerHand" type="Node2D" parent="."]
+[node name="PlayerHand" type="Node2D" parent="." unique_id=955682963]
 position = Vector2(-352, 179)
 script = ExtResource("8_gg05e")
 
-[node name="Player Deck Pile" type="Panel" parent="."]
+[node name="Player Deck Pile" type="Panel" parent="." unique_id=25042977]
 offset_left = -592.0
 offset_top = 64.0
 offset_right = -370.0
 offset_bottom = 331.0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Player Deck Pile"]
+[node name="Label" type="Label" parent="Player Deck Pile" unique_id=246921075]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.14414415
@@ -334,28 +335,28 @@ text = "Your Decks"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="CardSlot" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
+[node name="CardSlot" parent="Player Deck Pile" unique_id=1361753920 instance=ExtResource("7_7jvi3")]
 position = Vector2(72, 226)
 
-[node name="CardSlot2" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
+[node name="CardSlot2" parent="Player Deck Pile" unique_id=805519882 instance=ExtResource("7_7jvi3")]
 position = Vector2(72, 66)
 
-[node name="CardSlot3" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
+[node name="CardSlot3" parent="Player Deck Pile" unique_id=1264897714 instance=ExtResource("7_7jvi3")]
 position = Vector2(152, 226)
 
-[node name="CardSlot4" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
+[node name="CardSlot4" parent="Player Deck Pile" unique_id=1820672388 instance=ExtResource("7_7jvi3")]
 position = Vector2(152, 66)
 
-[node name="CardSlot5" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
+[node name="CardSlot5" parent="Player Deck Pile" unique_id=1400151334 instance=ExtResource("7_7jvi3")]
 position = Vector2(48, 146)
 
-[node name="CardSlot6" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
+[node name="CardSlot6" parent="Player Deck Pile" unique_id=958687698 instance=ExtResource("7_7jvi3")]
 position = Vector2(112, 146)
 
-[node name="CardSlot7" parent="Player Deck Pile" instance=ExtResource("7_7jvi3")]
+[node name="CardSlot7" parent="Player Deck Pile" unique_id=978234772 instance=ExtResource("7_7jvi3")]
 position = Vector2(176, 146)
 
-[node name="Opponent Deck Pile" type="ColorRect" parent="."]
+[node name="Opponent Deck Pile" type="ColorRect" parent="." unique_id=1477259255]
 offset_left = 384.0
 offset_top = -311.0
 offset_right = 600.0
@@ -363,7 +364,7 @@ offset_bottom = -215.0
 mouse_filter = 2
 color = Color(0.11858151, 0.11858135, 0.11858142, 1)
 
-[node name="Deck Label" type="Label" parent="Opponent Deck Pile"]
+[node name="Deck Label" type="Label" parent="Opponent Deck Pile" unique_id=356481659]
 layout_mode = 0
 offset_left = 24.0
 offset_top = -24.0
@@ -372,10 +373,10 @@ offset_bottom = 1.0
 text = "Opponent Decks"
 horizontal_alignment = 1
 
-[node name="Card Manager Card (DrawpointaKaHand)" type="Node2D" parent="."]
+[node name="Card Manager Card (DrawpointaKaHand)" type="Node2D" parent="." unique_id=1432521512]
 script = ExtResource("9_3ovdq")
 
-[node name="Hakem Display Label" type="Label" parent="."]
+[node name="Hakem Display Label" type="Label" parent="." unique_id=1077413881]
 offset_left = -528.0
 offset_top = -264.0
 offset_right = -401.0
@@ -385,7 +386,7 @@ text = "Hakem:"
 vertical_alignment = 1
 script = ExtResource("10_gxjc6")
 
-[node name="TextureRect" type="TextureRect" parent="Hakem Display Label"]
+[node name="TextureRect" type="TextureRect" parent="Hakem Display Label" unique_id=1166544712]
 layout_mode = 0
 offset_left = -48.0
 offset_top = -9.0
@@ -394,7 +395,7 @@ offset_bottom = 31.0
 texture = ExtResource("11_2ssmn")
 expand_mode = 1
 
-[node name="Hokm Display Label" type="Label" parent="." node_paths=PackedStringArray("hokm_texture_display")]
+[node name="Hokm Display Label" type="Label" parent="." unique_id=602615889 node_paths=PackedStringArray("hokm_texture_display")]
 offset_left = -528.0
 offset_top = -213.0
 offset_right = -401.0
@@ -405,7 +406,7 @@ vertical_alignment = 1
 script = ExtResource("68_qvxmn")
 hokm_texture_display = NodePath("Hokm Icon")
 
-[node name="Hokm Icon" type="TextureRect" parent="Hokm Display Label"]
+[node name="Hokm Icon" type="TextureRect" parent="Hokm Display Label" unique_id=928850927]
 layout_mode = 0
 offset_left = -56.0
 offset_top = -16.0
@@ -413,7 +414,7 @@ offset_right = -8.0
 offset_bottom = 40.0
 texture = ExtResource("13_x1x6q")
 
-[node name="Clubs" type="TextureButton" parent="."]
+[node name="Clubs" type="TextureButton" parent="." unique_id=1165620091]
 offset_left = 384.0
 offset_top = 5.000004
 offset_right = 440.0
@@ -422,7 +423,7 @@ scale = Vector2(1.680001, 1.7999998)
 texture_normal = ExtResource("13_x1x6q")
 stretch_mode = 0
 
-[node name="Hearts" type="TextureButton" parent="."]
+[node name="Hearts" type="TextureButton" parent="." unique_id=419765054]
 offset_left = 384.0
 offset_top = -101.0
 offset_right = 440.0
@@ -431,7 +432,7 @@ scale = Vector2(1.680001, 1.7999998)
 texture_normal = ExtResource("14_ji21m")
 stretch_mode = 0
 
-[node name="Spades" type="TextureButton" parent="."]
+[node name="Spades" type="TextureButton" parent="." unique_id=1005645467]
 offset_left = 480.0
 offset_top = -101.0
 offset_right = 536.0
@@ -440,7 +441,7 @@ scale = Vector2(1.680001, 1.7999998)
 texture_normal = ExtResource("15_vdoju")
 stretch_mode = 0
 
-[node name="Diamonds" type="TextureButton" parent="."]
+[node name="Diamonds" type="TextureButton" parent="." unique_id=428776828]
 offset_left = 480.0
 offset_top = 5.000004
 offset_right = 536.0
@@ -449,26 +450,24 @@ scale = Vector2(1.680001, 1.7999998)
 texture_normal = ExtResource("16_pm4q2")
 stretch_mode = 0
 
-[node name="Card (Localised Legacy)" type="Node2D" parent="."]
+[node name="Card (Localised Legacy)" type="Node2D" parent="." unique_id=805764657]
 position = Vector2(0, 210)
 script = ExtResource("73_s3ruo")
 
-[node name="Area2D" type="Area2D" parent="Card (Localised Legacy)" groups=["cards"]]
+[node name="Area2D" type="Area2D" parent="Card (Localised Legacy)" unique_id=1077109489 groups=["cards"]]
 script = ExtResource("74_1vdq6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Card (Localised Legacy)/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Card (Localised Legacy)/Area2D" unique_id=490395680]
 shape = SubResource("RectangleShape2D_idd6q")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Card (Localised Legacy)"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Card (Localised Legacy)" unique_id=2063467449]
 root_node = NodePath("../CardSprite")
-libraries = {
-&"": SubResource("AnimationLibrary_j2llb")
-}
+libraries/ = SubResource("AnimationLibrary_j2llb")
 
-[node name="CardBackSprite" type="Sprite2D" parent="Card (Localised Legacy)"]
+[node name="CardBackSprite" type="Sprite2D" parent="Card (Localised Legacy)" unique_id=1195333586]
 texture = ExtResource("6_s3ruo")
 
-[node name="CardSprite" type="Sprite2D" parent="Card (Localised Legacy)"]
+[node name="CardSprite" type="Sprite2D" parent="Card (Localised Legacy)" unique_id=1164011961]
 z_index = -1
 texture = ExtResource("75_yn13t")
 

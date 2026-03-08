@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://crao8t6b8c0hi"]
+[gd_scene format=3 uid="uid://crao8t6b8c0hi"]
 
 [ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="1_k101c"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_4ls31"]
@@ -29,9 +29,9 @@ shader_parameter/contrast = 2.0
 shader_parameter/spin_amount = 0.36
 shader_parameter/pixel_filter = 700.0
 
-[node name="4pHokmPrototype" type="Node2D"]
+[node name="4pHokmPrototype" type="Node2D" unique_id=1865944561]
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=92464236]
 z_index = -2
 offset_left = -640.0
 offset_top = -376.0
@@ -43,7 +43,7 @@ texture = ExtResource("2_4ls31")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="BackgroundColor" type="ColorRect" parent="."]
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=956650771]
 self_modulate = Color(1, 1, 1, 0.63500005)
 z_index = -2
 material = SubResource("ShaderMaterial_f03rb")
@@ -54,18 +54,18 @@ offset_bottom = 360.0
 mouse_filter = 2
 color = Color(0.24840015, 0.24840018, 0.24840015, 1)
 
-[node name="RulesEngine" type="Node" parent="."]
+[node name="RulesEngine" type="Node" parent="." unique_id=1587485217]
 script = ExtResource("1_k101c")
 
-[node name="PauseMenuController" type="Node" parent="."]
+[node name="PauseMenuController" type="Node" parent="." unique_id=1380609924]
 script = ExtResource("4_fdej1")
 pause_menu_packed = ExtResource("5_f03rb")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1305927142]
 
-[node name="UIManager" parent="." instance=ExtResource("11_osmdq")]
+[node name="UIManager" parent="." unique_id=2116995665 instance=ExtResource("11_osmdq")]
 
-[node name="TutorialController" type="Node" parent="." node_paths=PackedStringArray("tutorial_ui", "step_indicator", "tutorial_text", "next_button", "finish_button")]
+[node name="TutorialController" type="Node" parent="." unique_id=1667938076 node_paths=PackedStringArray("tutorial_ui", "step_indicator", "tutorial_text", "next_button", "finish_button")]
 script = ExtResource("12_5s40a")
 tutorial_ui = NodePath("TutorialLayer")
 step_indicator = NodePath("TutorialLayer/StepIndicator")
@@ -73,7 +73,7 @@ tutorial_text = NodePath("TutorialLayer/TutorialText")
 next_button = NodePath("TutorialLayer/NextButton")
 finish_button = NodePath("TutorialLayer/FinishButton")
 
-[node name="TutorialLayer" type="Control" parent="TutorialController"]
+[node name="TutorialLayer" type="Control" parent="TutorialController" unique_id=281710604]
 visible = false
 layout_mode = 3
 anchor_left = -0.5
@@ -85,7 +85,7 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Dimmer" type="ColorRect" parent="TutorialController/TutorialLayer"]
+[node name="Dimmer" type="ColorRect" parent="TutorialController/TutorialLayer" unique_id=485087053]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,7 +95,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5)
 
-[node name="Panel" type="Panel" parent="TutorialController/TutorialLayer"]
+[node name="Panel" type="Panel" parent="TutorialController/TutorialLayer" unique_id=421499622]
 layout_mode = 0
 offset_left = 1024.0
 offset_top = 167.0
@@ -103,7 +103,7 @@ offset_right = 1285.0
 offset_bottom = 624.0
 mouse_filter = 2
 
-[node name="StepIndicator" type="RichTextLabel" parent="TutorialController/TutorialLayer"]
+[node name="StepIndicator" type="RichTextLabel" parent="TutorialController/TutorialLayer" unique_id=1770625958]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.80625
@@ -117,7 +117,7 @@ bbcode_enabled = true
 text = "Start"
 metadata/_edit_use_anchors_ = true
 
-[node name="TutorialText" type="RichTextLabel" parent="TutorialController/TutorialLayer"]
+[node name="TutorialText" type="RichTextLabel" parent="TutorialController/TutorialLayer" unique_id=803013896]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.80625
@@ -131,7 +131,7 @@ text = "Welcome to Hokm!
 Let's learn the basics."
 metadata/_edit_use_anchors_ = true
 
-[node name="NextButton" type="Button" parent="TutorialController/TutorialLayer"]
+[node name="NextButton" type="Button" parent="TutorialController/TutorialLayer" unique_id=495558247]
 layout_mode = 0
 offset_left = 1064.0
 offset_top = 552.0
@@ -139,7 +139,7 @@ offset_right = 1137.0
 offset_bottom = 611.0
 text = "Next"
 
-[node name="FinishButton" type="Button" parent="TutorialController/TutorialLayer"]
+[node name="FinishButton" type="Button" parent="TutorialController/TutorialLayer" unique_id=901487422]
 visible = false
 layout_mode = 0
 offset_left = 1160.0
@@ -148,7 +148,7 @@ offset_right = 1246.0
 offset_bottom = 611.0
 text = "Finish"
 
-[node name="Tutorial Overlay Button" type="Button" parent="TutorialController"]
+[node name="Tutorial Overlay Button" type="Button" parent="TutorialController" unique_id=1824363290]
 offset_left = 512.0
 offset_top = 280.0
 offset_right = 614.0
@@ -156,9 +156,9 @@ offset_bottom = 339.0
 toggle_mode = true
 text = "Tutorial"
 
-[node name="TableTrickSlots" type="Node" parent="."]
+[node name="TableTrickSlots" type="Node" parent="." unique_id=886493699]
 
-[node name="Table Panel" type="Panel" parent="TableTrickSlots"]
+[node name="Table Panel" type="Panel" parent="TableTrickSlots" unique_id=846640357]
 self_modulate = Color(1, 1, 1, 0.404)
 z_index = -1
 offset_left = -384.0
@@ -167,33 +167,33 @@ offset_right = 384.0
 offset_bottom = 360.0
 mouse_filter = 2
 
-[node name="TrickSlot" parent="TableTrickSlots" instance=ExtResource("6_f03rb")]
+[node name="TrickSlot" parent="TableTrickSlots" unique_id=355090343 instance=ExtResource("6_f03rb")]
 z_index = -1
 position = Vector2(40, 40)
 
-[node name="TrickSlot1" parent="TableTrickSlots" instance=ExtResource("6_f03rb")]
+[node name="TrickSlot1" parent="TableTrickSlots" unique_id=1150471086 instance=ExtResource("6_f03rb")]
 z_index = -1
 position = Vector2(-40, -40)
 
-[node name="TrickSlot2" parent="TableTrickSlots" instance=ExtResource("6_f03rb")]
+[node name="TrickSlot2" parent="TableTrickSlots" unique_id=1084900670 instance=ExtResource("6_f03rb")]
 z_index = -1
 position = Vector2(-40.000004, 39.999992)
 rotation = 1.5707964
 
-[node name="TrickSlot3" parent="TableTrickSlots" instance=ExtResource("6_f03rb")]
+[node name="TrickSlot3" parent="TableTrickSlots" unique_id=1347024185 instance=ExtResource("6_f03rb")]
 z_index = -1
 position = Vector2(39.999996, -39.999985)
 rotation = 1.5707964
 
-[node name="PlayerHands" type="Node" parent="."]
+[node name="PlayerHands" type="Node" parent="." unique_id=643714104]
 
-[node name="PlayerHand" type="Node2D" parent="PlayerHands" node_paths=PackedStringArray("HandLabel")]
+[node name="PlayerHand" type="Node2D" parent="PlayerHands" unique_id=773492878 node_paths=PackedStringArray("HandLabel")]
 position = Vector2(0, 224)
 script = ExtResource("7_x13lw")
 HandLabel = NodePath("PlayerLabel")
 is_player_controlled = true
 
-[node name="PlayerLabel" type="Label" parent="PlayerHands/PlayerHand"]
+[node name="PlayerLabel" type="Label" parent="PlayerHands/PlayerHand" unique_id=1302357672]
 offset_left = -64.0
 offset_top = 56.0
 offset_right = 64.0
@@ -202,13 +202,13 @@ text = "Player 0 (You)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="EnemyHand1" type="Node2D" parent="PlayerHands" node_paths=PackedStringArray("ai_controller")]
+[node name="EnemyHand1" type="Node2D" parent="PlayerHands" unique_id=1470614373 node_paths=PackedStringArray("ai_controller")]
 position = Vector2(0, -224)
 script = ExtResource("7_x13lw")
 player_id = 1
 ai_controller = NodePath("AIController")
 
-[node name="PlayerLabel2" type="Label" parent="PlayerHands/EnemyHand1"]
+[node name="PlayerLabel2" type="Label" parent="PlayerHands/EnemyHand1" unique_id=1245788770]
 offset_left = -64.0
 offset_top = 56.0
 offset_right = 64.0
@@ -217,18 +217,18 @@ text = "Player 1 (AI)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand1"]
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand1" unique_id=631556088]
 script = ExtResource("8_e8k7y")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"
 
-[node name="EnemyHand2" type="Node2D" parent="PlayerHands" node_paths=PackedStringArray("ai_controller")]
+[node name="EnemyHand2" type="Node2D" parent="PlayerHands" unique_id=2688198 node_paths=PackedStringArray("ai_controller")]
 position = Vector2(320, 0)
 rotation = -1.5707964
 script = ExtResource("7_x13lw")
 player_id = 2
 ai_controller = NodePath("AIController")
 
-[node name="PlayerLabel2" type="Label" parent="PlayerHands/EnemyHand2"]
+[node name="PlayerLabel2" type="Label" parent="PlayerHands/EnemyHand2" unique_id=87347202]
 offset_left = -64.0
 offset_top = -56.0
 offset_right = 64.0
@@ -238,18 +238,18 @@ text = "Player 2 (AI)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand2"]
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand2" unique_id=1456404340]
 script = ExtResource("8_e8k7y")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"
 
-[node name="EnemyHand3" type="Node2D" parent="PlayerHands" node_paths=PackedStringArray("ai_controller")]
+[node name="EnemyHand3" type="Node2D" parent="PlayerHands" unique_id=873173334 node_paths=PackedStringArray("ai_controller")]
 position = Vector2(-320, 0)
 rotation = -1.5707964
 script = ExtResource("7_x13lw")
 player_id = 2
 ai_controller = NodePath("AIController")
 
-[node name="PlayerLabel2" type="Label" parent="PlayerHands/EnemyHand3"]
+[node name="PlayerLabel2" type="Label" parent="PlayerHands/EnemyHand3" unique_id=1191555497]
 offset_left = -64.0
 offset_top = -56.0
 offset_right = 64.0
@@ -259,20 +259,20 @@ text = "Player 3 (AI)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand3"]
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand3" unique_id=687913872]
 script = ExtResource("8_e8k7y")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"
 
-[node name="Deck" parent="." instance=ExtResource("9_8nu4g")]
+[node name="Deck" parent="." unique_id=1122846010 instance=ExtResource("9_8nu4g")]
 z_index = 0
 position = Vector2(-192, 0)
 
-[node name="ScorePiles" type="Node" parent="."]
+[node name="ScorePiles" type="Node" parent="." unique_id=1976445766]
 
-[node name="ScorePile0" parent="ScorePiles" instance=ExtResource("10_cv7p3")]
+[node name="ScorePile0" parent="ScorePiles" unique_id=576911518 instance=ExtResource("10_cv7p3")]
 position = Vector2(-288, 320)
 
-[node name="ScorePile1" parent="ScorePiles" instance=ExtResource("10_cv7p3")]
+[node name="ScorePile1" parent="ScorePiles" unique_id=923170980 instance=ExtResource("10_cv7p3")]
 position = Vector2(288, -280)
 owner_id = 1
 

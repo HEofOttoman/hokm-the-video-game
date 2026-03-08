@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqfeyf3vdqexp"]
+[gd_scene format=3 uid="uid://cqfeyf3vdqexp"]
 
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="1_7x7n5"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="2_35jne"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="12_nq74a"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="13_lmcoq"]
 
-[node name="HokmTutorial" type="Control" node_paths=PackedStringArray("deck", "hands", "trick_slots", "rulesEngine")]
+[node name="HokmTutorial" type="Control" unique_id=1818295705 node_paths=PackedStringArray("deck", "hands", "trick_slots", "rulesEngine")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,11 +28,11 @@ hands = [NodePath("PlayerHandClass"), NodePath("AIHandClass")]
 trick_slots = [NodePath("CardSlot"), NodePath("CardSlot1")]
 rulesEngine = NodePath("RulesEngine")
 
-[node name="RulesEngine" type="Node" parent="."]
+[node name="RulesEngine" type="Node" parent="." unique_id=1224910348]
 script = ExtResource("2_em8bv")
 metadata/_custom_type_script = "uid://cxuwke0pub027"
 
-[node name="BgColorPanel" type="Panel" parent="."]
+[node name="BgColorPanel" type="Panel" parent="." unique_id=1196215858]
 z_index = -2
 material = ExtResource("3_xt2cy")
 layout_mode = 1
@@ -43,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BgColorRect" type="ColorRect" parent="."]
+[node name="BgColorRect" type="ColorRect" parent="." unique_id=1596433695]
 visible = false
 z_index = -2
 material = ExtResource("3_xt2cy")
@@ -55,7 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="CenterTablePanel" type="Panel" parent="."]
+[node name="CenterTablePanel" type="Panel" parent="." unique_id=44279277]
 self_modulate = Color(1, 1, 1, 0.28800002)
 z_index = -1
 layout_mode = 0
@@ -64,19 +64,19 @@ offset_right = 1000.0
 offset_bottom = 720.0
 mouse_filter = 2
 
-[node name="PauseMenuController" type="Node" parent="."]
+[node name="PauseMenuController" type="Node" parent="." unique_id=340958324]
 script = ExtResource("4_dwhfr")
 pause_menu_packed = ExtResource("5_nq74a")
 
-[node name="TutorialController" type="Node" parent="." node_paths=PackedStringArray("game_manager")]
+[node name="TutorialController" type="Node" parent="." unique_id=113717104 node_paths=PackedStringArray("game_manager")]
 script = ExtResource("9_i210u")
 game_manager = NodePath("..")
 metadata/_custom_type_script = "uid://cxwpdcfwdt3rl"
 
-[node name="Deck" parent="." instance=ExtResource("2_35jne")]
+[node name="Deck" parent="." unique_id=1369675670 instance=ExtResource("2_35jne")]
 position = Vector2(392.00003, 344)
 
-[node name="PlayerHandClass" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "score_pile")]
+[node name="PlayerHandClass" type="Node2D" parent="." unique_id=552900396 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "score_pile")]
 position = Vector2(640, 576)
 script = ExtResource("5_4vetv")
 gameManager = NodePath("..")
@@ -86,13 +86,13 @@ score_pile = NodePath("../ScorePile")
 is_player_controlled = true
 metadata/_custom_type_script = "uid://dxbgl3telxva0"
 
-[node name="PlayerController" type="Node" parent="PlayerHandClass" node_paths=PackedStringArray("hand", "gameManager", "rulesEngine")]
+[node name="PlayerController" type="Node" parent="PlayerHandClass" unique_id=730459573 node_paths=PackedStringArray("hand", "gameManager", "rulesEngine")]
 script = ExtResource("6_r6rpl")
 hand = NodePath("..")
 gameManager = NodePath("../..")
 rulesEngine = NodePath("../../RulesEngine")
 
-[node name="PlayerLabel" type="Label" parent="PlayerHandClass"]
+[node name="PlayerLabel" type="Label" parent="PlayerHandClass" unique_id=315987854]
 offset_left = -64.0
 offset_top = 48.0
 offset_right = 64.0
@@ -101,7 +101,7 @@ text = "Player 0 (You)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="AIHandClass" type="Node2D" parent="." node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "score_pile", "ai_controller")]
+[node name="AIHandClass" type="Node2D" parent="." unique_id=936830896 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "score_pile", "ai_controller")]
 position = Vector2(640, 160)
 script = ExtResource("5_4vetv")
 gameManager = NodePath("..")
@@ -111,22 +111,22 @@ score_pile = NodePath("../ScorePile2")
 ai_controller = NodePath("AIController")
 metadata/_custom_type_script = "uid://dxbgl3telxva0"
 
-[node name="AIController" type="Node" parent="AIHandClass"]
+[node name="AIController" type="Node" parent="AIHandClass" unique_id=1101491336]
 script = ExtResource("7_pqmp0")
 
-[node name="CardSlot" parent="." instance=ExtResource("12_nq74a")]
+[node name="CardSlot" parent="." unique_id=1893523956 instance=ExtResource("12_nq74a")]
 position = Vector2(696, 368)
 
-[node name="CardSlot1" parent="." instance=ExtResource("12_nq74a")]
+[node name="CardSlot1" parent="." unique_id=694671533 instance=ExtResource("12_nq74a")]
 position = Vector2(584, 336)
 
-[node name="ScorePile" parent="." instance=ExtResource("13_lmcoq")]
+[node name="ScorePile" parent="." unique_id=928798953 instance=ExtResource("13_lmcoq")]
 position = Vector2(384, 672)
 
-[node name="ScorePile2" parent="." instance=ExtResource("13_lmcoq")]
+[node name="ScorePile2" parent="." unique_id=1957509630 instance=ExtResource("13_lmcoq")]
 position = Vector2(896, 96)
 
-[node name="UIManager" parent="." instance=ExtResource("6_s5ocf")]
+[node name="UIManager" parent="." unique_id=1924952703 instance=ExtResource("6_s5ocf")]
 
 [connection signal="card_drawn" from="." to="TutorialController" method="_on_hokm_tutorial_card_drawn"]
 [connection signal="card_played" from="." to="TutorialController" method="_on_hokm_tutorial_card_played"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1lgf8q000ap"]
+[gd_scene format=3 uid="uid://d1lgf8q000ap"]
 
 [ext_resource type="Texture2D" uid="uid://dkvb1b7ojrj1m" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_slot.png" id="1_tpsnn"]
 [ext_resource type="Script" uid="uid://dmb7rndldisy" path="res://resources/CardSlot/card_slot.gd" id="2_cwo30"]
@@ -58,17 +58,15 @@ _data = {
 &"fade_out": SubResource("Animation_c44n2")
 }
 
-[node name="CardSlot" type="Sprite2D" groups=["card_slots"]]
+[node name="CardSlot" type="Sprite2D" unique_id=683566232 groups=["card_slots"]]
 scale = Vector2(1.25, 1.25)
 texture = ExtResource("1_tpsnn")
 script = ExtResource("2_cwo30")
 
-[node name="Area2D" type="Area2D" parent="." groups=["card_slots"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=1961857672 groups=["card_slots"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1433951162]
 shape = SubResource("RectangleShape2D_j7cxb")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_cwo30")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1291452607]
+libraries/ = SubResource("AnimationLibrary_cwo30")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyrpsnraose2n"]
+[gd_scene format=3 uid="uid://dyrpsnraose2n"]
 
 [ext_resource type="Texture2D" uid="uid://cjjwlc7dkaotx" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_clubs_J.png" id="1_ejfkd"]
 [ext_resource type="Script" uid="uid://gmn1ddhih28d" path="res://resources/Card Resources/cardclicker.gd" id="2_ejfkd"]
@@ -117,25 +117,23 @@ _data = {
 &"card_flip": SubResource("Animation_mucyl")
 }
 
-[node name="Card" type="Node2D" groups=["cards"]]
+[node name="Card" type="Node2D" unique_id=335243291 groups=["cards"]]
 script = ExtResource("2_ymwpd")
 
-[node name="Area2D" type="Area2D" parent="." groups=["cards"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=1012077315 groups=["cards"]]
 script = ExtResource("2_ejfkd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1058031151]
 shape = SubResource("RectangleShape2D_idd6q")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=458952119]
 root_node = NodePath("../CardSprite")
-libraries = {
-&"": SubResource("AnimationLibrary_j2llb")
-}
+libraries/ = SubResource("AnimationLibrary_j2llb")
 
-[node name="CardBackSprite" type="Sprite2D" parent="."]
+[node name="CardBackSprite" type="Sprite2D" parent="." unique_id=1750563321]
 texture = ExtResource("4_mucyl")
 
-[node name="CardSprite" type="Sprite2D" parent="."]
+[node name="CardSprite" type="Sprite2D" parent="." unique_id=920930743]
 z_index = -1
 texture = ExtResource("1_ejfkd")
 

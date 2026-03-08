@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://byqpo4bmpwdyh"]
+[gd_scene format=3 uid="uid://byqpo4bmpwdyh"]
 
 [ext_resource type="Script" uid="uid://blelsqjleho0x" path="res://resources/UI Elements/hokm_display.gd" id="1_7jjai"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="2_8wngp"]
 
-[node name="Hokm Display Label" type="Label" node_paths=PackedStringArray("hokm_texture_display")]
+[node name="Hokm Display Label" type="Label" unique_id=10010276 node_paths=PackedStringArray("hokm_texture_display")]
 offset_left = 56.0
 offset_top = 16.0
 offset_right = 120.0
@@ -14,7 +14,7 @@ vertical_alignment = 1
 script = ExtResource("1_7jjai")
 hokm_texture_display = NodePath("Hokm Icon")
 
-[node name="Hokm Icon" type="TextureRect" parent="."]
+[node name="Hokm Icon" type="TextureRect" parent="." unique_id=1906080548]
 layout_mode = 0
 offset_left = -56.0
 offset_top = -16.0

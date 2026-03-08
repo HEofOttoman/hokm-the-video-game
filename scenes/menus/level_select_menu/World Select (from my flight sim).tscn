@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://clh8m5ca4xepk"]
+[gd_scene format=3 uid="uid://clh8m5ca4xepk"]
 
 [ext_resource type="Script" uid="uid://b3k3ql4h5x1vs" path="res://scenes/menus/level_select_menu/world_select (old code).gd" id="1_i220u"]
 
@@ -14,7 +14,7 @@ gradient = SubResource("Gradient_dm76d")
 [sub_resource type="LabelSettings" id="LabelSettings_84ogh"]
 font_size = 30
 
-[node name="World Select" type="Control"]
+[node name="World Select" type="Control" unique_id=1618441747]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i220u")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1728941848]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_vqw6r")
 
-[node name="Blur" type="ColorRect" parent="."]
+[node name="Blur" type="ColorRect" parent="." unique_id=425079384]
 material = SubResource("ShaderMaterial_84ogh")
 layout_mode = 1
 anchors_preset = 15
@@ -43,7 +43,7 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="Panel" parent="."]
+[node name="ColorRect" type="Panel" parent="." unique_id=622460815]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0277778
@@ -54,7 +54,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=1015648338]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.307726
@@ -71,7 +71,7 @@ text = "Select World"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Tutorial Panel" type="PanelContainer" parent="."]
+[node name="Tutorial Panel" type="PanelContainer" parent="." unique_id=1621769894]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.375
@@ -81,31 +81,31 @@ anchor_bottom = 0.91821
 offset_top = -18.0002
 offset_bottom = -18.0002
 
-[node name="MarginContainer" type="MarginContainer" parent="Tutorial Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial Panel" unique_id=1954950456]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial Panel/MarginContainer" unique_id=1111568345]
 layout_mode = 2
 
-[node name="Subtitle" type="Label" parent="Tutorial Panel/MarginContainer/VBoxContainer"]
+[node name="Subtitle" type="Label" parent="Tutorial Panel/MarginContainer/VBoxContainer" unique_id=1354798911]
 layout_mode = 2
 text = "Tutorial World"
 label_settings = SubResource("LabelSettings_84ogh")
 horizontal_alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="Tutorial Panel/MarginContainer/VBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="Tutorial Panel/MarginContainer/VBoxContainer" unique_id=298633132]
 layout_mode = 2
 expand_mode = 4
 
-[node name="HSeparator" type="HSeparator" parent="Tutorial Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Tutorial Panel/MarginContainer/VBoxContainer" unique_id=786230862]
 layout_mode = 2
 
-[node name="Tutorial Btn" type="Button" parent="Tutorial Panel/MarginContainer/VBoxContainer"]
+[node name="Tutorial Btn" type="Button" parent="Tutorial Panel/MarginContainer/VBoxContainer" unique_id=1719026918]
 layout_mode = 2
 text = "Play"
 metadata/_edit_use_anchors_ = true
 
-[node name="Dove Lake Panel" type="PanelContainer" parent="."]
+[node name="Dove Lake Panel" type="PanelContainer" parent="." unique_id=1761082616]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.6875
@@ -115,31 +115,31 @@ anchor_bottom = 0.91821
 offset_top = -18.0002
 offset_bottom = -18.0002
 
-[node name="MarginContainer" type="MarginContainer" parent="Dove Lake Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Dove Lake Panel" unique_id=474124247]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Dove Lake Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Dove Lake Panel/MarginContainer" unique_id=1916375508]
 layout_mode = 2
 
-[node name="Subtitle" type="Label" parent="Dove Lake Panel/MarginContainer/VBoxContainer"]
+[node name="Subtitle" type="Label" parent="Dove Lake Panel/MarginContainer/VBoxContainer" unique_id=1183485289]
 layout_mode = 2
 text = "Dove Lake"
 label_settings = SubResource("LabelSettings_84ogh")
 horizontal_alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="Dove Lake Panel/MarginContainer/VBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="Dove Lake Panel/MarginContainer/VBoxContainer" unique_id=112431980]
 layout_mode = 2
 expand_mode = 4
 
-[node name="HSeparator" type="HSeparator" parent="Dove Lake Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Dove Lake Panel/MarginContainer/VBoxContainer" unique_id=2033754046]
 layout_mode = 2
 
-[node name="Dove Lake Btn" type="Button" parent="Dove Lake Panel/MarginContainer/VBoxContainer"]
+[node name="Dove Lake Btn" type="Button" parent="Dove Lake Panel/MarginContainer/VBoxContainer" unique_id=409498359]
 layout_mode = 2
 text = "Play"
 metadata/_edit_use_anchors_ = true
 
-[node name="Tasmania Panel" type="PanelContainer" parent="."]
+[node name="Tasmania Panel" type="PanelContainer" parent="." unique_id=1648233035]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0625
@@ -149,31 +149,31 @@ anchor_bottom = 0.91821
 offset_top = -18.0002
 offset_bottom = -18.0002
 
-[node name="MarginContainer" type="MarginContainer" parent="Tasmania Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Tasmania Panel" unique_id=66804944]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Tasmania Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Tasmania Panel/MarginContainer" unique_id=379571356]
 layout_mode = 2
 
-[node name="Subtitle" type="Label" parent="Tasmania Panel/MarginContainer/VBoxContainer"]
+[node name="Subtitle" type="Label" parent="Tasmania Panel/MarginContainer/VBoxContainer" unique_id=1049438040]
 layout_mode = 2
 text = "Tasmania"
 label_settings = SubResource("LabelSettings_84ogh")
 horizontal_alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="Tasmania Panel/MarginContainer/VBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="Tasmania Panel/MarginContainer/VBoxContainer" unique_id=745448441]
 layout_mode = 2
 expand_mode = 4
 
-[node name="HSeparator" type="HSeparator" parent="Tasmania Panel/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Tasmania Panel/MarginContainer/VBoxContainer" unique_id=964490928]
 layout_mode = 2
 
-[node name="Tasmania Btn" type="Button" parent="Tasmania Panel/MarginContainer/VBoxContainer"]
+[node name="Tasmania Btn" type="Button" parent="Tasmania Panel/MarginContainer/VBoxContainer" unique_id=752160276]
 layout_mode = 2
 text = "Play"
 metadata/_edit_use_anchors_ = true
 
-[node name="Back Button" type="Button" parent="."]
+[node name="Back Button" type="Button" parent="." unique_id=940043943]
 layout_mode = 0
 anchor_left = 0.00868054
 anchor_top = 0.939815

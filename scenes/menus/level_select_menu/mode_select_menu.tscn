@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhjoc73h3n2ky"]
+[gd_scene format=3 uid="uid://dhjoc73h3n2ky"]
 
 [ext_resource type="Script" uid="uid://ba7rjqhcmnyaq" path="res://scenes/menus/level_select_menu/mode_select_menu.gd" id="1_sg15o"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_if8b8"]
@@ -13,7 +13,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_sg15o"]
 font_size = 30
 
-[node name="LevelSelectMenu" type="Control"]
+[node name="LevelSelectMenu" type="Control" unique_id=660872781]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sg15o")
 
-[node name="BackgroundTextureRect" type="TextureRect" parent="."]
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=1223234775]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +34,7 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="ColorTextureRect" type="ColorRect" parent="."]
+[node name="ColorTextureRect" type="ColorRect" parent="." unique_id=965059480]
 self_modulate = Color(1, 1, 1, 0.26500002)
 material = ExtResource("3_8iqnn")
 layout_mode = 1
@@ -46,7 +46,7 @@ grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_lock_ = true
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1257019948]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,7 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_if8b8")
 
-[node name="LevelButtonsContainer" type="ItemList" parent="Control"]
+[node name="LevelButtonsContainer" type="ItemList" parent="Control" unique_id=1851630071]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(400, 0)
@@ -75,12 +75,12 @@ auto_height = true
 item_count = 1
 item_0/text = "1 - ExampleLevel"
 
-[node name="SceneLister" type="Node" parent="."]
+[node name="SceneLister" type="Node" parent="." unique_id=1771097788]
 script = ExtResource("3_sg15o")
 files = Array[String](["res://scenes/game_scene/levels/basic_test_scene.tscn", "res://scenes/game_scene/levels/level_1.tscn", "res://scenes/game_scene/levels/level_2.tscn", "res://scenes/game_scene/levels/level_3.tscn"])
 directory = "res://scenes/game_scene/levels"
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="." unique_id=298252811]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -93,37 +93,37 @@ text = "Select Game Mode"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="2PMarginContainer" type="MarginContainer" parent="."]
+[node name="2PMarginContainer" type="MarginContainer" parent="." unique_id=476426890]
 layout_mode = 0
 offset_left = 144.0
 offset_top = 160.0
 offset_right = 444.66565
 offset_bottom = 579.0
 
-[node name="Panel" type="PanelContainer" parent="2PMarginContainer"]
+[node name="Panel" type="PanelContainer" parent="2PMarginContainer" unique_id=555216212]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="2PMarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="2PMarginContainer" unique_id=1171717756]
 layout_mode = 2
 alignment = 1
 
-[node name="Subtitle" type="Label" parent="2PMarginContainer/VBoxContainer"]
+[node name="Subtitle" type="Label" parent="2PMarginContainer/VBoxContainer" unique_id=1223886406]
 layout_mode = 2
 text = "2-Player"
 label_settings = SubResource("LabelSettings_sg15o")
 horizontal_alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="2PMarginContainer/VBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="2PMarginContainer/VBoxContainer" unique_id=569059106]
 layout_mode = 2
 texture = ExtResource("6_y33mg")
 expand_mode = 4
 
-[node name="2P-Btn" type="Button" parent="2PMarginContainer/VBoxContainer"]
+[node name="2P-Btn" type="Button" parent="2PMarginContainer/VBoxContainer" unique_id=1117183343]
 layout_mode = 2
 text = "Play"
 metadata/_edit_use_anchors_ = true
 
-[node name="Prototype Panel" type="PanelContainer" parent="."]
+[node name="Prototype Panel" type="PanelContainer" parent="." unique_id=1694146169]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.375
@@ -133,57 +133,57 @@ anchor_bottom = 0.8
 grow_horizontal = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Prototype Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Prototype Panel" unique_id=1431224427]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Prototype Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Prototype Panel/MarginContainer" unique_id=698392761]
 layout_mode = 2
 alignment = 1
 
-[node name="Subtitle" type="Label" parent="Prototype Panel/MarginContainer/VBoxContainer"]
+[node name="Subtitle" type="Label" parent="Prototype Panel/MarginContainer/VBoxContainer" unique_id=1114058997]
 layout_mode = 2
 text = "3-Player"
 label_settings = SubResource("LabelSettings_sg15o")
 horizontal_alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="Prototype Panel/MarginContainer/VBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="Prototype Panel/MarginContainer/VBoxContainer" unique_id=1353196212]
 layout_mode = 2
 texture = ExtResource("7_y33mg")
 expand_mode = 4
 
-[node name="3P-Btn" type="Button" parent="Prototype Panel/MarginContainer/VBoxContainer"]
+[node name="3P-Btn" type="Button" parent="Prototype Panel/MarginContainer/VBoxContainer" unique_id=1275981313]
 layout_mode = 2
 text = "WIP"
 metadata/_edit_use_anchors_ = true
 
-[node name="4P Container" type="PanelContainer" parent="."]
+[node name="4P Container" type="PanelContainer" parent="." unique_id=1985857483]
 layout_mode = 0
 offset_left = 840.0
 offset_top = 160.0
 offset_right = 1140.6656
 offset_bottom = 579.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="4P Container"]
+[node name="VBoxContainer" type="VBoxContainer" parent="4P Container" unique_id=1623525239]
 layout_mode = 2
 alignment = 1
 
-[node name="Subtitle" type="Label" parent="4P Container/VBoxContainer"]
+[node name="Subtitle" type="Label" parent="4P Container/VBoxContainer" unique_id=722063980]
 layout_mode = 2
 text = "4-Player"
 label_settings = SubResource("LabelSettings_sg15o")
 horizontal_alignment = 1
 
-[node name="Thumbnail" type="TextureRect" parent="4P Container/VBoxContainer"]
+[node name="Thumbnail" type="TextureRect" parent="4P Container/VBoxContainer" unique_id=1493053355]
 layout_mode = 2
 texture = ExtResource("8_ijxxm")
 expand_mode = 4
 
-[node name="4P-Btn" type="Button" parent="4P Container/VBoxContainer"]
+[node name="4P-Btn" type="Button" parent="4P Container/VBoxContainer" unique_id=1040992112]
 layout_mode = 2
 text = "WIP"
 metadata/_edit_use_anchors_ = true
 
-[node name="MenuButtonsMargin" type="MarginContainer" parent="."]
+[node name="MenuButtonsMargin" type="MarginContainer" parent="." unique_id=1910934494]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 624.0
@@ -191,7 +191,7 @@ offset_right = 1240.0
 offset_bottom = 691.0
 theme_override_constants/margin_top = 8
 
-[node name="MenuButtons" type="BoxContainer" parent="MenuButtonsMargin"]
+[node name="MenuButtons" type="BoxContainer" parent="MenuButtonsMargin" unique_id=395118659]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
@@ -201,7 +201,7 @@ alignment = 1
 vertical = true
 script = ExtResource("2_if8b8")
 
-[node name="CloseButton" type="Button" parent="MenuButtonsMargin/MenuButtons"]
+[node name="CloseButton" type="Button" parent="MenuButtonsMargin/MenuButtons" unique_id=1449194524]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0

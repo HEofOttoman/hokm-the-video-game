@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cig6thybdjvsv"]
+[gd_scene format=3 uid="uid://cig6thybdjvsv"]
 
 [ext_resource type="Script" uid="uid://bftae8jkury7d" path="res://resources/UI Elements/ui_manager.gd" id="1_yrdgn"]
 [ext_resource type="Script" uid="uid://byyymvlmevak6" path="res://resources/UI Elements/hakem_display.gd" id="2_bufnx"]
@@ -46,7 +46,7 @@ _data = {
 &"fade_in_&_out": SubResource("Animation_wtj6l")
 }
 
-[node name="UIManager" type="CanvasLayer" node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
+[node name="UIManager" type="CanvasLayer" unique_id=1850069881 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
 script = ExtResource("1_yrdgn")
 hakem_display_label = NodePath("HUDLayer/HakemDisplayLabel")
 hokm_display_label = NodePath("HUDLayer/Hokm Display Label")
@@ -54,7 +54,7 @@ score_display_label = NodePath("HUDLayer/Score Label")
 turn_indicator = NodePath("HUDLayer/Turn Indicator")
 turn_prompt = NodePath("HUDLayer/Turn Prompt")
 
-[node name="HUDLayer" type="Control" parent="."]
+[node name="HUDLayer" type="Control" parent="." unique_id=912983774]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,7 +63,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="InfoPanel1" type="Panel" parent="HUDLayer"]
+[node name="InfoPanel1" type="Panel" parent="HUDLayer" unique_id=1608638813]
 self_modulate = Color(1, 1, 1, 0.133)
 layout_mode = 1
 anchors_preset = -1
@@ -74,7 +74,7 @@ offset_bottom = -1.5258789e-05
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Hokm Display Label" parent="HUDLayer" instance=ExtResource("4_oqib0")]
+[node name="Hokm Display Label" parent="HUDLayer" unique_id=1613439632 instance=ExtResource("4_oqib0")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -87,12 +87,12 @@ offset_right = 0.0
 offset_bottom = 0.0
 metadata/_edit_use_anchors_ = true
 
-[node name="HakemDisplayLabel" parent="HUDLayer" instance=ExtResource("3_bufnx")]
+[node name="HakemDisplayLabel" parent="HUDLayer" unique_id=74382633 instance=ExtResource("3_bufnx")]
 layout_mode = 1
 anchor_top = 0.15555556
 anchor_bottom = 0.1875
 
-[node name="Score Label" type="Label" parent="HUDLayer"]
+[node name="Score Label" type="Label" parent="HUDLayer" unique_id=1437757613]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -102,7 +102,7 @@ anchor_bottom = 0.25694445
 text = "TRICKS WON:"
 metadata/_edit_use_anchors_ = true
 
-[node name="Turn Indicator" type="Label" parent="HUDLayer"]
+[node name="Turn Indicator" type="Label" parent="HUDLayer" unique_id=181758192]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -114,7 +114,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Container" type="HBoxContainer" parent="HUDLayer"]
+[node name="Container" type="HBoxContainer" parent="HUDLayer" unique_id=970056742]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.44375
@@ -124,31 +124,31 @@ anchor_bottom = 0.96666664
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Clubs" type="TextureButton" parent="HUDLayer/Container"]
+[node name="Clubs" type="TextureButton" parent="HUDLayer/Container" unique_id=387641050]
 layout_mode = 2
 texture_normal = ExtResource("5_38tb1")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Hearts" type="TextureButton" parent="HUDLayer/Container"]
+[node name="Hearts" type="TextureButton" parent="HUDLayer/Container" unique_id=892687096]
 layout_mode = 2
 texture_normal = ExtResource("6_lcsmr")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Spades" type="TextureButton" parent="HUDLayer/Container"]
+[node name="Spades" type="TextureButton" parent="HUDLayer/Container" unique_id=798206795]
 layout_mode = 2
 texture_normal = ExtResource("7_yt7as")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Diamonds" type="TextureButton" parent="HUDLayer/Container"]
+[node name="Diamonds" type="TextureButton" parent="HUDLayer/Container" unique_id=1761159983]
 layout_mode = 2
 texture_normal = ExtResource("8_tnpxt")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Turn Prompt" type="Label" parent="HUDLayer"]
+[node name="Turn Prompt" type="Label" parent="HUDLayer" unique_id=1738563908]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 512.0
@@ -160,12 +160,10 @@ text = "YOUR TURN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUDLayer/Turn Prompt"]
-libraries = {
-&"": SubResource("AnimationLibrary_y85nq")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUDLayer/Turn Prompt" unique_id=507780390]
+libraries/ = SubResource("AnimationLibrary_y85nq")
 
-[node name="DebugLayer" type="Control" parent="."]
+[node name="DebugLayer" type="Control" parent="." unique_id=2085194598]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -174,7 +172,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Console" type="TextEdit" parent="DebugLayer"]
+[node name="Console" type="TextEdit" parent="DebugLayer" unique_id=2096459498]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0125
@@ -186,7 +184,7 @@ text = "Console"
 editable = false
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugLayer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugLayer" unique_id=770849871]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 272.0
@@ -194,7 +192,7 @@ offset_right = 240.0
 offset_bottom = 496.0
 alignment = 1
 
-[node name="Hakem Display Label" type="Label" parent="DebugLayer/VBoxContainer"]
+[node name="Hakem Display Label" type="Label" parent="DebugLayer/VBoxContainer" unique_id=2055093044]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "HAKEM:"
@@ -202,7 +200,7 @@ vertical_alignment = 1
 script = ExtResource("2_bufnx")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="DebugLayer/VBoxContainer/Hakem Display Label"]
+[node name="TextureRect" type="TextureRect" parent="DebugLayer/VBoxContainer/Hakem Display Label" unique_id=1785212389]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -215,23 +213,23 @@ grow_vertical = 2
 texture = ExtResource("3_dh4tk")
 expand_mode = 1
 
-[node name="LeadingSuitDebugLbl" type="Label" parent="DebugLayer/VBoxContainer"]
+[node name="LeadingSuitDebugLbl" type="Label" parent="DebugLayer/VBoxContainer" unique_id=1938589007]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "LEADING SUIT:"
 metadata/_edit_use_anchors_ = true
 
-[node name="EndTurnTestBtn" type="Button" parent="DebugLayer/VBoxContainer"]
+[node name="EndTurnTestBtn" type="Button" parent="DebugLayer/VBoxContainer" unique_id=879296585]
 layout_mode = 2
 text = "End Turn"
 metadata/_edit_use_anchors_ = true
 
-[node name="ResolveTrickDebugBtn" type="Button" parent="DebugLayer/VBoxContainer"]
+[node name="ResolveTrickDebugBtn" type="Button" parent="DebugLayer/VBoxContainer" unique_id=1366530686]
 layout_mode = 2
 text = "Resolve Trick"
 metadata/_edit_use_anchors_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="DebugLayer"]
+[node name="PanelContainer" type="PanelContainer" parent="DebugLayer" unique_id=496462535]
 visible = false
 layout_mode = 0
 offset_top = 200.0

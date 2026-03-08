@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://m4vriaj77wh4"]
+[gd_scene format=3 uid="uid://m4vriaj77wh4"]
 
 [ext_resource type="Script" uid="uid://obi3ylgdxkhr" path="res://resources/UI Elements/score_pile/score_pile.gd" id="1_0xou8"]
 
-[node name="ScorePile" type="Node2D" node_paths=PackedStringArray("DisplayLabel")]
+[node name="ScorePile" type="Node2D" unique_id=772036768 node_paths=PackedStringArray("DisplayLabel")]
 script = ExtResource("1_0xou8")
 DisplayLabel = NodePath("TrickCounter")
 
-[node name="Deck Pile" type="Panel" parent="."]
+[node name="Deck Pile" type="Panel" parent="." unique_id=2043079221]
 visible = false
 offset_left = -62.0
 offset_top = -56.0
@@ -14,7 +14,7 @@ offset_right = 62.0
 offset_bottom = 64.0
 mouse_filter = 2
 
-[node name="TrickCounter" type="Label" parent="."]
+[node name="TrickCounter" type="Label" parent="." unique_id=1670770910]
 anchors_preset = -1
 anchor_left = 0.14414415
 anchor_top = 0.03524229

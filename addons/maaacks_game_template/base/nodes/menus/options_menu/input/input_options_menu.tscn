@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dp3rgqaehb3xu"]
+[gd_scene format=3 uid="uid://dp3rgqaehb3xu"]
 
 [ext_resource type="Script" uid="uid://eborw7q4b07h" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/input_options_menu.gd" id="1"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_wft4x"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://6gdbfi0172ji" path="res://addons/maaacks_game_template/base/nodes/windows/overlaid_window.tscn" id="8_jtpjy"]
 [ext_resource type="Script" uid="uid://custha7r0uoic" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/input/key_assignment_window.gd" id="9_pdk84"]
 
-[node name="Controls" type="MarginContainer"]
+[node name="Controls" type="MarginContainer" unique_id=670668525]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,43 +22,43 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1708156144]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("2_wft4x")
 search_depth = 5
 
-[node name="InputMappingContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="InputMappingContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=685725155]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/InputMappingContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/InputMappingContainer" unique_id=1720680251]
 layout_mode = 2
 text = "Actions & Inputs"
 horizontal_alignment = 1
 
-[node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("4_lf2nw")]
+[node name="InputActionsList" parent="VBoxContainer/InputMappingContainer" unique_id=561725496 instance=ExtResource("4_lf2nw")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(560, 440)
 layout_mode = 2
 
-[node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" instance=ExtResource("5_b2whh")]
+[node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" unique_id=113967370 instance=ExtResource("5_b2whh")]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(400, 440)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InputMappingContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InputMappingContainer" unique_id=1342720103]
 layout_mode = 2
 alignment = 1
 
-[node name="ResetButton" type="Button" parent="VBoxContainer/InputMappingContainer/HBoxContainer"]
+[node name="ResetButton" type="Button" parent="VBoxContainer/InputMappingContainer/HBoxContainer" unique_id=1373338935]
 layout_mode = 2
 text = "Reset"
 
-[node name="KeyDeletionConfirmation" parent="." instance=ExtResource("7_5j1ya")]
+[node name="KeyDeletionConfirmation" parent="." unique_id=473707640 instance=ExtResource("7_5j1ya")]
 visible = false
 custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
@@ -66,7 +66,7 @@ update_content = true
 text = "Are you sure you want to remove KEY from ACTION?"
 title = "Remove Key"
 
-[node name="ResetConfirmation" parent="." instance=ExtResource("7_5j1ya")]
+[node name="ResetConfirmation" parent="." unique_id=465345807 instance=ExtResource("7_5j1ya")]
 visible = false
 custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
@@ -74,21 +74,21 @@ update_content = true
 text = "Are you sure you want to reset controls back to the defaults?"
 title = "Reset to Default"
 
-[node name="OneInputMinimumMessage" parent="." instance=ExtResource("8_jtpjy")]
+[node name="OneInputMinimumMessage" parent="." unique_id=56722370 instance=ExtResource("8_jtpjy")]
 visible = false
 custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
 update_content = true
 title = "One Input Minimum"
 
-[node name="AlreadyAssignedMessage" parent="." instance=ExtResource("8_jtpjy")]
+[node name="AlreadyAssignedMessage" parent="." unique_id=58375698 instance=ExtResource("8_jtpjy")]
 visible = false
 custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
 update_content = true
 title = "Already Assigned"
 
-[node name="KeyAssignmentWindow" parent="." instance=ExtResource("7_5j1ya")]
+[node name="KeyAssignmentWindow" parent="." unique_id=106131084 instance=ExtResource("7_5j1ya")]
 visible = false
 custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
@@ -99,17 +99,17 @@ update_content = true
 [node name="DescriptionLabel" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin" index="0"]
 visible = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin" index="1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin" index="1" unique_id=900092275]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="InputLabel" type="Label" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin/VBoxContainer"]
+[node name="InputLabel" type="Label" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin/VBoxContainer" unique_id=720309351]
 unique_name_in_owner = true
 layout_mode = 2
 text = "None"
 horizontal_alignment = 1
 
-[node name="InputTextEdit" type="TextEdit" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin/VBoxContainer"]
+[node name="InputTextEdit" type="TextEdit" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/BodyMargin/VBoxContainer" unique_id=1256170256]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -133,7 +133,7 @@ focus_neighbor_top = NodePath("../../../VBoxContainer/InputTextEdit")
 [node name="ConfirmButton" parent="KeyAssignmentWindow/ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1"]
 focus_neighbor_top = NodePath("../../../VBoxContainer/InputTextEdit")
 
-[node name="DelayTimer" type="Timer" parent="KeyAssignmentWindow"]
+[node name="DelayTimer" type="Timer" parent="KeyAssignmentWindow" unique_id=479300080]
 unique_name_in_owner = true
 wait_time = 0.1
 one_shot = true

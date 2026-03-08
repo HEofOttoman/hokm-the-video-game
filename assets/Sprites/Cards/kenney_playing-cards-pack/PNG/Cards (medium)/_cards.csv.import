@@ -3,7 +3,6 @@
 importer="csv_translation"
 type="Translation"
 uid="uid://dsgc315ycejsk"
-valid=false
 
 [deps]
 
@@ -13,3 +12,5 @@ source_file="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (med
 
 compress=true
 delimiter=0
+unescape_keys=false
+unescape_translations=true

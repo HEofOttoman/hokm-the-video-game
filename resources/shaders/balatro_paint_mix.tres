@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://3ipinosqhxal"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://3ipinosqhxal"]
 
 [ext_resource type="Shader" uid="uid://bciheiwidfsvl" path="res://resources/shaders/balatro_paint_mix.gdshader" id="1_sun1k"]
 
