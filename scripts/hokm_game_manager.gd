@@ -90,6 +90,8 @@ func start_new_round()-> void:
 				card.queue_free()
 	deck.reset_deck()
 	
+	tricks_won.fill(0) ## Resets trick count
+	
 	current_game_phase = HokmGamePhase.INIT
 	#initialise_game()
 
@@ -100,6 +102,7 @@ func initialise_game():
 	
 	deal_initial_cards()
 
+## Deals 5 cards to each player.
 func deal_initial_cards():
 	current_game_phase = HokmGamePhase.DEAL_INITIAL_CARDS
 	print('Dealing Initial Cards', current_game_phase)
@@ -148,6 +151,36 @@ func declaring_hokm(): ## Process for declaring the hokm
 	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
 	#hokm_chosen.emit(hokm)
 
+
+func begin_stock_draw() -> void:
+	current_player = hakem_index
+	start_stock_draw(current_player)
+
+func start_stock_draw(_player_id : int) -> void:
+	var stock_card_a : CardInstance
+	
+	stock_card_a = deck.draw_card()
+	
+	var keep : bool
+	
+	if keep:
+		hands[_player_id].add_card_to_hand(stock_card_a)
+	else:
+		return
+	
+	var stock_card_b : CardInstance
+	
+	
+	
+	#Draw card A > Choose to KEEP or DISCARD
+	#>
+	#Draw card B
+	#>
+	#If A was kept -> B must be discarded
+	#If A was discarded -> B must be kept
+	
+	
+
 func deal_remaining_cards():
 	print('Dealing Remaining Cards', current_game_phase)
 	if player_count == HokmGameMode.THREE_PLAYER: ## Checks if the game's rules are different and change accordingly
@@ -182,6 +215,8 @@ func finish_game():
 	GameSfxBus.play(GameSfxBus.game_won)
 	print('GAME OVER!!! THANKS FOR PLAYING!!!')
 	#push_error('Game is over :>>') # 
+	
+	#if score[0] == 7:
 	if tricks_won[0] == 7:
 		$"../Win Lose Manager".game_won() ## ok, now I do
 	else:

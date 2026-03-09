@@ -221,13 +221,14 @@ script = ExtResource("16_3tb7h")
 pause_menu_packed = ExtResource("17_x5e23")
 canvas_layer = NodePath("../UIManager/HUDLayer")
 
-[node name="UIManager" type="Node" parent="." unique_id=30243284 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
+[node name="UIManager" type="Node" parent="." unique_id=30243284 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label")]
 script = ExtResource("9_rnmyu")
 hakem_display_label = NodePath("HUDLayer/HakemDisplayLabel")
 hokm_display_label = NodePath("HUDLayer/Hokm Display Label")
 score_display_label = NodePath("HUDLayer/Score Label")
 turn_indicator = NodePath("HUDLayer/Turn Indicator")
 turn_prompt = NodePath("HUDLayer/Turn Prompt")
+rounds_won_display_label = NodePath("HUDLayer/ScoreLabel")
 
 [node name="HUDLayer" type="CanvasLayer" parent="UIManager" unique_id=1116478680]
 follow_viewport_enabled = true
@@ -236,17 +237,25 @@ follow_viewport_enabled = true
 self_modulate = Color(1, 1, 1, 0.133)
 anchors_preset = -1
 anchor_left = -0.5
-anchor_top = -0.46666667
+anchor_top = -0.47777778
 anchor_right = -0.3
-anchor_bottom = -0.15555556
+anchor_bottom = -0.08888889
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Hokm Display Label" parent="UIManager/HUDLayer" unique_id=1273466449 instance=ExtResource("10_73siw")]
 offset_left = -576.0
-offset_top = -312.0
+offset_top = -272.0
 offset_right = -512.0
-offset_bottom = -289.0
+offset_bottom = -249.0
+
+[node name="HakemDisplayLabel" parent="UIManager/HUDLayer" unique_id=903162744 instance=ExtResource("15_oofwr")]
+anchor_left = -0.45
+anchor_top = -0.35555556
+anchor_right = -0.365625
+anchor_bottom = -0.3236111
+offset_top = 40.0
+offset_bottom = 40.0
 
 [node name="Score Label" type="Label" parent="UIManager/HUDLayer" unique_id=1340330679]
 anchors_preset = -1
@@ -254,11 +263,11 @@ anchor_left = -0.46875
 anchor_top = -0.28750002
 anchor_right = -0.365625
 anchor_bottom = -0.24444444
-offset_top = 1.5258789e-05
+offset_top = 40.000015
+offset_bottom = 40.0
 text = "TRICKS WON:"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Turn Indicator" type="Label" parent="UIManager/HUDLayer" unique_id=1506537745]
 anchors_preset = -1
@@ -266,10 +275,24 @@ anchor_left = -0.46875
 anchor_top = -0.23333333
 anchor_right = -0.36875
 anchor_bottom = -0.17777778
+offset_top = 40.0
+offset_bottom = 40.0
 text = "Dealing.."
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
+
+[node name="ScoreLabel" type="Label" parent="UIManager/HUDLayer" unique_id=1441664117]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.3888889
+anchor_right = 0.128125
+anchor_bottom = 0.4125
+offset_left = -688.0
+offset_top = -600.0
+offset_right = -650.0
+offset_bottom = -594.0
+theme_override_font_sizes/font_size = 22
+text = "ROUNDS WON:"
 
 [node name="Container" type="HBoxContainer" parent="UIManager/HUDLayer" unique_id=437945824]
 anchors_preset = -1
@@ -319,12 +342,6 @@ vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UIManager/HUDLayer/Turn Prompt" unique_id=575928288]
 libraries/ = SubResource("AnimationLibrary_y85nq")
-
-[node name="HakemDisplayLabel" parent="UIManager/HUDLayer" unique_id=903162744 instance=ExtResource("15_oofwr")]
-anchor_left = -0.45
-anchor_top = -0.35555556
-anchor_right = -0.365625
-anchor_bottom = -0.3236111
 
 [node name="DebugLayer" type="CanvasLayer" parent="UIManager" unique_id=1963182696]
 visible = false

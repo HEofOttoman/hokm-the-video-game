@@ -207,6 +207,15 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Back"
 
+[node name="SettingsPopup" type="Button" parent="." unique_id=651256972]
+layout_mode = 0
+offset_left = 1208.0
+offset_top = 552.0
+offset_right = 1606.946
+offset_bottom = 611.0
+rotation = -1.5707964
+text = "Game Settings (WIP)"
+
 [connection signal="item_activated" from="Control/LevelButtonsContainer" to="." method="_on_level_buttons_container_item_activated"]
 [connection signal="pressed" from="2PMarginContainer/VBoxContainer/2P-Btn" to="." method="_on_2p_btn_pressed"]
 [connection signal="pressed" from="Prototype Panel/MarginContainer/VBoxContainer/3P-Btn" to="." method="_on_3p_btn_pressed"]

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dmb7rndldisy" path="res://resources/CardSlot/card_slot.gd" id="2_cwo30"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7cxb"]
-size = Vector2(44, 64)
+size = Vector2(60, 80)
 
 [sub_resource type="Animation" id="Animation_cwo30"]
 length = 0.001
@@ -66,6 +66,7 @@ script = ExtResource("2_cwo30")
 [node name="Area2D" type="Area2D" parent="." unique_id=1961857672 groups=["card_slots"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1433951162]
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_j7cxb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1291452607]

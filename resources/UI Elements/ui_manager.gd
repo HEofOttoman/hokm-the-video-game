@@ -10,15 +10,18 @@ class_name UIManager
 @export var score_display_label : Label
 @export var turn_indicator : Label
 @export var turn_prompt : Label
+@export var rounds_won_display_label : Label
+
+
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed('debug_menu'):
 		debug_layer.show()
 
 
-func _on_game_manager_round_ended(_score: Variant) -> void:
-	
-	pass # Replace with function body.
+func _on_game_manager_round_ended(score: Variant) -> void:
+	rounds_won_display_label.text = str('Rounds Won: ', score)
+	# Replace with function body.
 
 
 func _on_game_manager_trick_resolved(_winner_id: Variant) -> void:
