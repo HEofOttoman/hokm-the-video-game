@@ -14,7 +14,7 @@ enum HokmGameMode { ## Same thing as player_count I guess - Should change rules 
 
 @export var ui_manager : UIManager = UIManager.new()
 @export var deck : Deck
-@export var hands : Array[Node]
+@export var hands : Array[HandClass]
 @export var trick_slots : Array[CardSlot] ## Might also be unused
 @export var ai_controllers: Array[AIController] ## Also not good.
 @export var rulesEngine := RulesEngine.new()
@@ -156,21 +156,31 @@ func begin_stock_draw() -> void:
 	current_player = hakem_index
 	start_stock_draw(current_player)
 
-func start_stock_draw(_player_id : int) -> void:
+func start_stock_draw(player_id : int) -> void:
 	var stock_card_a : CardInstance
 	
 	stock_card_a = deck.draw_card()
 	
-	var keep : bool
+	await stock_card_a.drag_started
 	
-	if keep:
-		hands[_player_id].add_card_to_hand(stock_card_a)
+	var keep_card_a : bool
+	
+	if keep_card_a:
+		hands[player_id].add_card_to_hand(stock_card_a)
+	
 	else:
+		#discard_card(stock_card_a)
 		return
 	
-	var stock_card_b : CardInstance
+	var stock_card_b : CardInstance = deck.draw_card()
 	
+	var keep_card_b : bool
 	
+	if keep_card_b and keep_card_a == false:
+		hands[player_id].add_card_to_hand(stock_card_b)
+	if keep_card_b and keep_card_a == true:
+		push_error('Nuh uh, only one card')
+		#show_card()
 	
 	#Draw card A > Choose to KEEP or DISCARD
 	#>
@@ -179,6 +189,8 @@ func start_stock_draw(_player_id : int) -> void:
 	#If A was kept -> B must be discarded
 	#If A was discarded -> B must be kept
 	
+	if deck.cards.is_empty():
+		trick_play()
 	
 
 func deal_remaining_cards():
@@ -197,6 +209,7 @@ func deal_remaining_cards():
 	
 	trick_play()
 
+## Starts the trick play phase
 func trick_play():
 	current_game_phase = HokmGamePhase.TRICK_PLAY
 	print('Begin Trick Play', current_game_phase)
