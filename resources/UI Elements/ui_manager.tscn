@@ -8,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="5_38tb1"]
 [ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="6_lcsmr"]
 [ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="7_yt7as"]
+[ext_resource type="StyleBox" uid="uid://3ylipsh048sb" path="res://resources/UI Elements/hudstylebox.tres" id="8_oqib0"]
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="8_tnpxt"]
+[ext_resource type="Script" uid="uid://pfwqjnxmgcqk" path="res://resources/UI Elements/sidebar/sidebar.gd" id="9_38tb1"]
+[ext_resource type="Texture2D" uid="uid://bthfog1jt8mf" path="res://assets/kenney_game-icons/PNG/White/2x/left.png" id="9_oqib0"]
 
 [sub_resource type="Animation" id="Animation_onchg"]
 length = 0.001
@@ -45,6 +48,51 @@ _data = {
 &"RESET": SubResource("Animation_onchg"),
 &"fade_in_&_out": SubResource("Animation_wtj6l")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dh4tk"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(0.24374536, 0.24374494, 0.25452688, 1)
+border_width_left = 4
+border_color = Color(0.17159578, 0.13857254, 0.13857546, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqib0"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(0.121569, 0.176471, 0.211765, 1)
+border_color = Color(0.0784314, 0.121569, 0.145098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38tb1"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 14.0
+bg_color = Color(0.305882, 0.454902, 0.6, 1)
+border_color = Color(0.141176, 0.321569, 0.45098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcsmr"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.12706381, 0.12706381, 0.12706381, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.17254902, 0.13725491, 0.13725491, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_bottom_left = 8
 
 [node name="UIManager" type="CanvasLayer" unique_id=1850069881 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
 script = ExtResource("1_yrdgn")
@@ -176,6 +224,122 @@ vertical_alignment = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUDLayer/Turn Prompt" unique_id=507780390]
 libraries/ = SubResource("AnimationLibrary_y85nq")
 
+[node name="Sidebar" type="PanelContainer" parent="HUDLayer" unique_id=1127481336]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_right = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("8_oqib0")
+script = ExtResource("9_38tb1")
+closed = true
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDLayer/Sidebar" unique_id=534901354]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 390
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUDLayer/Sidebar/MarginContainer" unique_id=1237845892]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer" unique_id=529454104]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer" unique_id=142412726]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="Panel" type="Panel" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer" unique_id=1392222574]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Sidebar Btn" type="Button" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel" unique_id=1283448940]
+self_modulate = Color(1, 1, 1, 0.39607844)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 60.0
+offset_bottom = 48.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_dh4tk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oqib0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_38tb1")
+toggle_mode = true
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel" unique_id=1363603581]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 8.0
+offset_right = 54.0
+offset_bottom = 48.0
+mouse_filter = 2
+texture = ExtResource("9_oqib0")
+expand_mode = 1
+
+[node name="HudPanel" type="Panel" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer" unique_id=1669365887]
+self_modulate = Color(1, 1, 1, 0.44705883)
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lcsmr")
+
+[node name="Hokm Display Label" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer/HudPanel" unique_id=10010276 instance=ExtResource("4_oqib0")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33913043
+anchor_top = 0.08361204
+anchor_right = 0.8956522
+anchor_bottom = 0.16053511
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+metadata/_edit_use_anchors_ = true
+
+[node name="HakemDisplayLabel" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer/HudPanel" unique_id=244872611 instance=ExtResource("3_bufnx")]
+layout_mode = 1
+anchor_left = 0.33913043
+anchor_top = 0.27090302
+anchor_right = 0.90869564
+anchor_bottom = 0.3478261
+metadata/_edit_use_anchors_ = true
+
+[node name="TricksWonLabel" type="Label" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer/HudPanel" unique_id=467970157]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23913044
+anchor_top = 0.458194
+anchor_right = 0.66086954
+anchor_bottom = 0.5150502
+text = "TRICKS WON:"
+
+[node name="ScoreLabel" type="Label" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer/HudPanel" unique_id=1434344487]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23913044
+anchor_top = 0.7792642
+anchor_right = 0.8347826
+anchor_bottom = 0.8361204
+text = "ROUNDS WON:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Turn Indicator" type="Label" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer/HudPanel" unique_id=126706881]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2347826
+anchor_top = 0.6187291
+anchor_right = 0.7782609
+anchor_bottom = 0.67558527
+text = "Player %'s Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="DebugLayer" type="Control" parent="." unique_id=2085194598]
 visible = false
 layout_mode = 3
@@ -248,3 +412,6 @@ layout_mode = 0
 offset_top = 200.0
 offset_right = 243.0
 offset_bottom = 504.0
+
+[connection signal="pressed" from="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/Sidebar Btn" to="HUDLayer/Sidebar" method="_on_sidebar_btn_pressed"]
+[connection signal="toggled" from="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/Sidebar Btn" to="HUDLayer/Sidebar" method="_on_sidebar_btn_toggled"]
