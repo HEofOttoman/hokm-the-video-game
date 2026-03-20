@@ -94,13 +94,18 @@ border_blend = true
 corner_radius_top_left = 8
 corner_radius_bottom_left = 8
 
-[node name="UIManager" type="CanvasLayer" unique_id=1850069881 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt")]
+[node name="UIManager" type="CanvasLayer" unique_id=1850069881 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label")]
 script = ExtResource("1_yrdgn")
 hakem_display_label = NodePath("HUDLayer/HakemDisplayLabel")
 hokm_display_label = NodePath("HUDLayer/Hokm Display Label")
 score_display_label = NodePath("HUDLayer/TricksWonLabel")
 turn_indicator = NodePath("HUDLayer/Turn Indicator")
 turn_prompt = NodePath("HUDLayer/Turn Prompt")
+rounds_won_display_label = NodePath("HUDLayer/Turn Indicator")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=507780390]
+root_node = NodePath("../HUDLayer/Turn Prompt")
+libraries/ = SubResource("AnimationLibrary_y85nq")
 
 [node name="HUDLayer" type="Control" parent="." unique_id=912983774]
 layout_mode = 3
@@ -112,13 +117,14 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="InfoPanel1" type="Panel" parent="HUDLayer" unique_id=1608638813]
-self_modulate = Color(1, 1, 1, 0.133)
+self_modulate = Color(1, 1, 1, 0.34117648)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.2
+anchor_right = 0.2125
 anchor_bottom = 0.44444445
 offset_bottom = -1.5258789e-05
 mouse_filter = 2
+theme_override_styles/panel = ExtResource("8_oqib0")
 metadata/_edit_use_anchors_ = true
 
 [node name="Hokm Display Label" parent="HUDLayer" unique_id=1613439632 instance=ExtResource("4_oqib0")]
@@ -221,9 +227,6 @@ text = "YOUR TURN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="HUDLayer/Turn Prompt" unique_id=507780390]
-libraries/ = SubResource("AnimationLibrary_y85nq")
-
 [node name="Sidebar" type="PanelContainer" parent="HUDLayer" unique_id=1127481336]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -286,6 +289,7 @@ expand_mode = 1
 self_modulate = Color(1, 1, 1, 0.44705883)
 custom_minimum_size = Vector2(230, 0)
 layout_mode = 2
+size_flags_horizontal = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_lcsmr")
 
 [node name="Hokm Display Label" parent="HUDLayer/Sidebar/MarginContainer/HBoxContainer/HudPanel" unique_id=10010276 instance=ExtResource("4_oqib0")]

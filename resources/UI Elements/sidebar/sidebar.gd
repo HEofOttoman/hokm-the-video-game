@@ -1,5 +1,7 @@
 extends PanelContainer
 
+## From this ass tutorial https://www.youtube.com/watch?v=b7L-GarnI2U
+
 @onready var hud_panel: Panel = $MarginContainer/HBoxContainer/HudPanel
 @onready var menu_parent: MarginContainer = $MarginContainer
 

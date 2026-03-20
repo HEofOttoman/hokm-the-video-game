@@ -12,7 +12,5 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.17254902, 0.13725491, 0.13725491, 1)
 border_blend = true
-corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
