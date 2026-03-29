@@ -13,25 +13,24 @@ func _ready() -> void:
 	#hud_panel.visible = false
 	pass
 
-func _set_menu(menu) -> void:
-	var wasClosed = menu.visible == false
-	
-	_close_all_menus()
-	
-	menu.visible = wasClosed
+func _set_menu(toggled) -> void:
+	if toggled:
+		ui_animation_player.play_backwards("sidebar_slide_inout")
+		closed = true
+	else:
+		ui_animation_player.play("sidebar_slide_inout")
+		closed = false
 	#hud_panel.visible = wasClosed
+
+
+func _on_sidebar_btn_toggled(toggled_on: bool) -> void:
+	_set_menu(toggled_on)
+
+
+#func _on_sidebar_btn_pressed() -> void:
+	#set_menu() # Replace with function body.
 
 func _close_all_menus()->void:
 	pass
 	#for menu in menu_parent.get_children():
 		#menu.visible = false
-
-
-func _on_sidebar_btn_toggled(_toggled_on: bool) -> void:
-	#_set_menu(hud_panel)
-	pass
-
-
-func _on_sidebar_btn_pressed() -> void:
-	#_set_menu(hud_panel) # Replace with function body.
-	pass

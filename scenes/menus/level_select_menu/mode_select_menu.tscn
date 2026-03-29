@@ -208,6 +208,7 @@ size_flags_horizontal = 0
 text = "Back"
 
 [node name="SettingsPopup" type="Button" parent="." unique_id=651256972]
+visible = false
 layout_mode = 0
 offset_left = 1208.0
 offset_top = 552.0

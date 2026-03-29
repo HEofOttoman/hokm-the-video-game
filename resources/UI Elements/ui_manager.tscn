@@ -28,6 +28,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HudSidebar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_wtj6l"]
 resource_name = "fade_in_&_out"
@@ -44,10 +56,26 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_lcsmr"]
+resource_name = "sidebar_slide_inout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HudSidebar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-192, 0), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y85nq"]
 _data = {
 &"RESET": SubResource("Animation_onchg"),
-&"fade_in_&_out": SubResource("Animation_wtj6l")
+&"fade_in_&_out": SubResource("Animation_wtj6l"),
+&"sidebar_slide_inout": SubResource("Animation_lcsmr")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yt7as"]
@@ -145,49 +173,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HudSidebar" type="Panel" parent="HUDLayer" unique_id=1608638813]
+[node name="HudSidebar" type="Panel" parent="HUDLayer" unique_id=1608638813 node_paths=PackedStringArray("ui_animation_player")]
 self_modulate = Color(1, 1, 1, 0.68235296)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.16875
+anchor_left = -0.12875
+anchor_right = 0.04000001
 anchor_bottom = 0.41111112
+offset_left = 164.79999
+offset_right = 164.79999
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("8_oqib0")
 script = ExtResource("9_38tb1")
-metadata/_edit_use_anchors_ = true
-
-[node name="Hokm Display Label" parent="HUDLayer/HudSidebar" unique_id=1613439632 instance=ExtResource("4_oqib0")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.2962963
-anchor_top = 0.27027026
-anchor_right = 0.5925926
-anchor_bottom = 0.34797296
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 3.8146973e-06
-metadata/_edit_use_anchors_ = true
-
-[node name="HakemDisplayLabel" parent="HUDLayer/HudSidebar" unique_id=74382633 instance=ExtResource("3_bufnx")]
-layout_mode = 1
-anchor_left = 0.2962963
-anchor_top = 0.45945945
-anchor_right = 0.7647059
-anchor_bottom = 0.5395365
-offset_bottom = -0.7027817
-metadata/_edit_use_anchors_ = true
-
-[node name="TricksWonLabel" type="Label" parent="HUDLayer/HudSidebar" unique_id=1437757613]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.14814815
-anchor_top = 0.6486486
-anchor_right = 0.7952069
-anchor_bottom = 0.707836
-offset_right = 1.5258789e-05
-offset_bottom = -0.5194397
-text = "TRICKS WON:"
+ui_animation_player = NodePath("../../AnimationPlayer")
 metadata/_edit_use_anchors_ = true
 
 [node name="ScoreLabel" type="Label" parent="HUDLayer/HudSidebar" unique_id=2007004678]
@@ -201,13 +199,47 @@ offset_bottom = -0.5194702
 text = "ROUNDS WON:"
 metadata/_edit_use_anchors_ = true
 
+[node name="Hokm Display Label" parent="HUDLayer/HudSidebar" unique_id=1613439632 instance=ExtResource("4_oqib0")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2962963
+anchor_top = 0.24324325
+anchor_right = 0.5925926
+anchor_bottom = 0.32094595
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 3.8146973e-06
+metadata/_edit_use_anchors_ = true
+
+[node name="HakemDisplayLabel" parent="HUDLayer/HudSidebar" unique_id=74382633 instance=ExtResource("3_bufnx")]
+layout_mode = 1
+anchor_left = 0.2962963
+anchor_top = 0.43243244
+anchor_right = 0.7647059
+anchor_bottom = 0.5125094
+offset_bottom = -0.7027817
+metadata/_edit_use_anchors_ = true
+
+[node name="TricksWonLabel" type="Label" parent="HUDLayer/HudSidebar" unique_id=1437757613]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14814815
+anchor_top = 0.62162155
+anchor_right = 0.7952069
+anchor_bottom = 0.68080896
+offset_right = 1.5258789e-05
+offset_bottom = -0.5194397
+text = "TRICKS WON:"
+metadata/_edit_use_anchors_ = true
+
 [node name="Turn Indicator" type="Label" parent="HUDLayer/HudSidebar" unique_id=181758192]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.14814815
-anchor_top = 0.8365681
+anchor_top = 0.8095411
 anchor_right = 0.79520696
-anchor_bottom = 0.8940005
+anchor_bottom = 0.86697346
 text = "Player %'s Turn"
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -222,6 +254,7 @@ offset_bottom = 166.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_yt7as")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1l6p6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_tnpxt")
+toggle_mode = true
 icon = ExtResource("5_lcsmr")
 expand_icon = true
 
@@ -460,5 +493,6 @@ offset_top = 200.0
 offset_right = 243.0
 offset_bottom = 504.0
 
+[connection signal="toggled" from="HUDLayer/HudSidebar/Button" to="HUDLayer/HudSidebar" method="_on_sidebar_btn_toggled"]
 [connection signal="pressed" from="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/Sidebar Btn" to="HUDLayer/Sidebar" method="_on_sidebar_btn_pressed"]
 [connection signal="toggled" from="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/Sidebar Btn" to="HUDLayer/Sidebar" method="_on_sidebar_btn_toggled"]
