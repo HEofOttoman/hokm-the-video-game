@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://d3whq58fukmcp"]
+
+[ext_resource type="Shader" uid="uid://5o6bgd06diyr" path="res://resources/shaders/card_2d-perspective.gdshader" id="1_c4wa0"]
+
+[resource]
+shader = ExtResource("1_c4wa0")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0

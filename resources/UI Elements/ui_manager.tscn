@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://xwtvlh4cxojg" path="res://assets/kenney_input-prompts/Flairs/Double/flair_disabled_cross.png" id="3_dh4tk"]
 [ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="4_oqib0"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="5_38tb1"]
+[ext_resource type="Texture2D" uid="uid://byq1kq5cmrxtn" path="res://assets/kenney_game-icons/PNG/White/2x/right.png" id="5_lcsmr"]
 [ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="6_lcsmr"]
 [ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="7_yt7as"]
 [ext_resource type="StyleBox" uid="uid://3ylipsh048sb" path="res://resources/UI Elements/hudstylebox.tres" id="8_oqib0"]
@@ -48,6 +49,34 @@ _data = {
 &"RESET": SubResource("Animation_onchg"),
 &"fade_in_&_out": SubResource("Animation_wtj6l")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yt7as"]
+bg_color = Color(0.1254902, 0.1254902, 0.13333334, 1)
+border_width_right = 4
+border_color = Color(0.17159578, 0.13857254, 0.13857546, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l6p6"]
+bg_color = Color(0.121569, 0.176471, 0.211765, 1)
+border_width_right = 4
+border_color = Color(0.0784314, 0.121569, 0.145098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tnpxt"]
+bg_color = Color(0.305882, 0.454902, 0.6, 1)
+border_width_right = 4
+border_color = Color(0.141176, 0.321569, 0.45098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dh4tk"]
 content_margin_left = 12.0
@@ -96,12 +125,12 @@ corner_radius_bottom_left = 8
 
 [node name="UIManager" type="CanvasLayer" unique_id=1850069881 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label")]
 script = ExtResource("1_yrdgn")
-hakem_display_label = NodePath("HUDLayer/HakemDisplayLabel")
-hokm_display_label = NodePath("HUDLayer/Hokm Display Label")
-score_display_label = NodePath("HUDLayer/TricksWonLabel")
-turn_indicator = NodePath("HUDLayer/Turn Indicator")
+hakem_display_label = NodePath("HUDLayer/HudSidebar/HakemDisplayLabel")
+hokm_display_label = NodePath("HUDLayer/HudSidebar/Hokm Display Label")
+score_display_label = NodePath("HUDLayer/HudSidebar/TricksWonLabel")
+turn_indicator = NodePath("HUDLayer/HudSidebar/Turn Indicator")
 turn_prompt = NodePath("HUDLayer/Turn Prompt")
-rounds_won_display_label = NodePath("HUDLayer/Turn Indicator")
+rounds_won_display_label = NodePath("HUDLayer/HudSidebar/Turn Indicator")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=507780390]
 root_node = NodePath("../HUDLayer/Turn Prompt")
@@ -116,70 +145,85 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="InfoPanel1" type="Panel" parent="HUDLayer" unique_id=1608638813]
-self_modulate = Color(1, 1, 1, 0.34117648)
+[node name="HudSidebar" type="Panel" parent="HUDLayer" unique_id=1608638813]
+self_modulate = Color(1, 1, 1, 0.68235296)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.2125
-anchor_bottom = 0.44444445
-offset_bottom = -1.5258789e-05
+anchor_right = 0.16875
+anchor_bottom = 0.41111112
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("8_oqib0")
+script = ExtResource("9_38tb1")
 metadata/_edit_use_anchors_ = true
 
-[node name="Hokm Display Label" parent="HUDLayer" unique_id=1613439632 instance=ExtResource("4_oqib0")]
+[node name="Hokm Display Label" parent="HUDLayer/HudSidebar" unique_id=1613439632 instance=ExtResource("4_oqib0")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.07777778
-anchor_right = 0.1
-anchor_bottom = 0.10972222
+anchor_left = 0.2962963
+anchor_top = 0.27027026
+anchor_right = 0.5925926
+anchor_bottom = 0.34797296
 offset_left = 0.0
-offset_top = -16.000004
+offset_top = 0.0
 offset_right = 0.0
-offset_bottom = -16.0
+offset_bottom = 3.8146973e-06
+metadata/_edit_use_anchors_ = true
 
-[node name="HakemDisplayLabel" parent="HUDLayer" unique_id=74382633 instance=ExtResource("3_bufnx")]
+[node name="HakemDisplayLabel" parent="HUDLayer/HudSidebar" unique_id=74382633 instance=ExtResource("3_bufnx")]
 layout_mode = 1
-anchor_top = 0.15555556
-anchor_bottom = 0.1875
-offset_top = -16.0
-offset_bottom = -15.999992
+anchor_left = 0.2962963
+anchor_top = 0.45945945
+anchor_right = 0.7647059
+anchor_bottom = 0.5395365
+offset_bottom = -0.7027817
+metadata/_edit_use_anchors_ = true
 
-[node name="TricksWonLabel" type="Label" parent="HUDLayer" unique_id=1437757613]
+[node name="TricksWonLabel" type="Label" parent="HUDLayer/HudSidebar" unique_id=1437757613]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.23333333
-anchor_right = 0.12578125
-anchor_bottom = 0.25694445
-offset_top = -16.0
-offset_bottom = -16.0
+anchor_left = 0.14814815
+anchor_top = 0.6486486
+anchor_right = 0.7952069
+anchor_bottom = 0.707836
+offset_right = 1.5258789e-05
+offset_bottom = -0.5194397
 text = "TRICKS WON:"
+metadata/_edit_use_anchors_ = true
 
-[node name="ScoreLabel" type="Label" parent="HUDLayer" unique_id=2007004678]
+[node name="ScoreLabel" type="Label" parent="HUDLayer/HudSidebar" unique_id=2007004678]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.3888889
-anchor_right = 0.128125
-anchor_bottom = 0.4125
-offset_top = -16.0
-offset_bottom = -16.0
+anchor_left = 0.14814815
+anchor_top = 0.08108108
+anchor_right = 0.79520696
+anchor_bottom = 0.14026847
+offset_bottom = -0.5194702
 text = "ROUNDS WON:"
+metadata/_edit_use_anchors_ = true
 
-[node name="Turn Indicator" type="Label" parent="HUDLayer" unique_id=181758192]
+[node name="Turn Indicator" type="Label" parent="HUDLayer/HudSidebar" unique_id=181758192]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.3
-anchor_right = 0.15
-anchor_bottom = 0.35555553
-offset_top = -16.0
-offset_bottom = -15.999985
+anchor_left = 0.14814815
+anchor_top = 0.8365681
+anchor_right = 0.79520696
+anchor_bottom = 0.8940005
 text = "Player %'s Turn"
-horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="HUDLayer/HudSidebar" unique_id=187050371]
+self_modulate = Color(1, 1, 1, 0.8980392)
+layout_mode = 0
+offset_left = 184.0
+offset_top = 120.0
+offset_right = 232.0
+offset_bottom = 166.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_yt7as")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1l6p6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tnpxt")
+icon = ExtResource("5_lcsmr")
+expand_icon = true
 
 [node name="Container" type="HBoxContainer" parent="HUDLayer" unique_id=970056742]
 layout_mode = 1
@@ -228,6 +272,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sidebar" type="PanelContainer" parent="HUDLayer" unique_id=1127481336]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 11
@@ -239,8 +284,6 @@ offset_right = 8.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("8_oqib0")
-script = ExtResource("9_38tb1")
-closed = true
 
 [node name="MarginContainer" type="MarginContainer" parent="HUDLayer/Sidebar" unique_id=534901354]
 layout_mode = 2

@@ -152,15 +152,42 @@ func _on_area_2d_mouse_exited() -> void:
 ### Visuals Section - Handles Card VisualsZ
 ## Applies a card highlight effect when hovered
 func highlight_card(on_card : bool): #(card, hovered : bool): 
+	 ## Using tweens for highlights
+	var tween_hover : Tween
+	@warning_ignore("unassigned_variable")
+	if tween_hover:
+		@warning_ignore("unassigned_variable")
+		tween_hover.kill()
+	
 	if on_card:
-		scale = custom_default_scale * Vector2(1.05, 1.05) ## Scales the size of the cards
+		tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)#.set_parallel(true)
+		tween_hover.tween_property(self, "scale", custom_default_scale * Vector2(1.05, 1.05), 0.55)
+		
+		#scale = custom_default_scale * Vector2(1.05, 1.05) ## Scales the size of the cards
 		z_index = 2
 		## Moves the cards in front of each other
 		## However appears in front of the pause menu for some reason (fix)
 	else:
 		## Scales the cards back down
-		scale = custom_default_scale #Vector2(1, 1) 
+		
+		tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)#.set_parallel(true)
+		tween_hover.tween_property(self, "scale", Vector2.ONE, 0.55)
+		
+		#scale = custom_default_scale #Vector2(1, 1) 
 		z_index = 1
+
+## Rotates card in 3D perspective via the shader
+func rotate_card():
+	var tween_rot : Tween
+	
+	@warning_ignore("unassigned_variable")
+	if tween_rot:
+		@warning_ignore("unassigned_variable")
+		tween_rot.kill()
+	
+	tween_rot = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true)
+	tween_rot.tween_property(self, "cardtexture", Vector2.ONE, 0.55)
+	
 
 ## Flips the card face up to show the card's value
 func flip_card(flipped: bool):

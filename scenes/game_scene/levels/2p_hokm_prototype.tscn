@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="6_103aj"]
 [ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="7_eg3ek"]
 [ext_resource type="Script" uid="uid://cxwpdcfwdt3rl" path="res://scripts/tutorial_controller.gd" id="8_8ycwu"]
+[ext_resource type="Texture2D" uid="uid://2t77l40tdg4x" path="res://assets/Sprites/narrator/Ferdowski-NarratorSprite-glasses.png" id="9_1r4cq"]
 [ext_resource type="Script" uid="uid://bftae8jkury7d" path="res://resources/UI Elements/ui_manager.gd" id="9_rnmyu"]
 [ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="10_73siw"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="11_he7j7"]
@@ -216,6 +217,15 @@ offset_right = 1246.0
 offset_bottom = 611.0
 text = "Finish"
 
+[node name="TextureRect" type="TextureRect" parent="TutorialController/TutorialLayer" unique_id=599656422]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 169.0
+offset_right = 1024.0
+offset_bottom = 281.0
+texture = ExtResource("9_1r4cq")
+expand_mode = 1
+
 [node name="PauseMenuController" type="Node" parent="." unique_id=1582113502 node_paths=PackedStringArray("canvas_layer")]
 script = ExtResource("16_3tb7h")
 pause_menu_packed = ExtResource("17_x5e23")
@@ -418,6 +428,7 @@ position = Vector2(-48, -15)
 [node name="TableTrickSlots2" type="Node" parent="." unique_id=25407492]
 
 [node name="Table Panel" type="Panel" parent="TableTrickSlots2" unique_id=1293931251]
+visible = false
 self_modulate = Color(1, 1, 1, 0.404)
 z_index = -1
 offset_left = -320.0
@@ -428,10 +439,12 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="TrickSlot" parent="TableTrickSlots2" unique_id=207440738 instance=ExtResource("19_ic7de")]
+visible = false
 z_index = -1
 position = Vector2(48, 17)
 
 [node name="TrickSlot1" parent="TableTrickSlots2" unique_id=1930744505 instance=ExtResource("19_ic7de")]
+visible = false
 z_index = -1
 position = Vector2(-48, -15)
 
