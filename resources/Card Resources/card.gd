@@ -41,6 +41,12 @@ enum Suit {
 @export var cardtexture : Texture
 @export var backtexture : Texture = preload("res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png")
 
+@export_group('Card Components')
+@export var card_sprite : Sprite2D ## The sprite node of the card
+#@export var card_shadow : Sprite2D
+@onready var card_shadow: Sprite2D = $Shadow
+@export var max_offset_shadow : float = 3.0 ## Maximum x offset of the card shadow
+
 @export_subgroup('Switches')
 ## Whether the card is facing up, ie. SHOWING THE CARD TEXTURE
 @export var card_face_up : bool = false 
@@ -72,7 +78,8 @@ func _ready() -> void:
 	scale = custom_default_scale
 	screen_size = get_viewport_rect().size 
 	## ^Review this code, the viewport doesn't clamp at the right places
-	$CardSprite.texture = cardtexture ## Sets the card texture as the default
+	#$CardSprite.texture = cardtexture ## Sets the card texture as the default
+	card_sprite.texture = cardtexture ## Sets the card texture as the default
 	
 
 #func _process(_delta):
@@ -178,6 +185,19 @@ func highlight_card(on_card : bool): #(card, hovered : bool):
 
 ## Rotates card in 3D perspective via the shader
 func rotate_card():
+	var size = cardtexture.size
+	var mouse_pos := get_local_mouse_position()
+	var diff : Vector2 = (position + size) - mouse_pos
+	
+	var lerp_val_x : float = remap(mouse_pos.x, 0.0, size.x, 0, 1)
+	var lerp_val_y : float = remap(mouse_pos.y, 0.0, size.y, 0, 1)
+	
+	var rot_x : float #= rad_to_deg(lerp_angle(-angle_x_max, angle_x_max, lerp_val_x))
+	var rot_y : float #= rad_to_deg(lerp_angle(-angle_y_max, angle_y_max, lerp_val_y))
+	
+	card_sprite.material.set_shader_parameter("x_rot", rot_x)
+	card_sprite.material.set_shader_parameter("y_rot", rot_y)
+	
 	var tween_rot : Tween
 	
 	@warning_ignore("unassigned_variable")
@@ -186,8 +206,20 @@ func rotate_card():
 		tween_rot.kill()
 	
 	tween_rot = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true)
-	tween_rot.tween_property(self, "cardtexture", Vector2.ONE, 0.55)
+	tween_rot.tween_property(card_sprite.material, "shader_parameter/x_rot", 0.0, 0.5)
+	tween_rot.tween_property(card_sprite.material, "shader_parameter/y_rot", 0.0, 0.5)
 	
+
+## Changes the shadow of the card based on x
+func handle_shadow() -> void:
+	# Y position doesn't change
+	# X changes depending on how far card is from the center of the screen
+	var center : Vector2 = get_viewport_rect().size / 2
+	var distance : float = global_position.x - center.x
+	
+	# modifies position or offset which one is better idk i use offset now
+	card_shadow.offset.x = lerp(0.0, -sign(distance) * max_offset_shadow, abs(distance/center.x))
+	#card_shadow.position.x
 
 ## Flips the card face up to show the card's value
 func flip_card(flipped: bool):
