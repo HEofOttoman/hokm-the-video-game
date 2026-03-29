@@ -191,11 +191,12 @@ metadata/_edit_use_anchors_ = true
 [node name="ScoreLabel" type="Label" parent="HUDLayer/HudSidebar" unique_id=2007004678]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.14814815
+anchor_left = 0.08796296
 anchor_top = 0.08108108
-anchor_right = 0.79520696
-anchor_bottom = 0.14026847
+anchor_right = 0.7350218
+anchor_bottom = 0.16053875
 offset_bottom = -0.5194702
+theme_override_font_sizes/font_size = 22
 text = "ROUNDS WON:"
 metadata/_edit_use_anchors_ = true
 

@@ -136,16 +136,15 @@ libraries/ = SubResource("AnimationLibrary_j2llb")
 material = ExtResource("4_j2llb")
 texture = ExtResource("4_mucyl")
 
-[node name="CardSprite" type="Sprite2D" parent="." unique_id=920930743]
-z_index = -1
-material = ExtResource("4_j2llb")
-texture = ExtResource("1_ejfkd")
-
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1544434845]
 self_modulate = Color(0.14767182, 0.14767179, 0.14767179, 1)
 z_index = -1
 texture = ExtResource("1_ejfkd")
-offset = Vector2(0, 3.5)
+
+[node name="CardSprite" type="Sprite2D" parent="." unique_id=920930743]
+z_index = -1
+material = ExtResource("4_j2llb")
+texture = ExtResource("1_ejfkd")
 
 [connection signal="card_action" from="Area2D" to="." method="_on_area_2d_card_action"]
 [connection signal="card_release" from="Area2D" to="." method="_on_area_2d_card_release"]

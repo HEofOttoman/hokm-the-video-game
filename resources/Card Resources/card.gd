@@ -46,6 +46,8 @@ enum Suit {
 #@export var card_shadow : Sprite2D
 @onready var card_shadow: Sprite2D = $Shadow
 @export var max_offset_shadow : float = 3.0 ## Maximum x offset of the card shadow
+@export var angle_y_max : float = 15.0
+@export var angle_x_max : float = 15.0
 
 @export_subgroup('Switches')
 ## Whether the card is facing up, ie. SHOWING THE CARD TEXTURE
@@ -192,8 +194,8 @@ func rotate_card():
 	var lerp_val_x : float = remap(mouse_pos.x, 0.0, size.x, 0, 1)
 	var lerp_val_y : float = remap(mouse_pos.y, 0.0, size.y, 0, 1)
 	
-	var rot_x : float #= rad_to_deg(lerp_angle(-angle_x_max, angle_x_max, lerp_val_x))
-	var rot_y : float #= rad_to_deg(lerp_angle(-angle_y_max, angle_y_max, lerp_val_y))
+	var rot_x : float = rad_to_deg(lerp_angle(-angle_x_max, angle_x_max, lerp_val_x))
+	var rot_y : float = rad_to_deg(lerp_angle(-angle_y_max, angle_y_max, lerp_val_y))
 	
 	card_sprite.material.set_shader_parameter("x_rot", rot_x)
 	card_sprite.material.set_shader_parameter("y_rot", rot_y)
