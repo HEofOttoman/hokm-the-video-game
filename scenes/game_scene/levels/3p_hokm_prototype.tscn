@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="1_wv07j"]
 [ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="2_1aijo"]
+[ext_resource type="StyleBox" uid="uid://bl1lux424j5bn" path="res://resources/UI Elements/palettetest_stylebox.tres" id="3_heqth"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_kc246"]
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_ewgxo"]
 [ext_resource type="Script" uid="uid://bmlwpkrav3q56" path="res://addons/maaacks_game_template/extras/scripts/win_lose_manager.gd" id="5_v4sq6"]
@@ -45,6 +46,7 @@ offset_left = 280.0
 offset_right = 1000.0
 offset_bottom = 720.0
 mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_heqth")
 
 [node name="PauseMenuController" type="Node" parent="." unique_id=1999372648 node_paths=PackedStringArray("canvas_layer")]
 script = ExtResource("3_kc246")

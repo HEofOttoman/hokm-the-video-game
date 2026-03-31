@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="11_he7j7"]
 [ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="12_3hwx4"]
 [ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="13_fbs3b"]
+[ext_resource type="StyleBox" uid="uid://bl1lux424j5bn" path="res://resources/UI Elements/palettetest_stylebox.tres" id="13_pr027"]
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="14_cen0b"]
 [ext_resource type="PackedScene" uid="uid://dvaltk266wmbh" path="res://resources/UI Elements/hakem_display_label.tscn" id="15_oofwr"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="16_3tb7h"]
@@ -61,22 +62,6 @@ _data = {
 &"RESET": SubResource("Animation_onchg"),
 &"fade_in_&_out": SubResource("Animation_wtj6l")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1r4cq"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.12706381, 0.12706381, 0.12706381, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.24313726, 0.24313726, 0.25490198, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [node name="BasicHokmSetup" type="Node2D" unique_id=594642651]
 
@@ -233,12 +218,12 @@ offset_right = 1246.0
 offset_bottom = 611.0
 text = "Finish"
 
-[node name="TextureRect" type="TextureRect" parent="TutorialController/TutorialLayer" unique_id=599656422]
+[node name="Narrator" type="TextureRect" parent="TutorialController/TutorialLayer" unique_id=599656422]
 layout_mode = 0
-offset_left = 928.0
-offset_top = 169.0
-offset_right = 1024.0
-offset_bottom = 281.0
+offset_left = 32.0
+offset_top = 400.0
+offset_right = 216.0
+offset_bottom = 614.6666
 texture = ExtResource("9_1r4cq")
 expand_mode = 1
 
@@ -260,13 +245,14 @@ rounds_won_display_label = NodePath("HUDLayer/ScoreLabel")
 follow_viewport_enabled = true
 
 [node name="InfoPanel1" type="Panel" parent="UIManager/HUDLayer" unique_id=34978337]
-self_modulate = Color(1, 1, 1, 0.133)
+self_modulate = Color(1, 1, 1, 0.41960785)
 anchors_preset = -1
 anchor_left = -0.5
 anchor_top = -0.47777778
 anchor_right = -0.30625
 anchor_bottom = -0.08888889
 mouse_filter = 2
+theme_override_styles/panel = ExtResource("13_pr027")
 metadata/_edit_use_anchors_ = true
 
 [node name="Hokm Display Label" parent="UIManager/HUDLayer" unique_id=1273466449 instance=ExtResource("10_73siw")]
@@ -431,8 +417,7 @@ offset_top = -360.0
 offset_right = 320.0
 offset_bottom = 360.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1r4cq")
-metadata/_edit_lock_ = true
+theme_override_styles/panel = ExtResource("13_pr027")
 
 [node name="TrickSlot" parent="TableTrickSlots" unique_id=980840455 instance=ExtResource("19_ic7de")]
 z_index = -1

@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="6_f03rb"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="7_x13lw"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="8_e8k7y"]
+[ext_resource type="StyleBox" uid="uid://bl1lux424j5bn" path="res://resources/UI Elements/palettetest_stylebox.tres" id="8_wg1xb"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="9_8nu4g"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="10_cv7p3"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="10_uqk7d"]
@@ -167,6 +168,7 @@ offset_top = -360.0
 offset_right = 384.0
 offset_bottom = 360.0
 mouse_filter = 2
+theme_override_styles/panel = ExtResource("8_wg1xb")
 
 [node name="TrickSlot" parent="TableTrickSlots" unique_id=355090343 instance=ExtResource("6_f03rb")]
 z_index = -1
