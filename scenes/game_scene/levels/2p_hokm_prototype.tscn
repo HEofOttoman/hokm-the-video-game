@@ -21,9 +21,12 @@
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="17_x5e23"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="18_7b6e0"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="19_ic7de"]
+[ext_resource type="StyleBox" uid="uid://3ylipsh048sb" path="res://resources/UI Elements/hudstylebox.tres" id="20_103aj"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="20_f84ns"]
+[ext_resource type="Script" uid="uid://pfwqjnxmgcqk" path="res://resources/UI Elements/sidebar/sidebar.gd" id="21_eg3ek"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="21_n36pl"]
 [ext_resource type="Texture2D" uid="uid://dgivyxvbghbme" path="res://assets/Sprites/Misc/Hakem Crown.png" id="22_1onrs"]
+[ext_resource type="Texture2D" uid="uid://byq1kq5cmrxtn" path="res://assets/kenney_game-icons/PNG/White/2x/right.png" id="22_8ycwu"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="23_llag2"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="24_xiar1"]
 
@@ -41,6 +44,42 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../HudSidebar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-824, -360)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../TutorialController/TutorialLayer/Narrator:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(184, 214.66663)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../TutorialController/TutorialLayer/Narrator:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_wtj6l"]
 resource_name = "fade_in_&_out"
@@ -57,11 +96,83 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_eg3ek"]
+resource_name = "narrator appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../../TutorialController/TutorialLayer/Narrator:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(88, 102.666626), Vector2(184, 214.66663)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../TutorialController/TutorialLayer/Narrator:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_103aj"]
+resource_name = "sidebar_slide_inout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HudSidebar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-824, -360), Vector2(-640, -360)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y85nq"]
 _data = {
 &"RESET": SubResource("Animation_onchg"),
-&"fade_in_&_out": SubResource("Animation_wtj6l")
+&"fade_in_&_out": SubResource("Animation_wtj6l"),
+&"narrator appear": SubResource("Animation_eg3ek"),
+&"sidebar_slide_inout": SubResource("Animation_103aj")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eg3ek"]
+bg_color = Color(0.1254902, 0.1254902, 0.13333334, 1)
+border_width_right = 4
+border_color = Color(0.17159578, 0.13857254, 0.13857546, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ycwu"]
+bg_color = Color(0.121569, 0.176471, 0.211765, 1)
+border_width_right = 4
+border_color = Color(0.0784314, 0.121569, 0.145098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnmyu"]
+bg_color = Color(0.305882, 0.454902, 0.6, 1)
+border_width_right = 4
+border_color = Color(0.141176, 0.321569, 0.45098, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="BasicHokmSetup" type="Node2D" unique_id=594642651]
 
@@ -220,10 +331,10 @@ text = "Finish"
 
 [node name="Narrator" type="TextureRect" parent="TutorialController/TutorialLayer" unique_id=599656422]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 400.0
-offset_right = 216.0
-offset_bottom = 614.6666
+offset_left = 88.0
+offset_top = 410.0
+offset_right = 272.0
+offset_bottom = 624.6666
 texture = ExtResource("9_1r4cq")
 expand_mode = 1
 
@@ -232,79 +343,116 @@ script = ExtResource("16_3tb7h")
 pause_menu_packed = ExtResource("17_x5e23")
 canvas_layer = NodePath("../UIManager/HUDLayer")
 
-[node name="UIManager" type="Node" parent="." unique_id=30243284 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label")]
+[node name="UIManager" type="Node" parent="." unique_id=30243284 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label", "ui_animation_player")]
 script = ExtResource("9_rnmyu")
-hakem_display_label = NodePath("HUDLayer/HakemDisplayLabel")
-hokm_display_label = NodePath("HUDLayer/Hokm Display Label")
-score_display_label = NodePath("HUDLayer/Score Label")
-turn_indicator = NodePath("HUDLayer/Turn Indicator")
+hakem_display_label = NodePath("HUDLayer/HudSidebar/HakemDisplayLabel")
+hokm_display_label = NodePath("HUDLayer/HudSidebar/Hokm Display Label")
+score_display_label = NodePath("HUDLayer/HudSidebar/TricksWonLabel")
+turn_indicator = NodePath("HUDLayer/HudSidebar/Turn Indicator")
 turn_prompt = NodePath("HUDLayer/Turn Prompt")
-rounds_won_display_label = NodePath("HUDLayer/ScoreLabel")
+rounds_won_display_label = NodePath("HUDLayer/HudSidebar/ScoreLabel")
+ui_animation_player = NodePath("UIAnimationPlayer")
+
+[node name="UIAnimationPlayer" type="AnimationPlayer" parent="UIManager" unique_id=575928288]
+root_node = NodePath("../HUDLayer/Turn Prompt")
+libraries/ = SubResource("AnimationLibrary_y85nq")
+autoplay = &"sidebar_slide_inout"
 
 [node name="HUDLayer" type="CanvasLayer" parent="UIManager" unique_id=1116478680]
 follow_viewport_enabled = true
 
-[node name="InfoPanel1" type="Panel" parent="UIManager/HUDLayer" unique_id=34978337]
-self_modulate = Color(1, 1, 1, 0.41960785)
+[node name="HudSidebar" type="Panel" parent="UIManager/HUDLayer" unique_id=614282468 node_paths=PackedStringArray("ui_animation_player")]
+self_modulate = Color(1, 1, 1, 0.68235296)
 anchors_preset = -1
-anchor_left = -0.5
-anchor_top = -0.47777778
-anchor_right = -0.30625
-anchor_bottom = -0.08888889
+anchor_left = -0.12875
+anchor_right = 0.04000001
+anchor_bottom = 0.41111112
+offset_left = -659.2
+offset_top = -360.0
+offset_right = -659.2
+offset_bottom = -360.0
 mouse_filter = 2
-theme_override_styles/panel = ExtResource("13_pr027")
+theme_override_styles/panel = ExtResource("20_103aj")
+script = ExtResource("21_eg3ek")
+closed = true
+ui_animation_player = NodePath("../../UIAnimationPlayer")
 metadata/_edit_use_anchors_ = true
 
-[node name="Hokm Display Label" parent="UIManager/HUDLayer" unique_id=1273466449 instance=ExtResource("10_73siw")]
-offset_left = -576.0
-offset_top = -272.0
-offset_right = -512.0
-offset_bottom = -249.0
-
-[node name="HakemDisplayLabel" parent="UIManager/HUDLayer" unique_id=903162744 instance=ExtResource("15_oofwr")]
-anchor_left = -0.45
-anchor_top = -0.35555556
-anchor_right = -0.365625
-anchor_bottom = -0.3236111
-offset_top = 40.0
-offset_bottom = 40.0
-
-[node name="Score Label" type="Label" parent="UIManager/HUDLayer" unique_id=1340330679]
+[node name="ScoreLabel" type="Label" parent="UIManager/HUDLayer/HudSidebar" unique_id=1442717087]
+visible = false
+layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.46875
-anchor_top = -0.28750002
-anchor_right = -0.365625
-anchor_bottom = -0.24444444
-offset_top = 40.000015
-offset_bottom = 40.0
-text = "TRICKS WON:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Turn Indicator" type="Label" parent="UIManager/HUDLayer" unique_id=1506537745]
-anchors_preset = -1
-anchor_left = -0.46875
-anchor_top = -0.23333333
-anchor_right = -0.36875
-anchor_bottom = -0.17777778
-offset_top = 40.0
-offset_bottom = 40.0
-text = "Dealing.."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ScoreLabel" type="Label" parent="UIManager/HUDLayer" unique_id=1441664117]
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.3888889
-anchor_right = 0.128125
-anchor_bottom = 0.4125
-offset_left = -688.0
-offset_top = -600.0
-offset_right = -650.0
-offset_bottom = -594.0
+anchor_left = 0.08796296
+anchor_top = 0.08108108
+anchor_right = 0.7350218
+anchor_bottom = 0.16053875
+offset_bottom = -0.5194702
 theme_override_font_sizes/font_size = 22
 text = "ROUNDS WON:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Hokm Display Label" parent="UIManager/HUDLayer/HudSidebar" unique_id=10010276 instance=ExtResource("10_73siw")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2962963
+anchor_top = 0.3277027
+anchor_right = 0.5925926
+anchor_bottom = 0.4054054
+offset_left = 0.0
+offset_top = -40.0
+offset_right = 0.0
+offset_bottom = -40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="HakemDisplayLabel" parent="UIManager/HUDLayer/HudSidebar" unique_id=244872611 instance=ExtResource("15_oofwr")]
+layout_mode = 1
+anchor_left = 0.2962963
+anchor_top = 0.5168919
+anchor_right = 0.7647059
+anchor_bottom = 0.5969689
+offset_top = -40.0
+offset_bottom = -40.70279
+metadata/_edit_use_anchors_ = true
+
+[node name="TricksWonLabel" type="Label" parent="UIManager/HUDLayer/HudSidebar" unique_id=442938108]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14814815
+anchor_top = 0.70608103
+anchor_right = 0.7952069
+anchor_bottom = 0.76526845
+offset_top = -40.0
+offset_right = 1.5258789e-05
+offset_bottom = -40.51944
+text = "TRICKS WON:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Turn Indicator" type="Label" parent="UIManager/HUDLayer/HudSidebar" unique_id=523628694]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14814815
+anchor_top = 0.8940005
+anchor_right = 0.79520696
+anchor_bottom = 0.95143294
+offset_top = -40.0
+offset_bottom = -39.999985
+text = "Dealing..."
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="UIManager/HUDLayer/HudSidebar" unique_id=1294187960]
+self_modulate = Color(1, 1, 1, 0.972549)
+layout_mode = 0
+offset_left = 184.0
+offset_top = 120.0
+offset_right = 232.0
+offset_bottom = 166.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_eg3ek")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8ycwu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rnmyu")
+toggle_mode = true
+icon = ExtResource("22_8ycwu")
+expand_icon = true
 
 [node name="Container" type="HBoxContainer" parent="UIManager/HUDLayer" unique_id=437945824]
 anchors_preset = -1
@@ -351,9 +499,6 @@ theme_override_font_sizes/font_size = 20
 text = "YOUR TURN"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UIManager/HUDLayer/Turn Prompt" unique_id=575928288]
-libraries/ = SubResource("AnimationLibrary_y85nq")
 
 [node name="DebugLayer" type="CanvasLayer" parent="UIManager" unique_id=1963182696]
 visible = false
@@ -598,6 +743,7 @@ script = ExtResource("23_llag2")
 [connection signal="pressed" from="Game Manager/NewRoundTestBtn" to="Game Manager" method="_on_new_round_test_btn_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/NextButton" to="TutorialController" method="_on_next_button_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/FinishButton" to="TutorialController" method="_on_finish_button_pressed"]
+[connection signal="toggled" from="UIManager/HUDLayer/HudSidebar/Button" to="UIManager/HUDLayer/HudSidebar" method="_on_sidebar_btn_toggled"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 

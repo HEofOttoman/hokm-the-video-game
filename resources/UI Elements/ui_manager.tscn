@@ -151,7 +151,7 @@ border_blend = true
 corner_radius_top_left = 8
 corner_radius_bottom_left = 8
 
-[node name="UIManager" type="CanvasLayer" unique_id=1850069881 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label")]
+[node name="UIManager" type="CanvasLayer" unique_id=1850069881 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label", "ui_animation_player")]
 script = ExtResource("1_yrdgn")
 hakem_display_label = NodePath("HUDLayer/HudSidebar/HakemDisplayLabel")
 hokm_display_label = NodePath("HUDLayer/HudSidebar/Hokm Display Label")
@@ -159,6 +159,7 @@ score_display_label = NodePath("HUDLayer/HudSidebar/TricksWonLabel")
 turn_indicator = NodePath("HUDLayer/HudSidebar/Turn Indicator")
 turn_prompt = NodePath("HUDLayer/Turn Prompt")
 rounds_won_display_label = NodePath("HUDLayer/HudSidebar/Turn Indicator")
+ui_animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=507780390]
 root_node = NodePath("../HUDLayer/Turn Prompt")
@@ -246,7 +247,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="HUDLayer/HudSidebar" unique_id=187050371]
-self_modulate = Color(1, 1, 1, 0.8980392)
+self_modulate = Color(1, 1, 1, 0.972549)
 layout_mode = 0
 offset_left = 184.0
 offset_top = 120.0

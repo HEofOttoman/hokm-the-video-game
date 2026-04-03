@@ -84,7 +84,8 @@ func _ready() -> void:
 	card_sprite.texture = cardtexture ## Sets the card texture as the default
 	
 
-#func _process(_delta):
+func _process(_delta):
+	handle_shadow()
 	#if dragging:
 		#var areas = $Area2D.get_overlapping_areas()
 		#if areas.size() > 0:
