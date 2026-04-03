@@ -69,9 +69,12 @@ func advance_tutorial() -> void:
 
 ## Basically a big slideshow of text.
 func start_tutorial() -> void:
+	tutorial_text.clear()
 	tutorial_ui.show()
 	next_button.show()
 	finish_button.hide()
+	$TutorialLayer/Narrator/TutorialAnimationPlayer.play("narrator appear")
+	#await $TutorialLayer/Narrator/TutorialAnimationPlayer.animation_finished
 	
 	tutorial_step = TutorialStep.INTRO
 	typewrite("Welcome to hokm! Let's learn the basics.")
@@ -163,4 +166,5 @@ func _on_turn_started(_player_index: int, _text: String) -> void:
 func finish_tutorial() -> void:
 	tutorial_step = TutorialStep.COMPLETE
 	#await get_tree().create_timer(2.5).timeout
+	$TutorialLayer/Narrator/TutorialAnimationPlayer.play_backwards("narrator appear")
 	tutorial_ui.hide()

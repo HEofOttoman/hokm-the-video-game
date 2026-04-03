@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://m4vriaj77wh4"]
 
 [ext_resource type="Script" uid="uid://obi3ylgdxkhr" path="res://resources/UI Elements/score_pile/score_pile.gd" id="1_0xou8"]
+[ext_resource type="Texture2D" uid="uid://b3qk4d1uvulca" path="res://assets/kenney_input-prompts/Flairs/Double/flair_circle_0.png" id="2_omfks"]
+[ext_resource type="Texture2D" uid="uid://bjkuri7v5yi3b" path="res://assets/kenney_input-prompts/Flairs/Double/flair_circle_7.png" id="3_xsi7g"]
+[ext_resource type="Texture2D" uid="uid://m0g8fv10tenx" path="res://assets/kenney_input-prompts/Flairs/Vector/flair_circle_3.svg" id="4_6fou1"]
 
 [node name="ScorePile" type="Node2D" unique_id=772036768 node_paths=PackedStringArray("DisplayLabel")]
 script = ExtResource("1_0xou8")
@@ -27,3 +30,11 @@ offset_bottom = -31.0
 text = "Tricks Won:"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="TrickCountHint" type="TextureProgressBar" parent="." unique_id=1980087153]
+visible = false
+offset_right = 128.0
+offset_bottom = 128.0
+texture_under = ExtResource("2_omfks")
+texture_over = ExtResource("3_xsi7g")
+texture_progress = ExtResource("4_6fou1")
