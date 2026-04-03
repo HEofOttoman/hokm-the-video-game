@@ -6,9 +6,9 @@
 [ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="3_8iqnn"]
 [ext_resource type="Script" uid="uid://wjq7li836lwj" path="res://addons/maaacks_game_template/extras/scripts/scene_lister.gd" id="3_sg15o"]
 [ext_resource type="FontFile" uid="uid://b7olp1jygawca" path="res://assets/Fonts/Freehand Font/Freehand-Regular.ttf" id="5_sg15o"]
-[ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="6_y33mg"]
-[ext_resource type="Texture2D" uid="uid://dxwji37u4j8a1" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png" id="7_y33mg"]
-[ext_resource type="Texture2D" uid="uid://dkvb1b7ojrj1m" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_slot.png" id="8_ijxxm"]
+[ext_resource type="Texture2D" uid="uid://ooa7ul02wl2f" path="res://assets/kenney_game-icons/PNG/White/1x/singleplayer.png" id="7_8iqnn"]
+[ext_resource type="Texture2D" uid="uid://dc0xfw3m6uf5c" path="res://assets/kenney_game-icons/PNG/White/1x/multiplayer.png" id="8_lh1av"]
+[ext_resource type="Texture2D" uid="uid://cl3ffbymgyqf3" path="res://assets/kenney_game-icons/PNG/White/1x/massiveMultiplayer.png" id="9_1j2vu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sg15o"]
 font_size = 30
@@ -115,7 +115,7 @@ horizontal_alignment = 1
 
 [node name="Thumbnail" type="TextureRect" parent="2PMarginContainer/VBoxContainer" unique_id=569059106]
 layout_mode = 2
-texture = ExtResource("6_y33mg")
+texture = ExtResource("7_8iqnn")
 expand_mode = 4
 
 [node name="2P-Btn" type="Button" parent="2PMarginContainer/VBoxContainer" unique_id=1117183343]
@@ -148,11 +148,12 @@ horizontal_alignment = 1
 
 [node name="Thumbnail" type="TextureRect" parent="Prototype Panel/MarginContainer/VBoxContainer" unique_id=1353196212]
 layout_mode = 2
-texture = ExtResource("7_y33mg")
+texture = ExtResource("8_lh1av")
 expand_mode = 4
 
 [node name="3P-Btn" type="Button" parent="Prototype Panel/MarginContainer/VBoxContainer" unique_id=1275981313]
 layout_mode = 2
+disabled = true
 text = "WIP"
 metadata/_edit_use_anchors_ = true
 
@@ -175,11 +176,12 @@ horizontal_alignment = 1
 
 [node name="Thumbnail" type="TextureRect" parent="4P Container/VBoxContainer" unique_id=1493053355]
 layout_mode = 2
-texture = ExtResource("8_ijxxm")
+texture = ExtResource("9_1j2vu")
 expand_mode = 4
 
 [node name="4P-Btn" type="Button" parent="4P Container/VBoxContainer" unique_id=1040992112]
 layout_mode = 2
+disabled = true
 text = "WIP"
 metadata/_edit_use_anchors_ = true
 
