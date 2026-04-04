@@ -352,6 +352,11 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 			#end_round()
 			#return
 	
+	if current_game_phase != HokmGamePhase.TRICK_PLAY:
+		push_error('No longer playing.') ## Should disable turn indicator animation after game won
+		return
+	
+	
 	var active_hand := hands[player_index]
 	
 	for hand in hands: ## Ensures that the hand is not interactible if it's not your turn.

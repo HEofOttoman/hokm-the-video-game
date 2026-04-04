@@ -761,34 +761,34 @@ texture = ExtResource("22_1onrs")
 expand_mode = 1
 
 [node name="Player1ScorePile" parent="." unique_id=854082335 instance=ExtResource("24_xiar1")]
-position = Vector2(-448, 289)
+position = Vector2(-480, 288)
 
 [node name="TrickCounter" parent="Player1ScorePile" index="1" unique_id=1670770910]
-offset_left = 96.0
-offset_top = -8.0
-offset_right = 224.0
-offset_bottom = 9.269842
+offset_left = 128.0
+offset_top = -7.0
+offset_right = 256.0
+offset_bottom = 10.269842
 
 [node name="TrickCountHint" parent="Player1ScorePile" index="2" unique_id=773479647]
-offset_left = 128.0
-offset_top = -33.0
-offset_right = 192.0
-offset_bottom = 31.0
+offset_left = 160.0
+offset_top = -32.0
+offset_right = 224.0
+offset_bottom = 32.0
 
 [node name="Enemy1ScorePile" parent="." unique_id=774017679 instance=ExtResource("24_xiar1")]
-position = Vector2(448, -280)
+position = Vector2(480, -280)
 
 [node name="TrickCounter" parent="Enemy1ScorePile" index="1" unique_id=1670770910]
-offset_left = -224.0
-offset_top = 8.0
-offset_right = -96.0
-offset_bottom = 25.269842
+offset_left = -256.0
+offset_top = -8.0
+offset_right = -128.0
+offset_bottom = 9.269842
 
 [node name="TrickCountHint" parent="Enemy1ScorePile" index="2" unique_id=773479647]
-offset_left = -192.0
-offset_top = -16.0
-offset_right = -128.0
-offset_bottom = 48.0
+offset_left = -224.0
+offset_top = -32.0
+offset_right = -160.0
+offset_bottom = 32.0
 
 [node name="EnemyHand2 (Placeholder)" type="Node2D" parent="." unique_id=1432722878]
 visible = false
