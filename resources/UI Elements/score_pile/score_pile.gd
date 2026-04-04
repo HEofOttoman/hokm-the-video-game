@@ -31,6 +31,9 @@ class_name ScorePile
 @export var DisplayLabel : Label ## The label to display hand information in
 @export var pile_scale : Vector2 = Vector2(0.7, 0.7)
 
+@onready var trick_count_hint: TextureRect = $TrickCountHint
+@export var number_textures: Array[Texture2D]
+
 ## Toggles all cards in the hand interactive or not
 func set_interactive(enabled: bool):
 	for card in cards_in_pile:
@@ -38,7 +41,9 @@ func set_interactive(enabled: bool):
 
 ## Adds the card to the array and updates card to position
 func add_card_to_pile(card: CardInstance, trick_count: int):
-	DisplayLabel.text = 'Tricks Won: %d' % trick_count
+	#DisplayLabel.text = 'Tricks Won: %d' % trick_count
+	DisplayLabel.text = '%d' % trick_count
+	_set_count(trick_count)
 	if card not in cards_in_pile:
 		card.set_interactive(false)
 		card.reparent(self, true)
@@ -47,6 +52,10 @@ func add_card_to_pile(card: CardInstance, trick_count: int):
 		update_hand_positions()
 	#else:
 		#animate_card_to_position(card, card.starting_position)
+
+func _set_count(count: int):
+	#count = clamp(count, 0, number_textures.size() - 1)
+	trick_count_hint.texture = number_textures[count]
 
 ## Removes the card from the cards_in_hand array and updates hand layout 
 func remove_card_from_pile(card):
