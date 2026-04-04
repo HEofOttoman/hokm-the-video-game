@@ -12,7 +12,7 @@ Developer & programmer. Custom assets too.
 All of this is possible because FerdowSki (my man) who happened to teach me this game in late 2025
 
 ### Art & Assets
-Henry Wauzivuff - Custom Assets
+Henry Wauzivuff - Custom Assets. I drew Sir Dowski.
 Kenney.nl - [Playing Cards Pack](https://kenney.nl/assets/playing-cards-pack)
 Noobytube - [Balatro Paint Mix (CC0)](https://godotshaders.com/shader/balatro-paint-mix/)
 

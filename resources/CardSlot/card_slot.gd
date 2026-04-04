@@ -30,7 +30,8 @@ func add_card_to_slot(card: CardInstance): ## Places card inside of slot
 	card.set_interactive(false) ## Added to stop card from being able to be taken out after dropping it for the first time
 	card.scale = Vector2(1.15, 1.15)
 	card.global_position = self.global_position
-	card.rotation = self.rotation
+	#card.rotation = self.rotation
+	card.global_rotation = self.global_rotation
 	
 	GameSfxBus.play(GameSfxBus.card_dropped)
 	print('Card Added to slot')

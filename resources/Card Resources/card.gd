@@ -104,6 +104,9 @@ func get_hovered_card_slot():
 	return 
 
 func _input(event: InputEvent) -> void: ## Better way to move cards that doesn't run every frame
+	#if not InputEventMouseMotion: return
+	#rotate_card()
+	
 	if dragging and event is InputEventMouseMotion: 
 		var mouse_position = get_global_mouse_position()
 		global_position = mouse_position ## Allows cards to be dragged around
@@ -188,7 +191,8 @@ func highlight_card(on_card : bool): #(card, hovered : bool):
 
 ## Rotates card in 3D perspective via the shader
 func rotate_card():
-	var size = cardtexture.size
+	#var size = cardtexture.size
+	var size = 0
 	var mouse_pos := get_local_mouse_position()
 	var diff : Vector2 = (position + size) - mouse_pos
 	

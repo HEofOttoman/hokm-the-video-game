@@ -73,7 +73,7 @@ func start_tutorial() -> void:
 	tutorial_ui.show()
 	next_button.show()
 	finish_button.hide()
-	$TutorialLayer/Narrator/TutorialAnimationPlayer.play("narrator appear")
+	$TutorialLayer/Narrator/TutorialAnimationPlayer.play("narrator appear", 0, 1.25)
 	#await $TutorialLayer/Narrator/TutorialAnimationPlayer.animation_finished
 	
 	tutorial_step = TutorialStep.INTRO
