@@ -47,6 +47,14 @@ enum HokmGamePhase {
 	GAME_OVER ## Ends game
 }
 
+enum StockState {
+	DRAW_FIRST,
+	WAIT_DECISION,
+	DRAW_SECOND,
+	RESOLVE
+}
+var stock_state : StockState
+
 ### --- UI Signals ---
 
 ## Turn started for hand of player_index
@@ -151,50 +159,111 @@ func declaring_hokm(): ## Process for declaring the hokm
 	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
 	#hokm_chosen.emit(hokm)
 
+## --- Stock Draw logic section ----
 
 func begin_stock_draw() -> void:
+	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
+	
 	current_player = hakem_index
-	start_stock_draw(current_player)
+	
+	print('STOCK DRAW START')
+	start_stock_turn(current_player)
 
-func start_stock_draw(player_id : int) -> void:
-	var stock_card_a : CardInstance
+## Big state machine processor thingy for stock draws instead of func chain
+func process_stock_state() -> void:
+	var stock_first_card : CardInstance
+	var stock_second_card : CardInstance
 	
-	stock_card_a = deck.draw_card()
+	var keep_first_card : bool
 	
-	await stock_card_a.drag_started
-	
-	var keep_card_a : bool
-	
-	if keep_card_a:
-		hands[player_id].add_card_to_hand(stock_card_a)
-	
+	match stock_state:
+		
+		StockState.DRAW_FIRST:
+			stock_first_card = deck.draw_card()
+			
+			if hands[current_player].is_player_controlled:
+				#enable_stock_ui()
+				return
+			else:
+				#ai.ai_stock_choice()
+				return
+		StockState.WAIT_DECISION:
+			pass
+		StockState.DRAW_SECOND:
+			stock_second_card = deck.draw_card()
+			stock_state = StockState.RESOLVE
+			process_stock_state()
+			
+		StockState.RESOLVE:
+			resolve_stock_choice(keep_first_card, stock_first_card, stock_second_card)
+
+func resolve_stock_choice(stock_first_kept: bool, stock_first_card: CardInstance, stock_second_card: CardInstance):
+	if stock_first_kept:
+		hands[current_player].receive_card(stock_first_card)
+		#discard_card(stock_second_card)
 	else:
-		#discard_card(stock_card_a)
+		#discard_card(stock_first_card)
+		hands[current_player].receive_card(stock_second_card)
+	print("Resolved stock choice")
+	advance_stock_turn()
+
+func advance_stock_turn() -> void:
+	if deck.cards.is_empty(): # terminates
+		trick_play()
 		return
 	
-	var stock_card_b : CardInstance = deck.draw_card()
+	current_player = (current_player + 1) % hands.size()
 	
-	var keep_card_b : bool
-	
-	if keep_card_b and keep_card_a == false:
-		hands[player_id].add_card_to_hand(stock_card_b)
-	if keep_card_b and keep_card_a == true:
-		push_error('Nuh uh, only one card')
-		#show_card()
-	
-	#Draw card A > Choose to KEEP or DISCARD
-	#>
-	#Draw card B
-	#>
-	#If A was kept -> B must be discarded
-	#If A was discarded -> B must be kept
-	
+	start_stock_turn(current_player)
+#Draw card A > Choose to KEEP or DISCARD
+#>
+#Draw card B
+#>
+#If A was kept -> B must be discarded
+#If A was discarded -> B must be kept
+
+func start_stock_turn(player_id : int) -> void:
 	if deck.cards.is_empty():
 		trick_play()
+		return
 	
+	print('Stock Turn Player', player_id)
+	
+	process_stock_state()
+	
+	#var stock_card_a : CardInstance
+	#stock_card_a = deck.draw_card()
+	#await stock_card_a.drag_started
+	#var keep_card_a : bool
+	#if keep_card_a:
+		#hands[player_id].add_card_to_hand(stock_card_a) <-- diff to receive card, dangerous dat
+	#else:
+		#discard_card(stock_card_a)
+		#return
+	#var stock_card_b : CardInstance = deck.draw_card()
+	#var keep_card_b : bool
+	#if keep_card_b and keep_card_a == false:
+		#hands[player_id].add_card_to_hand(stock_card_b)
+	#if keep_card_b and keep_card_a == true:
+		#push_error('Nuh uh, only one card')
+		##show_card()
+
+func end_stock_draw() -> void:
+	
+	print('=== Finish Stock Draw ===')
+	
+	current_game_phase = HokmGamePhase.TRICK_PLAY
+	trick_play()
+
+## ---- End Stock Logic --
 
 func deal_remaining_cards():
 	print('Dealing Remaining Cards', current_game_phase)
+	
+	# For starting stock draw
+	#if player_count == HokmGameMode.TWO_PLAYER:
+		#begin_stock_draw()
+	
 	if player_count == HokmGameMode.THREE_PLAYER: ## Checks if the game's rules are different and change accordingly
 		cards_per_player = 17
 	else:

@@ -19,6 +19,20 @@ func choose_hokm() -> CardData.Suit: ## Chooses hokm suit if given
 	var hokm_suit = CardData.Suit.values().pick_random()
 	return hokm_suit
 
+## Used to decide on stock draw decisions in 2p hokm
+func ai_stock_choice(stock_first_card: CardInstance) -> bool:
+	var stock_first_kept : bool
+	
+	var rank = stock_first_card.card_data.rank
+	var suit = stock_first_card.card_data.suit
+	
+	if suit == game_manager.hokm_suit or rank >= 11:
+		stock_first_kept = true
+		return stock_first_kept
+	else:
+		stock_first_kept = false
+		return stock_first_kept
+
 func take_turn():
 	print('Thinking Cooldown')
 	await get_tree().create_timer(3.0).timeout ## Stops game from going too fast, inject animation here
