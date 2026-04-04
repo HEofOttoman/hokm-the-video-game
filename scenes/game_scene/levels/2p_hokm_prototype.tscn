@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="21_n36pl"]
 [ext_resource type="Texture2D" uid="uid://dgivyxvbghbme" path="res://assets/Sprites/Misc/Hakem Crown.png" id="22_1onrs"]
 [ext_resource type="Texture2D" uid="uid://byq1kq5cmrxtn" path="res://assets/kenney_game-icons/PNG/White/2x/right.png" id="22_8ycwu"]
+[ext_resource type="Script" uid="uid://cad3040ytgnkx" path="res://resources/UI Elements/stock_choice_ui.gd" id="22_eg3ek"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="23_llag2"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="24_xiar1"]
 
@@ -538,36 +539,54 @@ toggle_mode = true
 icon = ExtResource("22_8ycwu")
 expand_icon = true
 
-[node name="Container" type="HBoxContainer" parent="UIManager/HUDLayer" unique_id=437945824]
+[node name="HokmSelector" type="Panel" parent="UIManager/HUDLayer" unique_id=2147057059]
+z_index = 1
+offset_left = -112.0
+offset_top = 73.0
+offset_right = 112.0
+offset_bottom = 137.0
+
+[node name="Label" type="Label" parent="UIManager/HUDLayer/HokmSelector" unique_id=513865168]
+layout_mode = 0
+offset_right = 224.0
+offset_bottom = 17.0
+text = "Select Hokm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HokmSelector" type="HBoxContainer" parent="UIManager/HUDLayer/HokmSelector" unique_id=437945824]
+layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.059375
-anchor_top = 0.44444445
-anchor_right = 0.05
-anchor_bottom = 0.4888889
-offset_left = 4.0
-offset_right = 4.0
+anchor_left = 0.44475445
+anchor_top = -4.3472223
+anchor_right = 0.5541295
+anchor_bottom = -4.3027782
+offset_left = -69.625
+offset_top = 302.22223
+offset_right = 66.0
+offset_bottom = 332.44446
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Clubs" type="TextureButton" parent="UIManager/HUDLayer/Container" unique_id=1541946589]
+[node name="Clubs" type="TextureButton" parent="UIManager/HUDLayer/HokmSelector/HokmSelector" unique_id=1541946589]
 layout_mode = 2
 texture_normal = ExtResource("11_he7j7")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Hearts" type="TextureButton" parent="UIManager/HUDLayer/Container" unique_id=138336035]
+[node name="Hearts" type="TextureButton" parent="UIManager/HUDLayer/HokmSelector/HokmSelector" unique_id=138336035]
 layout_mode = 2
 texture_normal = ExtResource("12_3hwx4")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Spades" type="TextureButton" parent="UIManager/HUDLayer/Container" unique_id=1854143283]
+[node name="Spades" type="TextureButton" parent="UIManager/HUDLayer/HokmSelector/HokmSelector" unique_id=1854143283]
 layout_mode = 2
 texture_normal = ExtResource("13_fbs3b")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Diamonds" type="TextureButton" parent="UIManager/HUDLayer/Container" unique_id=1412440168]
+[node name="Diamonds" type="TextureButton" parent="UIManager/HUDLayer/HokmSelector/HokmSelector" unique_id=1412440168]
 layout_mode = 2
 texture_normal = ExtResource("14_cen0b")
 stretch_mode = 0
@@ -583,6 +602,55 @@ theme_override_font_sizes/font_size = 20
 text = "YOUR TURN"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="StockChoiceUI" type="Control" parent="UIManager/HUDLayer" unique_id=181460032]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = -640.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("22_eg3ek")
+
+[node name="StockChoicePanel" type="Panel" parent="UIManager/HUDLayer/StockChoiceUI" unique_id=927492977]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 360.0
+offset_right = 256.0
+offset_bottom = 594.0
+
+[node name="Label" type="Label" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=800891555]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.041450776
+anchor_right = 1.0
+anchor_bottom = 0.12953368
+text = "Keep Card?"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PreviewPoint" type="Node2D" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=1147805813]
+position = Vector2(94, 97)
+
+[node name="KeepBtn" type="Button" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=1484394144]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 168.0
+offset_right = 79.0
+offset_bottom = 227.0
+text = "Keep"
+
+[node name="DiscardBtn" type="Button" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=1647421311]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 168.0
+offset_right = 186.0
+offset_bottom = 227.0
+text = "Discard"
 
 [node name="DebugLayer" type="CanvasLayer" parent="UIManager" unique_id=1963182696]
 visible = false
@@ -852,6 +920,8 @@ script = ExtResource("23_llag2")
 [connection signal="pressed" from="TutorialController/TutorialLayer/NextButton" to="TutorialController" method="_on_next_button_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/FinishButton" to="TutorialController" method="_on_finish_button_pressed"]
 [connection signal="toggled" from="UIManager/HUDLayer/HudSidebar/Button" to="UIManager/HUDLayer/HudSidebar" method="_on_sidebar_btn_toggled"]
+[connection signal="pressed" from="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel/KeepBtn" to="UIManager/HUDLayer/StockChoiceUI" method="_on_keep_btn_pressed"]
+[connection signal="pressed" from="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel/DiscardBtn" to="UIManager/HUDLayer/StockChoiceUI" method="_on_discard_btn_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 

@@ -188,7 +188,7 @@ func process_stock_state() -> void:
 				#ai.ai_stock_choice()
 				return
 		StockState.WAIT_DECISION:
-			pass
+			push_error('Not supposed to get here')
 		StockState.DRAW_SECOND:
 			stock_second_card = deck.draw_card()
 			stock_state = StockState.RESOLVE
@@ -215,6 +215,8 @@ func advance_stock_turn() -> void:
 	current_player = (current_player + 1) % hands.size()
 	
 	start_stock_turn(current_player)
+
+
 #Draw card A > Choose to KEEP or DISCARD
 #>
 #Draw card B
@@ -227,26 +229,8 @@ func start_stock_turn(player_id : int) -> void:
 		trick_play()
 		return
 	
-	print('Stock Turn Player', player_id)
-	
+	print('Stock Turn Player ', player_id)
 	process_stock_state()
-	
-	#var stock_card_a : CardInstance
-	#stock_card_a = deck.draw_card()
-	#await stock_card_a.drag_started
-	#var keep_card_a : bool
-	#if keep_card_a:
-		#hands[player_id].add_card_to_hand(stock_card_a) <-- diff to receive card, dangerous dat
-	#else:
-		#discard_card(stock_card_a)
-		#return
-	#var stock_card_b : CardInstance = deck.draw_card()
-	#var keep_card_b : bool
-	#if keep_card_b and keep_card_a == false:
-		#hands[player_id].add_card_to_hand(stock_card_b)
-	#if keep_card_b and keep_card_a == true:
-		#push_error('Nuh uh, only one card')
-		##show_card()
 
 func end_stock_draw() -> void:
 	
@@ -304,7 +288,7 @@ func finish_game():
 	else:
 		$"../Win Lose Manager".game_lost()
 
-func _on_card_drawn(card: Variant) -> void: ## Function used to add cards to hands automatically
+func _on_card_drawn(card: CardInstance) -> void: ## Function used to add cards to hands automatically
 	hands[current_player].receive_card(card)
 	current_player = (current_player + 1) % hands.size()
 
