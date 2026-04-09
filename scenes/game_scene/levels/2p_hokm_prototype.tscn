@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="16_3tb7h"]
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="17_x5e23"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="18_7b6e0"]
+[ext_resource type="Script" uid="uid://dwk3pcakuflgo" path="res://resources/UI Elements/hokm_selector.gd" id="18_rnmyu"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="19_ic7de"]
 [ext_resource type="StyleBox" uid="uid://3ylipsh048sb" path="res://resources/UI Elements/hudstylebox.tres" id="20_103aj"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="20_f84ns"]
@@ -28,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://dgivyxvbghbme" path="res://assets/Sprites/Misc/Hakem Crown.png" id="22_1onrs"]
 [ext_resource type="Texture2D" uid="uid://byq1kq5cmrxtn" path="res://assets/kenney_game-icons/PNG/White/2x/right.png" id="22_8ycwu"]
 [ext_resource type="Script" uid="uid://cad3040ytgnkx" path="res://resources/UI Elements/stock_choice_ui.gd" id="22_eg3ek"]
+[ext_resource type="Texture2D" uid="uid://dkvb1b7ojrj1m" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_slot.png" id="23_8ycwu"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="23_llag2"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="24_xiar1"]
 
@@ -540,16 +542,20 @@ icon = ExtResource("22_8ycwu")
 expand_icon = true
 
 [node name="HokmSelector" type="Panel" parent="UIManager/HUDLayer" unique_id=2147057059]
+self_modulate = Color(1, 1, 1, 0.627451)
 z_index = 1
 offset_left = -112.0
-offset_top = 73.0
+offset_top = 248.0
 offset_right = 112.0
-offset_bottom = 137.0
+offset_bottom = 328.0
+mouse_filter = 2
+script = ExtResource("18_rnmyu")
 
-[node name="Label" type="Label" parent="UIManager/HUDLayer/HokmSelector" unique_id=513865168]
+[node name="SelectHokm" type="Label" parent="UIManager/HUDLayer/HokmSelector" unique_id=513865168]
 layout_mode = 0
+offset_top = 8.0
 offset_right = 224.0
-offset_bottom = 17.0
+offset_bottom = 25.0
 text = "Select Hokm"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -557,10 +563,10 @@ vertical_alignment = 1
 [node name="HokmSelector" type="HBoxContainer" parent="UIManager/HUDLayer/HokmSelector" unique_id=437945824]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.44475445
-anchor_top = -4.3472223
-anchor_right = 0.5541295
-anchor_bottom = -4.3027782
+anchor_left = 0.45368305
+anchor_top = -3.4277778
+anchor_right = 0.563058
+anchor_bottom = -3.383334
 offset_left = -69.625
 offset_top = 302.22223
 offset_right = 66.0
@@ -617,11 +623,12 @@ grow_vertical = 2
 script = ExtResource("22_eg3ek")
 
 [node name="StockChoicePanel" type="Panel" parent="UIManager/HUDLayer/StockChoiceUI" unique_id=927492977]
+self_modulate = Color(1, 1, 1, 0.627451)
 layout_mode = 0
-offset_left = 66.0
-offset_top = 360.0
-offset_right = 256.0
-offset_bottom = 594.0
+offset_left = 1024.0
+offset_top = 264.0
+offset_right = 1214.0
+offset_bottom = 498.0
 
 [node name="Label" type="Label" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=800891555]
 layout_mode = 1
@@ -651,6 +658,16 @@ offset_top = 168.0
 offset_right = 186.0
 offset_bottom = 227.0
 text = "Discard"
+
+[node name="CardPreview" type="TextureRect" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=1021792449]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16842106
+anchor_top = 0.13675214
+anchor_right = 0.8210526
+anchor_bottom = 0.6666667
+texture = ExtResource("23_8ycwu")
+metadata/_edit_use_anchors_ = true
 
 [node name="DebugLayer" type="CanvasLayer" parent="UIManager" unique_id=1963182696]
 visible = false
@@ -920,6 +937,11 @@ script = ExtResource("23_llag2")
 [connection signal="pressed" from="TutorialController/TutorialLayer/NextButton" to="TutorialController" method="_on_next_button_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/FinishButton" to="TutorialController" method="_on_finish_button_pressed"]
 [connection signal="toggled" from="UIManager/HUDLayer/HudSidebar/Button" to="UIManager/HUDLayer/HudSidebar" method="_on_sidebar_btn_toggled"]
+[connection signal="hokm_chosen" from="UIManager/HUDLayer/HokmSelector" to="UIManager" method="_on_hokm_selector_hokm_chosen"]
+[connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Clubs" to="UIManager/HUDLayer/HokmSelector" method="_on_clubs_pressed"]
+[connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Hearts" to="UIManager/HUDLayer/HokmSelector" method="_on_hearts_pressed"]
+[connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Spades" to="UIManager/HUDLayer/HokmSelector" method="_on_spades_pressed"]
+[connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Diamonds" to="UIManager/HUDLayer/HokmSelector" method="_on_diamonds_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel/KeepBtn" to="UIManager/HUDLayer/StockChoiceUI" method="_on_keep_btn_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel/DiscardBtn" to="UIManager/HUDLayer/StockChoiceUI" method="_on_discard_btn_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]

@@ -15,6 +15,10 @@ enum Difficulty {
 }
 
 
+## Signal connections?
+func _on_stock_choice_requested(first_card) -> void:
+	ai_stock_choice(first_card)
+
 func choose_hokm() -> CardData.Suit: ## Chooses hokm suit if given
 	var hokm_suit = CardData.Suit.values().pick_random()
 	return hokm_suit

@@ -18,6 +18,9 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed('debug_menu'):
 		debug_layer.show()
 
+signal hokm_chosen(hokm: CardData.Suit)
+
+
 
 func _on_game_manager_round_ended(score: Variant) -> void:
 	rounds_won_display_label.text = str('Rounds Won: ', score)
@@ -34,3 +37,7 @@ func _on_game_manager_turn_started(player_index: Variant, prompt_text: String) -
 	turn_prompt.text = prompt_text
 	#turn_prompt.get_child(0).play('fade_in_&_out')
 	ui_animation_player.play('fade_in_&_out')
+
+
+func _on_hokm_selector_hokm_chosen(suit: Variant) -> void:
+	emit_signal("hokm_chosen", suit)
