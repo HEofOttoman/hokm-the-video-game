@@ -132,7 +132,11 @@ func auctioning_game():
 	
 	await get_tree().create_timer(3.0).timeout
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
-	deal_remaining_cards()
+	if player_count == HokmGameMode.TWO_PLAYER:
+		begin_stock_draw()
+	else:
+		deal_remaining_cards()
+	#deal_remaining_cards()
 
 func declaring_hakem():
 	var hakem = hands.pick_random()
@@ -214,10 +218,14 @@ func process_stock_state() -> void:
 	match stock_state:
 		
 		StockState.DRAW_FIRST:
-			stock_first_card = deck.draw_card()
+			stock_first_card = deck.draw_card() # <- Fatal error (fixed)
+			#stock_first_card = await card_drawn # <- breaks literally everything
+			
 			
 			if hands[current_player].is_player_controlled:
 				#enable_stock_ui()
+				print('stock first card: ', stock_first_card)
+				
 				emit_signal('show_stock_ui', stock_first_card)
 				#return
 			else:
@@ -225,7 +233,7 @@ func process_stock_state() -> void:
 				#hands[current_player].ai_controller.ai_stock_choice(stock_first_card)
 				keep_first_card = hands[current_player].ai_controller.ai_stock_choice(stock_first_card)
 				
-				process_stock_state()
+				#process_stock_state()
 				
 				#return
 		StockState.WAIT_DECISION:
@@ -329,7 +337,7 @@ func _on_card_drawn(card: CardInstance) -> void: ## Function used to add cards t
 	current_player = (current_player + 1) % hands.size()
 
 func deal_cards(_player_id): ## Deal cards to each player
-	var card = deck.draw_card()
+	var card = deck.draw_card() ## MASSIVE HIDDEN ERROR ; DRAW_CARD IS A VOID FUNCTION, THE REAL CARD IS IN THE SIGNAL
 	if not card:
 		return
 	

@@ -56,7 +56,8 @@ func _on_hokm_selected(chosen_suit: CardData.Suit) -> void:
 ## From Gamemanager
 func _on_game_manager_show_stock_ui(stock_first_card: CardInstance) -> void:
 	stock_choice_ui.show()
-	stock_first_card.animate_card_to_position(stock_choice_ui.preview_point.global_position)
+	#stock_first_card.animate_card_to_position(stock_choice_ui.preview_point.global_position)
+	stock_choice_ui.display_card(stock_first_card)
 
 func _on_stock_choice_ui_keep_pressed() -> void:
 	emit_signal('stock_keep')
