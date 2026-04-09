@@ -1,17 +1,17 @@
-extends Panel
-
+extends Control
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+#func _ready() -> void:
+	##hide()
+	#return
 
-@export var suit : CardData.Suit
-
+@warning_ignore("enum_variable_without_default")
+@export var suit : CardData.Suit = CardData.Suit.HEARTS
 signal hokm_chosen(chosen_suit: CardData.Suit)
 
 
 ## Uses signal to manage visibility instead of direct manipulation
-func _on_hokm_selection():
+func _on_hokm_selection_request():
 	show()
 
 func _on_clubs_pressed() -> void:

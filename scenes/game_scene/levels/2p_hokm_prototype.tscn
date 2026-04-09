@@ -21,17 +21,21 @@
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="17_x5e23"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="18_7b6e0"]
 [ext_resource type="Script" uid="uid://dwk3pcakuflgo" path="res://resources/UI Elements/hokm_selector.gd" id="18_rnmyu"]
+[ext_resource type="Texture2D" uid="uid://dr7lvrpgxl33u" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (small)/card_clubs_suit.png" id="19_73siw"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="19_ic7de"]
 [ext_resource type="StyleBox" uid="uid://3ylipsh048sb" path="res://resources/UI Elements/hudstylebox.tres" id="20_103aj"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="20_f84ns"]
+[ext_resource type="Texture2D" uid="uid://c2hokq0eue8xk" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (small)/card_hearts_suit.png" id="20_he7j7"]
 [ext_resource type="Script" uid="uid://pfwqjnxmgcqk" path="res://resources/UI Elements/sidebar/sidebar.gd" id="21_eg3ek"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="21_n36pl"]
 [ext_resource type="Texture2D" uid="uid://dgivyxvbghbme" path="res://assets/Sprites/Misc/Hakem Crown.png" id="22_1onrs"]
 [ext_resource type="Texture2D" uid="uid://byq1kq5cmrxtn" path="res://assets/kenney_game-icons/PNG/White/2x/right.png" id="22_8ycwu"]
 [ext_resource type="Script" uid="uid://cad3040ytgnkx" path="res://resources/UI Elements/stock_choice_ui.gd" id="22_eg3ek"]
 [ext_resource type="Texture2D" uid="uid://dkvb1b7ojrj1m" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_slot.png" id="23_8ycwu"]
+[ext_resource type="Texture2D" uid="uid://d3k1m6ldkdvd3" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (small)/card_spades_suit.png" id="23_fbs3b"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="23_llag2"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="24_xiar1"]
+[ext_resource type="Texture2D" uid="uid://40uxqh7mqg2x" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (small)/card_diamonds_suit.png" id="25_cen0b"]
 
 [sub_resource type="Animation" id="Animation_8ycwu"]
 length = 0.001
@@ -542,6 +546,7 @@ icon = ExtResource("22_8ycwu")
 expand_icon = true
 
 [node name="HokmSelector" type="Panel" parent="UIManager/HUDLayer" unique_id=2147057059]
+visible = false
 self_modulate = Color(1, 1, 1, 0.627451)
 z_index = 1
 offset_left = -112.0
@@ -561,40 +566,54 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HokmSelector" type="HBoxContainer" parent="UIManager/HUDLayer/HokmSelector" unique_id=437945824]
+custom_minimum_size = Vector2(0, 5.805)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.45368305
-anchor_top = -3.4277778
-anchor_right = 0.563058
-anchor_bottom = -3.383334
-offset_left = -69.625
-offset_top = 302.22223
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -8.0
 offset_right = 66.0
-offset_bottom = 332.44446
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Clubs" type="TextureButton" parent="UIManager/HUDLayer/HokmSelector/HokmSelector" unique_id=1541946589]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-texture_normal = ExtResource("11_he7j7")
+texture_normal = ExtResource("19_73siw")
+texture_pressed = ExtResource("11_he7j7")
+texture_hover = ExtResource("11_he7j7")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Hearts" type="TextureButton" parent="UIManager/HUDLayer/HokmSelector/HokmSelector" unique_id=138336035]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-texture_normal = ExtResource("12_3hwx4")
+texture_normal = ExtResource("20_he7j7")
+texture_pressed = ExtResource("12_3hwx4")
+texture_hover = ExtResource("12_3hwx4")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Spades" type="TextureButton" parent="UIManager/HUDLayer/HokmSelector/HokmSelector" unique_id=1854143283]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-texture_normal = ExtResource("13_fbs3b")
+texture_normal = ExtResource("23_fbs3b")
+texture_pressed = ExtResource("13_fbs3b")
+texture_hover = ExtResource("13_fbs3b")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Diamonds" type="TextureButton" parent="UIManager/HUDLayer/HokmSelector/HokmSelector" unique_id=1412440168]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-texture_normal = ExtResource("14_cen0b")
+texture_normal = ExtResource("25_cen0b")
+texture_pressed = ExtResource("14_cen0b")
+texture_hover = ExtResource("14_cen0b")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
@@ -627,8 +646,8 @@ self_modulate = Color(1, 1, 1, 0.627451)
 layout_mode = 0
 offset_left = 1024.0
 offset_top = 264.0
-offset_right = 1214.0
-offset_bottom = 498.0
+offset_right = 1216.0
+offset_bottom = 500.46317
 
 [node name="Label" type="Label" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=800891555]
 layout_mode = 1
@@ -727,9 +746,9 @@ slot_type = 1
 self_modulate = Color(1, 1, 1, 0.404)
 z_index = -1
 offset_left = -320.0
-offset_top = -360.0
+offset_top = -368.0
 offset_right = 320.0
-offset_bottom = 360.0
+offset_bottom = 352.0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("13_pr027")
 
@@ -925,6 +944,7 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("23_llag2")
 
 [connection signal="card_played" from="Game Manager" to="TutorialController" method="_on_card_played"]
+[connection signal="hokm_selection_requested" from="Game Manager" to="UIManager" method="_on_hokm_selection_requested"]
 [connection signal="round_ended" from="Game Manager" to="TutorialController" method="_on_round_ended"]
 [connection signal="round_ended" from="Game Manager" to="UIManager" method="_on_game_manager_round_ended"]
 [connection signal="state_changed" from="Game Manager" to="TutorialController" method="_on_state_changed"]
@@ -936,8 +956,10 @@ script = ExtResource("23_llag2")
 [connection signal="pressed" from="Game Manager/NewRoundTestBtn" to="Game Manager" method="_on_new_round_test_btn_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/NextButton" to="TutorialController" method="_on_next_button_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/FinishButton" to="TutorialController" method="_on_finish_button_pressed"]
+[connection signal="hokm_chosen" from="UIManager" to="Game Manager" method="_on_ui_manager_hokm_chosen"]
+[connection signal="hokm_selection_request" from="UIManager" to="UIManager/HUDLayer/HokmSelector" method="_on_hokm_selection_request"]
 [connection signal="toggled" from="UIManager/HUDLayer/HudSidebar/Button" to="UIManager/HUDLayer/HudSidebar" method="_on_sidebar_btn_toggled"]
-[connection signal="hokm_chosen" from="UIManager/HUDLayer/HokmSelector" to="UIManager" method="_on_hokm_selector_hokm_chosen"]
+[connection signal="hokm_chosen" from="UIManager/HUDLayer/HokmSelector" to="UIManager" method="_on_hokm_selected"]
 [connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Clubs" to="UIManager/HUDLayer/HokmSelector" method="_on_clubs_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Hearts" to="UIManager/HUDLayer/HokmSelector" method="_on_hearts_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Spades" to="UIManager/HUDLayer/HokmSelector" method="_on_spades_pressed"]

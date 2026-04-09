@@ -19,7 +19,8 @@ func _input(_event: InputEvent) -> void:
 		debug_layer.show()
 
 signal hokm_chosen(hokm: CardData.Suit)
-
+#@onready var hokm_selector: Panel = $HUDLayer/HokmSelector
+signal hokm_selection_request
 
 
 func _on_game_manager_round_ended(score: Variant) -> void:
@@ -38,6 +39,12 @@ func _on_game_manager_turn_started(player_index: Variant, prompt_text: String) -
 	#turn_prompt.get_child(0).play('fade_in_&_out')
 	ui_animation_player.play('fade_in_&_out')
 
+func _on_hokm_selection_requested()->void:
+	emit_signal('hokm_selection_request')
+	print('forward request to selector panel')
+	#hokm_selector._on_hokm_selection()
 
-func _on_hokm_selector_hokm_chosen(suit: Variant) -> void:
-	emit_signal("hokm_chosen", suit)
+func _on_hokm_selected(chosen_suit: CardData.Suit) -> void:
+	emit_signal("hokm_chosen", chosen_suit)
+	print('Hokm selected via button')
+	#hokm_display_label._on_hokm_chosen(chosen_suit)

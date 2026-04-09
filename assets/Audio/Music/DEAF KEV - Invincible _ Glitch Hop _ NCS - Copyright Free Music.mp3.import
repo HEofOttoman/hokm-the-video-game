@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://itrjc4kih6fg"
+path="res://.godot/imported/DEAF KEV - Invincible _ Glitch Hop _ NCS - Copyright Free Music.mp3-71ed18055887fd4c3e9f5dc16d56454b.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/Music/DEAF KEV - Invincible _ Glitch Hop _ NCS - Copyright Free Music.mp3"
+dest_files=["res://.godot/imported/DEAF KEV - Invincible _ Glitch Hop _ NCS - Copyright Free Music.mp3-71ed18055887fd4c3e9f5dc16d56454b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

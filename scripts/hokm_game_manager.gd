@@ -131,7 +131,7 @@ func auctioning_game():
 	declaring_hokm()
 	print('Hokm declared')
 	
-	await get_tree().create_timer(3.0).timeout
+	#await get_tree().create_timer(3.0).timeout
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
 	deal_remaining_cards()
 
@@ -149,15 +149,38 @@ func declaring_hakem():
 	
 	return current_player
 	#deck.draw_card()
-	#return
+
+signal hokm_selection_requested
 
 func declaring_hokm(): ## Process for declaring the hokm
 	## Add the process for declaring it here
-	hokm_suit = CardData.Suit.values().pick_random()
+	if hands[hakem_index].is_player_controlled:
+		emit_signal('hokm_selection_requested')
+		
+	else:
+		#ai_controllers[hakem_index].ai_hokm_choice()
+		#hands[hakem_index].ai_controller.ai_hokm_choice()
+		hokm_suit = hands[hakem_index].ai_controller.ai_hokm_choice()
+		ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit)
+		
+	
+	#emit_signal('hokm_selection_requested')
+	
+	print('await')
+	hokm_suit = await ui_manager.hokm_chosen
+	print('postwait')
+	
+	#hokm_suit = CardData.Suit.values().pick_random()
 	print('Hokm suit:', hokm_suit)
 	ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit)
 	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
 	#hokm_chosen.emit(hokm)
+
+#func _on_ui_manager_hokm_chosen(hokm: CardData.Suit) -> void:
+	#ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit) 
+
+#func _on_hokm_selected_ui_manager(suit:CardData.Suit) -> void:
+	#declaring_hokm()
 
 ## --- Stock Draw logic section ----
 
@@ -197,6 +220,7 @@ func process_stock_state() -> void:
 		StockState.RESOLVE:
 			resolve_stock_choice(keep_first_card, stock_first_card, stock_second_card)
 
+## Resolves the stock.
 func resolve_stock_choice(stock_first_kept: bool, stock_first_card: CardInstance, stock_second_card: CardInstance):
 	if stock_first_kept:
 		hands[current_player].receive_card(stock_first_card)
@@ -301,19 +325,6 @@ func deal_cards(_player_id): ## Deal cards to each player
 	for i in range(cards_per_player):
 		hands[current_player].receive_card(card)
 		current_player = (current_player + 1) % hands.size()
-
-func _on_clubs_pressed() -> void:
-	hokm_suit = CardData.Suit.CLUBS
-	#hokm_chosen.emit(hokm)
-func _on_hearts_pressed() -> void:
-	hokm_suit = CardData.Suit.HEARTS
-	#hokm_chosen.emit(hokm)
-func _on_spades_pressed() -> void:
-	hokm_suit = CardData.Suit.SPADES
-	#hokm_chosen.emit(hokm)
-func _on_diamonds_pressed() -> void:
-	hokm_suit = CardData.Suit.DIAMONDS
-	#hokm_chosen.emit(hokm)
 
 ## Umpire / RuleManager
 ### Checks if the turn is legal, and determines who wins

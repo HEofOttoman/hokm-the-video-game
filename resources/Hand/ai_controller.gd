@@ -19,8 +19,9 @@ enum Difficulty {
 func _on_stock_choice_requested(first_card) -> void:
 	ai_stock_choice(first_card)
 
-func choose_hokm() -> CardData.Suit: ## Chooses hokm suit if given
+func ai_hokm_choice() -> CardData.Suit: ## Chooses hokm suit if given
 	var hokm_suit = CardData.Suit.values().pick_random()
+	print('Ai Chosen Hokm: ', hokm_suit)
 	return hokm_suit
 
 ## Used to decide on stock draw decisions in 2p hokm
