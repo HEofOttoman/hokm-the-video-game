@@ -125,13 +125,12 @@ func deal_initial_cards():
 	auctioning_game()
 
 func auctioning_game():
-	#await declaring_hakem()
 	declaring_hakem()
-	#await declaring_hokm()
+	
 	declaring_hokm()
 	print('Hokm declared')
 	
-	#await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
 	deal_remaining_cards()
 
@@ -155,7 +154,7 @@ signal hokm_selection_requested
 func declaring_hokm(): ## Process for declaring the hokm
 	## Add the process for declaring it here
 	if hands[hakem_index].is_player_controlled:
-		emit_signal('hokm_selection_requested')
+		emit_signal('hokm_selection_requested') # Maybe make it UI hokm selection requested
 		
 	else:
 		#ai_controllers[hakem_index].ai_hokm_choice()
@@ -166,9 +165,9 @@ func declaring_hokm(): ## Process for declaring the hokm
 	
 	#emit_signal('hokm_selection_requested')
 	
-	print('await')
+	#print('await')
 	hokm_suit = await ui_manager.hokm_chosen
-	print('postwait')
+	#print('postwait') # yep await works
 	
 	#hokm_suit = CardData.Suit.values().pick_random()
 	print('Hokm suit:', hokm_suit)
@@ -176,11 +175,13 @@ func declaring_hokm(): ## Process for declaring the hokm
 	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
 	#hokm_chosen.emit(hokm)
 
-#func _on_ui_manager_hokm_chosen(hokm: CardData.Suit) -> void:
-	#ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit) 
+func _on_ui_manager_hokm_chosen(hokm: CardData.Suit) -> void: ## <- Does this serve a purpose not covered above? 
+	# ^Still called when panel is visible
+	
+	ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit) # <- already safeguarded, even when the hokm panel visible still
+	#hokm_suit = hokm
+	#ui_manager.hokm_display_label._on_hokm_chosen(hokm) # <- dangerous, causes mismatch (needs hokm_suit = hokm before)
 
-#func _on_hokm_selected_ui_manager(suit:CardData.Suit) -> void:
-	#declaring_hokm()
 
 ## --- Stock Draw logic section ----
 
