@@ -106,6 +106,8 @@ func get_hovered_card_slot():
 func _input(event: InputEvent) -> void: ## Better way to move cards that doesn't run every frame
 	#if not InputEventMouseMotion: return
 	#rotate_card()
+	#if event.is_action('ClickR'): # <- Testing destroy card
+		#destroy_card()
 	
 	if dragging and event is InputEventMouseMotion: 
 		var mouse_position = get_global_mouse_position()
@@ -244,3 +246,20 @@ func animate_card_to_position(new_position):
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(self,"global_position", new_position, 0.5).set_trans(Tween.TRANS_SINE)
+
+var tween_destroy : Tween
+## Destroys the card
+func destroy_card() -> void:
+	#card_texture.use_parent_material = true
+	#if tween_destroy and tween_destroy.is_running():
+		#tween_destroy.kill()
+	#tween_destroy = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	#tween_destroy.tween_property(material, "shader_parameter/dissolve_value", 0.0, 2.0).from(1.0)
+	#tween_destroy.parallel().tween_property(shadow, "self_modulate:a", 0.0, 1.0)
+	
+	card_sprite.use_parent_material = true
+	if tween_destroy and tween_destroy.is_running():
+		tween_destroy.kill()
+	tween_destroy = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween_destroy.tween_property(material, "shader_parameter/dissolve_value", 0.0, 2.0).from(1.0)
+	tween_destroy.parallel().tween_property(card_shadow, "self_modulate:a", 0.0, 1.0)

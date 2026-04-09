@@ -1,10 +1,27 @@
 [gd_scene format=3 uid="uid://dyrpsnraose2n"]
 
 [ext_resource type="Texture2D" uid="uid://cjjwlc7dkaotx" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_clubs_J.png" id="1_ejfkd"]
+[ext_resource type="Shader" uid="uid://bjjhqalw07tyk" path="res://resources/shaders/2d_dissolve_burn.gdshader" id="1_j2llb"]
 [ext_resource type="Script" uid="uid://gmn1ddhih28d" path="res://resources/Card Resources/cardclicker.gd" id="2_ejfkd"]
 [ext_resource type="Script" uid="uid://bxg63s5qd73ue" path="res://resources/Card Resources/card.gd" id="2_ymwpd"]
 [ext_resource type="Material" uid="uid://d3whq58fukmcp" path="res://resources/shaders/2d-perspective_shader.tres" id="4_j2llb"]
 [ext_resource type="Texture2D" uid="uid://dxwji37u4j8a1" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (large)/card_back.png" id="4_mucyl"]
+
+[sub_resource type="Gradient" id="Gradient_j2llb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lvxd0"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dr4c4"]
+noise = SubResource("FastNoiseLite_lvxd0")
+color_ramp = SubResource("Gradient_j2llb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mucyl"]
+shader = ExtResource("1_j2llb")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_dr4c4")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.12999999709424
+shader_parameter/burn_color = Color(0.9645992, 0.7186383, 0.23460764, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_idd6q"]
 size = Vector2(40, 58)
@@ -119,6 +136,7 @@ _data = {
 }
 
 [node name="Card" type="Node2D" unique_id=335243291 node_paths=PackedStringArray("card_sprite") groups=["cards"]]
+material = SubResource("ShaderMaterial_mucyl")
 script = ExtResource("2_ymwpd")
 card_sprite = NodePath("CardSprite")
 
@@ -134,6 +152,7 @@ libraries/ = SubResource("AnimationLibrary_j2llb")
 
 [node name="CardBackSprite" type="Sprite2D" parent="." unique_id=1750563321]
 material = ExtResource("4_j2llb")
+use_parent_material = true
 texture = ExtResource("4_mucyl")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1544434845]

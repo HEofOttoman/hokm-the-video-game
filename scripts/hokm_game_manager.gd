@@ -149,6 +149,7 @@ func declaring_hakem():
 	return current_player
 	#deck.draw_card()
 
+### --- Hokm Declaration with UI logic (signals) ---
 signal hokm_selection_requested
 
 func declaring_hokm(): ## Process for declaring the hokm
@@ -175,7 +176,7 @@ func declaring_hokm(): ## Process for declaring the hokm
 	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
 	#hokm_chosen.emit(hokm)
 
-func _on_ui_manager_hokm_chosen(hokm: CardData.Suit) -> void: ## <- Does this serve a purpose not covered above? 
+func _on_ui_manager_hokm_chosen(_hokm: CardData.Suit) -> void: ## <- Does this serve a purpose not covered above? 
 	# ^Still called when panel is visible
 	
 	ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit) # <- already safeguarded, even when the hokm panel visible still
@@ -183,8 +184,8 @@ func _on_ui_manager_hokm_chosen(hokm: CardData.Suit) -> void: ## <- Does this se
 	#ui_manager.hokm_display_label._on_hokm_chosen(hokm) # <- dangerous, causes mismatch (needs hokm_suit = hokm before)
 
 
-## --- Stock Draw logic section ----
-
+### --- Stock Draw logic section ----
+## 
 func begin_stock_draw() -> void:
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
 	
@@ -193,12 +194,22 @@ func begin_stock_draw() -> void:
 	print('STOCK DRAW START')
 	start_stock_turn(current_player)
 
+## 
+func start_stock_turn(player_id : int) -> void:
+	if deck.cards.is_empty():
+		trick_play()
+		return
+	
+	print('Stock Turn Player ', player_id)
+	process_stock_state()
+
+signal show_stock_ui(stock_first_card: CardInstance)
 ## Big state machine processor thingy for stock draws instead of func chain
 func process_stock_state() -> void:
 	var stock_first_card : CardInstance
 	var stock_second_card : CardInstance
 	
-	var keep_first_card : bool
+	var keep_first_card : bool = false
 	
 	match stock_state:
 		
@@ -207,10 +218,16 @@ func process_stock_state() -> void:
 			
 			if hands[current_player].is_player_controlled:
 				#enable_stock_ui()
-				return
+				emit_signal('show_stock_ui', stock_first_card)
+				#return
 			else:
-				#ai.ai_stock_choice()
-				return
+				#ai_controllers[current_player].ai_stock_choice(stock_first_card)
+				#hands[current_player].ai_controller.ai_stock_choice(stock_first_card)
+				keep_first_card = hands[current_player].ai_controller.ai_stock_choice(stock_first_card)
+				
+				process_stock_state()
+				
+				#return
 		StockState.WAIT_DECISION:
 			push_error('Not supposed to get here')
 		StockState.DRAW_SECOND:
@@ -221,19 +238,9 @@ func process_stock_state() -> void:
 		StockState.RESOLVE:
 			resolve_stock_choice(keep_first_card, stock_first_card, stock_second_card)
 
-## Resolves the stock.
-func resolve_stock_choice(stock_first_kept: bool, stock_first_card: CardInstance, stock_second_card: CardInstance):
-	if stock_first_kept:
-		hands[current_player].receive_card(stock_first_card)
-		#discard_card(stock_second_card)
-	else:
-		#discard_card(stock_first_card)
-		hands[current_player].receive_card(stock_second_card)
-	print("Resolved stock choice")
-	advance_stock_turn()
 
 func advance_stock_turn() -> void:
-	if deck.cards.is_empty(): # terminates
+	if deck.cards.is_empty(): # terminates and begins trick play phase
 		trick_play()
 		return
 	
@@ -241,6 +248,17 @@ func advance_stock_turn() -> void:
 	
 	start_stock_turn(current_player)
 
+## Resolves the stock.
+func resolve_stock_choice(stock_first_kept: bool, stock_first_card: CardInstance, stock_second_card: CardInstance):
+	if stock_first_kept:
+		hands[current_player].receive_card(stock_first_card)
+		#discard_card(stock_second_card)
+	else:
+		#discard_card(stock_first_card)
+		stock_first_card.destroy_card()
+		hands[current_player].receive_card(stock_second_card)
+	print("Resolved stock choice")
+	advance_stock_turn()
 
 #Draw card A > Choose to KEEP or DISCARD
 #>
@@ -248,14 +266,6 @@ func advance_stock_turn() -> void:
 #>
 #If A was kept -> B must be discarded
 #If A was discarded -> B must be kept
-
-func start_stock_turn(player_id : int) -> void:
-	if deck.cards.is_empty():
-		trick_play()
-		return
-	
-	print('Stock Turn Player ', player_id)
-	process_stock_state()
 
 func end_stock_draw() -> void:
 	
@@ -275,6 +285,7 @@ func deal_remaining_cards():
 	
 	if player_count == HokmGameMode.THREE_PLAYER: ## Checks if the game's rules are different and change accordingly
 		cards_per_player = 17
+	#elif player_count == HokmGameMode.FOUR_PLAYER:
 	else:
 		cards_per_player = 13
 	

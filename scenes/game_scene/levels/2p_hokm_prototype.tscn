@@ -746,9 +746,9 @@ slot_type = 1
 self_modulate = Color(1, 1, 1, 0.404)
 z_index = -1
 offset_left = -320.0
-offset_top = -368.0
+offset_top = -360.0
 offset_right = 320.0
-offset_bottom = 352.0
+offset_bottom = 360.0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("13_pr027")
 
@@ -947,6 +947,7 @@ script = ExtResource("23_llag2")
 [connection signal="hokm_selection_requested" from="Game Manager" to="UIManager" method="_on_hokm_selection_requested"]
 [connection signal="round_ended" from="Game Manager" to="TutorialController" method="_on_round_ended"]
 [connection signal="round_ended" from="Game Manager" to="UIManager" method="_on_game_manager_round_ended"]
+[connection signal="show_stock_ui" from="Game Manager" to="UIManager" method="_on_game_manager_show_stock_ui"]
 [connection signal="state_changed" from="Game Manager" to="TutorialController" method="_on_state_changed"]
 [connection signal="trick_resolved" from="Game Manager" to="TutorialController" method="_on_trick_resolved"]
 [connection signal="trick_resolved" from="Game Manager" to="UIManager" method="_on_game_manager_trick_resolved"]
@@ -964,6 +965,8 @@ script = ExtResource("23_llag2")
 [connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Hearts" to="UIManager/HUDLayer/HokmSelector" method="_on_hearts_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Spades" to="UIManager/HUDLayer/HokmSelector" method="_on_spades_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Diamonds" to="UIManager/HUDLayer/HokmSelector" method="_on_diamonds_pressed"]
+[connection signal="discard_pressed" from="UIManager/HUDLayer/StockChoiceUI" to="UIManager" method="_on_stock_choice_ui_discard_pressed"]
+[connection signal="keep_pressed" from="UIManager/HUDLayer/StockChoiceUI" to="UIManager" method="_on_stock_choice_ui_keep_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel/KeepBtn" to="UIManager/HUDLayer/StockChoiceUI" method="_on_keep_btn_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel/DiscardBtn" to="UIManager/HUDLayer/StockChoiceUI" method="_on_discard_btn_pressed"]
 [connection signal="card_drawn" from="Deck" to="Game Manager" method="_on_card_drawn"]

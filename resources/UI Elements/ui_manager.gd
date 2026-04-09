@@ -22,6 +22,8 @@ signal hokm_chosen(hokm: CardData.Suit)
 #@onready var hokm_selector: Panel = $HUDLayer/HokmSelector
 signal hokm_selection_request
 
+signal stock_keep
+signal stock_discard
 
 func _on_game_manager_round_ended(score: Variant) -> void:
 	rounds_won_display_label.text = str('Rounds Won: ', score)
@@ -30,7 +32,7 @@ func _on_game_manager_round_ended(score: Variant) -> void:
 
 func _on_game_manager_trick_resolved(_winner_id: Variant) -> void:
 	
-	pass # Replace with function body.
+	return # Replace with function body.
 
 
 func _on_game_manager_turn_started(player_index: Variant, prompt_text: String) -> void:
@@ -48,3 +50,19 @@ func _on_hokm_selected(chosen_suit: CardData.Suit) -> void:
 	emit_signal("hokm_chosen", chosen_suit)
 	print('Hokm selected via button')
 	#hokm_display_label._on_hokm_chosen(chosen_suit)
+
+
+@onready var stock_choice_ui: Control = $HUDLayer/StockChoiceUI
+## From Gamemanager
+func _on_game_manager_show_stock_ui(stock_first_card: CardInstance) -> void:
+	stock_choice_ui.show()
+	stock_first_card.animate_card_to_position(stock_choice_ui.preview_point.global_position)
+
+func _on_stock_choice_ui_keep_pressed() -> void:
+	emit_signal('stock_keep')
+	print('ui says stock keep')
+
+func _on_stock_choice_ui_discard_pressed() -> void:
+	emit_signal('stock_discard')
+	print('ui says stock discard')
+	
