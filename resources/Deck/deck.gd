@@ -51,7 +51,7 @@ func discard_deck(): ## Hides deck, even if there are still card remaining
 	return
 
 ## Draws a card from the Array of CardData resources
-func draw_card() -> CardInstance:
+func draw_card():# -> CardInstance:
 	if cards.is_empty(): ## Checks whether the deck is empty or not
 		$AnimationPlayer.play("deck_disappear") ## Plays the goofy animation to disappear the deck
 		## <-- Should play a sound effect here
@@ -85,7 +85,7 @@ func draw_card() -> CardInstance:
 		#print("cards instantiated")
 		
 		$DeckSprite/DeckCounter.text = str(cards.size()) ## Updates the deck counter
-		return new_card
+		#return new_card
 		
 	### Older Version
 	#if cards.is_empty(): ## Checks whether the deck is empty or not

@@ -82,7 +82,7 @@ func _ready() -> void:
 	#for i in range(hands.size()):
 		#hands[i].player_id = i
 
-## Starts a new round.
+## Starts a new round. Currently not implemented
 func start_new_round()-> void:
 	#trick_slots.clear()
 	

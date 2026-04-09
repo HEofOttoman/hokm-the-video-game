@@ -59,19 +59,19 @@ func connect_card_signals(card):
 
 
 func receive_card(card):
-	pass
-	#add_child(card)
-	#card.global_position = $"../Deck".global_position
-	#
-	#connect_card_signals(card)
-	#
-	#add_card_to_hand(card)
-	#if is_player_controlled:
-		#card.flip_card(true) ## If owned by a player, flip the card
-	#elif is_player_controlled == false:
-		#set_interactive(false)
-	## Otherwise, card remains upside down
-	#card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
+	# pass # <- Ok so that's stage 1 of the fix, my cards werent receiving
+	add_child(card)
+	card.global_position = $"../Deck".global_position
+	
+	connect_card_signals(card)
+	
+	add_card_to_hand(card)
+	if is_player_controlled:
+		card.flip_card(true) ## If owned by a player, flip the card
+	elif is_player_controlled == false:
+		set_interactive(false)
+	# Otherwise, card remains upside down
+	card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
 	
 
 func _on_drag_started(card):
