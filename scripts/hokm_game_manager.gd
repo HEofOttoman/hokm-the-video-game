@@ -220,7 +220,8 @@ func process_stock_state() -> void:
 		StockState.DRAW_FIRST:
 			stock_first_card = deck.draw_card() # <- Fatal error (fixed)
 			#stock_first_card = await card_drawn # <- breaks literally everything
-			
+			hands[current_player].receive_card(stock_first_card) # Fixed the last tween issue of not being parented
+			#^ And STILL the UI doesn't work 💔 
 			
 			if hands[current_player].is_player_controlled:
 				#enable_stock_ui()

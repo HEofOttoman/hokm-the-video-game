@@ -51,7 +51,7 @@ func discard_deck(): ## Hides deck, even if there are still card remaining
 	return
 
 ## Draws a card from the Array of CardData resources
-func draw_card():# -> CardInstance:
+func draw_card() -> CardInstance: # <- Somehow, when this returns a card variable, it breaks EVERYTHING.
 	if cards.is_empty(): ## Checks whether the deck is empty or not
 		$AnimationPlayer.play("deck_disappear") ## Plays the goofy animation to disappear the deck
 		## <-- Should play a sound effect here
@@ -73,7 +73,8 @@ func draw_card():# -> CardInstance:
 		new_card.cardtexture = data.cardtexture
 		new_card.card_data = data
 		new_card.name = str('RANK: ', new_card.rank, ' SUIT: ', new_card.suit) ## Names the card
-		emit_signal("card_drawn", new_card) ## Informs the hands that cards drawn and to add it to their place
+		#emit_signal("card_drawn", new_card) ## Informs the hands that cards drawn and to add it to their place
+		#^Needs to be deprecated due to the stock draw feature, cuts down 102 errors to 84
 		
 		## Function of the code below migrated to playerhand.gd
 		#$"../PlayerHand".add_child(new_card)
@@ -85,7 +86,7 @@ func draw_card():# -> CardInstance:
 		#print("cards instantiated")
 		
 		$DeckSprite/DeckCounter.text = str(cards.size()) ## Updates the deck counter
-		#return new_card
+		return new_card
 		
 	### Older Version
 	#if cards.is_empty(): ## Checks whether the deck is empty or not

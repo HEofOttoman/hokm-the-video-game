@@ -54,12 +54,19 @@ func set_interactive(enabled: bool):
 		card.set_interactive(enabled)
 
 func connect_card_signals(card):
-	card.drag_started.connect(_on_drag_started)
-	card.drag_ended.connect(_on_drag_ended)
+	if not card.drag_ended.is_connected(_on_drag_ended):
+		card.drag_started.connect(_on_drag_started)
+	## ^If statements are guardrails, cut down errors from 62 to 4 I think
+	if not card.drag_ended.is_connected(_on_drag_ended):
+		card.drag_ended.connect(_on_drag_ended)
 
 
 func receive_card(card):
 	# pass # <- Ok so that's stage 1 of the fix, my cards werent receiving
+	if card.get_parent():
+		card.get_parent().remove_child(card) # trying to fix the error introduced by return Cardinstance in deck.draw()
+		#^Successfully cut 102 errors to 62
+	
 	add_child(card)
 	card.global_position = $"../Deck".global_position
 	
