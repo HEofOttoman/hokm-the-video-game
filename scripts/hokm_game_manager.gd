@@ -131,9 +131,6 @@ func auctioning_game():
 	await declaring_hokm() # fixes async issues
 	print('Hokm declared')
 	
-	#await get_tree().create_timer(3.0).timeout
-	#await ui_manager.hokm_chosen
-	#await gm_hokm_chosen
 	
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
 	#if player_count == HokmGameMode.TWO_PLAYER:
@@ -155,39 +152,30 @@ func declaring_hakem() -> int:
 	current_player = hakem_index
 	
 	return current_player
-	#deck.draw_card()
+	#deck.draw_card() # <- maybe add animation in the future showing the process
 
 ### --- Hokm Declaration with UI logic (signals) ---
 signal hokm_selection_requested
 signal gm_hokm_chosen(suit)
 
 ## Process for declaring the hokm
-func declaring_hokm() -> void : #CardData.Suit:#void: 
+func declaring_hokm() -> CardData.Suit:#void: 
 	## Add the process for declaring it here
 	if hands[hakem_index].is_player_controlled:
 		emit_signal('hokm_selection_requested') # Maybe make it UI hokm selection requested
 		hokm_suit = await ui_manager.hokm_chosen
 		
 	else:
-		#ai_controllers[hakem_index].ai_hokm_choice()
-		#hands[hakem_index].ai_controller.ai_hokm_choice()
 		hokm_suit = hands[hakem_index].ai_controller.ai_hokm_choice()
 		ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit)
 		
-		
+		# add timer here?
 	
-	
-	#print('await')
-	#hokm_suit = await ui_manager.hokm_chosen # <- moving this up there fixed it
-	#print('postwait') # yep await works
-	
-	#hokm_suit = CardData.Suit.values().pick_random()
 	print('Hokm suit:', hokm_suit)
 	ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit)
-	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
 	emit_signal('gm_hokm_chosen', hokm_suit)
 	#call_deferred("emit_signal", "gm_hokm_chosen", hokm_suit) # Trying to make async, fixed it but breaks sidebar
-	#return hokm_suit
+	return hokm_suit
 
 func _on_ui_manager_hokm_chosen(_hokm: CardData.Suit) -> void: ## <- Does this serve a purpose not covered above? 
 	# ^Still called when panel is visible

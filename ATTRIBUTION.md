@@ -9,7 +9,7 @@ Developer & programmer. Custom assets too.
 ### Ferdowski
 #### Rules of Hokm
 ![Ferdowskimyman](/assets/Artworks/Ferdowski Icon.png)
-All of this is possible because FerdowSki (my man) who happened to teach me this game in late 2025
+All of this is possible because of FerdowSki (my man) who happened to teach me this game in late 2025
 
 ### Art & Assets
 Henry Wauzivuff - Custom Assets. I drew Sir Dowski.
