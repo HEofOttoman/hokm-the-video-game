@@ -263,7 +263,7 @@ func destroy_card() -> void:
 	tween_destroy = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	#tween_destroy.tween_property(material, "shader_parameter/dissolve_value", 0.0, 2.0).from(1.0)
 	tween_destroy.tween_method(
-		func(): set_instance_shader_parameter('shader_parameter/dissolve_value', 0.0), 
+		func(value): set_instance_shader_parameter('dissolve_value', value), 
 		1.0, 0.0, 2.0)
 	tween_destroy.parallel().tween_property(card_shadow, "self_modulate:a", 0.0, 1.0)
 	

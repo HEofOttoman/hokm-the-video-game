@@ -954,6 +954,7 @@ script = ExtResource("23_llag2")
 [connection signal="round_ended" from="Game Manager" to="UIManager" method="_on_game_manager_round_ended"]
 [connection signal="show_stock_ui" from="Game Manager" to="UIManager" method="_on_game_manager_show_stock_ui"]
 [connection signal="state_changed" from="Game Manager" to="TutorialController" method="_on_state_changed"]
+[connection signal="stock_concluded" from="Game Manager" to="UIManager" method="_on_game_manager_stock_concluded"]
 [connection signal="trick_resolved" from="Game Manager" to="TutorialController" method="_on_trick_resolved"]
 [connection signal="trick_resolved" from="Game Manager" to="UIManager" method="_on_game_manager_trick_resolved"]
 [connection signal="turn_started" from="Game Manager" to="TutorialController" method="_on_turn_started"]

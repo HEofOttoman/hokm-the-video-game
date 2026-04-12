@@ -70,3 +70,7 @@ func _on_stock_choice_ui_discard_pressed() -> void:
 func _forward_stock_choice(keep_first) -> void:
 	emit_signal('stock_choice_made', keep_first)
 	#stock_choice_ui.hide()
+
+
+func _on_game_manager_stock_concluded() -> void:
+	stock_choice_ui.hide()

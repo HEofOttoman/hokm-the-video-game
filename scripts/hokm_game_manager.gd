@@ -191,6 +191,7 @@ var stock_second_card : CardInstance
 var keep_first_card : bool = false
 
 signal show_stock_ui(stock_first_card: CardInstance)
+signal stock_concluded
 
 ## Begins the stock draw phase
 func begin_stock_draw() -> void:
@@ -316,6 +317,7 @@ func advance_stock_turn() -> void:
 	start_stock_turn(current_player)
 
 func end_stock_draw() -> void:
+	emit_signal('stock_concluded')
 	
 	print('=== Finish Stock Draw ===')
 	
