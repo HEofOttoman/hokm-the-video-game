@@ -204,16 +204,27 @@ func start_stock_turn(player_id : int) -> void:
 		trick_play()
 		return
 	
+	stock_first_card = null
+	stock_second_card = null
+	keep_first_card = false
+	
+	stock_state = StockState.DRAW_FIRST
+	
 	print('Stock Turn Player ', player_id)
 	process_stock_state()
 
 signal show_stock_ui(stock_first_card: CardInstance)
+
+var stock_first_card : CardInstance
+var stock_second_card : CardInstance
+var keep_first_card : bool = false
+
 ## Big state machine processor thingy for stock draws instead of func chain
 func process_stock_state() -> void:
-	var stock_first_card : CardInstance
-	var stock_second_card : CardInstance
-	
-	var keep_first_card : bool = false
+	#var stock_first_card : CardInstance
+	#var stock_second_card : CardInstance
+	#
+	#var keep_first_card : bool = false
 	
 	match stock_state:
 		
@@ -236,7 +247,10 @@ func process_stock_state() -> void:
 				
 				#process_stock_state()
 				
-				#return
+			
+			stock_state = StockState.WAIT_DECISION
+			#return
+			
 		StockState.WAIT_DECISION:
 			push_error('Not supposed to get here')
 		StockState.DRAW_SECOND:
@@ -258,14 +272,14 @@ func advance_stock_turn() -> void:
 	start_stock_turn(current_player)
 
 ## Resolves the stock.
-func resolve_stock_choice(stock_first_kept: bool, stock_first_card: CardInstance, stock_second_card: CardInstance):
-	if stock_first_kept:
-		hands[current_player].receive_card(stock_first_card)
+func resolve_stock_choice(stock_first_kept: bool, stock_1st_card: CardInstance, stock_2nd_card: CardInstance):
+	if stock_first_kept == true:
+		hands[current_player].receive_card(stock_1st_card)
 		#discard_card(stock_second_card)
 	else:
 		#discard_card(stock_first_card)
 		stock_first_card.destroy_card()
-		hands[current_player].receive_card(stock_second_card)
+		hands[current_player].receive_card(stock_2nd_card)
 	print("Resolved stock choice")
 	advance_stock_turn()
 
@@ -333,15 +347,19 @@ func _on_card_drawn(card: CardInstance) -> void: ## Function used to add cards t
 	hands[current_player].receive_card(card)
 	current_player = (current_player + 1) % hands.size()
 
-func deal_cards(_player_id): ## Deal cards to each player
-	var card = deck.draw_card() ## MASSIVE HIDDEN ERROR ; DRAW_CARD IS A VOID FUNCTION, THE REAL CARD IS IN THE SIGNAL
+func deal_cards(player_id): ## Deal cards to each player
+	var card = deck.draw_card() ## MASSIVE HIDDEN ERROR ; FIXED CUS DRAW_CARD WILL NOW RETURN A CARD
 	if not card:
 		return
 	
+	hands[player_id].receive_card(card) # Hopefully fixes. should've used player_id instead of current_player
 	
-	for i in range(cards_per_player):
-		hands[current_player].receive_card(card)
-		current_player = (current_player + 1) % hands.size()
+	print("Dealt to player:", player_id)
+	
+	## THis for loop is repeated in each function that calls it, this is fundamentally broken
+	#for i in range(cards_per_player):
+		#hands[current_player].receive_card(card) 
+		#current_player = (current_player + 1) % hands.size()
 
 ## Umpire / RuleManager
 ### Checks if the turn is legal, and determines who wins

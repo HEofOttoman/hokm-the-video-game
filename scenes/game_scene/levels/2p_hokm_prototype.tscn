@@ -639,6 +639,7 @@ offset_right = -640.0
 offset_bottom = -360.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("22_eg3ek")
 
 [node name="StockChoicePanel" type="Panel" parent="UIManager/HUDLayer/StockChoiceUI" unique_id=927492977]
@@ -660,6 +661,7 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="PreviewPoint" type="Node2D" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=1147805813]
+visible = false
 position = Vector2(94, 97)
 
 [node name="KeepBtn" type="Button" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=1484394144]

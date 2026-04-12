@@ -78,7 +78,8 @@ func receive_card(card):
 	elif is_player_controlled == false:
 		set_interactive(false)
 	# Otherwise, card remains upside down
-	card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
+	#card.get_node("AnimationPlayer").play("card_flip") ## Plays the animation while tweening to position
+	## ^Probably deprecated by flip_card()
 	
 
 func _on_drag_started(card):

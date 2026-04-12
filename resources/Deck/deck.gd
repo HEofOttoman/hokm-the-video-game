@@ -86,7 +86,7 @@ func draw_card(): #-> CardInstance: # <- Somehow, when this returns a card varia
 		#print("cards instantiated")
 		
 		$DeckSprite/DeckCounter.text = str(cards.size()) ## Updates the deck counter
-		#return new_card
+		return new_card
 		
 	### Older Version
 	#if cards.is_empty(): ## Checks whether the deck is empty or not
