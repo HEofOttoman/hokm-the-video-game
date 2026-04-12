@@ -127,19 +127,22 @@ func deal_initial_cards():
 func auctioning_game():
 	declaring_hakem()
 	
-	declaring_hokm()
+	#declaring_hokm()
+	await declaring_hokm() # fixes async issues
 	print('Hokm declared')
 	
 	#await get_tree().create_timer(3.0).timeout
-	await ui_manager.hokm_chosen
+	#await ui_manager.hokm_chosen
+	#await gm_hokm_chosen
+	
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
-	if player_count == HokmGameMode.TWO_PLAYER:
-		begin_stock_draw()
-	else:
-		deal_remaining_cards()
-	#deal_remaining_cards()
+	#if player_count == HokmGameMode.TWO_PLAYER:
+		#begin_stock_draw()
+	#else:
+		#deal_remaining_cards()
+	deal_remaining_cards()
 
-func declaring_hakem():
+func declaring_hakem() -> int:
 	var hakem = hands.pick_random()
 	hakem_index = hands.find(hakem)
 	
@@ -156,11 +159,14 @@ func declaring_hakem():
 
 ### --- Hokm Declaration with UI logic (signals) ---
 signal hokm_selection_requested
+signal gm_hokm_chosen(suit)
 
-func declaring_hokm(): ## Process for declaring the hokm
+## Process for declaring the hokm
+func declaring_hokm() -> void : #CardData.Suit:#void: 
 	## Add the process for declaring it here
 	if hands[hakem_index].is_player_controlled:
 		emit_signal('hokm_selection_requested') # Maybe make it UI hokm selection requested
+		hokm_suit = await ui_manager.hokm_chosen
 		
 	else:
 		#ai_controllers[hakem_index].ai_hokm_choice()
@@ -168,18 +174,20 @@ func declaring_hokm(): ## Process for declaring the hokm
 		hokm_suit = hands[hakem_index].ai_controller.ai_hokm_choice()
 		ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit)
 		
+		
 	
-	#emit_signal('hokm_selection_requested')
 	
 	#print('await')
-	hokm_suit = await ui_manager.hokm_chosen
+	#hokm_suit = await ui_manager.hokm_chosen # <- moving this up there fixed it
 	#print('postwait') # yep await works
 	
 	#hokm_suit = CardData.Suit.values().pick_random()
 	print('Hokm suit:', hokm_suit)
 	ui_manager.hokm_display_label._on_hokm_chosen(hokm_suit)
 	#$"../Hokm Display Label".text = str('Hokm Suit:', hokm_suit)
-	#hokm_chosen.emit(hokm)
+	emit_signal('gm_hokm_chosen', hokm_suit)
+	#call_deferred("emit_signal", "gm_hokm_chosen", hokm_suit) # Trying to make async, fixed it but breaks sidebar
+	#return hokm_suit
 
 func _on_ui_manager_hokm_chosen(_hokm: CardData.Suit) -> void: ## <- Does this serve a purpose not covered above? 
 	# ^Still called when panel is visible
