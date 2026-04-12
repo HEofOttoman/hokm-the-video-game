@@ -629,6 +629,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StockChoiceUI" type="Control" parent="UIManager/HUDLayer" unique_id=181460032]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -661,8 +662,7 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="PreviewPoint" type="Node2D" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=1147805813]
-visible = false
-position = Vector2(94, 97)
+position = Vector2(32, 97)
 
 [node name="KeepBtn" type="Button" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=1484394144]
 layout_mode = 0
@@ -683,10 +683,10 @@ text = "Discard"
 [node name="CardPreview" type="TextureRect" parent="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel" unique_id=1021792449]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.16842106
-anchor_top = 0.13675214
-anchor_right = 0.8210526
-anchor_bottom = 0.6666667
+anchor_left = 0.2083333
+anchor_top = 0.13532764
+anchor_right = 0.86096483
+anchor_bottom = 0.66524214
 texture = ExtResource("23_8ycwu")
 metadata/_edit_use_anchors_ = true
 
@@ -961,6 +961,7 @@ script = ExtResource("23_llag2")
 [connection signal="pressed" from="TutorialController/TutorialLayer/FinishButton" to="TutorialController" method="_on_finish_button_pressed"]
 [connection signal="hokm_chosen" from="UIManager" to="Game Manager" method="_on_ui_manager_hokm_chosen"]
 [connection signal="hokm_selection_request" from="UIManager" to="UIManager/HUDLayer/HokmSelector" method="_on_hokm_selection_request"]
+[connection signal="stock_choice_made" from="UIManager" to="Game Manager" method="_on_ui_stock_choice_made"]
 [connection signal="toggled" from="UIManager/HUDLayer/HudSidebar/Button" to="UIManager/HUDLayer/HudSidebar" method="_on_sidebar_btn_toggled"]
 [connection signal="hokm_chosen" from="UIManager/HUDLayer/HokmSelector" to="UIManager" method="_on_hokm_selected"]
 [connection signal="pressed" from="UIManager/HUDLayer/HokmSelector/HokmSelector/Clubs" to="UIManager/HUDLayer/HokmSelector" method="_on_clubs_pressed"]

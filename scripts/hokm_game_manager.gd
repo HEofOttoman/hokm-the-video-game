@@ -130,7 +130,8 @@ func auctioning_game():
 	declaring_hokm()
 	print('Hokm declared')
 	
-	await get_tree().create_timer(3.0).timeout
+	#await get_tree().create_timer(3.0).timeout
+	await ui_manager.hokm_chosen
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
 	if player_count == HokmGameMode.TWO_PLAYER:
 		begin_stock_draw()
@@ -189,7 +190,13 @@ func _on_ui_manager_hokm_chosen(_hokm: CardData.Suit) -> void: ## <- Does this s
 
 
 ### --- Stock Draw logic section ----
-## 
+var stock_first_card : CardInstance
+var stock_second_card : CardInstance
+var keep_first_card : bool = false
+
+signal show_stock_ui(stock_first_card: CardInstance)
+
+## Begins the stock draw phase
 func begin_stock_draw() -> void:
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
 	
@@ -198,69 +205,110 @@ func begin_stock_draw() -> void:
 	print('STOCK DRAW START')
 	start_stock_turn(current_player)
 
-## 
+## Starts stock turn for the given player
 func start_stock_turn(player_id : int) -> void:
 	if deck.cards.is_empty():
 		trick_play()
 		return
 	
-	stock_first_card = null
-	stock_second_card = null
+	#stock_first_card = null
+	#stock_second_card = null
 	keep_first_card = false
 	
-	stock_state = StockState.DRAW_FIRST
+	stock_first_card = deck.draw_card()
+	stock_second_card = deck.draw_card()
+	
+	#stock_state = StockState.DRAW_FIRST
 	
 	print('Stock Turn Player ', player_id)
-	process_stock_state()
-
-signal show_stock_ui(stock_first_card: CardInstance)
-
-var stock_first_card : CardInstance
-var stock_second_card : CardInstance
-var keep_first_card : bool = false
-
-## Big state machine processor thingy for stock draws instead of func chain
-func process_stock_state() -> void:
-	#var stock_first_card : CardInstance
-	#var stock_second_card : CardInstance
-	#
-	#var keep_first_card : bool = false
+	#process_stock_state()
 	
-	match stock_state:
-		
-		StockState.DRAW_FIRST:
-			stock_first_card = deck.draw_card() # <- Fatal error (fixed)
-			#stock_first_card = await card_drawn # <- breaks literally everything
-			#hands[current_player].receive_card(stock_first_card) # Fixed the last tween issue of not being parented
-			#^ And STILL the UI doesn't work 💔 
-			
-			if hands[current_player].is_player_controlled:
-				#enable_stock_ui()
-				print('stock first card: ', stock_first_card)
-				
-				emit_signal('show_stock_ui', stock_first_card)
-				#return
-			else:
-				#ai_controllers[current_player].ai_stock_choice(stock_first_card)
-				#hands[current_player].ai_controller.ai_stock_choice(stock_first_card)
-				keep_first_card = hands[current_player].ai_controller.ai_stock_choice(stock_first_card)
-				
-				#process_stock_state()
-				
-			
-			stock_state = StockState.WAIT_DECISION
-			#return
-			
-		StockState.WAIT_DECISION:
-			push_error('Not supposed to get here')
-		StockState.DRAW_SECOND:
-			stock_second_card = deck.draw_card()
-			stock_state = StockState.RESOLVE
-			process_stock_state()
-			
-		StockState.RESOLVE:
-			resolve_stock_choice(keep_first_card, stock_first_card, stock_second_card)
+	if hands[player_id].is_player_controlled:
+		enable_stock_ui()
+	else:
+		process_ai_stock_choice(stock_first_card)
 
+func enable_stock_ui() -> void:
+	emit_signal("show_stock_ui", stock_first_card)
+
+func process_ai_stock_choice(first_card: CardInstance) -> void:
+	var ai_should_keep : bool = hands[current_player].ai_controller.ai_stock_choice(first_card)
+	
+	var second_card : CardInstance = deck.draw_card()
+	
+	if ai_should_keep == true :
+		hands[current_player].receive_card(first_card)
+		
+		add_child(stock_second_card)
+		second_card.destroy_card()
+		
+	else:
+		add_child(first_card)
+		first_card.destroy_card()
+		
+		hands[current_player].receive_card(second_card)
+		
+	advance_stock_turn()
+
+func _on_ui_stock_choice_made(stock_choice: bool) -> void:
+	keep_first_card = stock_choice
+	if keep_first_card == true:
+		hands[current_player].receive_card(stock_first_card)
+		
+		deck.add_child(stock_second_card)
+		stock_second_card.destroy_card()
+		
+	else:
+		stock_first_card.destroy_card()
+		
+		hands[current_player].receive_card(stock_second_card)
+	advance_stock_turn()
+
+## Big state machine processor thingy for stock draws instead of func chain. It is actually crap now that I look at it
+#func process_stock_state() -> void:
+	##var stock_first_card : CardInstance
+	##var stock_second_card : CardInstance
+	##
+	##var keep_first_card : bool = false
+	#
+	#match stock_state:
+		#
+		#StockState.DRAW_FIRST:
+			#stock_first_card = deck.draw_card() # <- Fatal error (fixed)
+			##stock_first_card = await card_drawn # <- breaks literally everything
+			##hands[current_player].receive_card(stock_first_card) # Fixed the last tween issue of not being parented
+			##^ And STILL the UI doesn't work 💔 
+			#
+			#if hands[current_player].is_player_controlled:
+				##enable_stock_ui()
+				#print('stock first card: ', stock_first_card)
+				#
+				#emit_signal('show_stock_ui', stock_first_card)
+				##return
+			#else:
+				##ai_controllers[current_player].ai_stock_choice(stock_first_card)
+				##hands[current_player].ai_controller.ai_stock_choice(stock_first_card)
+				#keep_first_card = hands[current_player].ai_controller.ai_stock_choice(stock_first_card)
+				#
+				#if keep_first_card == true:
+					#resolve_stock_choice(keep_first_card, stock_first_card, stock_second_card)
+				#else:
+					#stock_first_card.destroy_card()
+				##process_stock_state()
+				#
+			#
+			#stock_state = StockState.WAIT_DECISION
+			##return
+			#
+		#StockState.WAIT_DECISION:
+			#push_error('Not supposed to get here')
+		#StockState.DRAW_SECOND:
+			#stock_second_card = deck.draw_card()
+			#stock_state = StockState.RESOLVE
+			##process_stock_state()
+			#
+		#StockState.RESOLVE:
+			#resolve_stock_choice(keep_first_card, stock_first_card, stock_second_card)
 
 func advance_stock_turn() -> void:
 	if deck.cards.is_empty(): # terminates and begins trick play phase
@@ -271,17 +319,17 @@ func advance_stock_turn() -> void:
 	
 	start_stock_turn(current_player)
 
-## Resolves the stock.
-func resolve_stock_choice(stock_first_kept: bool, stock_1st_card: CardInstance, stock_2nd_card: CardInstance):
-	if stock_first_kept == true:
-		hands[current_player].receive_card(stock_1st_card)
-		#discard_card(stock_second_card)
-	else:
-		#discard_card(stock_first_card)
-		stock_first_card.destroy_card()
-		hands[current_player].receive_card(stock_2nd_card)
-	print("Resolved stock choice")
-	advance_stock_turn()
+## Resolves the stock. Unnecessary too
+#func resolve_stock_choice(stock_first_kept: bool, stock_1st_card: CardInstance, stock_2nd_card: CardInstance):
+	#if stock_first_kept == true:
+		#hands[current_player].receive_card(stock_1st_card)
+		##discard_card(stock_second_card)
+	#else:
+		##discard_card(stock_first_card)
+		#stock_first_card.destroy_card()
+		#hands[current_player].receive_card(stock_2nd_card)
+	#print("Resolved stock choice")
+	#advance_stock_turn()
 
 #Draw card A > Choose to KEEP or DISCARD
 #>
@@ -354,7 +402,7 @@ func deal_cards(player_id): ## Deal cards to each player
 	
 	hands[player_id].receive_card(card) # Hopefully fixes. should've used player_id instead of current_player
 	
-	print("Dealt to player:", player_id)
+	#print("Dealt to player:", player_id)
 	
 	## THis for loop is repeated in each function that calls it, this is fundamentally broken
 	#for i in range(cards_per_player):
