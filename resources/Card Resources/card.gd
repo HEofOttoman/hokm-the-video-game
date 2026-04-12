@@ -196,7 +196,7 @@ func rotate_card():
 	#var size = cardtexture.size
 	var size = 0
 	var mouse_pos := get_local_mouse_position()
-	var diff : Vector2 = (position + size) - mouse_pos
+	var _diff : Vector2 = (position + size) - mouse_pos
 	
 	var lerp_val_x : float = remap(mouse_pos.x, 0.0, size.x, 0, 1)
 	var lerp_val_y : float = remap(mouse_pos.y, 0.0, size.y, 0, 1)
@@ -264,5 +264,5 @@ func destroy_card() -> void:
 	tween_destroy.tween_property(material, "shader_parameter/dissolve_value", 0.0, 2.0).from(1.0)
 	tween_destroy.parallel().tween_property(card_shadow, "self_modulate:a", 0.0, 1.0)
 	
-	#await get_tree().create_timer(1).timeout
-	#queue_free()
+	await tween_destroy.finished
+	queue_free()

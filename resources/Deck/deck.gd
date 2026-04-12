@@ -11,7 +11,7 @@ class_name Deck
 
 @export var CARD_DRAW_SPEED : float = 0.2 ## Speed of the cards being drawn
 
-signal card_drawn(card)
+signal _card_drawn(card)
 
 ## Shuffles deck with MAX randomness
 func shuffle_deck():

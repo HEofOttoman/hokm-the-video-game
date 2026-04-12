@@ -133,11 +133,11 @@ func auctioning_game():
 	
 	
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
-	#if player_count == HokmGameMode.TWO_PLAYER:
-		#begin_stock_draw()
+	if player_count == HokmGameMode.TWO_PLAYER:
+		begin_stock_draw()
 	#else:
 		#deal_remaining_cards()
-	deal_remaining_cards()
+	#deal_remaining_cards()
 
 func declaring_hakem() -> int:
 	var hakem = hands.pick_random()
@@ -204,7 +204,7 @@ func begin_stock_draw() -> void:
 ## Starts stock turn for the given player
 func start_stock_turn(player_id : int) -> void:
 	if deck.cards.is_empty():
-		trick_play()
+		end_stock_draw()
 		return
 	
 	#stock_first_card = null
@@ -308,31 +308,12 @@ func _on_ui_stock_choice_made(stock_choice: bool) -> void:
 
 func advance_stock_turn() -> void:
 	if deck.cards.is_empty(): # terminates and begins trick play phase
-		trick_play()
+		end_stock_draw()
 		return
 	
 	current_player = (current_player + 1) % hands.size()
 	
 	start_stock_turn(current_player)
-
-## Resolves the stock. Unnecessary too
-#func resolve_stock_choice(stock_first_kept: bool, stock_1st_card: CardInstance, stock_2nd_card: CardInstance):
-	#if stock_first_kept == true:
-		#hands[current_player].receive_card(stock_1st_card)
-		##discard_card(stock_second_card)
-	#else:
-		##discard_card(stock_first_card)
-		#stock_first_card.destroy_card()
-		#hands[current_player].receive_card(stock_2nd_card)
-	#print("Resolved stock choice")
-	#advance_stock_turn()
-
-#Draw card A > Choose to KEEP or DISCARD
-#>
-#Draw card B
-#>
-#If A was kept -> B must be discarded
-#If A was discarded -> B must be kept
 
 func end_stock_draw() -> void:
 	
