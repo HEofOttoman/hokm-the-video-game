@@ -3,8 +3,10 @@ extends Control
 signal keep_pressed
 signal discard_pressed
 
-@onready var card_preview_display: TextureRect = $StockChoicePanel/CardPreview ## Maybe not needed
-@onready var preview_point: Node2D = $StockChoicePanel/PreviewPoint
+#@onready var card_preview_display: TextureRect = $StockChoicePanel/CardPreview ## Maybe not needed
+@export var card_preview_display: TextureRect
+@export var preview_point: Node2D
+#@onready var preview_point: Node2D = $StockChoicePanel/PreviewPoint
 
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:

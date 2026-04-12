@@ -434,7 +434,7 @@ script = ExtResource("16_3tb7h")
 pause_menu_packed = ExtResource("17_x5e23")
 canvas_layer = NodePath("../UIManager/HUDLayer")
 
-[node name="UIManager" type="Node" parent="." unique_id=30243284 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label", "ui_animation_player")]
+[node name="UIManager" type="Node" parent="." unique_id=30243284 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label", "ui_animation_player", "stock_choice_ui")]
 script = ExtResource("9_rnmyu")
 hakem_display_label = NodePath("HUDLayer/HudSidebar/HakemDisplayLabel")
 hokm_display_label = NodePath("HUDLayer/HudSidebar/Hokm Display Label")
@@ -443,6 +443,7 @@ turn_indicator = NodePath("HUDLayer/HudSidebar/Turn Indicator")
 turn_prompt = NodePath("HUDLayer/Turn Prompt")
 rounds_won_display_label = NodePath("HUDLayer/HudSidebar/ScoreLabel")
 ui_animation_player = NodePath("UIAnimationPlayer")
+stock_choice_ui = NodePath("HUDLayer/StockChoiceUI")
 
 [node name="UIAnimationPlayer" type="AnimationPlayer" parent="UIManager" unique_id=575928288]
 root_node = NodePath("../HUDLayer/Turn Prompt")
@@ -628,7 +629,7 @@ text = "YOUR TURN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StockChoiceUI" type="Control" parent="UIManager/HUDLayer" unique_id=181460032]
+[node name="StockChoiceUI" type="Control" parent="UIManager/HUDLayer" unique_id=181460032 node_paths=PackedStringArray("card_preview_display", "preview_point")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -642,6 +643,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("22_eg3ek")
+card_preview_display = NodePath("StockChoicePanel/CardPreview")
+preview_point = NodePath("StockChoicePanel/PreviewPoint")
 
 [node name="StockChoicePanel" type="Panel" parent="UIManager/HUDLayer/StockChoiceUI" unique_id=927492977]
 self_modulate = Color(1, 1, 1, 0.627451)

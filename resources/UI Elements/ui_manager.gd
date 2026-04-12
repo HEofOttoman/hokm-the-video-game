@@ -51,7 +51,8 @@ func _on_hokm_selected(chosen_suit: CardData.Suit) -> void:
 	#hokm_display_label._on_hokm_chosen(chosen_suit)
 
 
-@onready var stock_choice_ui: Control = $HUDLayer/StockChoiceUI
+@export var stock_choice_ui: Control
+
 ## From Gamemanager
 func _on_game_manager_show_stock_ui(stock_first_card: CardInstance) -> void:
 	stock_choice_ui.show()
