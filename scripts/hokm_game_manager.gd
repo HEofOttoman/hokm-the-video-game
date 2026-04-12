@@ -133,11 +133,11 @@ func auctioning_game():
 	
 	
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
-	if player_count == HokmGameMode.TWO_PLAYER:
-		begin_stock_draw()
+	#if player_count == HokmGameMode.TWO_PLAYER:
+		#begin_stock_draw()
 	#else:
 		#deal_remaining_cards()
-	#deal_remaining_cards()
+	deal_remaining_cards()
 
 func declaring_hakem() -> int:
 	var hakem = hands.pick_random()
@@ -236,11 +236,11 @@ func process_ai_stock_choice(first_card: CardInstance) -> void:
 	if ai_should_keep == true :
 		hands[current_player].receive_card(first_card)
 		
-		add_child(stock_second_card)
+		deck.add_child(stock_second_card)
 		second_card.destroy_card()
 		
 	else:
-		add_child(first_card)
+		deck.add_child(first_card)
 		first_card.destroy_card()
 		
 		hands[current_player].receive_card(second_card)
