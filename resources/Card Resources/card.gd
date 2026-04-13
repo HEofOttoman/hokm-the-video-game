@@ -58,6 +58,13 @@ enum Suit {
 @export var custom_default_scale : Vector2 = Vector2(1.0, 1.0)
 @export var CARD_SMALLER_SCALE : float = 0.6 ## Determines the size a card should take in a card slot
 
+@export_subgroup('Oscillator') # From https://github.com/MrEliptik/godot_ui_components/
+@export var spring: float = 150.0
+@export var damp: float = 10.0
+@export var velocity_multiplier: float = 2.0
+
+var displacement: float = 0.0 
+var oscillator_velocity: float = 0.0
 
 signal hovered(card) ## Hovered singlas were used to talk to card manager, but migrated here.
 signal hovered_off(card) ## Might be useful for implementing tutorials (seeing if instruction is followed?)
@@ -83,9 +90,13 @@ func _ready() -> void:
 	#$CardSprite.texture = cardtexture ## Sets the card texture as the default
 	card_sprite.texture = cardtexture ## Sets the card texture as the default
 	
+	
 
-func _process(_delta):
+func _process(delta):
+	
 	handle_shadow()
+	
+	rotate_velocity(delta) # Works beautifully but breaks returning to hand somehow
 	#if dragging:
 		#var areas = $Area2D.get_overlapping_areas()
 		#if areas.size() > 0:
@@ -105,7 +116,7 @@ func get_hovered_card_slot():
 
 func _input(event: InputEvent) -> void: ## Better way to move cards that doesn't run every frame
 	#if not InputEventMouseMotion: return
-	#rotate_card()
+	rotate_card(event)
 	#if event.is_action('ClickR'): # <- Testing destroy card
 		#destroy_card()
 	
@@ -192,14 +203,20 @@ func highlight_card(on_card : bool): #(card, hovered : bool):
 		z_index = 1
 
 ## Rotates card in 3D perspective via the shader
-func rotate_card():
-	#var size = cardtexture.size
-	var size = 0
-	var mouse_pos := get_local_mouse_position()
-	var _diff : Vector2 = (position + size) - mouse_pos
+func rotate_card(event: InputEvent):
+	if dragging: return
+	if not event is InputEventMouseMotion: return
 	
-	var lerp_val_x : float = remap(mouse_pos.x, 0.0, size.x, 0, 1)
-	var lerp_val_y : float = remap(mouse_pos.y, 0.0, size.y, 0, 1)
+	
+	#var size = cardtexture.size
+	#var size = 0
+	var mouse_pos : Vector2 = get_local_mouse_position()
+	#var _diff : Vector2 = (position + size) - mouse_pos
+	
+	#var lerp_val_x : float = remap(mouse_pos.x, 0.0, size.x, 0, 1)
+	#var lerp_val_y : float = remap(mouse_pos.y, 0.0, size.y, 0, 1)
+	var lerp_val_x : float = remap(mouse_pos.x, 0.0, screen_size.x, 0, 1)
+	var lerp_val_y : float = remap(mouse_pos.y, 0.0, screen_size.y, 0, 1)
 	
 	var rot_x : float = rad_to_deg(lerp_angle(-angle_x_max, angle_x_max, lerp_val_x))
 	var rot_y : float = rad_to_deg(lerp_angle(-angle_y_max, angle_y_max, lerp_val_y))
@@ -207,17 +224,46 @@ func rotate_card():
 	card_sprite.material.set_shader_parameter("x_rot", rot_x)
 	card_sprite.material.set_shader_parameter("y_rot", rot_y)
 	
-	var tween_rot : Tween
+	#var tween_rot : Tween
+	#
+	#@warning_ignore("unassigned_variable")
+	#if tween_rot:
+		#@warning_ignore("unassigned_variable")
+		#tween_rot.kill()
+	#
+	#tween_rot = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true)
+	#tween_rot.tween_property(card_sprite.material, "shader_parameter/x_rot", 0.0, 0.5)
+	#tween_rot.tween_property(card_sprite.material, "shader_parameter/y_rot", 0.0, 0.5)
 	
-	@warning_ignore("unassigned_variable")
-	if tween_rot:
-		@warning_ignore("unassigned_variable")
-		tween_rot.kill()
+
+
+var velocity : Vector2
+func rotate_velocity(delta: float) -> void:
+	if not dragging: return
+	var center_pos: Vector2 = global_position - (screen_size/2.0)
+	#var center_pos: Vector2 = global_position - (size/2.0)
 	
-	tween_rot = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true)
-	tween_rot.tween_property(card_sprite.material, "shader_parameter/x_rot", 0.0, 0.5)
-	tween_rot.tween_property(card_sprite.material, "shader_parameter/y_rot", 0.0, 0.5)
+	print("Pos: ", center_pos)
+	#print("Pos: ", last_pos) # last_position = starting_position
+	print("Pos: ", starting_position)
+	# Compute the velocity
+	#velocity = (position - last_pos) / delta
+	velocity = (position - starting_position) / delta
 	
+	starting_position = position
+	#last_post = position
+	
+	print("Velocity: ", velocity)
+	oscillator_velocity += velocity.normalized().x * velocity_multiplier
+	
+	# Oscillator stuff
+	var force = -spring * displacement - damp * oscillator_velocity
+	oscillator_velocity += force * delta
+	displacement += oscillator_velocity * delta
+	
+	rotation = displacement
+
+
 
 ## Changes the shadow of the card based on x
 func handle_shadow() -> void:
@@ -260,10 +306,15 @@ func destroy_card() -> void:
 	card_sprite.use_parent_material = true
 	if tween_destroy and tween_destroy.is_running():
 		tween_destroy.kill()
+	
 	tween_destroy = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween_destroy.tween_property(material, "shader_parameter/dissolve_value", 0.0, 2.0).from(1.0)
+	tween_destroy.tween_property(
+		material, 
+		"shader_parameter/dissolve_value", 
+		0.0, 
+		2.0).from(1.0)
 	#tween_destroy.tween_method(
-		#func(value: float): set_instance_shader_parameter('dissolve_value', value), 
+		#func(value: float): self.set_instance_shader_parameter('shader_parameter/dissolve_value', value), 
 		#1.0, 0.0, 2.0)
 	tween_destroy.parallel().tween_property(card_shadow, "self_modulate:a", 0.0, 1.0)
 	
