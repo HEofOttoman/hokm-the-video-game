@@ -71,6 +71,10 @@ signal hovered_off(card) ## Might be useful for implementing tutorials (seeing i
 signal drag_started(card)
 signal drag_ended(card)
 
+var tween_rot: Tween
+var tween_hover: Tween
+var tween_destroy: Tween
+var tween_handle: Tween
 
 var starting_position : Vector2
 
@@ -81,6 +85,9 @@ var is_hovered : bool = false
 var screen_size : Vector2
 
 func _ready() -> void:
+	angle_x_max = deg_to_rad(angle_x_max)
+	angle_y_max = deg_to_rad(angle_y_max)
+	
 	if custom_default_scale == Vector2.ZERO:
 		custom_default_scale = scale
 	
@@ -157,6 +164,18 @@ func _on_area_2d_card_release(left: bool) -> void: ## Releases cards when the LM
 		dragging = false
 		emit_signal("drag_ended", self) ## BRO ADDING `self` IS WHAT FIXED THE HAND SNAP 
 		
+		#collision_shape.set_deferred("disabled", false)
+		if tween_handle and tween_handle.is_running(): ## Fixes the card rotation not changing
+			tween_handle.kill()
+		tween_handle = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween_handle.tween_property(self, "rotation", 0.0, 0.3)
+		
+		#following_mouse = false
+		#collision_shape.set_deferred("disabled", false)
+		#if tween_handle and tween_handle.is_running():
+			#tween_handle.kill()
+		#tween_handle = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+		#tween_handle.tween_property(self, "rotation", 0.0, 0.3)
 
 
 
@@ -179,13 +198,14 @@ func _on_area_2d_mouse_exited() -> void:
 ## Applies a card highlight effect when hovered
 func highlight_card(on_card : bool): #(card, hovered : bool): 
 	 ## Using tweens for highlights
-	var tween_hover : Tween
-	@warning_ignore("unassigned_variable")
-	if tween_hover:
-		@warning_ignore("unassigned_variable")
-		tween_hover.kill()
+	#var tween_hover : Tween
+	#if tween_hover:
+		#tween_hover.kill()
 	
 	if on_card:
+		if tween_hover and tween_hover.is_running():
+			tween_hover.kill()
+		
 		tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)#.set_parallel(true)
 		tween_hover.tween_property(self, "scale", custom_default_scale * Vector2(1.05, 1.05), 0.55)
 		
@@ -195,6 +215,12 @@ func highlight_card(on_card : bool): #(card, hovered : bool):
 		## However appears in front of the pause menu for some reason (fix)
 	else:
 		## Scales the cards back down
+		if tween_rot and tween_rot.is_running():
+			tween_rot.kill()
+		
+		tween_rot = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK).set_parallel(true)
+		tween_rot.tween_property(card_sprite.material, "shader_parameter/x_rot", 0.0, 0.5)
+		tween_rot.tween_property(card_sprite.material, "shader_parameter/y_rot", 0.0, 0.5)
 		
 		tween_hover = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)#.set_parallel(true)
 		tween_hover.tween_property(self, "scale", Vector2.ONE, 0.55)
@@ -251,7 +277,7 @@ func rotate_velocity(delta: float) -> void:
 	velocity = (position - starting_position) / delta
 	
 	starting_position = position
-	#last_post = position
+	#last_pos = position
 	
 	print("Velocity: ", velocity)
 	oscillator_velocity += velocity.normalized().x * velocity_multiplier
@@ -293,7 +319,7 @@ func animate_card_to_position(new_position):
 	var tween = get_tree().create_tween()
 	tween.tween_property(self,"global_position", new_position, 0.5).set_trans(Tween.TRANS_SINE)
 
-var tween_destroy : Tween
+#var tween_destroy : Tween
 ## Destroys the card
 func destroy_card() -> void:
 	#card_texture.use_parent_material = true

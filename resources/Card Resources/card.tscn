@@ -175,7 +175,6 @@ root_node = NodePath("../CardSprite")
 libraries/ = SubResource("AnimationLibrary_j2llb")
 
 [node name="CardBackSprite" type="Sprite2D" parent="." unique_id=1750563321]
-visible = false
 material = ExtResource("4_j2llb")
 use_parent_material = true
 texture = ExtResource("4_mucyl")
