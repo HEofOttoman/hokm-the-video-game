@@ -11,6 +11,7 @@ class_name Deck
 
 @export var CARD_DRAW_SPEED : float = 0.2 ## Speed of the cards being drawn
 
+@warning_ignore("unused_signal")
 signal _card_drawn(card)
 
 ## Shuffles deck with MAX randomness

@@ -13,6 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="8_tnpxt"]
 [ext_resource type="Script" uid="uid://pfwqjnxmgcqk" path="res://resources/UI Elements/sidebar/sidebar.gd" id="9_38tb1"]
 [ext_resource type="Texture2D" uid="uid://bthfog1jt8mf" path="res://assets/kenney_game-icons/PNG/White/2x/left.png" id="9_oqib0"]
+[ext_resource type="Script" uid="uid://dwk3pcakuflgo" path="res://resources/UI Elements/hokm_selector.gd" id="12_ig7ap"]
+[ext_resource type="Texture2D" uid="uid://dr7lvrpgxl33u" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (small)/card_clubs_suit.png" id="13_nf1j6"]
+[ext_resource type="Texture2D" uid="uid://c2hokq0eue8xk" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (small)/card_hearts_suit.png" id="14_5piwa"]
+[ext_resource type="Texture2D" uid="uid://d3k1m6ldkdvd3" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (small)/card_spades_suit.png" id="15_61mha"]
+[ext_resource type="Texture2D" uid="uid://40uxqh7mqg2x" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (small)/card_diamonds_suit.png" id="16_npprk"]
 
 [sub_resource type="Animation" id="Animation_onchg"]
 length = 0.001
@@ -260,40 +265,6 @@ toggle_mode = true
 icon = ExtResource("5_lcsmr")
 expand_icon = true
 
-[node name="Container" type="HBoxContainer" parent="HUDLayer" unique_id=970056742]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.44375
-anchor_top = 0.9111111
-anchor_right = 0.55625
-anchor_bottom = 0.96666664
-alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Clubs" type="TextureButton" parent="HUDLayer/Container" unique_id=387641050]
-layout_mode = 2
-texture_normal = ExtResource("5_38tb1")
-stretch_mode = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="Hearts" type="TextureButton" parent="HUDLayer/Container" unique_id=892687096]
-layout_mode = 2
-texture_normal = ExtResource("6_lcsmr")
-stretch_mode = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="Spades" type="TextureButton" parent="HUDLayer/Container" unique_id=798206795]
-layout_mode = 2
-texture_normal = ExtResource("7_yt7as")
-stretch_mode = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="Diamonds" type="TextureButton" parent="HUDLayer/Container" unique_id=1761159983]
-layout_mode = 2
-texture_normal = ExtResource("8_tnpxt")
-stretch_mode = 0
-metadata/_edit_use_anchors_ = true
-
 [node name="Turn Prompt" type="Label" parent="HUDLayer" unique_id=1738563908]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -422,6 +393,79 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="HokmSelector" type="Panel" parent="HUDLayer" unique_id=625058016]
+visible = false
+self_modulate = Color(1, 1, 1, 0.627451)
+z_index = 1
+layout_mode = 0
+offset_left = 528.0
+offset_top = 632.0
+offset_right = 752.0
+offset_bottom = 712.0
+mouse_filter = 2
+script = ExtResource("12_ig7ap")
+
+[node name="SelectHokm" type="Label" parent="HUDLayer/HokmSelector" unique_id=68734081]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 224.0
+offset_bottom = 25.0
+text = "Select Hokm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HokmSelector" type="HBoxContainer" parent="HUDLayer/HokmSelector" unique_id=1781580203]
+custom_minimum_size = Vector2(0, 5.805)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -8.0
+offset_right = 66.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Clubs" type="TextureButton" parent="HUDLayer/HokmSelector/HokmSelector" unique_id=156520535]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("13_nf1j6")
+texture_pressed = ExtResource("5_38tb1")
+texture_hover = ExtResource("5_38tb1")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Hearts" type="TextureButton" parent="HUDLayer/HokmSelector/HokmSelector" unique_id=924347738]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("14_5piwa")
+texture_pressed = ExtResource("6_lcsmr")
+texture_hover = ExtResource("6_lcsmr")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Spades" type="TextureButton" parent="HUDLayer/HokmSelector/HokmSelector" unique_id=1653252815]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("15_61mha")
+texture_pressed = ExtResource("7_yt7as")
+texture_hover = ExtResource("7_yt7as")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Diamonds" type="TextureButton" parent="HUDLayer/HokmSelector/HokmSelector" unique_id=946810405]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("16_npprk")
+texture_pressed = ExtResource("8_tnpxt")
+texture_hover = ExtResource("8_tnpxt")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
 [node name="DebugLayer" type="Control" parent="." unique_id=2085194598]
 visible = false
 layout_mode = 3
@@ -498,3 +542,8 @@ offset_bottom = 504.0
 [connection signal="toggled" from="HUDLayer/HudSidebar/Button" to="HUDLayer/HudSidebar" method="_on_sidebar_btn_toggled"]
 [connection signal="pressed" from="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/Sidebar Btn" to="HUDLayer/Sidebar" method="_on_sidebar_btn_pressed"]
 [connection signal="toggled" from="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/Sidebar Btn" to="HUDLayer/Sidebar" method="_on_sidebar_btn_toggled"]
+[connection signal="hokm_chosen" from="HUDLayer/HokmSelector" to="." method="_on_hokm_selected"]
+[connection signal="pressed" from="HUDLayer/HokmSelector/HokmSelector/Clubs" to="HUDLayer/HokmSelector" method="_on_clubs_pressed"]
+[connection signal="pressed" from="HUDLayer/HokmSelector/HokmSelector/Hearts" to="HUDLayer/HokmSelector" method="_on_hearts_pressed"]
+[connection signal="pressed" from="HUDLayer/HokmSelector/HokmSelector/Spades" to="HUDLayer/HokmSelector" method="_on_spades_pressed"]
+[connection signal="pressed" from="HUDLayer/HokmSelector/HokmSelector/Diamonds" to="HUDLayer/HokmSelector" method="_on_diamonds_pressed"]

@@ -458,7 +458,10 @@ func add_card_to_trick(card, slot, hand_cards, player_id: int): ## Adds the
 	#for hand in hands: 
 		#hand.player_id = hands[hand]
 
-func advance_turn(): ## Advances hand
+func advance_turn() -> void: ## Advances hand turn order
+	if current_game_phase == HokmGamePhase.GAME_OVER:
+		return
+	
 	print('Advancing Turn')
 	
 	#print('Hands:', hands)

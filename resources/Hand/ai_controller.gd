@@ -70,6 +70,10 @@ func take_turn():
 ## Chooses cards and places them
 #func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : Array[CardData]) -> CardData:
 func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : Array) -> Object:
+	if hand.cards_in_hand.is_empty():
+		push_error('Cards are empty, there is nothing to choose mate')
+		return
+	
 	match difficulty:
 		Difficulty.EASY:
 			return legal_cards.pick_random() # The dumbest version of the AI

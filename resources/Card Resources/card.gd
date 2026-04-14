@@ -267,7 +267,7 @@ func rotate_card(event: InputEvent):
 var velocity : Vector2
 func rotate_velocity(delta: float) -> void:
 	if not dragging: return
-	var center_pos: Vector2 = global_position - (screen_size/2.0) # <- What IS size meant to be?
+	#var center_pos: Vector2 = global_position - (screen_size/2.0) # <- What IS size meant to be?
 	#var center_pos: Vector2 = global_position - (size/2.0)
 	
 	#print("Pos: ", center_pos)
