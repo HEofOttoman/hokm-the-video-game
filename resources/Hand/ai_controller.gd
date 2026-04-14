@@ -38,7 +38,7 @@ func ai_stock_choice(stock_first_card: CardInstance) -> bool:
 		stock_first_kept = false
 		return stock_first_kept
 
-func take_turn():
+func take_turn() -> void:
 	print('Thinking Cooldown')
 	await get_tree().create_timer(3.0).timeout ## Stops game from going too fast, inject animation here
 	
@@ -49,23 +49,24 @@ func take_turn():
 		game_manager.trick_cards)
 	
 	#var chosen_card : CardData = choose_cards(
-	var chosen_card := choose_cards(
+	var chosen_card : CardInstance = choose_cards(
 		legal_cards,
 		game_manager.hokm_suit,
 		game_manager.trick_cards
 	)
 	print('CHOSEN CARD:', chosen_card)
 	
-	#hand.remove_card_from_hand(chosen_card)
+	chosen_card.z_index +=1
 	chosen_card.flip_card(true)
-	hand.trick_slot.add_card_to_slot(chosen_card)
 	chosen_card.animate_card_to_position(hand.trick_slot.global_position) # AHA THATS IT WHY CARDS ARENT SHOWING
 	hand.remove_card_from_hand(chosen_card)
 	hand.update_hand_positions()
-	#hand.request_play_card(chosen_card, hand.trick_slot) ## Somehow going through the hand first ruins everything
-	#game_manager.play_card(chosen_card, hand.trick_slot, hand.cards_in_hand, hand.player_id)
+	hand.trick_slot.add_card_to_slot(chosen_card)
+
 	game_manager.add_card_to_trick(chosen_card, hand.trick_slot, hand.cards_in_hand, hand.player_id)
 	
+	#hand.request_play_card(chosen_card, hand.trick_slot) ## Somehow going through the hand first ruins everything
+	#game_manager.play_card(chosen_card, hand.trick_slot, hand.cards_in_hand, hand.player_id)
 
 ## Chooses cards and places them
 #func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : Array[CardData]) -> CardData:
@@ -90,7 +91,6 @@ func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : A
 			print("LEADING SUIT:", leading_suit)
 			
 			var best_score := 0
-			
 			
 			for card in legal_cards:
 				

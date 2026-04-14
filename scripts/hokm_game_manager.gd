@@ -459,8 +459,8 @@ func add_card_to_trick(card, slot, hand_cards, player_id: int): ## Adds the
 		#hand.player_id = hands[hand]
 
 func advance_turn() -> void: ## Advances hand turn order
-	if current_game_phase == HokmGamePhase.GAME_OVER:
-		return
+	if current_game_phase == HokmGamePhase.SCORING: return
+	if current_game_phase == HokmGamePhase.GAME_OVER: return
 	
 	print('Advancing Turn')
 	
@@ -484,7 +484,7 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 		return
 	
 	
-	var active_hand := hands[player_index]
+	var active_hand : HandClass = hands[player_index]
 	
 	for hand in hands: ## Ensures that the hand is not interactible if it's not your turn.
 		hand.set_interactive(false)
