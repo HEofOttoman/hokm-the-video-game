@@ -547,6 +547,7 @@ icon = ExtResource("22_8ycwu")
 expand_icon = true
 
 [node name="HokmSelector" type="Panel" parent="UIManager/HUDLayer" unique_id=2147057059]
+visible = false
 self_modulate = Color(1, 1, 1, 0.627451)
 z_index = 1
 offset_left = -112.0

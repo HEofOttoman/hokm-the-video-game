@@ -38,6 +38,7 @@ func ai_stock_choice(stock_first_card: CardInstance) -> bool:
 		stock_first_kept = false
 		return stock_first_kept
 
+## Takes the turn to put down a card during trick play.
 func take_turn() -> void:
 	print('Thinking Cooldown')
 	await get_tree().create_timer(3.0).timeout ## Stops game from going too fast, inject animation here
@@ -56,7 +57,7 @@ func take_turn() -> void:
 	)
 	print('CHOSEN CARD:', chosen_card)
 	
-	chosen_card.z_index +=1
+	chosen_card.z_index +=1 # Fixed card not showing in-game. (could also change it myself)
 	chosen_card.flip_card(true)
 	chosen_card.animate_card_to_position(hand.trick_slot.global_position) # AHA THATS IT WHY CARDS ARENT SHOWING
 	hand.remove_card_from_hand(chosen_card)

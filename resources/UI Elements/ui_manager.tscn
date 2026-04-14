@@ -539,6 +539,7 @@ offset_top = 200.0
 offset_right = 243.0
 offset_bottom = 504.0
 
+[connection signal="hokm_selection_request" from="." to="HUDLayer/HokmSelector" method="_on_hokm_selection_request"]
 [connection signal="toggled" from="HUDLayer/HudSidebar/Button" to="HUDLayer/HudSidebar" method="_on_sidebar_btn_toggled"]
 [connection signal="pressed" from="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/Sidebar Btn" to="HUDLayer/Sidebar" method="_on_sidebar_btn_pressed"]
 [connection signal="toggled" from="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/Sidebar Btn" to="HUDLayer/Sidebar" method="_on_sidebar_btn_toggled"]

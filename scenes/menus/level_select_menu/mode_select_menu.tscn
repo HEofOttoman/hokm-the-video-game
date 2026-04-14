@@ -153,8 +153,7 @@ expand_mode = 4
 
 [node name="3P-Btn" type="Button" parent="Prototype Panel/MarginContainer/VBoxContainer" unique_id=1275981313]
 layout_mode = 2
-disabled = true
-text = "WIP"
+text = "Play"
 metadata/_edit_use_anchors_ = true
 
 [node name="4P Container" type="PanelContainer" parent="." unique_id=1985857483]

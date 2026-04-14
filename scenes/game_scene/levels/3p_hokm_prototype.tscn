@@ -120,7 +120,19 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ScorePile" parent="PlayerHand" unique_id=1134187208 instance=ExtResource("15_heqth")]
-position = Vector2(-296, 96)
+position = Vector2(-288, 96)
+
+[node name="TrickCounter" parent="PlayerHand/ScorePile" index="1" unique_id=1670770910]
+offset_left = 128.0
+offset_top = -40.0
+offset_right = 256.0
+offset_bottom = -23.0
+
+[node name="TrickCountHint" parent="PlayerHand/ScorePile" index="2" unique_id=773479647]
+offset_left = 160.0
+offset_top = -64.0
+offset_right = 224.0
+offset_bottom = 0.0
 
 [node name="EnemyHand1" type="Node2D" parent="." unique_id=663171295 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
 position = Vector2(0, -192)
@@ -155,20 +167,20 @@ game_manager = NodePath("../../Game Manager")
 rulesEngine = NodePath("../../Rule Umpire")
 
 [node name="ScorePile" parent="EnemyHand1" unique_id=1527244512 instance=ExtResource("15_heqth")]
-position = Vector2(448, -96)
+position = Vector2(288, -96)
 owner_id = 1
 
 [node name="TrickCounter" parent="EnemyHand1/ScorePile" index="1" unique_id=1670770910]
-offset_left = -289.0
-offset_top = -8.0
-offset_right = -161.0
-offset_bottom = 9.0
+offset_left = -256.0
+offset_top = -1.0
+offset_right = -128.0
+offset_bottom = 16.0
 
 [node name="TrickCountHint" parent="EnemyHand1/ScorePile" index="2" unique_id=773479647]
-offset_left = -257.0
-offset_top = -32.0
-offset_right = -193.0
-offset_bottom = 32.0
+offset_left = -224.0
+offset_top = -25.0
+offset_right = -160.0
+offset_bottom = 39.0
 
 [node name="EnemyHand2" type="Node2D" parent="." unique_id=152099099 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
 position = Vector2(319.99997, 0)
@@ -192,10 +204,10 @@ texture = ExtResource("13_fxmio")
 expand_mode = 1
 
 [node name="PlayerLabel1" type="Label" parent="EnemyHand2" unique_id=10516032]
-offset_left = -48.000004
-offset_top = 63.999992
-offset_right = 80.0
-offset_bottom = 81.0
+offset_left = -32.000004
+offset_top = 64.00002
+offset_right = 96.0
+offset_bottom = 81.00003
 rotation = 1.5707964
 text = "Player 2 (AI)"
 horizontal_alignment = 1
@@ -209,9 +221,25 @@ rulesEngine = NodePath("../../Rule Umpire")
 position = Vector2(-192, 128.00002)
 owner_id = 2
 
+[node name="TrickCounter" parent="EnemyHand2/ScorePile" index="1" unique_id=1670770910]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 192.0
+offset_top = 36.000008
+offset_right = 312.0
+offset_bottom = 53.000008
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+
 [node name="TrickCountHint" parent="EnemyHand2/ScorePile" index="2" unique_id=773479647]
-offset_left = 32.0
-offset_right = 96.0
+offset_left = 216.0
+offset_top = 64.00001
+offset_right = 280.0
+offset_bottom = 128.0
 rotation = 1.5707964
 
 [node name="CardSlot" parent="." unique_id=786798802 instance=ExtResource("16_fxmio")]
@@ -228,5 +256,6 @@ rotation = -1.5707964
 
 [connection signal="hokm_selection_requested" from="Game Manager" to="UIManager" method="_on_hokm_selection_requested"]
 
+[editable path="PlayerHand/ScorePile"]
 [editable path="EnemyHand1/ScorePile"]
 [editable path="EnemyHand2/ScorePile"]
