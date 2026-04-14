@@ -100,7 +100,6 @@ func _ready() -> void:
 	
 
 func _process(delta):
-	
 	handle_shadow()
 	
 	rotate_velocity(delta) # Works beautifully but breaks returning to hand somehow
@@ -122,8 +121,6 @@ func get_hovered_card_slot():
 	return 
 
 func _input(event: InputEvent) -> void: ## Better way to move cards that doesn't run every frame
-	#if not InputEventMouseMotion: return
-	rotate_card(event)
 	#if event.is_action('ClickR'): # <- Testing destroy card
 		#destroy_card()
 	
@@ -136,6 +133,8 @@ func _input(event: InputEvent) -> void: ## Better way to move cards that doesn't
 		#var areas = $Area2D.get_overlapping_areas()
 		#if areas.size() > 0:
 			#print("OVERLAP:", areas)
+	
+	#rotate_card(event)
 
 ### Inputs Section
 ## Detects Left Clicks
@@ -145,6 +144,7 @@ func set_interactive(enabled: bool) -> void:
 	interactive = enabled
 	$Area2D.input_pickable = enabled
 
+## Called when a card is left/right clicked, from a signal emitted by cardclicker
 func _on_area_2d_card_action(left: bool) -> void:
 	if not interactive: ## Additional safeguard from moving
 			return
@@ -157,18 +157,19 @@ func _on_area_2d_card_action(left: bool) -> void:
 		print("Right Click")
 	
 
-
+## Called when a card is released
 func _on_area_2d_card_release(left: bool) -> void: ## Releases cards when the LMB is no longer held down
 	if left:
 		#print(rank, ' ', suit, " Released") ## Used to debug, now just console spam
 		dragging = false
-		emit_signal("drag_ended", self) ## BRO ADDING `self` IS WHAT FIXED THE HAND SNAP 
 		
 		#collision_shape.set_deferred("disabled", false)
 		if tween_handle and tween_handle.is_running(): ## Fixes the card rotation not changing
 			tween_handle.kill()
 		tween_handle = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 		tween_handle.tween_property(self, "rotation", 0.0, 0.3)
+		
+		emit_signal("drag_ended", self) ## BRO ADDING `self` IS WHAT FIXED THE HAND SNAP 
 		
 		#following_mouse = false
 		#collision_shape.set_deferred("disabled", false)
@@ -185,7 +186,7 @@ func _on_area_2d_mouse_entered() -> void:
 	emit_signal("hovered", self)
 	
 
-
+## Called when mouse_exited
 func _on_area_2d_mouse_exited() -> void:
 	is_hovered = false
 	if interactive: ## Stops the card from resizing back up after dropping the card
@@ -266,20 +267,17 @@ func rotate_card(event: InputEvent):
 var velocity : Vector2
 func rotate_velocity(delta: float) -> void:
 	if not dragging: return
-	var center_pos: Vector2 = global_position - (screen_size/2.0)
+	var center_pos: Vector2 = global_position - (screen_size/2.0) # <- What IS size meant to be?
 	#var center_pos: Vector2 = global_position - (size/2.0)
 	
-	print("Pos: ", center_pos)
-	#print("Pos: ", last_pos) # last_position = starting_position
-	print("Pos: ", starting_position)
+	#print("Pos: ", center_pos)
+	#print("Pos: ", starting_position)
 	# Compute the velocity
-	#velocity = (position - last_pos) / delta
 	velocity = (position - starting_position) / delta
 	
 	starting_position = position
-	#last_pos = position
 	
-	print("Velocity: ", velocity)
+	#print("Velocity: ", velocity)
 	oscillator_velocity += velocity.normalized().x * velocity_multiplier
 	
 	# Oscillator stuff
@@ -288,8 +286,6 @@ func rotate_velocity(delta: float) -> void:
 	displacement += oscillator_velocity * delta
 	
 	rotation = displacement
-
-
 
 ## Changes the shadow of the card based on x
 func handle_shadow() -> void:
@@ -311,7 +307,7 @@ func flip_card(flipped: bool):
 	else:
 		$AnimationPlayer.play_backwards("card_flip")
 
-## Moved from hand.gd
+## Moved from hand.gd. Animates a card from current position to the defined position
 func animate_card_to_position(new_position):
 	if has_meta("tween"):
 		get_meta("tween").kill()
@@ -320,15 +316,8 @@ func animate_card_to_position(new_position):
 	tween.tween_property(self,"global_position", new_position, 0.5).set_trans(Tween.TRANS_SINE)
 
 #var tween_destroy : Tween
-## Destroys the card
+## Destroys the card visually with a burn, then frees from queue.
 func destroy_card() -> void:
-	#card_texture.use_parent_material = true
-	#if tween_destroy and tween_destroy.is_running():
-		#tween_destroy.kill()
-	#tween_destroy = create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	#tween_destroy.tween_property(material, "shader_parameter/dissolve_value", 0.0, 2.0).from(1.0)
-	#tween_destroy.parallel().tween_property(shadow, "self_modulate:a", 0.0, 1.0)
-	
 	card_sprite.use_parent_material = true
 	if tween_destroy and tween_destroy.is_running():
 		tween_destroy.kill()

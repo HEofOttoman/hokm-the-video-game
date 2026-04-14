@@ -127,10 +127,8 @@ func deal_initial_cards():
 func auctioning_game():
 	declaring_hakem()
 	
-	#declaring_hokm()
 	await declaring_hokm() # fixes async issues
 	print('Hokm declared')
-	
 	
 	current_game_phase = HokmGamePhase.DEAL_REMAINING_CARDS
 	#if player_count == HokmGameMode.TWO_PLAYER:
@@ -233,7 +231,7 @@ func process_ai_stock_choice(first_card: CardInstance) -> void:
 	
 	var second_card : CardInstance = deck.draw_card()
 	
-	if ai_should_keep == true :
+	if ai_should_keep == true:
 		hands[current_player].receive_card(first_card)
 		
 		deck.add_child(stock_second_card)
