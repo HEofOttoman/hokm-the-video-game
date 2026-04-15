@@ -118,7 +118,7 @@ func get_card_strength(card: CardData,
 
 ## Evaluates cards in the trick and returns a winning card (TrickEntry).
 func evaluate_trick(trick_cards: Array, hokm_suit):
-	print('EVALUATING TRICK')
+	print('EVALUATING TRICK, NUMBER OF CARDS:', trick_cards.size())
 	#var leading_suit = trick_cards[0].card_data.suit
 	var leading_suit = trick_cards[0].card.card_data.suit
 	var winning_card = trick_cards[0]
@@ -132,9 +132,15 @@ func evaluate_trick(trick_cards: Array, hokm_suit):
 		
 		
 		if strength > highest_strength:
-			strength = highest_strength
+			#strength = highest_strength # <- oh that was problematic
+			highest_strength = strength
+			
 			winning_card = card
 	#winner_index = trick_cards.find(winning_card) ## Should find who put down the card..? (Probably won't work T-T)
 	#trick_cards.clear()
+	
+	for entry in trick_cards:
+		print("Player", entry.player_index, "played", entry.card.card_data.rank, entry.card.card_data.suit)
+	
 	print('WINNING CARD:', winning_card)
 	return winning_card

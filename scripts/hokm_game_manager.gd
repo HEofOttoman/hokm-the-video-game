@@ -26,7 +26,7 @@ var winner_index : int ## The ID of the winner of the last trick, so game knows 
 var hakem_index : int ## Player ID of the hakem
 
 @export var hokm_suit : CardData.Suit = CardData.Suit.HEARTS ## The current game's Hokm suit.
-@export var trick_cards : Array = [] ## Used to look at the cards in a turn/trick and compare them. An array of instantiated card nodes.
+@export var trick_cards : Array = [] ## Used to look at the cards in a turn/trick and compare them. An array of TrickEntry resources (formerly instantiated card nodes)*.
 #@export var trick_card : Dictionary = {
 	#player_index, card_data
 #}
@@ -426,7 +426,7 @@ func resolve_trick():
 
 @warning_ignore("unused_parameter")
 #func play_card(card, slot, hand_cards, player_id: int): ## Adds the
-func add_card_to_trick(card, slot, hand_cards, player_id: int): ## Adds the
+func add_card_to_trick(card, slot, hand_cards, player_id: int): ## Adds the card to the trick, aka play_card()
 	#print('Game Manager copies, attempting to check if card is playable')
 	if player_id != current_player:
 		push_error("NOT THIS PLAYER'S TURN")
@@ -446,6 +446,8 @@ func add_card_to_trick(card, slot, hand_cards, player_id: int): ## Adds the
 	trick_cards.append(TrickEntry.new(player_id, card))
 	
 	print('Card is playable, appending to trick')
+	
+	#print("TRICK SIZE NOW:", trick_cards.size()) # <- debugging random card mismatches
 	
 	if trick_cards.size() == player_count:
 		resolve_trick()
