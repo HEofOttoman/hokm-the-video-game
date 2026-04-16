@@ -538,4 +538,7 @@ func _on_new_round_test_btn_pressed() -> void:
 
 
 func _on_sort_btn_pressed() -> void:
-	hands[current_player].sort_cards() # Replace with function body.
+	if hands[current_player].is_player_controlled:
+		hands[current_player].sort_cards() # Replace with function body.
+	else:
+		return # Prevents sorting other ai's cards

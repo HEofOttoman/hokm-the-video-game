@@ -697,10 +697,10 @@ texture = ExtResource("23_8ycwu")
 metadata/_edit_use_anchors_ = true
 
 [node name="SortBtn" type="TextureButton" parent="UIManager/HUDLayer" unique_id=1202040761]
-offset_left = -25.0
-offset_top = 300.0
-offset_right = 25.0
-offset_bottom = 350.0
+offset_left = -24.0
+offset_top = 298.0
+offset_right = 26.0
+offset_bottom = 348.0
 texture_normal = ExtResource("29_oofwr")
 texture_pressed = ExtResource("30_3tb7h")
 texture_hover = ExtResource("31_x5e23")
@@ -898,7 +898,7 @@ offset_right = 224.0
 offset_bottom = 32.0
 
 [node name="Enemy1ScorePile" parent="." unique_id=774017679 instance=ExtResource("24_xiar1")]
-position = Vector2(480, -280)
+position = Vector2(480, -288)
 
 [node name="TrickCounter" parent="Enemy1ScorePile" index="1" unique_id=1670770910]
 offset_left = -256.0
@@ -978,6 +978,7 @@ script = ExtResource("23_llag2")
 [connection signal="pressed" from="TutorialController/TutorialLayer/FinishButton" to="TutorialController" method="_on_finish_button_pressed"]
 [connection signal="hokm_chosen" from="UIManager" to="Game Manager" method="_on_ui_manager_hokm_chosen"]
 [connection signal="hokm_selection_request" from="UIManager" to="UIManager/HUDLayer/HokmSelector" method="_on_hokm_selection_request"]
+[connection signal="sort_button_pressed" from="UIManager" to="Game Manager" method="_on_sort_btn_pressed"]
 [connection signal="stock_choice_made" from="UIManager" to="Game Manager" method="_on_ui_stock_choice_made"]
 [connection signal="toggled" from="UIManager/HUDLayer/HudSidebar/Button" to="UIManager/HUDLayer/HudSidebar" method="_on_sidebar_btn_toggled"]
 [connection signal="hokm_chosen" from="UIManager/HUDLayer/HokmSelector" to="UIManager" method="_on_hokm_selected"]
@@ -989,7 +990,6 @@ script = ExtResource("23_llag2")
 [connection signal="keep_pressed" from="UIManager/HUDLayer/StockChoiceUI" to="UIManager" method="_on_stock_choice_ui_keep_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel/KeepBtn" to="UIManager/HUDLayer/StockChoiceUI" method="_on_keep_btn_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel/DiscardBtn" to="UIManager/HUDLayer/StockChoiceUI" method="_on_discard_btn_pressed"]
-[connection signal="pressed" from="UIManager/HUDLayer/SortBtn" to="Game Manager" method="_on_sort_btn_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/SortBtn" to="UIManager" method="_on_sort_button_pressed"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 

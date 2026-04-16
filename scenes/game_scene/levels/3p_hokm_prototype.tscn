@@ -13,7 +13,10 @@
 [ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="9_dkdgu"]
 [ext_resource type="PackedScene" uid="uid://cig6thybdjvsv" path="res://resources/UI Elements/ui_manager.tscn" id="10_mvlga"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="12_c8ffb"]
+[ext_resource type="Texture2D" uid="uid://bpggc3sf0vbml" path="res://assets/kenney_game-icons/PNG/White/1x/barsVertical.png" id="12_lcy86"]
+[ext_resource type="Texture2D" uid="uid://4fpipg3f3nlf" path="res://assets/kenney_game-icons/PNG/Black/1x/barsHorizontal.png" id="13_30be8"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="13_fxmio"]
+[ext_resource type="Texture2D" uid="uid://cxbx6cncdvff5" path="res://assets/kenney_game-icons/PNG/White/1x/barsHorizontal.png" id="14_76pys"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="15_heqth"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="15_ld525"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="16_fxmio"]
@@ -74,6 +77,15 @@ rulesEngine = NodePath("../Rule Umpire")
 score_piles = [NodePath("../PlayerHand/ScorePile"), NodePath("../EnemyHand1/ScorePile"), NodePath("../EnemyHand2/ScorePile")]
 tricks_won = Array[int]([0, 0, 0])
 score = Array[int]([0, 0, 0])
+
+[node name="SortBtn" type="TextureButton" parent="Game Manager" unique_id=925004343]
+offset_left = 72.0
+offset_top = 232.0
+offset_right = 122.0
+offset_bottom = 282.0
+texture_normal = ExtResource("12_lcy86")
+texture_pressed = ExtResource("13_30be8")
+texture_hover = ExtResource("14_76pys")
 
 [node name="Tutorial Overlay Button" type="Button" parent="Game Manager" unique_id=1649568028]
 offset_left = -624.0
@@ -253,6 +265,8 @@ rotation = -1.5707964
 [node name="Camera2D" type="Camera2D" parent="." unique_id=410326704]
 
 [connection signal="hokm_selection_requested" from="Game Manager" to="UIManager" method="_on_hokm_selection_requested"]
+[connection signal="pressed" from="Game Manager/SortBtn" to="UIManager" method="_on_sort_button_pressed"]
+[connection signal="sort_button_pressed" from="UIManager" to="Game Manager" method="_on_sort_btn_pressed"]
 
 [editable path="PlayerHand/ScorePile"]
 [editable path="EnemyHand1/ScorePile"]
