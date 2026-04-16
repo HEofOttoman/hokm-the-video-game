@@ -36,6 +36,9 @@
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="23_llag2"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="24_xiar1"]
 [ext_resource type="Texture2D" uid="uid://40uxqh7mqg2x" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (small)/card_diamonds_suit.png" id="25_cen0b"]
+[ext_resource type="Texture2D" uid="uid://bpggc3sf0vbml" path="res://assets/kenney_game-icons/PNG/White/1x/barsVertical.png" id="29_oofwr"]
+[ext_resource type="Texture2D" uid="uid://4fpipg3f3nlf" path="res://assets/kenney_game-icons/PNG/Black/1x/barsHorizontal.png" id="30_3tb7h"]
+[ext_resource type="Texture2D" uid="uid://cxbx6cncdvff5" path="res://assets/kenney_game-icons/PNG/White/1x/barsHorizontal.png" id="31_x5e23"]
 
 [sub_resource type="Animation" id="Animation_8ycwu"]
 length = 0.001
@@ -693,6 +696,15 @@ anchor_bottom = 0.66524214
 texture = ExtResource("23_8ycwu")
 metadata/_edit_use_anchors_ = true
 
+[node name="SortBtn" type="TextureButton" parent="UIManager/HUDLayer" unique_id=1202040761]
+offset_left = -25.0
+offset_top = 300.0
+offset_right = 25.0
+offset_bottom = 350.0
+texture_normal = ExtResource("29_oofwr")
+texture_pressed = ExtResource("30_3tb7h")
+texture_hover = ExtResource("31_x5e23")
+
 [node name="DebugLayer" type="CanvasLayer" parent="UIManager" unique_id=1963182696]
 visible = false
 
@@ -756,6 +768,7 @@ offset_right = 320.0
 offset_bottom = 360.0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("13_pr027")
+metadata/_edit_lock_ = true
 
 [node name="TrickSlot" parent="TableTrickSlots" unique_id=980840455 instance=ExtResource("19_ic7de")]
 z_index = -1
@@ -976,6 +989,8 @@ script = ExtResource("23_llag2")
 [connection signal="keep_pressed" from="UIManager/HUDLayer/StockChoiceUI" to="UIManager" method="_on_stock_choice_ui_keep_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel/KeepBtn" to="UIManager/HUDLayer/StockChoiceUI" method="_on_keep_btn_pressed"]
 [connection signal="pressed" from="UIManager/HUDLayer/StockChoiceUI/StockChoicePanel/DiscardBtn" to="UIManager/HUDLayer/StockChoiceUI" method="_on_discard_btn_pressed"]
+[connection signal="pressed" from="UIManager/HUDLayer/SortBtn" to="Game Manager" method="_on_sort_btn_pressed"]
+[connection signal="pressed" from="UIManager/HUDLayer/SortBtn" to="UIManager" method="_on_sort_button_pressed"]
 [connection signal="pressed" from="EnemyHand1/AITestingBtn" to="EnemyHand1/AIController" method="_on_ai_testing_btn_pressed"]
 
 [editable path="Player1ScorePile"]

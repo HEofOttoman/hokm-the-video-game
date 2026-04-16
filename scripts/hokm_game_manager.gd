@@ -161,7 +161,7 @@ func declaring_hokm() -> CardData.Suit:#void:
 	## Add the process for declaring it here
 	if hands[hakem_index].is_player_controlled:
 		emit_signal('hokm_selection_requested') # Maybe make it UI hokm selection requested
-		hokm_suit = await ui_manager.hokm_chosen
+		hokm_suit = await ui_manager.hokm_chosen # huh no editor signal connection needed
 		
 	else:
 		hokm_suit = hands[hakem_index].ai_controller.ai_hokm_choice()
@@ -535,3 +535,7 @@ func _on_resolve_trick_debug_btn_pressed() -> void:
 
 func _on_new_round_test_btn_pressed() -> void:
 	start_new_round() # Replace with function body.
+
+
+func _on_sort_btn_pressed() -> void:
+	hands[current_player].sort_cards() # Replace with function body.

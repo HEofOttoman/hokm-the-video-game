@@ -24,6 +24,8 @@ signal hokm_selection_request
 
 signal stock_choice_made(stock_choice : bool)
 
+signal sort_button_pressed
+
 func _on_game_manager_round_ended(score: Variant) -> void:
 	rounds_won_display_label.text = str('Rounds Won: ', score)
 	# Replace with function body.
@@ -74,3 +76,6 @@ func _forward_stock_choice(keep_first) -> void:
 
 func _on_game_manager_stock_concluded() -> void:
 	stock_choice_ui.hide()
+
+func _on_sort_button_pressed() -> void:
+	emit_signal('sort_button_pressed')

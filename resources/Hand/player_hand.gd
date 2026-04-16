@@ -28,7 +28,7 @@ var center_screen_x ## The width of the screen
 
 @export_group('Internal Variables')
 @export var player_id : int
-@export var cards_in_hand : Array = [] ## The data about which cards are in the player's hand, or just the hand.
+@export var cards_in_hand : Array[CardInstance] = [] ## The data about which cards are in the player's hand, or just the hand.
 ## ^ Cards_in_hand A.K.A player_hand
 
 @export var gameManager = GameManager.new()
@@ -226,6 +226,24 @@ func fan_cards():
 		card.z_index = i
 		
 		animate_card_to_position(card, pos)
+
+
+func sort_cards() -> void: # <- Add in hokm suit to put here?
+	#print(cards_in_hand)
+	#cards_in_hand.sort()
+	
+	#cards_in_hand.sort_custom(sort_cards_by_value)
+	cards_in_hand.sort_custom(func(a : CardInstance,b : CardInstance):
+		if a.card_data.rank == b.card_data.rank:
+			return a.card_data.rank < b.card_data.rank
+		return a.card_data.rank < b.card_data.rank
+		)
+	
+	update_hand_positions()
+
+#func sort_cards_by_value():
+	#if cards_in_hand:
+		#pass
 
 ## Try to fan out the cards... help I just can't (tutorial: https://www.youtube.com/watch?v=waVOR2ehpuU)
 #func _update_cards() -> void:
