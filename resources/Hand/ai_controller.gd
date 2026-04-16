@@ -41,6 +41,8 @@ func ai_stock_choice(stock_first_card: CardInstance) -> bool:
 ## Takes the turn to put down a card during trick play.
 func take_turn() -> void:
 	print('Thinking Cooldown')
+	if hand.cards_in_hand.is_empty(): return # Safeguard
+	
 	await get_tree().create_timer(3.0).timeout ## Stops game from going too fast, inject animation here
 	
 	var legal_cards : Array = rulesEngine.get_legal_cards(

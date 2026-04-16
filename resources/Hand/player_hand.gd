@@ -68,7 +68,8 @@ func receive_card(card):
 		#^Successfully cut 102 errors to 62
 	
 	add_child(card)
-	card.global_position = $"../Deck".global_position
+	#card.global_position = $"../Deck".global_position # <- This is very bad
+	card.global_position = gameManager.deck.global_position # <- This is not good either but much better
 	
 	connect_card_signals(card)
 	

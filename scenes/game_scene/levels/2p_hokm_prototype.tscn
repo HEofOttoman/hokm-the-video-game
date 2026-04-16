@@ -825,12 +825,14 @@ offset_bottom = 41.0
 texture = ExtResource("22_1onrs")
 expand_mode = 1
 
-[node name="EnemyHand1" type="Node2D" parent="." unique_id=1028056503 node_paths=PackedStringArray("rulesEngine", "trick_slot", "score_pile", "ai_controller")]
+[node name="EnemyHand1" type="Node2D" parent="." unique_id=1028056503 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
 position = Vector2(0, -191)
 script = ExtResource("20_f84ns")
 player_id = 1
+gameManager = NodePath("../Game Manager")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot1")
+HandLabel = NodePath("PlayerLabel1")
 score_pile = NodePath("../Enemy1ScorePile")
 ai_controller = NodePath("AIController")
 

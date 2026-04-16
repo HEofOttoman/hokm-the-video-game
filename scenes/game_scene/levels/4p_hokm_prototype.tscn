@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxuwke0pub027" path="res://scripts/rules_engine.gd" id="1_k101c"]
 [ext_resource type="Texture2D" uid="uid://d2a26soib85fm" path="res://assets/Artworks/Hokm tVG Main Menu Background.png" id="2_4ls31"]
 [ext_resource type="Shader" uid="uid://bciheiwidfsvl" path="res://resources/shaders/balatro_paint_mix.gdshader" id="2_fdej1"]
+[ext_resource type="Script" uid="uid://cypa7x3fkxgr" path="res://scripts/hokm_game_manager.gd" id="3_n3xs7"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="4_fdej1"]
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="5_f03rb"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="6_f03rb"]
@@ -55,6 +56,18 @@ offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
 color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+metadata/_edit_lock_ = true
+
+[node name="GameManager" type="Node" parent="." unique_id=768510097 node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
+script = ExtResource("3_n3xs7")
+player_count = 4
+ui_manager = NodePath("../UIManager")
+deck = NodePath("../Deck")
+hands = [NodePath("../PlayerHands/PlayerHand"), NodePath("../PlayerHands/EnemyHand1"), NodePath("../PlayerHands/EnemyHand2"), NodePath("../PlayerHands/EnemyHand3")]
+trick_slots = [NodePath("../TableTrickSlots/TrickSlot"), NodePath("../TableTrickSlots/TrickSlot1"), NodePath("../TableTrickSlots/TrickSlot2"), NodePath("../TableTrickSlots/TrickSlot3")]
+rulesEngine = NodePath("../RulesEngine")
+score_piles = [NodePath("../ScorePiles/ScorePile0"), NodePath("../ScorePiles/ScorePile1")]
+tricks_won = Array[int]([0, 0, 0, 0])
 
 [node name="RulesEngine" type="Node" parent="." unique_id=1587485217]
 script = ExtResource("1_k101c")
@@ -169,6 +182,7 @@ offset_right = 384.0
 offset_bottom = 360.0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("8_wg1xb")
+metadata/_edit_lock_ = true
 
 [node name="TrickSlot" parent="TableTrickSlots" unique_id=355090343 instance=ExtResource("6_f03rb")]
 z_index = -1
@@ -188,11 +202,18 @@ z_index = -1
 position = Vector2(39.999996, -39.999985)
 rotation = 1.5707964
 
+[node name="Deck" parent="." unique_id=1122846010 instance=ExtResource("9_8nu4g")]
+z_index = 0
+position = Vector2(-192, 0)
+
 [node name="PlayerHands" type="Node" parent="." unique_id=643714104]
 
-[node name="PlayerHand" type="Node2D" parent="PlayerHands" unique_id=773492878 node_paths=PackedStringArray("HandLabel", "score_pile")]
+[node name="PlayerHand" type="Node2D" parent="PlayerHands" unique_id=773492878 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile")]
 position = Vector2(0, 224)
 script = ExtResource("7_x13lw")
+gameManager = NodePath("../../GameManager")
+rulesEngine = NodePath("../../RulesEngine")
+trick_slot = NodePath("../../TableTrickSlots/TrickSlot")
 HandLabel = NodePath("PlayerLabel")
 score_pile = NodePath("../../ScorePiles/ScorePile0")
 is_player_controlled = true
@@ -215,11 +236,15 @@ texture = ExtResource("10_uqk7d")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="EnemyHand1" type="Node2D" parent="PlayerHands" unique_id=1470614373 node_paths=PackedStringArray("HandLabel", "ai_controller")]
+[node name="EnemyHand1" type="Node2D" parent="PlayerHands" unique_id=1470614373 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
 position = Vector2(0, -224)
 script = ExtResource("7_x13lw")
 player_id = 1
+gameManager = NodePath("../../GameManager")
+rulesEngine = NodePath("../../RulesEngine")
+trick_slot = NodePath("../../TableTrickSlots/TrickSlot1")
 HandLabel = NodePath("PlayerLabel1")
+score_pile = NodePath("../../ScorePiles/ScorePile0")
 ai_controller = NodePath("AIController")
 
 [node name="PlayerLabel1" type="Label" parent="PlayerHands/EnemyHand1" unique_id=1245788770]
@@ -231,8 +256,10 @@ text = "Player 1 (AI)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand1" unique_id=631556088]
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand1" unique_id=631556088 node_paths=PackedStringArray("game_manager", "rulesEngine")]
 script = ExtResource("8_e8k7y")
+game_manager = NodePath("../../../GameManager")
+rulesEngine = NodePath("../../../RulesEngine")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHands/EnemyHand1" unique_id=1261220445]
@@ -244,11 +271,16 @@ texture = ExtResource("10_uqk7d")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="EnemyHand2" type="Node2D" parent="PlayerHands" unique_id=2688198 node_paths=PackedStringArray("ai_controller")]
+[node name="EnemyHand2" type="Node2D" parent="PlayerHands" unique_id=2688198 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
 position = Vector2(320, 0)
 rotation = -1.5707964
 script = ExtResource("7_x13lw")
 player_id = 2
+gameManager = NodePath("../../GameManager")
+rulesEngine = NodePath("../../RulesEngine")
+trick_slot = NodePath("../../TableTrickSlots/TrickSlot2")
+HandLabel = NodePath("PlayerLabel2")
+score_pile = NodePath("../../ScorePiles/ScorePile1")
 ai_controller = NodePath("AIController")
 
 [node name="PlayerLabel2" type="Label" parent="PlayerHands/EnemyHand2" unique_id=87347202]
@@ -260,8 +292,10 @@ rotation = 1.5707964
 text = "Player 2 (AI)"
 horizontal_alignment = 1
 
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand2" unique_id=1456404340]
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand2" unique_id=1456404340 node_paths=PackedStringArray("game_manager", "rulesEngine")]
 script = ExtResource("8_e8k7y")
+game_manager = NodePath("../../../GameManager")
+rulesEngine = NodePath("../../../RulesEngine")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHands/EnemyHand2" unique_id=1695569256]
@@ -273,11 +307,16 @@ rotation = 1.5707964
 texture = ExtResource("10_uqk7d")
 expand_mode = 1
 
-[node name="EnemyHand3" type="Node2D" parent="PlayerHands" unique_id=873173334 node_paths=PackedStringArray("ai_controller")]
+[node name="EnemyHand3" type="Node2D" parent="PlayerHands" unique_id=873173334 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
 position = Vector2(-320, 0)
 rotation = -1.5707964
 script = ExtResource("7_x13lw")
 player_id = 2
+gameManager = NodePath("../../GameManager")
+rulesEngine = NodePath("../../RulesEngine")
+trick_slot = NodePath("../../TableTrickSlots/TrickSlot3")
+HandLabel = NodePath("PlayerLabel3")
+score_pile = NodePath("../../ScorePiles/ScorePile1")
 ai_controller = NodePath("AIController")
 
 [node name="PlayerLabel3" type="Label" parent="PlayerHands/EnemyHand3" unique_id=1191555497]
@@ -289,8 +328,10 @@ rotation = 1.5707964
 text = "Player 3 (AI)"
 horizontal_alignment = 1
 
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand3" unique_id=687913872]
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand3" unique_id=687913872 node_paths=PackedStringArray("game_manager", "rulesEngine")]
 script = ExtResource("8_e8k7y")
+game_manager = NodePath("../../../GameManager")
+rulesEngine = NodePath("../../../RulesEngine")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHands/EnemyHand3" unique_id=1751934625]
@@ -302,19 +343,17 @@ rotation = 1.5707964
 texture = ExtResource("10_uqk7d")
 expand_mode = 1
 
-[node name="Deck" parent="." unique_id=1122846010 instance=ExtResource("9_8nu4g")]
-z_index = 0
-position = Vector2(-192, 0)
-
 [node name="ScorePiles" type="Node" parent="." unique_id=1976445766]
 
 [node name="ScorePile0" parent="ScorePiles" unique_id=576911518 instance=ExtResource("10_cv7p3")]
-position = Vector2(-288, 320)
+position = Vector2(-512, 256)
 
 [node name="ScorePile1" parent="ScorePiles" unique_id=923170980 instance=ExtResource("10_cv7p3")]
-position = Vector2(288, -280)
+position = Vector2(512, -256)
+rotation = -3.1415927
 owner_id = 1
 
+[connection signal="hokm_selection_requested" from="GameManager" to="UIManager" method="_on_hokm_selection_requested"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/NextButton" to="TutorialController" method="_on_next_button_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/FinishButton" to="TutorialController" method="_on_finish_button_pressed"]
 [connection signal="toggled" from="TutorialController/Tutorial Overlay Button" to="TutorialController" method="_on_tutorial_toggled"]
