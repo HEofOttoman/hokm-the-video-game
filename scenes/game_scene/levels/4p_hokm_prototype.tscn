@@ -214,18 +214,9 @@ script = ExtResource("7_x13lw")
 gameManager = NodePath("../../GameManager")
 rulesEngine = NodePath("../../RulesEngine")
 trick_slot = NodePath("../../TableTrickSlots/TrickSlot")
-HandLabel = NodePath("PlayerLabel")
+HandLabel = NodePath("")
 score_pile = NodePath("../../ScorePiles/ScorePile0")
 is_player_controlled = true
-
-[node name="PlayerLabel" type="Label" parent="PlayerHands/PlayerHand" unique_id=1302357672]
-offset_left = -64.0
-offset_top = 80.0
-offset_right = 64.0
-offset_bottom = 97.0
-text = "Player 0 (You)"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHands/PlayerHand" unique_id=1909514368]
 offset_left = -24.0
@@ -234,6 +225,17 @@ offset_right = 24.0
 offset_bottom = 75.0
 texture = ExtResource("10_uqk7d")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerLabel" type="RichTextLabel" parent="PlayerHands/PlayerHand" unique_id=1427652498]
+offset_left = -64.0
+offset_top = 80.0
+offset_right = 64.0
+offset_bottom = 97.0
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=5.0 connected=1]Player 0 (You)[/wave]"
+scroll_active = false
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="EnemyHand1" type="Node2D" parent="PlayerHands" unique_id=1470614373 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]

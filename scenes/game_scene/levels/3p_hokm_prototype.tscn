@@ -109,7 +109,7 @@ script = ExtResource("12_c8ffb")
 gameManager = NodePath("../Game Manager")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../CardSlot")
-HandLabel = NodePath("PlayerLabel")
+HandLabel = NodePath("")
 score_pile = NodePath("ScorePile")
 is_player_controlled = true
 
@@ -122,12 +122,14 @@ texture = ExtResource("13_fxmio")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerLabel" type="Label" parent="PlayerHand" unique_id=1213304727]
+[node name="PlayerLabel" type="RichTextLabel" parent="PlayerHand" unique_id=1305761777]
 offset_left = -64.0
 offset_top = 87.0
 offset_right = 64.0
 offset_bottom = 104.0
-text = "Player 0 (You)"
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=5.0 connected=1]Player 0 (You)[/wave]"
+scroll_active = false
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 

@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://xgnh6b3yubjk" path="res://assets/Artworks/Hokm tVG Main Menu Background v3.png" id="7_j8onx"]
 [ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="8_8dhfv"]
 [ext_resource type="Script" uid="uid://dmkubt2nsnsbn" path="res://addons/maaacks_game_template/base/nodes/labels/config_version_label.gd" id="8_672y5"]
-[ext_resource type="Script" uid="uid://bkwlopi4qn32o" path="res://addons/maaacks_game_template/base/nodes/labels/config_name_label.gd" id="9_8dhfv"]
 [ext_resource type="FontFile" uid="uid://b7olp1jygawca" path="res://assets/Fonts/Freehand Font/Freehand-Regular.ttf" id="9_x5bcm"]
 [ext_resource type="Texture2D" uid="uid://2t77l40tdg4x" path="res://assets/Sprites/narrator/Ferdowski-NarratorSprite-glasses.png" id="10_gwise"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="10_j8onx"]
@@ -403,7 +402,7 @@ offset_top = -26.0
 offset_right = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v1.1.0 Beta"
+text = "v2.0.0 Beta"
 script = ExtResource("8_672y5")
 
 [node name="Music Playing Label" type="Label" parent="VersionMargin/VersionContainer" unique_id=546460433]
@@ -450,19 +449,19 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="MenuContainer/TitleMargin/TitleContainer" unique_id=1477109637]
+[node name="TitleLabel" type="RichTextLabel" parent="MenuContainer/TitleMargin/TitleContainer" unique_id=1313073482]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 37.0
-offset_bottom = 104.0
+offset_bottom = 125.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("9_x5bcm")
-theme_override_font_sizes/font_size = 48
-text = "Hokm - The Video Game"
+theme_override_fonts/normal_font = ExtResource("9_x5bcm")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[wave amp=30.0 freq=5.0 connected=1]Hokm - The Video Game[/wave]"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("9_8dhfv")
 
 [node name="SubTitleMargin" type="MarginContainer" parent="MenuContainer" unique_id=459994614]
 layout_mode = 2

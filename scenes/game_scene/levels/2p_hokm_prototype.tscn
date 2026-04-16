@@ -778,14 +778,13 @@ position = Vector2(48, 17)
 z_index = -1
 position = Vector2(-48, -15)
 
-[node name="PlayerHand" type="Node2D" parent="." unique_id=143831688 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile")]
+[node name="PlayerHand" type="Node2D" parent="." unique_id=143831688 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "score_pile")]
 position = Vector2(0, 193)
 script = ExtResource("20_f84ns")
 hand_layout_mode = 0
 gameManager = NodePath("../Game Manager")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot")
-HandLabel = NodePath("PlayerLabel")
 score_pile = NodePath("../Player1ScorePile")
 is_player_controlled = true
 
@@ -807,12 +806,14 @@ texture = ExtResource("21_n36pl")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayerLabel" type="Label" parent="PlayerHand" unique_id=31799408]
+[node name="PlayerLabel" type="RichTextLabel" parent="PlayerHand" unique_id=1205117144]
 offset_left = -64.0
 offset_top = 87.0
 offset_right = 64.0
 offset_bottom = 104.0
-text = "Player 0 (You)"
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=5.0 connected=1]Player 0 (You)[/wave]"
+scroll_active = false
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 

@@ -218,6 +218,41 @@ offset_bottom = 611.0
 rotation = -1.5707964
 text = "Game Settings (WIP)"
 
+[node name="SettingsPanel" type="Panel" parent="." unique_id=1089423090]
+layout_mode = 0
+offset_left = 1264.0
+offset_top = 192.0
+offset_right = 1736.0
+offset_bottom = 512.0
+
+[node name="Label" type="Label" parent="SettingsPanel" unique_id=1144259556]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_top = 9.0
+offset_right = 36.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "Settings"
+
+[node name="StockChoiceCheckBtn" type="CheckButton" parent="SettingsPanel" unique_id=594401217]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 236.0
+offset_bottom = 91.0
+text = "Stock Choice "
+
+[node name="TimerCheckBtn" type="CheckButton" parent="SettingsPanel" unique_id=548782416]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 96.0
+offset_right = 236.0
+offset_bottom = 155.0
+text = "Timer"
+
 [connection signal="item_activated" from="Control/LevelButtonsContainer" to="." method="_on_level_buttons_container_item_activated"]
 [connection signal="pressed" from="2PMarginContainer/VBoxContainer/2P-Btn" to="." method="_on_2p_btn_pressed"]
 [connection signal="pressed" from="Prototype Panel/MarginContainer/VBoxContainer/3P-Btn" to="." method="_on_3p_btn_pressed"]

@@ -83,6 +83,11 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="FontVariation" id="FontVariation_yybd5"]
+base_font = ExtResource("2_jueh0")
+spacing_top = 4
+spacing_bottom = 2
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aliwb"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_top = 3
@@ -182,6 +187,7 @@ LeftStaminaBar/styles/background = SubResource("StyleBoxFlat_ywrjj")
 LeftStaminaBar/styles/fill = SubResource("StyleBoxFlat_tyerd")
 Panel/styles/panel = SubResource("StyleBoxFlat_ulcur")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_ulcur")
+RichTextLabel/fonts/normal_font = SubResource("FontVariation_yybd5")
 RightStaminaBar/base_type = &"ProgressBar"
 RightStaminaBar/styles/background = SubResource("StyleBoxFlat_aliwb")
 RightStaminaBar/styles/fill = SubResource("StyleBoxFlat_tnl2j")
