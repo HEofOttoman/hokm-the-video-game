@@ -194,12 +194,12 @@ position = Vector2(-40, -40)
 
 [node name="TrickSlot2" parent="TableTrickSlots" unique_id=1084900670 instance=ExtResource("6_f03rb")]
 z_index = -1
-position = Vector2(-40.000004, 39.999992)
+position = Vector2(39.999996, -39.999985)
 rotation = 1.5707964
 
 [node name="TrickSlot3" parent="TableTrickSlots" unique_id=1347024185 instance=ExtResource("6_f03rb")]
 z_index = -1
-position = Vector2(39.999996, -39.999985)
+position = Vector2(-40, 40)
 rotation = 1.5707964
 
 [node name="Deck" parent="." unique_id=1122846010 instance=ExtResource("9_8nu4g")]
@@ -208,13 +208,12 @@ position = Vector2(-192, 0)
 
 [node name="PlayerHands" type="Node" parent="." unique_id=643714104]
 
-[node name="PlayerHand" type="Node2D" parent="PlayerHands" unique_id=773492878 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile")]
+[node name="PlayerHand" type="Node2D" parent="PlayerHands" unique_id=773492878 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "score_pile")]
 position = Vector2(0, 224)
 script = ExtResource("7_x13lw")
 gameManager = NodePath("../../GameManager")
 rulesEngine = NodePath("../../RulesEngine")
 trick_slot = NodePath("../../TableTrickSlots/TrickSlot")
-HandLabel = NodePath("")
 score_pile = NodePath("../../ScorePiles/ScorePile0")
 is_player_controlled = true
 
@@ -275,7 +274,7 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="EnemyHand2" type="Node2D" parent="PlayerHands" unique_id=2688198 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
-position = Vector2(320, 0)
+position = Vector2(256, 0)
 rotation = -1.5707964
 script = ExtResource("7_x13lw")
 player_id = 2
@@ -312,10 +311,10 @@ texture = ExtResource("10_uqk7d")
 expand_mode = 1
 
 [node name="EnemyHand3" type="Node2D" parent="PlayerHands" unique_id=873173334 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
-position = Vector2(-320, 0)
+position = Vector2(-256, 0)
 rotation = -1.5707964
 script = ExtResource("7_x13lw")
-player_id = 2
+player_id = 3
 gameManager = NodePath("../../GameManager")
 rulesEngine = NodePath("../../RulesEngine")
 trick_slot = NodePath("../../TableTrickSlots/TrickSlot3")
