@@ -188,14 +188,14 @@ metadata/_edit_lock_ = true
 z_index = -1
 position = Vector2(40, 40)
 
-[node name="TrickSlot1" parent="TableTrickSlots" unique_id=1150471086 instance=ExtResource("6_f03rb")]
-z_index = -1
-position = Vector2(-40, -40)
-
-[node name="TrickSlot2" parent="TableTrickSlots" unique_id=1084900670 instance=ExtResource("6_f03rb")]
+[node name="TrickSlot1" parent="TableTrickSlots" unique_id=1084900670 instance=ExtResource("6_f03rb")]
 z_index = -1
 position = Vector2(39.999996, -39.999985)
 rotation = 1.5707964
+
+[node name="TrickSlot2" parent="TableTrickSlots" unique_id=1150471086 instance=ExtResource("6_f03rb")]
+z_index = -1
+position = Vector2(-40, -40)
 
 [node name="TrickSlot3" parent="TableTrickSlots" unique_id=1347024185 instance=ExtResource("6_f03rb")]
 z_index = -1
@@ -237,71 +237,35 @@ scroll_active = false
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="EnemyHand1" type="Node2D" parent="PlayerHands" unique_id=1470614373 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
-position = Vector2(0, -224)
+[node name="EnemyHand1" type="Node2D" parent="PlayerHands" unique_id=2688198 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
+position = Vector2(256, 0)
+rotation = -1.5707964
 script = ExtResource("7_x13lw")
 player_id = 1
 gameManager = NodePath("../../GameManager")
 rulesEngine = NodePath("../../RulesEngine")
 trick_slot = NodePath("../../TableTrickSlots/TrickSlot1")
 HandLabel = NodePath("PlayerLabel1")
-score_pile = NodePath("../../ScorePiles/ScorePile0")
-ai_controller = NodePath("AIController")
-
-[node name="PlayerLabel1" type="Label" parent="PlayerHands/EnemyHand1" unique_id=1245788770]
-offset_left = -64.0
-offset_top = -51.0
-offset_right = 64.0
-offset_bottom = -34.0
-text = "Player 1 (AI)"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand1" unique_id=631556088 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
-script = ExtResource("8_e8k7y")
-hand = NodePath("..")
-game_manager = NodePath("../../../GameManager")
-rulesEngine = NodePath("../../../RulesEngine")
-metadata/_custom_type_script = "uid://dftt5gfnf3hod"
-
-[node name="PlayerIcon" type="TextureRect" parent="PlayerHands/EnemyHand1" unique_id=1261220445]
-offset_left = -24.0
-offset_top = -104.0
-offset_right = 24.0
-offset_bottom = -56.0
-texture = ExtResource("10_uqk7d")
-expand_mode = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="EnemyHand2" type="Node2D" parent="PlayerHands" unique_id=2688198 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
-position = Vector2(256, 0)
-rotation = -1.5707964
-script = ExtResource("7_x13lw")
-player_id = 2
-gameManager = NodePath("../../GameManager")
-rulesEngine = NodePath("../../RulesEngine")
-trick_slot = NodePath("../../TableTrickSlots/TrickSlot2")
-HandLabel = NodePath("PlayerLabel2")
 score_pile = NodePath("../../ScorePiles/ScorePile1")
 ai_controller = NodePath("AIController")
 
-[node name="PlayerLabel2" type="Label" parent="PlayerHands/EnemyHand2" unique_id=87347202]
+[node name="PlayerLabel1" type="Label" parent="PlayerHands/EnemyHand1" unique_id=87347202]
 offset_left = -16.0
 offset_top = 40.000004
 offset_right = 112.0
 offset_bottom = 57.000004
 rotation = 1.5707964
-text = "Player 2 (AI)"
+text = "Player 1 (AI)"
 horizontal_alignment = 1
 
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand2" unique_id=1456404340 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand1" unique_id=1456404340 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
 script = ExtResource("8_e8k7y")
 hand = NodePath("..")
 game_manager = NodePath("../../../GameManager")
 rulesEngine = NodePath("../../../RulesEngine")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"
 
-[node name="PlayerIcon" type="TextureRect" parent="PlayerHands/EnemyHand2" unique_id=1695569256]
+[node name="PlayerIcon" type="TextureRect" parent="PlayerHands/EnemyHand1" unique_id=1695569256]
 offset_left = 39.999996
 offset_top = 80.0
 offset_right = 88.0
@@ -309,6 +273,42 @@ offset_bottom = 128.0
 rotation = 1.5707964
 texture = ExtResource("10_uqk7d")
 expand_mode = 1
+
+[node name="EnemyHand2" type="Node2D" parent="PlayerHands" unique_id=1470614373 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
+position = Vector2(0, -224)
+script = ExtResource("7_x13lw")
+player_id = 2
+gameManager = NodePath("../../GameManager")
+rulesEngine = NodePath("../../RulesEngine")
+trick_slot = NodePath("../../TableTrickSlots/TrickSlot2")
+HandLabel = NodePath("PlayerLabel1")
+score_pile = NodePath("../../ScorePiles/ScorePile0")
+ai_controller = NodePath("AIController")
+
+[node name="PlayerLabel1" type="Label" parent="PlayerHands/EnemyHand2" unique_id=1245788770]
+offset_left = -64.0
+offset_top = -51.0
+offset_right = 64.0
+offset_bottom = -34.0
+text = "Player 2 (AI)"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand2" unique_id=631556088 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
+script = ExtResource("8_e8k7y")
+hand = NodePath("..")
+game_manager = NodePath("../../../GameManager")
+rulesEngine = NodePath("../../../RulesEngine")
+metadata/_custom_type_script = "uid://dftt5gfnf3hod"
+
+[node name="PlayerIcon" type="TextureRect" parent="PlayerHands/EnemyHand2" unique_id=1261220445]
+offset_left = -24.0
+offset_top = -104.0
+offset_right = 24.0
+offset_bottom = -56.0
+texture = ExtResource("10_uqk7d")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="EnemyHand3" type="Node2D" parent="PlayerHands" unique_id=873173334 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
 position = Vector2(-256, 0)
