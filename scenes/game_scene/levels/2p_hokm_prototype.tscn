@@ -861,8 +861,9 @@ offset_bottom = -48.0
 text = "Player 1 (AI)"
 horizontal_alignment = 1
 
-[node name="AIController" type="Node" parent="EnemyHand1" unique_id=1567022614 node_paths=PackedStringArray("game_manager", "rulesEngine")]
+[node name="AIController" type="Node" parent="EnemyHand1" unique_id=1567022614 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
 script = ExtResource("23_llag2")
+hand = NodePath("..")
 game_manager = NodePath("../../Game Manager")
 rulesEngine = NodePath("../../Rule Umpire")
 

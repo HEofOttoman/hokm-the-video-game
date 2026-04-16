@@ -256,8 +256,9 @@ text = "Player 1 (AI)"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand1" unique_id=631556088 node_paths=PackedStringArray("game_manager", "rulesEngine")]
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand1" unique_id=631556088 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
 script = ExtResource("8_e8k7y")
+hand = NodePath("..")
 game_manager = NodePath("../../../GameManager")
 rulesEngine = NodePath("../../../RulesEngine")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"
@@ -292,8 +293,9 @@ rotation = 1.5707964
 text = "Player 2 (AI)"
 horizontal_alignment = 1
 
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand2" unique_id=1456404340 node_paths=PackedStringArray("game_manager", "rulesEngine")]
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand2" unique_id=1456404340 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
 script = ExtResource("8_e8k7y")
+hand = NodePath("..")
 game_manager = NodePath("../../../GameManager")
 rulesEngine = NodePath("../../../RulesEngine")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"
@@ -328,8 +330,9 @@ rotation = 1.5707964
 text = "Player 3 (AI)"
 horizontal_alignment = 1
 
-[node name="AIController" type="Node" parent="PlayerHands/EnemyHand3" unique_id=687913872 node_paths=PackedStringArray("game_manager", "rulesEngine")]
+[node name="AIController" type="Node" parent="PlayerHands/EnemyHand3" unique_id=687913872 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
 script = ExtResource("8_e8k7y")
+hand = NodePath("..")
 game_manager = NodePath("../../../GameManager")
 rulesEngine = NodePath("../../../RulesEngine")
 metadata/_custom_type_script = "uid://dftt5gfnf3hod"

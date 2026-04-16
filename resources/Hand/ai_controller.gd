@@ -2,7 +2,9 @@ extends Node
 class_name AIController 
 ## Controls a hand node as an AI (parented to a hand node)
 
-@onready var hand: HandClass = $".."
+@export var hand: HandClass ## The hand that owns the AIcontroller
+#@onready var hand: HandClass = $".." # <- This broke because of different node paths, maybe same issue as onready breaking like last time
+#@onready var hand: HandClass = self.get_parent()
 @export var game_manager : GameManager = GameManager.new()
 @export var rulesEngine : RulesEngine = RulesEngine.new()
 
@@ -41,7 +43,7 @@ func ai_stock_choice(stock_first_card: CardInstance) -> bool:
 ## Takes the turn to put down a card during trick play.
 func take_turn() -> void:
 	print('Thinking Cooldown')
-	if hand.cards_in_hand.is_empty(): return # Safeguard
+	if hand.cards_in_hand.is_empty(): return # Safeguard that breaks a lot of things oof (hand reference errors in this script)
 	
 	await get_tree().create_timer(3.0).timeout ## Stops game from going too fast, inject animation here
 	

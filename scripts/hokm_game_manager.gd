@@ -73,6 +73,8 @@ signal card_played(played_id, card)
 signal card_drawn(player_id, card)
 
 func _ready() -> void:
+	#procedural_set_up()
+	
 	randomize()
 	deck.shuffle_deck()
 	
@@ -81,6 +83,11 @@ func _ready() -> void:
 	initialise_game()
 	#for i in range(hands.size()):
 		#hands[i].player_id = i
+
+## Procedurally generates a game scene I guess?
+func procedural_set_up() -> void:
+	tricks_won.resize(player_count) #
+	
 
 ## Starts a new round. Currently not implemented
 func start_new_round()-> void:

@@ -173,8 +173,9 @@ offset_bottom = -48.0
 text = "Player 1 (AI)"
 horizontal_alignment = 1
 
-[node name="AIController" type="Node" parent="EnemyHand1" unique_id=1127688533 node_paths=PackedStringArray("game_manager", "rulesEngine")]
+[node name="AIController" type="Node" parent="EnemyHand1" unique_id=1127688533 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
 script = ExtResource("15_ld525")
+hand = NodePath("..")
 game_manager = NodePath("../../Game Manager")
 rulesEngine = NodePath("../../Rule Umpire")
 
@@ -224,8 +225,9 @@ rotation = 1.5707964
 text = "Player 2 (AI)"
 horizontal_alignment = 1
 
-[node name="AIController" type="Node" parent="EnemyHand2" unique_id=538465935 node_paths=PackedStringArray("game_manager", "rulesEngine")]
+[node name="AIController" type="Node" parent="EnemyHand2" unique_id=538465935 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
 script = ExtResource("15_ld525")
+hand = NodePath("..")
 game_manager = NodePath("../../Game Manager")
 rulesEngine = NodePath("../../Rule Umpire")
 
