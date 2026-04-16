@@ -34,6 +34,13 @@ var hakem_index : int ## Player ID of the hakem
 @export var tricks_won : Array[int] = [0, 0] ## Tricks won in a single round
 @export var score : Array[int] = [0, 0]
 
+var player_to_team = {
+	0:0,
+	1:1,
+	2:0,
+	3:1
+}
+
 var cards_per_player = 13
 
 @export var current_game_phase : HokmGamePhase
@@ -396,6 +403,31 @@ func deal_cards(player_id): ## Deal cards to each player
 ## Umpire / RuleManager
 ### Checks if the turn is legal, and determines who wins
 
+## Abstraction to see if trick cards size == player count
+func is_trick_complete() -> bool:
+	match player_count:
+		HokmGameMode.TWO_PLAYER:
+			if trick_cards.size() == 2:
+				return true
+				
+		HokmGameMode.THREE_PLAYER:
+			if trick_cards.size() == 3:
+				return true
+				
+		HokmGameMode.FOUR_PLAYER:
+			if trick_cards.size() == 4:
+				return true
+				
+	return false
+
+## Helper function to count cards, accounts for 4 player differences
+func get_tricks_for_player(player_id: int) -> int:
+	if player_count == HokmGameMode.FOUR_PLAYER:
+		var team_id = player_to_team[player_id]
+		return tricks_won[team_id]
+	else:
+		return tricks_won[player_id]
+
 ## Gets the card who wins the game
 func resolve_trick():
 	if trick_cards.is_empty(): ## Safeguard ig
@@ -412,7 +444,14 @@ func resolve_trick():
 	
 	print('WINNER: ', winner_index)
 	
-	tricks_won[winner_index] += 1
+	if player_count == HokmGameMode.FOUR_PLAYER:
+		var team_id = player_to_team[winner_index]
+		tricks_won[team_id] += 1
+	else:
+		tricks_won[winner_index] += 1
+	
+	#tricks_won[winner_index] += 1
+	
 	print('TRICKS WON: ', tricks_won)
 	ui_manager.score_display_label.text = str('TRICKS WON: ', tricks_won)
 	emit_signal('trick_resolved', winner_index) ## For UI manager
@@ -425,7 +464,12 @@ func resolve_trick():
 		slot.occupied_card.set_interactive(false)
 		slot.occupied_card.flip_card(false)
 		slot.occupied_card.animate_card_to_position(winner_pile.global_position)
-		winner_pile.add_card_to_pile(slot.occupied_card, tricks_won[winner_index])
+		
+		if player_count == HokmGameMode.FOUR_PLAYER:
+			var team_id = player_to_team[winner_index]
+			winner_pile.add_card_to_pile(slot.occupied_card, tricks_won[team_id])
+		else:
+			winner_pile.add_card_to_pile(slot.occupied_card, tricks_won[winner_index])
 		slot.remove_card_from_slot()
 	
 	current_player = winner_index ## Hopefully that works.. I keep having winner ID mismatches (trick win goes to wrong player)
@@ -498,7 +542,8 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 	for hand in hands: ## Ensures that the hand is not interactible if it's not your turn.
 		hand.set_interactive(false)
 	
-	if tricks_won[current_player] == 7: ## Checks to see if 7 tricks have been won and ends game accordi
+	#if tricks_won[current_player] == 7: ## Checks to see if 7 tricks have been won and ends game accordi
+	if get_tricks_for_player(current_player) >= 7:
 		end_round()
 	
 	if active_hand.is_player_controlled:

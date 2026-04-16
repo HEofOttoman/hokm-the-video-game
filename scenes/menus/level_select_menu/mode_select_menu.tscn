@@ -180,7 +180,6 @@ expand_mode = 4
 
 [node name="4P-Btn" type="Button" parent="4P Container/VBoxContainer" unique_id=1040992112]
 layout_mode = 2
-disabled = true
 text = "WIP"
 metadata/_edit_use_anchors_ = true
 

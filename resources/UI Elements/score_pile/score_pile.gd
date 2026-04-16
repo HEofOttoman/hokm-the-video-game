@@ -84,6 +84,14 @@ func update_hand_positions():
 		#var new_position = calculate_card_position(i)
 		#card.starting_position = new_position
 
+func layout_cards_circular() -> void:
+	var count = cards_in_pile.size()
+	for c in range(count):
+		var card : CardInstance = cards_in_pile[c]
+		var new_position = calculate_card_position(c)
+		card.starting_position = new_position
+		
+
 ## Alternate version of the function
 func layout_cards():
 	var count = cards_in_pile.size()
