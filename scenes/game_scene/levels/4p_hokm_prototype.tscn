@@ -250,12 +250,13 @@ score_pile = NodePath("../../ScorePiles/ScorePile1")
 ai_controller = NodePath("AIController")
 
 [node name="PlayerLabel1" type="Label" parent="PlayerHands/EnemyHand1" unique_id=87347202]
-offset_left = -16.0
-offset_top = 40.000004
+offset_left = -16.000002
+offset_top = 8.000004
 offset_right = 112.0
-offset_bottom = 57.000004
+offset_bottom = 45.000004
 rotation = 1.5707964
-text = "Player 1 (AI)"
+text = "Player 1
+(AI)"
 horizontal_alignment = 1
 
 [node name="AIController" type="Node" parent="PlayerHands/EnemyHand1" unique_id=1456404340 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
@@ -267,9 +268,9 @@ metadata/_custom_type_script = "uid://dftt5gfnf3hod"
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHands/EnemyHand1" unique_id=1695569256]
 offset_left = 39.999996
-offset_top = 80.0
+offset_top = 48.0
 offset_right = 88.0
-offset_bottom = 128.0
+offset_bottom = 96.0
 rotation = 1.5707964
 texture = ExtResource("10_uqk7d")
 expand_mode = 1
@@ -323,12 +324,13 @@ score_pile = NodePath("../../ScorePiles/ScorePile1")
 ai_controller = NodePath("AIController")
 
 [node name="PlayerLabel3" type="Label" parent="PlayerHands/EnemyHand3" unique_id=1191555497]
-offset_left = -15.999992
-offset_top = -168.0
+offset_left = -15.999994
+offset_top = -136.0
 offset_right = 112.00001
-offset_bottom = -151.0
+offset_bottom = -99.0
 rotation = 1.5707964
-text = "Player 3 (AI)"
+text = "Player 3 
+(AI)"
 horizontal_alignment = 1
 
 [node name="AIController" type="Node" parent="PlayerHands/EnemyHand3" unique_id=687913872 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
@@ -340,9 +342,9 @@ metadata/_custom_type_script = "uid://dftt5gfnf3hod"
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerHands/EnemyHand3" unique_id=1751934625]
 offset_left = 40.000004
-offset_top = -128.0
+offset_top = -96.0
 offset_right = 88.0
-offset_bottom = -80.0
+offset_bottom = -48.0
 rotation = 1.5707964
 texture = ExtResource("10_uqk7d")
 expand_mode = 1
@@ -350,11 +352,12 @@ expand_mode = 1
 [node name="ScorePiles" type="Node" parent="." unique_id=1976445766]
 
 [node name="ScorePile0" parent="ScorePiles" unique_id=576911518 instance=ExtResource("10_cv7p3")]
-position = Vector2(-512, 256)
+position = Vector2(-280, 295)
+rotation = 0.7853982
 
 [node name="ScorePile1" parent="ScorePiles" unique_id=923170980 instance=ExtResource("10_cv7p3")]
-position = Vector2(512, -256)
-rotation = -3.1415927
+position = Vector2(280, -295)
+rotation = -2.3561945
 owner_id = 1
 
 [connection signal="hokm_selection_requested" from="GameManager" to="UIManager" method="_on_hokm_selection_requested"]
