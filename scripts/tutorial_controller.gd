@@ -2,7 +2,7 @@ extends Node
 class_name TutorialController
 
 @export var tutorial_active: bool = false
-@export var tutorial_step : TutorialStep = TutorialStep.NONE
+#@export var tutorial_step : TutorialStep = TutorialStep.NONE
 @export var game_manager: GameManager = GameManager.new()
 @export var interactive_tutorial: bool = false
 
@@ -16,21 +16,22 @@ class_name TutorialController
 
 @export_enum('2P', '3P', '4P') var tutorial_mode
 
-@export var tutorial_steps : Array = [] ## Array of text resources with names to cycle through
+@export var tutorial_steps : Array[TutorialStepData] = [] ## Array of text resources with names to cycle through
+@export var tutorial_index : int = 0
 
 var text_tween : Tween
 var text_timer : Timer
 
-enum TutorialStep {
-	NONE,
-	INTRO,
-	DEALING,
-	CHOOSE_HOKM,
-	PLAY_FIRST_CARD,
-	FOLLOW_SUIT,
-	WIN_TRICK,
-	COMPLETE
-}
+#enum TutorialStep {
+	#NONE,
+	#INTRO,
+	#DEALING,
+	#CHOOSE_HOKM,
+	#PLAY_FIRST_CARD,
+	#FOLLOW_SUIT,
+	#WIN_TRICK,
+	#COMPLETE
+#}
 
 func _on_tutorial_toggled(toggled_on: bool) -> void:
 	tutorial_active = toggled_on # Replace with function body.
@@ -38,7 +39,7 @@ func _on_tutorial_toggled(toggled_on: bool) -> void:
 	#print(tutorial_active)
 	if tutorial_active == true:
 		start_tutorial()
-	elif tutorial_active == false and tutorial_step > 0:
+	elif tutorial_active == false and tutorial_index > 0:
 		return
 
 ## Prints text to the label with a typewriter effect
@@ -63,63 +64,81 @@ func _on_next_button_pressed() -> void:
 
 func advance_tutorial() -> void:
 	#tutorial_step += 1 # Replace with function body.
-	tutorial_step = (tutorial_step + 1) % TutorialStep.size() as TutorialStep
+	return
+	#tutorial_step = (tutorial_step + 1) % TutorialStep.size() as TutorialStep
 	#step_indicator.text = str(tutorial_step)
 	#step_indicator.text = str('(', tutorial_step, '/7)')
 
+## More modular system
+func start_steps()->void:
+	for i in range(tutorial_steps.size()):
+		var text = tutorial_steps[i].instructions
+		step_indicator.text = tutorial_steps[i].step_name
+		typewrite(text)
+		await next_button.pressed
+	next_button.hide()
+	finish_button.show()
 
-## Basically a big slideshow of text.
 func start_tutorial() -> void:
 	tutorial_text.clear()
 	tutorial_ui.show()
 	next_button.show()
 	finish_button.hide()
-	$TutorialLayer/Narrator/TutorialAnimationPlayer.play("narrator appear", 0, 1.25)
-	#await $TutorialLayer/Narrator/TutorialAnimationPlayer.animation_finished
-	
-	tutorial_step = TutorialStep.INTRO
-	typewrite("Welcome to hokm! Let's learn the basics.")
-	#print("Welcome to hokm! Let's learn the basics.")
-	
-	await next_button.pressed
-	step_indicator.text = "Auctioning & Dealing"
-	typewrite("In Hokm, one of the players will be crowned king at the beginning of the round. Look at where the crown is to know who it is.")
-	
-	tutorial_step = TutorialStep.DEALING
-	
-	
-	await next_button.pressed
-	typewrite("Once the king is crowned, he can look at his cards, and choose a trump (hokm) suit.")
-	
-	await next_button.pressed
-	typewrite("In this version, the game will randomly choose the trump suit, which you can see on the top left corner.")
-	
-	await next_button.pressed
-	typewrite("Then, the entire 52 card-deck will be distributed equally for all players.")
-	#await text_timer.timeout
-	
-	await next_button.pressed
-	step_indicator.text = "Card Play"
-	typewrite("The king will then go first. He can put down any card. The other player then has to match the suit of the first card.")
-	
-	await next_button.pressed
-	typewrite("If one lacks a leading suit card, then you may use any card (no value) or one of the trump suit.")
-	
-	await next_button.pressed
-	step_indicator.text = "Winning & Losing"
-	typewrite("Whoever has put down the highest ranked card will win the deck. A trump card outvalues all other cards in addition to its own value.")
-	
-	await next_button.pressed
-	typewrite("The first player to win 7 decks will win the round. Towards the end, the game tends to change very quickly as people run out of cards.")
-	
-	await next_button.pressed
-	typewrite("Usually, the winner of the whole game is the first to win 7 rounds, though I haven't implemented that yet.")
-	
-	await next_button.pressed
-	step_indicator.text = "Finish"
-	typewrite("Have fun!")
-	next_button.hide()
-	finish_button.show()
+	#$TutorialLayer/Narrator/TutorialAnimationPlayer.play("narrator appear", 0, 1.25)
+	start_steps()
+
+## Basically a big slideshow of text.
+#func v1start_tutorial() -> void:
+	#tutorial_text.clear()
+	#tutorial_ui.show()
+	#next_button.show()
+	#finish_button.hide()
+	#$TutorialLayer/Narrator/TutorialAnimationPlayer.play("narrator appear", 0, 1.25)
+	##await $TutorialLayer/Narrator/TutorialAnimationPlayer.animation_finished
+	#
+	#tutorial_step = TutorialStep.INTRO
+	#typewrite("Welcome to hokm! Let's learn the basics.")
+	##print("Welcome to hokm! Let's learn the basics.")
+	#
+	#await next_button.pressed
+	#step_indicator.text = "Auctioning & Dealing"
+	#typewrite("In Hokm, one of the players will be crowned king at the beginning of the round. Look at where the crown is to know who it is.")
+	#
+	#tutorial_step = TutorialStep.DEALING
+	#
+	#
+	#await next_button.pressed
+	#typewrite("Once the king is crowned, he can look at his cards, and choose a trump (hokm) suit.")
+	#
+	#await next_button.pressed
+	#typewrite("In this version, the game will randomly choose the trump suit, which you can see on the top left corner.")
+	#
+	#await next_button.pressed
+	#typewrite("Then, the entire 52 card-deck will be distributed equally for all players.")
+	##await text_timer.timeout
+	#
+	#await next_button.pressed
+	#step_indicator.text = "Card Play"
+	#typewrite("The king will then go first. He can put down any card. The other player then has to match the suit of the first card.")
+	#
+	#await next_button.pressed
+	#typewrite("If one lacks a leading suit card, then you may use any card (no value) or one of the trump suit.")
+	#
+	#await next_button.pressed
+	#step_indicator.text = "Winning & Losing"
+	#typewrite("Whoever has put down the highest ranked card will win the deck. A trump card outvalues all other cards in addition to its own value.")
+	#
+	#await next_button.pressed
+	#typewrite("The first player to win 7 decks will win the round. Towards the end, the game tends to change very quickly as people run out of cards.")
+	#
+	#await next_button.pressed
+	#typewrite("Usually, the winner of the whole game is the first to win 7 rounds, though I haven't implemented that yet.")
+	#
+	#await next_button.pressed
+	#step_indicator.text = "Finish"
+	#typewrite("Have fun!")
+	#next_button.hide()
+	#finish_button.show()
 
 
 func _on_finish_button_pressed() -> void:
@@ -127,11 +146,11 @@ func _on_finish_button_pressed() -> void:
 
 
 func _on_state_changed(state: GameManager.HokmGamePhase) -> void:
-	if tutorial_step == TutorialStep.DEALING and state == GameManager.HokmGamePhase.AUCTIONING:
-		tutorial_step = TutorialStep.CHOOSE_HOKM
-		print('You are the hakem, or the leader this round. ')
-	
-	
+	#if tutorial_step == TutorialStep.DEALING and state == GameManager.HokmGamePhase.AUCTIONING:
+		#tutorial_step = TutorialStep.CHOOSE_HOKM
+		#print('You are the hakem, or the leader this round. ')
+	#
+	return
 
 func _on_card_played(_player_id: Variant, _card: Variant) -> void:
 	pass # Replace with function body.
@@ -167,5 +186,5 @@ func _on_turn_started(_player_index: int, _text: String) -> void:
 func finish_tutorial() -> void:
 	tutorial_step = TutorialStep.COMPLETE
 	#await get_tree().create_timer(2.5).timeout
-	$TutorialLayer/Narrator/TutorialAnimationPlayer.play_backwards("narrator appear")
+	#$TutorialLayer/Narrator/TutorialAnimationPlayer.play_backwards("narrator appear")
 	tutorial_ui.hide()

@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="4_fdej1"]
 [ext_resource type="Script" uid="uid://bmlwpkrav3q56" path="res://addons/maaacks_game_template/extras/scripts/win_lose_manager.gd" id="4_x3nxc"]
 [ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="5_f03rb"]
+[ext_resource type="PackedScene" uid="uid://ba11po12cvait" path="res://scenes/windows/game_won_window.tscn" id="5_wskgc"]
 [ext_resource type="PackedScene" uid="uid://d1lgf8q000ap" path="res://resources/CardSlot/card_slot.tscn" id="6_f03rb"]
+[ext_resource type="PackedScene" uid="uid://bx7s80d8smic4" path="res://scenes/windows/level_lost_window.tscn" id="6_iwsw7"]
 [ext_resource type="Script" uid="uid://dxbgl3telxva0" path="res://resources/Hand/player_hand.gd" id="7_x13lw"]
 [ext_resource type="Script" uid="uid://dftt5gfnf3hod" path="res://resources/Hand/ai_controller.gd" id="8_e8k7y"]
 [ext_resource type="StyleBox" uid="uid://bl1lux424j5bn" path="res://resources/UI Elements/palettetest_stylebox.tres" id="8_wg1xb"]
@@ -15,7 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="10_cv7p3"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="10_uqk7d"]
 [ext_resource type="PackedScene" uid="uid://cig6thybdjvsv" path="res://resources/UI Elements/ui_manager.tscn" id="11_osmdq"]
+[ext_resource type="Script" uid="uid://d204nnuk3t26x" path="res://resources/misc/tutorials/tutorial_data.gd" id="12_5bcmw"]
 [ext_resource type="Script" uid="uid://cxwpdcfwdt3rl" path="res://scripts/tutorial_controller.gd" id="12_5s40a"]
+[ext_resource type="Resource" uid="uid://bymshx2t6rgr4" path="res://resources/misc/tutorials/4p_teams.tres" id="13_4pxpo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f03rb"]
 shader = ExtResource("2_fdej1")
@@ -32,6 +36,66 @@ shader_parameter/colour_3 = Color(0, 0, 0, 1)
 shader_parameter/contrast = 2.0
 shader_parameter/spin_amount = 0.36
 shader_parameter/pixel_filter = 700.0
+
+[sub_resource type="Resource" id="Resource_5bcmw"]
+script = ExtResource("12_5bcmw")
+step_name = &"Intro"
+instructions = "Welcome to hokm! Let's learn the basics."
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
+
+[sub_resource type="Resource" id="Resource_4pxpo"]
+script = ExtResource("12_5bcmw")
+step_name = &"Auctioning & Dealing"
+instructions = "In Hokm, one of the players will be randomly crowned king (hakem) at the beginning of the round. Look at where the crown is to know who it is."
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
+
+[sub_resource type="Resource" id="Resource_3ifs3"]
+script = ExtResource("12_5bcmw")
+step_name = &"Auctioning & Dealing"
+instructions = "Once the king is crowned, he can look at his cards, and choose a trump (hokm) suit. See it in the top left."
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
+
+[sub_resource type="Resource" id="Resource_dbxkm"]
+script = ExtResource("12_5bcmw")
+step_name = &"Dealing"
+instructions = "Then, the entire 52 card-deck will be distributed equally for all players."
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
+
+[sub_resource type="Resource" id="Resource_kxft6"]
+script = ExtResource("12_5bcmw")
+step_name = &"Trick Play"
+instructions = "The king will then go first. He can put down any card. The other player then has to match the suit of the first card."
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
+
+[sub_resource type="Resource" id="Resource_6kro8"]
+script = ExtResource("12_5bcmw")
+step_name = &"Trick Play"
+instructions = "If one lacks a leading suit card, then you may use any card (no value) or one of the trump suit."
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
+
+[sub_resource type="Resource" id="Resource_f8w2r"]
+script = ExtResource("12_5bcmw")
+step_name = &"Winning & Losing"
+instructions = "Whoever has put down the highest ranked card will win the deck. A trump card outvalues all other cards in addition to its own value."
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
+
+[sub_resource type="Resource" id="Resource_3uxy1"]
+script = ExtResource("12_5bcmw")
+step_name = &"Teams"
+instructions = "The first team to win 7 decks will win the round. Towards the end, the game tends to change very quickly as people run out of cards."
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
+
+[sub_resource type="Resource" id="Resource_nfb54"]
+script = ExtResource("12_5bcmw")
+step_name = &"Rounds"
+instructions = "Usually, the winner of the whole game is the first to win 7 rounds, though I haven't implemented that yet."
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
+
+[sub_resource type="Resource" id="Resource_d8bu7"]
+script = ExtResource("12_5bcmw")
+step_name = &"Finish"
+instructions = "Have fun!"
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
 
 [node name="4pHokmPrototype" type="Node2D" unique_id=1865944561]
 
@@ -71,6 +135,8 @@ score_piles = [NodePath("../ScorePiles/ScorePile0"), NodePath("../ScorePiles/Sco
 
 [node name="Win Lose Manager" type="Node" parent="." unique_id=1236410626]
 script = ExtResource("4_x3nxc")
+game_won_scene = ExtResource("5_wskgc")
+game_lost_scene = ExtResource("6_iwsw7")
 
 [node name="RulesEngine" type="Node" parent="." unique_id=1587485217]
 script = ExtResource("1_k101c")
@@ -95,13 +161,19 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TutorialController" type="Node" parent="." unique_id=1667938076 node_paths=PackedStringArray("tutorial_ui", "step_indicator", "tutorial_text", "next_button", "finish_button")]
+[node name="TutorialController" type="Node" parent="." unique_id=1667938076 node_paths=PackedStringArray("game_manager", "tutorial_ui", "step_indicator", "tutorial_text", "next_button", "finish_button")]
 script = ExtResource("12_5s40a")
+tutorial_active = null
+tutorial_step = null
+game_manager = NodePath("../GameManager")
+interactive_tutorial = null
 tutorial_ui = NodePath("TutorialLayer")
 step_indicator = NodePath("TutorialLayer/StepIndicator")
 tutorial_text = NodePath("TutorialLayer/TutorialText")
 next_button = NodePath("TutorialLayer/NextButton")
 finish_button = NodePath("TutorialLayer/FinishButton")
+tutorial_mode = 2
+tutorial_steps = Array[ExtResource("12_5bcmw")]([SubResource("Resource_5bcmw"), SubResource("Resource_4pxpo"), SubResource("Resource_3ifs3"), SubResource("Resource_dbxkm"), SubResource("Resource_kxft6"), SubResource("Resource_6kro8"), SubResource("Resource_f8w2r"), ExtResource("13_4pxpo"), SubResource("Resource_3uxy1"), SubResource("Resource_nfb54"), SubResource("Resource_d8bu7")])
 
 [node name="TutorialLayer" type="Control" parent="TutorialController" unique_id=281710604]
 visible = false
