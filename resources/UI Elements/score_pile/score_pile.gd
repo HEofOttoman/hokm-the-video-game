@@ -17,16 +17,26 @@ class_name ScorePile
 #@export var y_max := -50
 
 @export_group('Visual Elements')
+@export var layout : CardLayout = CardLayout.LINEAR
 @export_subgroup('Linear Layout')
 @export var card_spacing : float = 25
 #@export var HAND_Y_POSITION : float = 0 ## How far down the hand is (relative)
 #var center_screen_x ## The width of the screen
 ## ^Might be unnecessary if I an just animate it to the hand's position
 
+@export_subgroup('Circular Layout')
+@export var CIRCLE_RADIUS := 40.0
+@export var CIRCLE_CENTER := Vector2.ZERO
+
+enum CardLayout {
+	LINEAR,
+	CIRCULAR
+}
+
 @export_group('Internal Variables')
 
 @export var owner_id : int 
-@export var cards_in_pile : Array = [] ## The data about which cards are in the player's hand, or just the hand.
+@export var cards_in_pile : Array[CardInstance] = [] ## The data about which cards are in the player's hand, or just the hand.
 ## ^ Cards_in_pile A.K.A SCORE
 @export var DisplayLabel : Label ## The label to display hand information in
 @export var pile_scale : Vector2 = Vector2(0.7, 0.7)
@@ -66,7 +76,14 @@ func remove_card_from_pile(card):
 ### Visual Elements
 ## Updates the cards
 func update_hand_positions():
-	layout_cards()
+	match layout:
+		CardLayout.LINEAR:
+			layout_cards()
+		CardLayout.CIRCULAR:
+			layout_circular()
+
+func _ready() -> void:
+	update_hand_positions() # For testing
 
 ## Spreads the cards out on a horizontal line
 #func layout_cards():
@@ -84,13 +101,39 @@ func update_hand_positions():
 		#var new_position = calculate_card_position(i)
 		#card.starting_position = new_position
 
-func layout_cards_circular() -> void:
-	var count = cards_in_pile.size()
-	for c in range(count):
-		var card : CardInstance = cards_in_pile[c]
-		var new_position = calculate_card_position(c)
-		card.starting_position = new_position
+## Puts the cards in a circular layout (reworked from hand fan_cards) I am just dumb and needed help
+func layout_circular():
+	
+	var count : int = cards_in_pile.size()
+	if count == 1:
+		animate_card_to_position(cards_in_pile[0], Vector2.ZERO)
+		return
+	
+	#var screen_size : Vector2 = get_viewport_rect().size
+	
+	#var max_radius_x = min(CIRCLE_CENTER.x, screen_size.x - CIRCLE_CENTER.x)
+	#var max_radius_y = min(CIRCLE_CENTER.y, screen_size.y - CIRCLE_CENTER.y)
+	#var safe_radius = min(CIRCLE_RADIUS, max_radius_x, max_radius_y)
+	
+	for i in count:
+		#var n := float(i) / float(count - 1) # N is the place of the card between left & right
+		var card : CardInstance = cards_in_pile[i]
 		
+		var angle := (TAU/count) * i #= deg_to_rad(angle_deg)
+		
+		var x : float = CIRCLE_CENTER.x + sin(angle) * CIRCLE_RADIUS 
+		var y : float = CIRCLE_CENTER.y + cos(angle) * CIRCLE_RADIUS #*safe_radius
+		# Flipping sin & cos here gives interesting results
+		
+		var rot : float = angle + PI / 2.0
+		
+		var pos = Vector2(x, y)
+		
+		card.starting_position = pos
+		card.rotation = rot
+		card.z_index = i
+		
+		animate_card_to_position(card, pos)
 
 ## Alternate version of the function
 func layout_cards():

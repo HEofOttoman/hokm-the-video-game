@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="10_uqk7d"]
 [ext_resource type="PackedScene" uid="uid://cig6thybdjvsv" path="res://resources/UI Elements/ui_manager.tscn" id="11_osmdq"]
 [ext_resource type="Script" uid="uid://cxwpdcfwdt3rl" path="res://scripts/tutorial_controller.gd" id="12_5s40a"]
+[ext_resource type="PackedScene" uid="uid://dyrpsnraose2n" path="res://resources/Card Resources/card.tscn" id="17_wskgc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f03rb"]
 shader = ExtResource("2_fdej1")
@@ -32,6 +33,71 @@ shader_parameter/colour_3 = Color(0, 0, 0, 1)
 shader_parameter/contrast = 2.0
 shader_parameter/spin_amount = 0.36
 shader_parameter/pixel_filter = 700.0
+
+[sub_resource type="Shader" id="Shader_mucyl"]
+code = "shader_type canvas_item;
+
+// 2d Dissolve with Burn (https://godotshaders.com/shader/2d-dissolve-with-burn-edge/)
+
+uniform sampler2D dissolve_texture : source_color;
+uniform float dissolve_value : hint_range(0,1);
+uniform float burn_size: hint_range(0.0, 1.0, 0.01);
+uniform vec4 burn_color: source_color;
+
+void fragment(){
+    vec4 main_texture = texture(TEXTURE, UV);
+    vec4 noise_texture = texture(dissolve_texture, UV);
+	
+	// This is needed to avoid keeping a small burn_color dot with dissolve being 0 or 1
+	// is there another way to do it?
+	float burn_size_step = burn_size * step(0.001, dissolve_value) * step(dissolve_value, 0.999);
+	float threshold = smoothstep(noise_texture.x-burn_size_step, noise_texture.x, dissolve_value);
+	float border = smoothstep(noise_texture.x, noise_texture.x + burn_size_step, dissolve_value);
+	
+	COLOR.a *= threshold;
+	COLOR.rgb = mix(burn_color.rgb, main_texture.rgb, border);
+}"
+
+[sub_resource type="Gradient" id="Gradient_j2llb"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lvxd0"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dr4c4"]
+noise = SubResource("FastNoiseLite_lvxd0")
+color_ramp = SubResource("Gradient_j2llb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iwsw7"]
+resource_local_to_scene = true
+shader = SubResource("Shader_mucyl")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_dr4c4")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.12999999709424
+shader_parameter/burn_color = Color(0.9645992, 0.7186383, 0.23460764, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxkjw"]
+resource_local_to_scene = true
+shader = SubResource("Shader_mucyl")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_dr4c4")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.12999999709424
+shader_parameter/burn_color = Color(0.9645992, 0.7186383, 0.23460764, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5bcmw"]
+resource_local_to_scene = true
+shader = SubResource("Shader_mucyl")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_dr4c4")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.12999999709424
+shader_parameter/burn_color = Color(0.9645992, 0.7186383, 0.23460764, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4pxpo"]
+resource_local_to_scene = true
+shader = SubResource("Shader_mucyl")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_dr4c4")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.12999999709424
+shader_parameter/burn_color = Color(0.9645992, 0.7186383, 0.23460764, 1)
 
 [node name="4pHokmPrototype" type="Node2D" unique_id=1865944561]
 
@@ -82,6 +148,17 @@ pause_menu_packed = ExtResource("5_f03rb")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1305927142]
 
 [node name="UIManager" parent="." unique_id=2116995665 instance=ExtResource("11_osmdq")]
+
+[node name="TimerLabel" type="RichTextLabel" parent="UIManager" unique_id=2068635378]
+offset_left = 544.0
+offset_top = -328.0
+offset_right = 608.0
+offset_bottom = -288.0
+bbcode_enabled = true
+text = "[pulse]00:00[/pulse]"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TutorialController" type="Node" parent="." unique_id=1667938076 node_paths=PackedStringArray("tutorial_ui", "step_indicator", "tutorial_text", "next_button", "finish_button")]
 script = ExtResource("12_5s40a")
@@ -278,23 +355,24 @@ rotation = 1.5707964
 texture = ExtResource("10_uqk7d")
 expand_mode = 1
 
-[node name="EnemyHand2" type="Node2D" parent="PlayerHands" unique_id=1470614373 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile", "ai_controller")]
+[node name="EnemyHand2" type="Node2D" parent="PlayerHands" unique_id=1470614373 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "score_pile", "ai_controller")]
 position = Vector2(0, -224)
 script = ExtResource("7_x13lw")
 player_id = 2
 gameManager = NodePath("../../GameManager")
 rulesEngine = NodePath("../../RulesEngine")
 trick_slot = NodePath("../../TableTrickSlots/TrickSlot2")
-HandLabel = NodePath("PlayerLabel1")
 score_pile = NodePath("../../ScorePiles/ScorePile0")
 ai_controller = NodePath("AIController")
 
-[node name="PlayerLabel1" type="Label" parent="PlayerHands/EnemyHand2" unique_id=1245788770]
+[node name="PlayerLabel2" type="RichTextLabel" parent="PlayerHands/EnemyHand2" unique_id=404067826]
 offset_left = -64.0
 offset_top = -51.0
 offset_right = 64.0
 offset_bottom = -34.0
-text = "Player 2 (AI)"
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=5.0 connected=1]Player 2 (AI)[/wave]"
+scroll_active = false
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -354,13 +432,28 @@ expand_mode = 1
 
 [node name="ScorePiles" type="Node" parent="." unique_id=1976445766]
 
-[node name="ScorePile0" parent="ScorePiles" unique_id=576911518 instance=ExtResource("10_cv7p3")]
+[node name="ScorePile0" parent="ScorePiles" unique_id=576911518 node_paths=PackedStringArray("cards_in_pile") instance=ExtResource("10_cv7p3")]
 position = Vector2(-280, 295)
 rotation = 0.7853982
+layout = 1
+cards_in_pile = [NodePath("Card"), NodePath("Card2"), NodePath("Card3"), NodePath("Card4")]
+
+[node name="Card" parent="ScorePiles/ScorePile0" unique_id=335243291 instance=ExtResource("17_wskgc")]
+material = SubResource("ShaderMaterial_iwsw7")
+
+[node name="Card2" parent="ScorePiles/ScorePile0" unique_id=497070716 instance=ExtResource("17_wskgc")]
+material = SubResource("ShaderMaterial_fxkjw")
+
+[node name="Card3" parent="ScorePiles/ScorePile0" unique_id=1083470551 instance=ExtResource("17_wskgc")]
+material = SubResource("ShaderMaterial_5bcmw")
+
+[node name="Card4" parent="ScorePiles/ScorePile0" unique_id=1787844088 instance=ExtResource("17_wskgc")]
+material = SubResource("ShaderMaterial_4pxpo")
 
 [node name="ScorePile1" parent="ScorePiles" unique_id=923170980 instance=ExtResource("10_cv7p3")]
 position = Vector2(280, -295)
 rotation = -2.3561945
+layout = 1
 owner_id = 1
 
 [connection signal="hokm_selection_requested" from="GameManager" to="UIManager" method="_on_hokm_selection_requested"]
