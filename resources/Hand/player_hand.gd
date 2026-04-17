@@ -5,9 +5,6 @@ class_name HandClass
 
 ## Based on barry's dev hell and another tutorial : https://www.youtube.com/watch?v=lATAS8YpzFE
 
-#@export var Card : PackedScene
-#@export var size : = "size" ## What is this meant to be? Idk
-
 @export_group('Visual Elements')
 @export var hand_layout_mode : HandLayoutMode = HandLayoutMode.LINEAR
 enum HandLayoutMode {FAN_CARDS, LINEAR}
@@ -22,7 +19,6 @@ enum HandLayoutMode {FAN_CARDS, LINEAR}
 
 @export_subgroup('Linear Layout')
 @export var CARD_SEPARATION_WIDTH : float = 25
-#@export var HAND_Y_POSITION : float = 0 ## How far down the hand is (relative)
 var center_screen_x ## The width of the screen
 ## ^Might be unnecessary if I an just animate it to the hand's position
 
@@ -47,6 +43,15 @@ func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
 	set_interactive(false)
 	#$"../Deck".card_drawn.connect(self._on_card_drawn) ## Already connected?
+
+var time : float = 0.0
+
+func _process(delta: float) -> void:
+	if wave_enabled == false: # Added a switch cuz its very ugly
+		return
+	else:
+		time += delta
+		card_wave(time)
 
 ## Toggles all cards in the hand interactive or not
 func set_interactive(enabled: bool):
@@ -170,6 +175,19 @@ func update_hand_positions():
 		HandLayoutMode.FAN_CARDS:
 			fan_cards()
 
+@export_subgroup('Card Wave Animation')
+@export var wave_enabled : bool = false
+@export var time_multiplier : float = 10
+@export var sin_offset_multiplier : float = 0.1
+## Idle card waving animation by mr Eliptik. Needs sin offset >0.0 to work, also super ugly rn
+func card_wave(elapsed_time) -> void:
+	for i in range(cards_in_hand.size()):
+		var card : CardInstance = cards_in_hand[i]
+		var val : float = sin(i + (elapsed_time * time_multiplier))
+		card.global_position.y += val * sin_offset_multiplier
+		#var y_add := card.global_position.y + val * sin_offset_multiplier
+		#lerp(card.global_position.y, y_add, 1.0) # <- tried making it less ugly
+
 ## Calculates the layout of the hand
 func calculate_card_position(index: int) -> Vector2:
 	var count := cards_in_hand.size()
@@ -180,7 +198,7 @@ func calculate_card_position(index: int) -> Vector2:
 func update_card_width(): ## Should pack cards closer together upon more cards being added (works but not enough)
 	CARD_SEPARATION_WIDTH = max(250 - (cards_in_hand.size() * 10),100)
 
-## Possibly will deprecate and move to card class
+## Will deprecate and move to card class
 func animate_card_to_position(card, new_position):
 	if card.has_meta("tween"):
 		card.get_meta("tween").kill()
@@ -228,7 +246,7 @@ func fan_cards():
 		
 		animate_card_to_position(card, pos)
 
-
+## Sorts cards based on rank
 func sort_cards() -> void: # <- Add in hokm suit to put here?
 	#print(cards_in_hand)
 	#cards_in_hand.sort()

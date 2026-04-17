@@ -86,35 +86,29 @@ func update_hand_positions():
 func _ready() -> void:
 	update_hand_positions() # For testing
 
-## Spreads the cards out on a horizontal line
-#func layout_cards():
-	#for i in range(cards_in_pile.size()):
-		### Get new card position based on the index passed in
-		#cards_in_pile[i].position = Vector2(i * card_spacing, 0)
-		#cards_in_pile[i].z_index = i
 
+func _process(delta: float) -> void:
+	time += delta
+	card_wave(time)
 
-## Spreads the cards out on a horizontal line
-#func layout_cards():
-	#for i in range(cards_in_pile.size()):
-		### Get new card position based on the index passed in
-		#var card = cards_in_pile[i]
-		#var new_position = calculate_card_position(i)
-		#card.starting_position = new_position
+var time : float = 0.0
+
+@export_subgroup('Card Wave Animation')
+@export var time_multiplier : float = 6.0
+@export var sin_offset_multiplier : float = 0.1 # Needed for a visible effect
+## Idle card waving animation by mr Eliptik.
+func card_wave(elapsed_time) -> void:
+	for i in range(cards_in_pile.size()):
+		var card : CardInstance = cards_in_pile[i]
+		var val : float = sin(i + (elapsed_time * time_multiplier))
+		card.global_position.y += val * sin_offset_multiplier
 
 ## Puts the cards in a circular layout (reworked from hand fan_cards) I am just dumb and needed help
-func layout_circular():
-	
+func layout_circular() -> void:
 	var count : int = cards_in_pile.size()
 	if count == 1:
 		animate_card_to_position(cards_in_pile[0], Vector2.ZERO)
 		return
-	
-	#var screen_size : Vector2 = get_viewport_rect().size
-	
-	#var max_radius_x = min(CIRCLE_CENTER.x, screen_size.x - CIRCLE_CENTER.x)
-	#var max_radius_y = min(CIRCLE_CENTER.y, screen_size.y - CIRCLE_CENTER.y)
-	#var safe_radius = min(CIRCLE_RADIUS, max_radius_x, max_radius_y)
 	
 	for i in count:
 		#var n := float(i) / float(count - 1) # N is the place of the card between left & right
@@ -122,8 +116,8 @@ func layout_circular():
 		
 		var angle := (TAU/count) * i #= deg_to_rad(angle_deg)
 		
-		var x : float = CIRCLE_CENTER.x + sin(angle) * CIRCLE_RADIUS 
-		var y : float = CIRCLE_CENTER.y + cos(angle) * CIRCLE_RADIUS #*safe_radius
+		var x : float = CIRCLE_CENTER.x + sin(angle) * CIRCLE_RADIUS # meant to be cos
+		var y : float = CIRCLE_CENTER.y + cos(angle) * CIRCLE_RADIUS # meant to be sin
 		# Flipping sin & cos here gives interesting results
 		
 		var rot : float = angle + PI / 2.0
