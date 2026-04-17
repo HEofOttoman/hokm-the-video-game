@@ -25,8 +25,9 @@ class_name ScorePile
 ## ^Might be unnecessary if I an just animate it to the hand's position
 
 @export_subgroup('Circular Layout')
-@export var CIRCLE_RADIUS := 40.0
-@export var CIRCLE_CENTER := Vector2.ZERO
+@export var CIRCLE_RADIUS : float = 50.0
+@export var CIRCLE_CENTER : Vector2 = Vector2.ZERO
+@export var flip_sin_cos : bool = false ## Whether or not sin & cos is flipped in the circle calculations
 
 enum CardLayout {
 	LINEAR,
