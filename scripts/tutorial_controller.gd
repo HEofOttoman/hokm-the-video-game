@@ -16,6 +16,8 @@ class_name TutorialController
 
 @export_enum('2P', '3P', '4P') var tutorial_mode
 
+@export var tutorial_steps : Array = [] ## Array of text resources with names to cycle through
+
 var text_tween : Tween
 var text_timer : Timer
 
@@ -50,7 +52,6 @@ func typewrite(text_string: String) -> void:
 	
 	text_tween.tween_property(tutorial_text, "visible_characters", tutorial_text.get_total_character_count(), 0.75)
 	#text_tween.tween_property(tutorial_text, "visible_characters", -1, 0.1)
-	
 
 func _on_next_button_pressed() -> void:
 	#tutorial_step += 1 # Replace with function body.

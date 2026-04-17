@@ -14,9 +14,24 @@ class_name UIManager
 
 @export var ui_animation_player : AnimationPlayer
 
+@export var stopwatch_text : RichTextLabel
+@export var timer_enabled : bool
+@export var time_elapsed : float = 0.0
+
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed('debug_menu'):
 		debug_layer.show()
+
+func _process(delta: float) -> void: 
+	time_elapsed += delta
+	
+	if timer_enabled == true: 
+		var minutes = time_elapsed / 60
+		var seconds = fmod(time_elapsed, 60)
+		var milliseconds = fmod(time_elapsed, 1) * 100
+		var time_string = "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
+		stopwatch_text.text = str(time_string)
+	else: return
 
 signal hokm_chosen(hokm: CardData.Suit)
 #@onready var hokm_selector: Panel = $HUDLayer/HokmSelector
@@ -79,3 +94,7 @@ func _on_game_manager_stock_concluded() -> void:
 
 func _on_sort_button_pressed() -> void:
 	emit_signal('sort_button_pressed')
+
+
+func _on_timer_enabled(enabled: bool) -> void:
+	timer_enabled = enabled

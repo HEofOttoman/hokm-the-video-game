@@ -71,6 +71,8 @@ signal trick_resolved(winner_id: int)
 ## Round ended
 signal round_ended(game_score: Array[int])
 
+signal timer_enabled(enabled: bool)
+
 ### --- Tutorial Signals ---
 @warning_ignore("unused_signal")
 signal state_changed(state: HokmGamePhase)
@@ -93,8 +95,10 @@ func _ready() -> void:
 
 ## Procedurally generates a game scene I guess?
 func procedural_set_up() -> void:
-	tricks_won.resize(player_count) #
-	
+	if player_count == HokmGameMode.FOUR_PLAYER:
+		tricks_won.resize(2)
+	else:
+		tricks_won.resize(player_count) #
 
 ## Starts a new round. Currently not implemented
 func start_new_round()-> void:
@@ -358,6 +362,7 @@ func deal_remaining_cards():
 
 ## Starts the trick play phase
 func trick_play():
+	emit_signal("timer_enabled", true)
 	current_game_phase = HokmGamePhase.TRICK_PLAY
 	print('Begin Trick Play', current_game_phase)
 	
@@ -460,7 +465,6 @@ func resolve_trick():
 	trick_cards.clear()
 	for slot in trick_slots: ## Animates cards to respective score piles
 		var winner_pile : ScorePile = hands[winner_index].score_pile
-		#slot.occupied_card.queue_free() ## Clears cards from game
 		slot.occupied_card.set_interactive(false)
 		slot.occupied_card.flip_card(false)
 		slot.occupied_card.animate_card_to_position(winner_pile.global_position)
@@ -570,6 +574,7 @@ func end_round():
 	#else:
 		#score[winner_index] += 1
 	
+	emit_signal("timer_enabled", false)
 	emit_signal('round_ended', score)
 	scoring_game()
 	

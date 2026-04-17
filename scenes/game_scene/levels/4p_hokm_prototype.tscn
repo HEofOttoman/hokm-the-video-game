@@ -24,7 +24,7 @@ shader_parameter/polar_center = Vector2(0.5, 0.5)
 shader_parameter/polar_zoom = 1.0
 shader_parameter/polar_repeat = 1.0
 shader_parameter/spin_rotation = 0.0
-shader_parameter/spin_speed = 1.0
+shader_parameter/spin_speed = 5.0
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/colour_1 = Color(0.8666667, 0.8352941, 0.6862745, 1)
 shader_parameter/colour_2 = Color(0.94952685, 0.69577837, 0.69577837, 1)
@@ -81,13 +81,14 @@ pause_menu_packed = ExtResource("5_f03rb")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1305927142]
 
-[node name="UIManager" parent="." unique_id=2116995665 instance=ExtResource("11_osmdq")]
+[node name="UIManager" parent="." unique_id=2116995665 node_paths=PackedStringArray("stopwatch_text") instance=ExtResource("11_osmdq")]
+stopwatch_text = NodePath("TimerLabel")
 
 [node name="TimerLabel" type="RichTextLabel" parent="UIManager" unique_id=2068635378]
-offset_left = 544.0
-offset_top = -328.0
-offset_right = 608.0
-offset_bottom = -288.0
+offset_left = 1126.0
+offset_top = 40.0
+offset_right = 1244.0
+offset_bottom = 80.0
 bbcode_enabled = true
 text = "[pulse]00:00[/pulse]"
 scroll_active = false
@@ -246,7 +247,7 @@ offset_top = 80.0
 offset_right = 64.0
 offset_bottom = 97.0
 bbcode_enabled = true
-text = "[wave amp=10.0 freq=5.0 connected=1]Player 0 (You)[/wave]"
+text = "[color=#ede3b7][wave amp=10.0 freq=5.0 connected=1]Player 0 (You)[/wave][/color]"
 scroll_active = false
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -305,7 +306,7 @@ offset_top = -51.0
 offset_right = 64.0
 offset_bottom = -34.0
 bbcode_enabled = true
-text = "[wave amp=10.0 freq=5.0 connected=1]Player 2 (AI)[/wave]"
+text = "[color=#ede3b7][wave amp=10.0 freq=5.0 connected=1]Player 2 (AI)[/wave][/color]"
 scroll_active = false
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -396,6 +397,7 @@ offset_top = -32.0
 offset_bottom = 32.0
 
 [connection signal="hokm_selection_requested" from="GameManager" to="UIManager" method="_on_hokm_selection_requested"]
+[connection signal="timer_enabled" from="GameManager" to="UIManager" method="_on_timer_enabled"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/NextButton" to="TutorialController" method="_on_next_button_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/FinishButton" to="TutorialController" method="_on_finish_button_pressed"]
 [connection signal="toggled" from="TutorialController/Tutorial Overlay Button" to="TutorialController" method="_on_tutorial_toggled"]

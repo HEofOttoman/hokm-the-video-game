@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TutorialStepData" format=3 uid="uid://bymshx2t6rgr4"]
+
+[ext_resource type="Script" uid="uid://d204nnuk3t26x" path="res://resources/misc/tutorials/tutorial_data.gd" id="1_axbhh"]
+
+[resource]
+script = ExtResource("1_axbhh")
+step_name = &"Teams"
+instructions = "In 4 player hokm, the players are divided into four teams. Players are grouped based on facing each other. "
+metadata/_custom_type_script = "uid://d204nnuk3t26x"
