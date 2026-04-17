@@ -87,59 +87,6 @@ func start_tutorial() -> void:
 	#$TutorialLayer/Narrator/TutorialAnimationPlayer.play("narrator appear", 0, 1.25)
 	start_steps()
 
-## Basically a big slideshow of text.
-#func v1start_tutorial() -> void:
-	#tutorial_text.clear()
-	#tutorial_ui.show()
-	#next_button.show()
-	#finish_button.hide()
-	#$TutorialLayer/Narrator/TutorialAnimationPlayer.play("narrator appear", 0, 1.25)
-	##await $TutorialLayer/Narrator/TutorialAnimationPlayer.animation_finished
-	#
-	#tutorial_step = TutorialStep.INTRO
-	#typewrite("Welcome to hokm! Let's learn the basics.")
-	##print("Welcome to hokm! Let's learn the basics.")
-	#
-	#await next_button.pressed
-	#step_indicator.text = "Auctioning & Dealing"
-	#typewrite("In Hokm, one of the players will be crowned king at the beginning of the round. Look at where the crown is to know who it is.")
-	#
-	#tutorial_step = TutorialStep.DEALING
-	#
-	#
-	#await next_button.pressed
-	#typewrite("Once the king is crowned, he can look at his cards, and choose a trump (hokm) suit.")
-	#
-	#await next_button.pressed
-	#typewrite("In this version, the game will randomly choose the trump suit, which you can see on the top left corner.")
-	#
-	#await next_button.pressed
-	#typewrite("Then, the entire 52 card-deck will be distributed equally for all players.")
-	##await text_timer.timeout
-	#
-	#await next_button.pressed
-	#step_indicator.text = "Card Play"
-	#typewrite("The king will then go first. He can put down any card. The other player then has to match the suit of the first card.")
-	#
-	#await next_button.pressed
-	#typewrite("If one lacks a leading suit card, then you may use any card (no value) or one of the trump suit.")
-	#
-	#await next_button.pressed
-	#step_indicator.text = "Winning & Losing"
-	#typewrite("Whoever has put down the highest ranked card will win the deck. A trump card outvalues all other cards in addition to its own value.")
-	#
-	#await next_button.pressed
-	#typewrite("The first player to win 7 decks will win the round. Towards the end, the game tends to change very quickly as people run out of cards.")
-	#
-	#await next_button.pressed
-	#typewrite("Usually, the winner of the whole game is the first to win 7 rounds, though I haven't implemented that yet.")
-	#
-	#await next_button.pressed
-	#step_indicator.text = "Finish"
-	#typewrite("Have fun!")
-	#next_button.hide()
-	#finish_button.show()
-
 
 func _on_finish_button_pressed() -> void:
 	finish_tutorial() # Replace with function body.
@@ -162,21 +109,22 @@ func _on_card_played(_player_id: Variant, _card: Variant) -> void:
 
 
 func _on_round_ended(_game_score: Array[int]) -> void:
-	if TutorialStep.WIN_TRICK:
-		print('GREAT! You won the round!')
-		finish_tutorial()
+	#if TutorialStep.WIN_TRICK:
+		#print('GREAT! You won the round!')
+		#finish_tutorial()
+	return
 
 
-func _on_trick_resolved(winner_id: int) -> void:
-	#pass # Replace with function body.
-	if game_manager.current_player == winner_id:
-		if tutorial_step == TutorialStep.FOLLOW_SUIT:
-			print("great! you won the trick")
-			print("repeat what you've learned until one player reaches 7 tricks")
-			print('Whoever does so first, wins.')
-			print('GOOD LUCK')
-		else:
-			print('oh too bad, see if you can win the next round!')
+#func _on_trick_resolved(winner_id: int) -> void:
+	##pass # Replace with function body.
+	#if game_manager.current_player == winner_id:
+		#if tutorial_step == TutorialStep.FOLLOW_SUIT:
+			#print("great! you won the trick")
+			#print("repeat what you've learned until one player reaches 7 tricks")
+			#print('Whoever does so first, wins.')
+			#print('GOOD LUCK')
+		#else:
+			#print('oh too bad, see if you can win the next round!')
 
 
 func _on_turn_started(_player_index: int, _text: String) -> void:
@@ -184,7 +132,7 @@ func _on_turn_started(_player_index: int, _text: String) -> void:
 
 
 func finish_tutorial() -> void:
-	tutorial_step = TutorialStep.COMPLETE
+	#tutorial_step = TutorialStep.COMPLETE
 	#await get_tree().create_timer(2.5).timeout
 	#$TutorialLayer/Narrator/TutorialAnimationPlayer.play_backwards("narrator appear")
 	tutorial_ui.hide()

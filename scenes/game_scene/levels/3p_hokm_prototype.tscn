@@ -43,6 +43,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
 color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+metadata/_edit_lock_ = true
 
 [node name="CenterTablePanel" type="Panel" parent="." unique_id=1852822250]
 self_modulate = Color(1, 1, 1, 0.28800002)
@@ -95,6 +96,35 @@ offset_bottom = 355.0
 toggle_mode = true
 text = "Tutorial"
 
+[node name="Game Manager2" type="Node" parent="." unique_id=1754586029 node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
+script = ExtResource("8_bdj1t")
+player_count = 3
+ui_manager = NodePath("../UIManager")
+deck = NodePath("../Deck")
+hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1"), NodePath("../EnemyHand2")]
+trick_slots = [NodePath("../CardSlot"), NodePath("../CardSlot1"), NodePath("../CardSlot2")]
+rulesEngine = NodePath("../Rule Umpire")
+score_piles = [NodePath("../PlayerHand/ScorePile"), NodePath("../EnemyHand1/ScorePile"), NodePath("../EnemyHand2/ScorePile")]
+tricks_won = Array[int]([0, 0, 0])
+score = Array[int]([0, 0, 0])
+
+[node name="SortBtn" type="TextureButton" parent="Game Manager2" unique_id=1783459773]
+offset_left = 72.0
+offset_top = 232.0
+offset_right = 122.0
+offset_bottom = 282.0
+texture_normal = ExtResource("12_lcy86")
+texture_pressed = ExtResource("13_30be8")
+texture_hover = ExtResource("14_76pys")
+
+[node name="Tutorial Overlay Button" type="Button" parent="Game Manager2" unique_id=344304983]
+offset_left = -624.0
+offset_top = 296.0
+offset_right = -522.0
+offset_bottom = 355.0
+toggle_mode = true
+text = "Tutorial"
+
 [node name="Rule Umpire" type="Node" parent="." unique_id=1078755919]
 script = ExtResource("9_dkdgu")
 
@@ -103,13 +133,12 @@ script = ExtResource("9_dkdgu")
 [node name="Deck" parent="." unique_id=1607200210 instance=ExtResource("9_2pe2v")]
 position = Vector2(-160, 0)
 
-[node name="PlayerHand" type="Node2D" parent="." unique_id=385711224 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "HandLabel", "score_pile")]
+[node name="PlayerHand" type="Node2D" parent="." unique_id=385711224 node_paths=PackedStringArray("gameManager", "rulesEngine", "trick_slot", "score_pile")]
 position = Vector2(0, 192)
 script = ExtResource("12_c8ffb")
 gameManager = NodePath("../Game Manager")
 rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../CardSlot")
-HandLabel = NodePath("")
 score_pile = NodePath("ScorePile")
 is_player_controlled = true
 
@@ -269,7 +298,11 @@ rotation = -1.5707964
 [node name="Camera2D" type="Camera2D" parent="." unique_id=410326704]
 
 [connection signal="hokm_selection_requested" from="Game Manager" to="UIManager" method="_on_hokm_selection_requested"]
+[connection signal="turn_started" from="Game Manager" to="UIManager" method="_on_game_manager_turn_started"]
 [connection signal="pressed" from="Game Manager/SortBtn" to="UIManager" method="_on_sort_button_pressed"]
+[connection signal="hokm_selection_requested" from="Game Manager2" to="UIManager" method="_on_hokm_selection_requested"]
+[connection signal="turn_started" from="Game Manager2" to="UIManager" method="_on_game_manager_turn_started"]
+[connection signal="pressed" from="Game Manager2/SortBtn" to="UIManager" method="_on_sort_button_pressed"]
 [connection signal="sort_button_pressed" from="UIManager" to="Game Manager" method="_on_sort_btn_pressed"]
 
 [editable path="PlayerHand/ScorePile"]

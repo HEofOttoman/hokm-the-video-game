@@ -258,11 +258,9 @@ func sort_cards() -> void: # <- Add in hokm suit to put here?
 		return a.card_data.rank < b.card_data.rank
 		)
 	
+	for i in range(cards_in_hand.size()): cards_in_hand[i].z_index = i ## Z index re-ordered correctly
 	update_hand_positions()
 
-#func sort_cards_by_value():
-	#if cards_in_hand:
-		#pass
 
 ## Try to fan out the cards... help I just can't (tutorial: https://www.youtube.com/watch?v=waVOR2ehpuU)
 #func _update_cards() -> void:

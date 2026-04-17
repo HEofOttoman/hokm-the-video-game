@@ -16,10 +16,13 @@
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="9_8nu4g"]
 [ext_resource type="PackedScene" uid="uid://m4vriaj77wh4" path="res://resources/UI Elements/score_pile/score_pile.tscn" id="10_cv7p3"]
 [ext_resource type="Texture2D" uid="uid://dbv01i82f2ybp" path="res://assets/Sprites/Misc/Anonymous Person Icon.png" id="10_uqk7d"]
+[ext_resource type="Texture2D" uid="uid://bpggc3sf0vbml" path="res://assets/kenney_game-icons/PNG/White/1x/barsVertical.png" id="11_dbxkm"]
 [ext_resource type="PackedScene" uid="uid://cig6thybdjvsv" path="res://resources/UI Elements/ui_manager.tscn" id="11_osmdq"]
 [ext_resource type="Script" uid="uid://d204nnuk3t26x" path="res://resources/misc/tutorials/tutorial_data.gd" id="12_5bcmw"]
 [ext_resource type="Script" uid="uid://cxwpdcfwdt3rl" path="res://scripts/tutorial_controller.gd" id="12_5s40a"]
+[ext_resource type="Texture2D" uid="uid://4fpipg3f3nlf" path="res://assets/kenney_game-icons/PNG/Black/1x/barsHorizontal.png" id="12_kxft6"]
 [ext_resource type="Resource" uid="uid://bymshx2t6rgr4" path="res://resources/misc/tutorials/4p_teams.tres" id="13_4pxpo"]
+[ext_resource type="Texture2D" uid="uid://cxbx6cncdvff5" path="res://assets/kenney_game-icons/PNG/White/1x/barsHorizontal.png" id="13_6kro8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f03rb"]
 shader = ExtResource("2_fdej1")
@@ -161,12 +164,18 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SortBtn" type="TextureButton" parent="UIManager" unique_id=1340730042]
+offset_left = 671.0
+offset_top = 612.0
+offset_right = 721.0
+offset_bottom = 662.0
+texture_normal = ExtResource("11_dbxkm")
+texture_pressed = ExtResource("12_kxft6")
+texture_hover = ExtResource("13_6kro8")
+
 [node name="TutorialController" type="Node" parent="." unique_id=1667938076 node_paths=PackedStringArray("game_manager", "tutorial_ui", "step_indicator", "tutorial_text", "next_button", "finish_button")]
 script = ExtResource("12_5s40a")
-tutorial_active = null
-tutorial_step = null
 game_manager = NodePath("../GameManager")
-interactive_tutorial = null
 tutorial_ui = NodePath("TutorialLayer")
 step_indicator = NodePath("TutorialLayer/StepIndicator")
 tutorial_text = NodePath("TutorialLayer/TutorialText")
@@ -470,6 +479,9 @@ offset_bottom = 32.0
 
 [connection signal="hokm_selection_requested" from="GameManager" to="UIManager" method="_on_hokm_selection_requested"]
 [connection signal="timer_enabled" from="GameManager" to="UIManager" method="_on_timer_enabled"]
+[connection signal="turn_started" from="GameManager" to="UIManager" method="_on_game_manager_turn_started"]
+[connection signal="sort_button_pressed" from="UIManager" to="GameManager" method="_on_sort_btn_pressed"]
+[connection signal="pressed" from="UIManager/SortBtn" to="UIManager" method="_on_sort_button_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/NextButton" to="TutorialController" method="_on_next_button_pressed"]
 [connection signal="pressed" from="TutorialController/TutorialLayer/FinishButton" to="TutorialController" method="_on_finish_button_pressed"]
 [connection signal="toggled" from="TutorialController/Tutorial Overlay Button" to="TutorialController" method="_on_tutorial_toggled"]
