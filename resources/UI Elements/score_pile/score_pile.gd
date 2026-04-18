@@ -52,6 +52,8 @@ func set_interactive(enabled: bool):
 
 ## Adds the card to the array and updates card to position
 func add_card_to_pile(card: CardInstance, trick_count: int):
+	animate_card_to_position(card, global_position)
+	
 	#DisplayLabel.text = 'Tricks Won: %d' % trick_count
 	DisplayLabel.text = '%d' % trick_count
 	_set_count(trick_count)

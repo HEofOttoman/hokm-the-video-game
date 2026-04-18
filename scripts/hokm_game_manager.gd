@@ -465,16 +465,16 @@ func resolve_trick():
 	trick_cards.clear()
 	for slot in trick_slots: ## Animates cards to respective score piles
 		var winner_pile : ScorePile = hands[winner_index].score_pile
-		slot.occupied_card.set_interactive(false)
-		slot.occupied_card.flip_card(false)
-		slot.occupied_card.animate_card_to_position(winner_pile.global_position)
-		
+		#slot.occupied_card.set_interactive(false)
+		#slot.occupied_card.flip_card(false)
+		#slot.occupied_card.animate_card_to_position(winner_pile.global_position)
 		if player_count == HokmGameMode.FOUR_PLAYER:
 			var team_id = player_to_team[winner_index]
 			winner_pile.add_card_to_pile(slot.occupied_card, tricks_won[team_id])
 		else:
 			winner_pile.add_card_to_pile(slot.occupied_card, tricks_won[winner_index])
 		slot.remove_card_from_slot()
+		
 	
 	current_player = winner_index ## Hopefully that works.. I keep having winner ID mismatches (trick win goes to wrong player)
 	start_turn(winner_index)

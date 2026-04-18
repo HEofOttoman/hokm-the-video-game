@@ -9,7 +9,7 @@ class_name CardSlot
 
 @export var slot_type : SlotType = SlotType.Trick_Slot
 
-var occupied_card = null
+var occupied_card : CardInstance = null
 
 @export var snap_sfx : AudioStream = preload("res://assets/Audio/kenney_ui-audio/Audio/click4.ogg")
 
@@ -37,9 +37,13 @@ func add_card_to_slot(card: CardInstance): ## Places card inside of slot
 	print('Card Added to slot')
 
 ## Resets card slot variables, doesn't change card position
-func remove_card_from_slot():
+func remove_card_from_slot() -> void:
 	if not card_in_slot:
 		return
+	
+	occupied_card.set_interactive(false)
+	occupied_card.flip_card(false)
+	#occupied_card.animate_card_to_position(winner_pile_position)
 	
 	card_in_slot = false
 	occupied_card = null
