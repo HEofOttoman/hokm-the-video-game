@@ -211,7 +211,8 @@ func highlight_card(on_card : bool): #(card, hovered : bool):
 		tween_hover.tween_property(self, "scale", custom_default_scale * Vector2(1.05, 1.05), 0.55)
 		
 		#scale = custom_default_scale * Vector2(1.05, 1.05) ## Scales the size of the cards
-		z_index = 2
+		#z_index = 2
+		z_index += 1
 		## Moves the cards in front of each other
 		## However appears in front of the pause menu for some reason (fix)
 	else:
@@ -227,7 +228,8 @@ func highlight_card(on_card : bool): #(card, hovered : bool):
 		tween_hover.tween_property(self, "scale", Vector2.ONE, 0.55)
 		
 		#scale = custom_default_scale #Vector2(1, 1) 
-		z_index = 1
+		#z_index = 1
+		z_index -= 1
 
 ## Rotates card in 3D perspective via the shader
 func rotate_card(event: InputEvent):

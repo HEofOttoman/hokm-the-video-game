@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://3ipinosqhxal" path="res://resources/shaders/balatro_paint_mix.tres" id="2_1aijo"]
 [ext_resource type="StyleBox" uid="uid://bl1lux424j5bn" path="res://resources/UI Elements/palettetest_stylebox.tres" id="3_heqth"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="3_kc246"]
-[ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="4_ewgxo"]
+[ext_resource type="PackedScene" uid="uid://wm2nmhcpk5qp" path="res://scenes/windows/pause_menu_layer.tscn" id="5_lcy86"]
 [ext_resource type="Script" uid="uid://bmlwpkrav3q56" path="res://addons/maaacks_game_template/extras/scripts/win_lose_manager.gd" id="5_v4sq6"]
 [ext_resource type="PackedScene" uid="uid://ba11po12cvait" path="res://scenes/windows/game_won_window.tscn" id="6_bdj1t"]
 [ext_resource type="PackedScene" uid="uid://bx7s80d8smic4" path="res://scenes/windows/level_lost_window.tscn" id="7_2pe2v"]
@@ -55,10 +55,9 @@ offset_bottom = 360.0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("3_heqth")
 
-[node name="PauseMenuController" type="Node" parent="." unique_id=1999372648 node_paths=PackedStringArray("canvas_layer")]
+[node name="PauseMenuController" type="Node" parent="." unique_id=1999372648]
 script = ExtResource("3_kc246")
-pause_menu_packed = ExtResource("4_ewgxo")
-canvas_layer = NodePath("../UIManager")
+pause_menu_packed = ExtResource("5_lcy86")
 
 [node name="Win Lose Manager" type="Node" parent="." unique_id=38341197]
 script = ExtResource("5_v4sq6")

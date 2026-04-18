@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://2t77l40tdg4x" path="res://assets/Sprites/narrator/Ferdowski-NarratorSprite-glasses.png" id="9_1r4cq"]
 [ext_resource type="Script" uid="uid://bftae8jkury7d" path="res://resources/UI Elements/ui_manager.gd" id="9_rnmyu"]
 [ext_resource type="PackedScene" uid="uid://byqpo4bmpwdyh" path="res://resources/UI Elements/hokm_display_panel.tscn" id="10_73siw"]
+[ext_resource type="PackedScene" uid="uid://wm2nmhcpk5qp" path="res://scenes/windows/pause_menu_layer.tscn" id="11_3tb7h"]
 [ext_resource type="Texture2D" uid="uid://mdddrsbhdtq2" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_clubs_suit.png" id="11_he7j7"]
 [ext_resource type="Texture2D" uid="uid://cchmw36cn2iub" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_hearts_suit.png" id="12_3hwx4"]
 [ext_resource type="Texture2D" uid="uid://kbvpimiey1to" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_spades_suit.png" id="13_fbs3b"]
@@ -18,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://nphn56k8tao0" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (medium)/card_diamonds_suit.png" id="14_cen0b"]
 [ext_resource type="PackedScene" uid="uid://dvaltk266wmbh" path="res://resources/UI Elements/hakem_display_label.tscn" id="15_oofwr"]
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="16_3tb7h"]
-[ext_resource type="PackedScene" uid="uid://b0x8acab1b4oe" path="res://scenes/windows/pause_menu.tscn" id="17_x5e23"]
 [ext_resource type="PackedScene" uid="uid://cw2s6n4ya0dat" path="res://resources/Deck/Deck.tscn" id="18_7b6e0"]
 [ext_resource type="Script" uid="uid://dwk3pcakuflgo" path="res://resources/UI Elements/hokm_selector.gd" id="18_rnmyu"]
 [ext_resource type="Texture2D" uid="uid://dr7lvrpgxl33u" path="res://assets/Sprites/Cards/kenney_playing-cards-pack/PNG/Cards (small)/card_clubs_suit.png" id="19_73siw"]
@@ -434,7 +434,7 @@ text = "Sir Dowski"
 
 [node name="PauseMenuController" type="Node" parent="." unique_id=1582113502 node_paths=PackedStringArray("canvas_layer")]
 script = ExtResource("16_3tb7h")
-pause_menu_packed = ExtResource("17_x5e23")
+pause_menu_packed = ExtResource("11_3tb7h")
 canvas_layer = NodePath("../UIManager/HUDLayer")
 
 [node name="UIManager" type="Node" parent="." unique_id=30243284 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label", "ui_animation_player", "stock_choice_ui")]

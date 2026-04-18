@@ -2,9 +2,9 @@ extends Node
 
 ## Node for opening a pause menu when detecting a 'ui_cancel' event.
 
-@export var pause_menu_packed : PackedScene
+@export var pause_menu_packed : PackedScene ## Pause menu layer!
 @export var focused_viewport : Viewport
-@export var canvas_layer : CanvasLayer ## Ad hoc fix
+#@export var canvas_layer : CanvasLayer ## Ad hoc fix
 
 var pause_menu : Node
 
@@ -25,7 +25,7 @@ func _unhandled_input(event : InputEvent) -> void:
 
 func _ready() -> void:
 	pause_menu = pause_menu_packed.instantiate()
-	pause_menu.z_index = 5 ## Necessary to counteract the effect of Barry's card hover effect
+	#pause_menu.z_index = 5 ## Necessary to counteract the effect of Barry's card hover effect
 	pause_menu.hide()
 	get_tree().current_scene.call_deferred("add_child", pause_menu)
 	#canvas_layer.call_deferred("add_child", pause_menu)

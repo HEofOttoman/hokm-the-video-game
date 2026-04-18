@@ -92,7 +92,7 @@ func _on_finish_button_pressed() -> void:
 	finish_tutorial() # Replace with function body.
 
 
-func _on_state_changed(state: GameManager.HokmGamePhase) -> void:
+func _on_state_changed(_state: GameManager.HokmGamePhase) -> void:
 	#if tutorial_step == TutorialStep.DEALING and state == GameManager.HokmGamePhase.AUCTIONING:
 		#tutorial_step = TutorialStep.CHOOSE_HOKM
 		#print('You are the hakem, or the leader this round. ')

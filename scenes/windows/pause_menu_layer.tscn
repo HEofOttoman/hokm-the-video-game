@@ -72,6 +72,7 @@ text = "Exit Game"
 [node name="RestartConfirmation" parent="." unique_id=2108231644 instance=ExtResource("5_bgbk1")]
 unique_name_in_owner = true
 visible = false
+z_index = 5
 update_content = true
 text = "Restart the game?"
 title = "Confirm Restart"
@@ -79,6 +80,7 @@ title = "Confirm Restart"
 [node name="MainMenuConfirmation" parent="." unique_id=2117401110 instance=ExtResource("5_bgbk1")]
 unique_name_in_owner = true
 visible = false
+z_index = 5
 custom_minimum_size = Vector2(220, 0)
 update_content = true
 text = "Exit to the main menu?"
@@ -87,6 +89,7 @@ title = "Confirm Exit"
 [node name="ExitConfirmation" parent="." unique_id=1385299853 instance=ExtResource("5_bgbk1")]
 unique_name_in_owner = true
 visible = false
+z_index = 5
 update_content = true
 text = "Exit the game?"
 title = "Confirm Exit"
