@@ -5,7 +5,7 @@ class_name PlayerController
 ## Might move hand input logic in this script, seperating it from the hand class
 
 @export_group('Controller Variables')
-@export var hand: HandClass = HandClass.new()
+@export var hand: HandClass #= HandClass.new()
 @export var gameManager : GameManager = GameManager.new()
 @export var rulesEngine : RulesEngine = RulesEngine.new()
 

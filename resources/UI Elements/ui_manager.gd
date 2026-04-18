@@ -20,7 +20,7 @@ class_name UIManager
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed('debug_menu'):
-		debug_layer.show()
+		debug_layer.visible = not debug_layer.visible
 
 func _process(delta: float) -> void: 
 	time_elapsed += delta
