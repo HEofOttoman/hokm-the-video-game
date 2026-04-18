@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://wqpmnb3prp5t" path="res://scenes/menus/options_menu/game/game_options_menu.gd" id="1_hvcyg"]
 [ext_resource type="Script" uid="uid://1nf36h0gms3q" path="res://addons/maaacks_game_template/base/nodes/utilities/capture_focus.gd" id="2_t8t6j"]
 [ext_resource type="PackedScene" uid="uid://bjr38vv2fmnfl" path="res://scenes/menus/options_menu/game/reset_game_control/reset_game_control.tscn" id="3_pfgxr"]
+[ext_resource type="PackedScene" uid="uid://b6bl3n5mp3m1e" path="res://addons/maaacks_game_template/base/nodes/menus/options_menu/option_control/list_option_control.tscn" id="4_t8t6j"]
 
 [node name="Game" type="MarginContainer" unique_id=920313148]
 anchors_preset = 15
@@ -19,6 +20,17 @@ size_flags_horizontal = 4
 alignment = 1
 script = ExtResource("2_t8t6j")
 search_depth = 2
+
+[node name="OptionControl" parent="VBoxContainer" unique_id=1821355523 instance=ExtResource("4_t8t6j")]
+layout_mode = 2
+lock_titles = true
+option_values = [0, 1, 2]
+option_titles = Array[String](["Easy", "Normal", "Hard"])
+option_name = "Difficulty"
+option_section = 4
+key = "Difficulty"
+section = "GameSettings"
+property_type = 2
 
 [node name="ResetGameControl" parent="VBoxContainer" unique_id=354171408 instance=ExtResource("3_pfgxr")]
 layout_mode = 2

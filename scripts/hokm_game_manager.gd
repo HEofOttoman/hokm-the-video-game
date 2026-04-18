@@ -3,6 +3,13 @@ class_name GameManager
 ## Should be the root of the scene?
 
 ## Number of players
+@export var game_difficulty : AIDifficulty = AIDifficulty.EASY
+enum AIDifficulty {
+	EASY,
+	NORMAL,
+	HARD
+}
+
 @export var player_count : HokmGameMode = HokmGameMode.TWO_PLAYER ## Yea that's right
 
 @export_group('Game Variables')
@@ -54,13 +61,6 @@ enum HokmGamePhase {
 	GAME_OVER ## Ends game
 }
 
-enum StockState {
-	DRAW_FIRST,
-	WAIT_DECISION,
-	DRAW_SECOND,
-	RESOLVE
-}
-var stock_state : StockState
 
 ### --- UI Signals ---
 
@@ -231,10 +231,7 @@ func start_stock_turn(player_id : int) -> void:
 	stock_first_card = deck.draw_card()
 	stock_second_card = deck.draw_card()
 	
-	#stock_state = StockState.DRAW_FIRST
-	
 	print('Stock Turn Player ', player_id)
-	#process_stock_state()
 	
 	if hands[player_id].is_player_controlled:
 		enable_stock_ui()
@@ -276,52 +273,6 @@ func _on_ui_stock_choice_made(stock_choice: bool) -> void:
 		
 		hands[current_player].receive_card(stock_second_card)
 	advance_stock_turn()
-
-## Big state machine processor thingy for stock draws instead of func chain. It is actually crap now that I look at it
-#func process_stock_state() -> void:
-	##var stock_first_card : CardInstance
-	##var stock_second_card : CardInstance
-	##
-	##var keep_first_card : bool = false
-	#
-	#match stock_state:
-		#
-		#StockState.DRAW_FIRST:
-			#stock_first_card = deck.draw_card() # <- Fatal error (fixed)
-			##stock_first_card = await card_drawn # <- breaks literally everything
-			##hands[current_player].receive_card(stock_first_card) # Fixed the last tween issue of not being parented
-			##^ And STILL the UI doesn't work 💔 
-			#
-			#if hands[current_player].is_player_controlled:
-				##enable_stock_ui()
-				#print('stock first card: ', stock_first_card)
-				#
-				#emit_signal('show_stock_ui', stock_first_card)
-				##return
-			#else:
-				##ai_controllers[current_player].ai_stock_choice(stock_first_card)
-				##hands[current_player].ai_controller.ai_stock_choice(stock_first_card)
-				#keep_first_card = hands[current_player].ai_controller.ai_stock_choice(stock_first_card)
-				#
-				#if keep_first_card == true:
-					#resolve_stock_choice(keep_first_card, stock_first_card, stock_second_card)
-				#else:
-					#stock_first_card.destroy_card()
-				##process_stock_state()
-				#
-			#
-			#stock_state = StockState.WAIT_DECISION
-			##return
-			#
-		#StockState.WAIT_DECISION:
-			#push_error('Not supposed to get here')
-		#StockState.DRAW_SECOND:
-			#stock_second_card = deck.draw_card()
-			#stock_state = StockState.RESOLVE
-			##process_stock_state()
-			#
-		#StockState.RESOLVE:
-			#resolve_stock_choice(keep_first_card, stock_first_card, stock_second_card)
 
 func advance_stock_turn() -> void:
 	if deck.cards.is_empty(): # terminates and begins trick play phase

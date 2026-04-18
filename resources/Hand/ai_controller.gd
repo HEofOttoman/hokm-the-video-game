@@ -116,7 +116,7 @@ func choose_cards(legal_cards: Array, hokm_suit : CardData.Suit, trick_cards : A
 	push_error('wow you got this message somehow')
 	return legal_cards.pick_random()
 
-## Button to test the AI before actual turns
-func _on_ai_testing_btn_pressed() -> void:
-	print('Initialise AI test')
-	take_turn()
+func get_difficulty():
+	pass
+	difficulty = PlayerConfig.get_config('Game', 'Difficulty')
+	

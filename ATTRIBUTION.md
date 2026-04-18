@@ -9,10 +9,12 @@ Developer & programmer. Custom assets too.
 ### Ferdowski
 #### Rules of Hokm
 ![Ferdowskimyman](/assets/Artworks/Ferdowski Icon.png)
-All of this is possible because of FerdowSki (my man) who happened to teach me this game in late 2025
+All of this is possible thanks to FerdowSki (my man) who taught me this game in late 2025
 
 ### Art & Assets
 Henry Wauzivuff - Custom Assets. I drew Sir Dowski.
+Background Textures - Henry Wauzivuff
+Trick Slot Sprites - Henry Wauzivuff
 Kenney.nl - [Playing Cards Pack](https://kenney.nl/assets/playing-cards-pack)
 Noobytube - [Balatro Paint Mix (CC0)](https://godotshaders.com/shader/balatro-paint-mix/)
 
