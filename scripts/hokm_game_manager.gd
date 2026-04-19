@@ -158,10 +158,12 @@ func auctioning_game():
 	deal_remaining_cards()
 
 func declaring_hakem() -> int:
-	var hakem = hands.pick_random()
+	var hakem : HandClass = hands.pick_random()
 	hakem_index = hands.find(hakem)
 	
 	hands[hakem_index].is_current_player = true
+	
+	hakem.hide_cards(true)
 	
 	print('Hakem: ', hakem, ' Index: ', hakem_index)
 	#ui_manager.hakem_display_label.text = str("Hakem: ", hakem.name) # Replace with function body
