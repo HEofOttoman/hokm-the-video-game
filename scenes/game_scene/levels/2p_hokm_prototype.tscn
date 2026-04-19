@@ -301,6 +301,7 @@ game_lost_scene = ExtResource("5_8mnqj")
 
 [node name="Game Manager" type="Node" parent="." unique_id=1277796268 node_paths=PackedStringArray("ui_manager", "deck", "hands", "trick_slots", "rulesEngine", "score_piles")]
 script = ExtResource("6_103aj")
+pass_and_play = true
 ui_manager = NodePath("../UIManager")
 deck = NodePath("../Deck")
 hands = [NodePath("../PlayerHand"), NodePath("../EnemyHand1")]

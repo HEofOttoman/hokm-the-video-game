@@ -90,7 +90,8 @@ func receive_card(card):
 	connect_card_signals(card)
 	
 	add_card_to_hand(card)
-	if is_player_controlled: # and is_current_player
+	#if is_player_controlled: # and is_current_player
+	if is_player_controlled and is_current_player:
 		card.flip_card(true) ## If owned by a player, flip the card
 	elif is_player_controlled == false:
 		set_interactive(false)

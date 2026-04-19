@@ -161,6 +161,8 @@ func declaring_hakem() -> int:
 	var hakem = hands.pick_random()
 	hakem_index = hands.find(hakem)
 	
+	hands[hakem_index].is_current_player = true
+	
 	print('Hakem: ', hakem, ' Index: ', hakem_index)
 	#ui_manager.hakem_display_label.text = str("Hakem: ", hakem.name) # Replace with function body
 	#ui_manager.hakem_display_label.text = str("Player ", hakem_index)
@@ -472,6 +474,9 @@ func advance_turn() -> void: ## Advances hand turn order
 	if current_game_phase == HokmGamePhase.SCORING: return
 	if current_game_phase == HokmGamePhase.GAME_OVER: return
 	
+	if pass_and_play:
+		hands[current_player].hide_cards(false)
+	
 	print('Advancing Turn')
 	
 	#print('Hands:', hands)
@@ -497,14 +502,16 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 	var active_hand : HandClass = hands[player_index]
 	
 	for hand in hands: ## Ensures that the hand is not interactible if it's not your turn.
-		hand.set_interactive(false)
+		#hand.set_interactive(false)
+		hand.hide_cards(false)
 	
 	#if tricks_won[current_player] == 7: ## Checks to see if 7 tricks have been won and ends game accordi
 	if get_tricks_for_player(current_player) >= 7:
 		end_round()
 	
 	if active_hand.is_player_controlled:
-		active_hand.set_interactive(true)
+		#active_hand.set_interactive(true)
+		active_hand.hide_cards(true)
 		emit_signal('turn_started', player_index, 'YOUR TURN')
 		print("Player's turn")
 		## Show hint that it is the player's turn

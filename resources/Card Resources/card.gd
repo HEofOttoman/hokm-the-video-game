@@ -304,10 +304,12 @@ func handle_shadow() -> void:
 func flip_card(flipped: bool):
 	card_face_up = flipped
 	if flipped == true:
+		card_sprite.show()
 		$AnimationPlayer.play("card_flip")
 		GameSfxBus.play(GameSfxBus.card_flip)
 	else:
 		$AnimationPlayer.play_backwards("card_flip")
+		card_sprite.hide()
 
 ## Moved from hand.gd. Animates a card from current position to the defined position
 func animate_card_to_position(new_position):
