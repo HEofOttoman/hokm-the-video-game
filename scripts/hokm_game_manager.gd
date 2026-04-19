@@ -95,12 +95,12 @@ func _ready() -> void:
 	#for i in range(hands.size()):
 		#hands[i].player_id = i
 
-## Procedurally generates a game scene I guess?
-func procedural_set_up() -> void:
-	if player_count == HokmGameMode.FOUR_PLAYER:
-		tricks_won.resize(2)
-	else:
-		tricks_won.resize(player_count) #
+## Runs the game with game mode settings applied once
+func initialise_settings() -> void:
+	pass_and_play = PlayerConfig.get_config("game", "pass_&_play")
+	
+	for hand in hands:
+		hand.ai_controller.get_difficulty()
 
 ## Starts a new round. Currently not implemented
 func start_new_round()-> void:

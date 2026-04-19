@@ -746,6 +746,50 @@ anchor_bottom = -0.17638889
 text = "LEADING SUIT:"
 metadata/_edit_use_anchors_ = true
 
+[node name="TurnOverlay" type="ColorRect" parent="UIManager" unique_id=1461769513]
+visible = false
+anchors_preset = -1
+anchor_left = -0.5
+anchor_top = -0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="TurnOverlayPrompt" type="Label" parent="UIManager/TurnOverlay" unique_id=308107449]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -18.5
+offset_right = 128.0
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player %d's Turn
+[Tap To Continue]"
+horizontal_alignment = 1
+
+[node name="ContinueBtn" type="Button" parent="UIManager/TurnOverlay" unique_id=1362223594]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = 27.0
+offset_right = 66.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=108642464]
 
 [node name="Deck" parent="." unique_id=675725481 instance=ExtResource("18_7b6e0")]

@@ -52,6 +52,7 @@ func _on_game_manager_trick_resolved(_winner_id: Variant) -> void:
 
 
 func _on_game_manager_turn_started(player_index: Variant, prompt_text: String) -> void:
+	#show_turn_overlay()
 	turn_indicator.text = "Player %d's Turn" % player_index
 	turn_prompt.text = prompt_text
 	#turn_prompt.get_child(0).play('fade_in_&_out')
@@ -74,7 +75,7 @@ func show_turn_overlay()-> void:
 	$TurnOverlay.show()
 	$TurnOverlay/TurnOverlayPrompt.text = "Player %d's Turn \n[Tap To Continue]"
 	
-	await $TurnOverlay.gui_input
+	await $TurnOverlay/ContinueBtn.pressed
 	
 	$TurnOverlay.hide()
 

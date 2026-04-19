@@ -571,6 +571,21 @@ text = "Player %d's Turn
 [Tap To Continue]"
 horizontal_alignment = 1
 
+[node name="ContinueBtn" type="Button" parent="TurnOverlay" unique_id=1727057752]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = 27.0
+offset_right = 66.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+
 [connection signal="hokm_selection_request" from="." to="HUDLayer/HokmSelector" method="_on_hokm_selection_request"]
 [connection signal="toggled" from="HUDLayer/HudSidebar/Button" to="HUDLayer/HudSidebar" method="_on_sidebar_btn_toggled"]
 [connection signal="pressed" from="HUDLayer/Sidebar/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/Sidebar Btn" to="HUDLayer/Sidebar" method="_on_sidebar_btn_pressed"]
@@ -580,3 +595,4 @@ horizontal_alignment = 1
 [connection signal="pressed" from="HUDLayer/HokmSelector/HokmSelector/Hearts" to="HUDLayer/HokmSelector" method="_on_hearts_pressed"]
 [connection signal="pressed" from="HUDLayer/HokmSelector/HokmSelector/Spades" to="HUDLayer/HokmSelector" method="_on_spades_pressed"]
 [connection signal="pressed" from="HUDLayer/HokmSelector/HokmSelector/Diamonds" to="HUDLayer/HokmSelector" method="_on_diamonds_pressed"]
+[connection signal="gui_input" from="TurnOverlay" to="." method="_on_turn_overlay_gui_input"]
