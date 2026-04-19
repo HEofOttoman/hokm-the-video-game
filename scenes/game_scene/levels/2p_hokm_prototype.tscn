@@ -432,10 +432,9 @@ offset_right = 129.99997
 offset_bottom = 217.0
 text = "Sir Dowski"
 
-[node name="PauseMenuController" type="Node" parent="." unique_id=1582113502 node_paths=PackedStringArray("canvas_layer")]
+[node name="PauseMenuController" type="Node" parent="." unique_id=1582113502]
 script = ExtResource("16_3tb7h")
 pause_menu_packed = ExtResource("11_3tb7h")
-canvas_layer = NodePath("../UIManager/HUDLayer")
 
 [node name="UIManager" type="Node" parent="." unique_id=30243284 node_paths=PackedStringArray("hakem_display_label", "hokm_display_label", "score_display_label", "turn_indicator", "turn_prompt", "rounds_won_display_label", "ui_animation_player", "stock_choice_ui")]
 script = ExtResource("9_rnmyu")
@@ -835,6 +834,7 @@ rulesEngine = NodePath("../Rule Umpire")
 trick_slot = NodePath("../TableTrickSlots/TrickSlot1")
 HandLabel = NodePath("PlayerLabel1")
 score_pile = NodePath("../Enemy1ScorePile")
+is_player_controlled = true
 ai_controller = NodePath("AIController")
 
 [node name="HandPanel" type="Panel" parent="EnemyHand1" unique_id=1607263850]

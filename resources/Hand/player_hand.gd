@@ -33,6 +33,7 @@ var center_screen_x ## The width of the screen
 @export var HandLabel : Label ## The label to display hand information in
 @export var score_pile : ScorePile
 
+@export var is_current_player : bool = false ## For helping check if this card is the current player
 @export var is_player_controlled : bool = false ## Whether or not the hand is owned by a player
 @export var ai_controller: AIController ## This should only be !null if `is_player_controlled` is false.
 
@@ -53,10 +54,20 @@ func _process(delta: float) -> void:
 		time += delta
 		card_wave(time)
 
+## Abstraction above set_interactive & visible cards
+func hide_cards(enabled) -> void:
+	set_interactive(enabled)
+	set_visible_cards(enabled)
+
 ## Toggles all cards in the hand interactive or not
-func set_interactive(enabled: bool):
+func set_interactive(enabled: bool) -> void:
 	for card in cards_in_hand:
 		card.set_interactive(enabled)
+
+## Toggles all cards in the hand interactive or not
+func set_visible_cards(enabled: bool) -> void:
+	for card in cards_in_hand:
+		card.flip_card(enabled)
 
 func connect_card_signals(card):
 	if not card.drag_ended.is_connected(_on_drag_ended):
@@ -79,7 +90,7 @@ func receive_card(card):
 	connect_card_signals(card)
 	
 	add_card_to_hand(card)
-	if is_player_controlled:
+	if is_player_controlled: # and is_current_player
 		card.flip_card(true) ## If owned by a player, flip the card
 	elif is_player_controlled == false:
 		set_interactive(false)

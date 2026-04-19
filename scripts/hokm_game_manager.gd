@@ -3,6 +3,8 @@ class_name GameManager
 ## Should be the root of the scene?
 
 ## Number of players
+@export var pass_and_play : bool = false
+
 @export var game_difficulty : AIDifficulty = AIDifficulty.EASY
 enum AIDifficulty {
 	EASY,
@@ -509,8 +511,6 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 	else:
 		print("AI's turn")
 		emit_signal('turn_started', player_index, str("PLAYER ", player_index, "'S TURN"))
-		#hands[player_index].get_child().take_turn()
-		#$"../EnemyHand1/AIController".take_turn()
 		active_hand.ai_controller.take_turn()
 
 ## Ending the round, aka 7 tricks won (keeping the game short first, limited to 1 round)

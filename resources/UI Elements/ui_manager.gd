@@ -67,6 +67,16 @@ func _on_hokm_selected(chosen_suit: CardData.Suit) -> void:
 	print('Hokm selected via button')
 	#hokm_display_label._on_hokm_chosen(chosen_suit)
 
+@export var turn_overlay: Control
+
+## Shows the turn overlay between turns
+func show_turn_overlay()-> void:
+	$TurnOverlay.show()
+	$TurnOverlay/TurnOverlayPrompt.text = "Player %d's Turn \n[Tap To Continue]"
+	
+	await $TurnOverlay.gui_input
+	
+	$TurnOverlay.hide()
 
 @export var stock_choice_ui: Control
 
