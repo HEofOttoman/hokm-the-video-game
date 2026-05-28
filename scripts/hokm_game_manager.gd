@@ -505,8 +505,8 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 	var active_hand : HandClass = hands[player_index]
 	
 	## Ensures that the hand is not interactible if it's not your turn.
-	#for hand in hands: 
-		#hand.set_interactive(false)
+	for hand in hands: 
+		hand.set_interactive(false)
 		#hand.hide_cards(false)
 	
 	#if tricks_won[current_player] == 7: ## Checks to see if 7 tricks have been won and ends game accordi
