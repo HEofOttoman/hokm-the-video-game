@@ -309,7 +309,7 @@ func flip_card(flipped: bool):
 		GameSfxBus.play(GameSfxBus.card_flip)
 	else:
 		$AnimationPlayer.play_backwards("card_flip")
-		card_sprite.hide()
+		#card_sprite.hide() # Why was this added? removing it fixes choppy collection animations
 
 ## Moved from hand.gd. Animates a card from current position to the defined position
 func animate_card_to_position(new_position):

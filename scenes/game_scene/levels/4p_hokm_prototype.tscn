@@ -382,15 +382,21 @@ score_pile = NodePath("../../ScorePiles/ScorePile0")
 ai_controller = NodePath("AIController")
 
 [node name="PlayerLabel2" type="RichTextLabel" parent="PlayerHands/EnemyHand2" unique_id=404067826]
-offset_left = -64.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
 offset_top = -51.0
-offset_right = 64.0
+offset_right = 100.0
 offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
 bbcode_enabled = true
-text = "[color=#ede3b7][wave amp=10.0 freq=5.0 connected=1]Player 2 (AI)[/wave][/color]"
+text = "[color=#ede3b7][wave amp=10.0 freq=5.0 connected=1]Player 2 (AI) (Teammate)[/wave][/color]"
 scroll_active = false
 horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="AIController" type="Node" parent="PlayerHands/EnemyHand2" unique_id=631556088 node_paths=PackedStringArray("hand", "game_manager", "rulesEngine")]
 script = ExtResource("8_e8k7y")

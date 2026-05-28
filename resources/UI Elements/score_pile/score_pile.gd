@@ -118,8 +118,10 @@ func layout_circular() -> void:
 		
 		var angle := (TAU/count) * i #= deg_to_rad(angle_deg)
 		
-		var x : float = CIRCLE_CENTER.x + sin(angle) * CIRCLE_RADIUS # meant to be cos
-		var y : float = CIRCLE_CENTER.y + cos(angle) * CIRCLE_RADIUS # meant to be sin
+		var x : float = CIRCLE_CENTER.x + cos(angle) * CIRCLE_RADIUS # hexagonal thing
+		#var x : float = CIRCLE_CENTER.x + sin(angle) * CIRCLE_RADIUS # meant to be cos
+		var y : float = CIRCLE_CENTER.y + sin(angle) * CIRCLE_RADIUS # hexagonal thing
+		#var y : float = CIRCLE_CENTER.y + cos(angle) * CIRCLE_RADIUS # meant to be sin
 		# Flipping sin & cos here gives interesting results
 		
 		var rot : float = angle + PI / 2.0
