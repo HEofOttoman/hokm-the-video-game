@@ -102,6 +102,9 @@ func initialise_settings() -> void:
 	for hand in hands:
 		hand.ai_controller.get_difficulty()
 
+func is_pass_and_play() -> bool:
+	return pass_and_play
+
 ## Starts a new round. Currently not implemented
 func start_new_round()-> void:
 	#trick_slots.clear()
@@ -164,7 +167,8 @@ func declaring_hakem() -> int:
 	hands[hakem_index].is_current_player = true
 	
 	if hakem.is_player_controlled: hakem.hide_cards(true) # idk if this is the right fix
-	#hakem.hide_cards(true)
+	hakem.hide_cards(true)
+	#if is_pass_and_play(): hakem.hide_cards(true)
 	
 	print('Hakem: ', hakem, ' Index: ', hakem_index)
 	#ui_manager.hakem_display_label.text = str("Hakem: ", hakem.name) # Replace with function body
@@ -477,7 +481,7 @@ func advance_turn() -> void: ## Advances hand turn order
 	if current_game_phase == HokmGamePhase.SCORING: return
 	if current_game_phase == HokmGamePhase.GAME_OVER: return
 	
-	#if pass_and_play:
+	#if is_pass_and_play():
 		#hands[current_player].hide_cards(false)
 	
 	print('Advancing Turn')
@@ -508,6 +512,7 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 	for hand in hands: 
 		hand.set_interactive(false)
 		#hand.hide_cards(false)
+		#if is_pass_and_play(): hand.hide_cards(false)
 	
 	#if tricks_won[current_player] == 7: ## Checks to see if 7 tricks have been won and ends game accordi
 	if get_tricks_for_player(current_player) >= 7:
@@ -516,6 +521,7 @@ func start_turn(player_index: int): ## Starts the turn of the player with corres
 	if active_hand.is_player_controlled:
 		active_hand.set_interactive(true)
 		#active_hand.hide_cards(true)
+		#if is_pass_and_play(): active_hand.hide_cards(true)
 		emit_signal('turn_started', player_index, 'YOUR TURN')
 		print("Player's turn")
 		## Show hint that it is the player's turn
